@@ -6,8 +6,7 @@ begin
       from carga_academica_cl A inner join curso_cl C
       on A.codCurso_cl = C.id
       where A.docente_id=idDocente and A.estado=1;
-
-end
+end$$
 ===============  Creando Procedimiento almacenado para silabo de cursos Tecnicos =====================================
 create procedure ListarCursosPorDocenteCT (in idDocente int )
 begin
@@ -16,5 +15,5 @@ begin
       on A.codCurso_ct = C.id
       where A.docente_id=idDocente and A.estado=1;
 
-end
+end$$
 

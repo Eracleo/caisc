@@ -144,7 +144,7 @@ Route::get('matriculas_ct/edit/{cod}',array('uses'=>'MatriculaCTController@edit'
 Route::post('matriculas_ct/update.html',array('uses'=>'MatriculaCTController@update'));
 Route::get('matriculas_ct/delete/{cod}',array('uses'=>'MatriculaCTController@delete'));
 Route::post('matriculas_ct/listaMatricula.html',array('uses'=>'MatriculaCTController@listacursosSemestreNuevo'));
-Route::get('matriculas_cl/matricular/{cod}',array('uses'=>'MatriculaCTController@registroMatricula'));
+Route::get('matriculas_ct/matricular/{cod}',array('uses'=>'MatriculaCTController@registroMatricula'));
 Route::post('matriculas_ct/insert.html',array('uses'=>'MatriculaCTController@insert'));
 //*******
 Route::get('matriculas_ct/listacursos',array('uses'=>'MatriculaCTController@listacursos'));
@@ -259,3 +259,13 @@ Route::get('ingresonotas/registroCL','IngresoNotasController@registroCL');
 //Pago en planilla docentes
 Route::get('Planilla',array('uses'=>'PlanillaController@index'));
 Route::get('Planilla/detalle_Planilla/{id}',array('uses'=>'PlanillaController@detalle_Planilla'))->where('id','[0-9]+');
+//Carrera Profesional 
+Route::get('CarreraProfesional',array('uses'=>'CarreraProfesionalController@index'));
+Route::get('CarreraProfesional/add.html',array('uses'=>'CarreraProfesionalController@add'));
+Route::post('CarreraProfesional/post_update.html',array('uses'=>'CarreraProfesionalController@post_actualizar'));
+Route::get('CarreraProfesional/updatecID/{id}',array('uses'=>'CarreraProfesionalController@ActualizarConID'));
+Route::post('CarreraProfesional/update/{id}',array('uses'=>'CarreraProfesionalController@update'));
+Route::post('CarreraProfesional/insert.html',array('uses'=>'CarreraProfesionalController@insert'));
+Route::post('CarreraProfesional/delete',array('uses'=>'CarreraProfesionalController@eliminando'));
+Route::get('CarreraProfesional/profile/{id}',array('uses'=>'CarreraProfesionalController@profile'));
+Route::get('CarreraProfesional/post_eliminar/{id}',array('uses'=>'CarreraProfesionalController@post_eliminar'));

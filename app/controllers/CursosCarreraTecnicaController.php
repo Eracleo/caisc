@@ -26,8 +26,8 @@ class CursosCarreraTecnicaController extends BaseController{
 
 	public function listar()
 	{ 
-		$datos = CursoTecnico::where('estado','=','1')->orderBy('id','DESC')->paginate(10);		
-		$curso_ct = CursoTecnico::where('estado','=','1')->orderBy('id','DESC')->get();
+		$datos = CursoTecnico::where('estado','=','1')->orderBy('id','ASC')->paginate(10);		
+		$curso_ct = CursoTecnico::where('estado','=','1')->orderBy('id','ASC')->get();
 		return View::make('Cursos_Carrera_Tecnica.index',compact("datos"),array('curso_ct'=>$curso_ct));
 	}
 
@@ -60,11 +60,12 @@ class CursosCarreraTecnicaController extends BaseController{
 			$curso = CursoTecnico::where('id','=',$cod)->firstOrFail();
 			if(is_object($curso))
 			{
-				$curso->id = Input::get('id');
+				$curso->codigo = Input::get('codigo');
 				$curso->nombre = Input::get('nombre');
 				$curso->modulo = Input::get('modulo');
+				$curso->horas_academicas = Input::get('horas_academicas');
 				$curso->estado = 1;
-				$curso->codCarrera = Input::get('codCarrera');
+				//$curso->codCarrera = Input::get('codCarrera');
 				$curso->updated_at = time();
 				$curso->save();
 				return Redirect::to('CursosTecnica/index.html');
@@ -76,8 +77,8 @@ class CursosCarreraTecnicaController extends BaseController{
 
 	public function get_eliminar()
 	{
-		$datos = CursoTecnico::where('estado','=','1')->orderBy('id','DESC')->paginate(10);
-		$curso_ct = CursoTecnico::where('estado','=','1')->orderBy('id','DESC')->get();
+		$datos = CursoTecnico::where('estado','=','1')->orderBy('id','ASC')->paginate(10);
+		$curso_ct = CursoTecnico::where('estado','=','1')->orderBy('id','ASC')->get();
 		return View::make('Cursos_Carrera_Tecnica.delete',compact("datos"),array('curso_ct'=>$curso_ct));
 
 	}

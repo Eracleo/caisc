@@ -327,19 +327,6 @@
                             </a>
                             <ul class="treeview-menu">
 
-                                <li class="treeview">
-                            <a href="CursosTecnica/create.html">
-                                <i class="fa fa-folder"></i> <span>Silabo</span>
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li>{{ HTML::link('SilaboCarreraTecnica/index.html','Ver Silabos') }}</li>
-                                <li>{{ HTML::link('SilaboCarreraTecnica/create.html','Agregar Silabo') }}</li>
-                                <li>{{ HTML::link('SilaboCarreraTecnica/delete.html', 'Eliminar Silabo')}}</li>
-                            </ul>
-                        </li>
-
-
                                 <li>{{ HTML::link('CursosTecnica/index.html','Ver Cursos de Carrera') }}</li>
                                 <li>{{ HTML::link('CursosTecnica/create.html','Agregar Curso') }}</li>
                                 <li>{{ HTML::link('CursosTecnica/delete.html', 'Eliminar Curso')}}</li>
@@ -423,17 +410,19 @@
 
                        <li class="treeview">
                             <a href="#">
-                                <i class="fa fa-folder"></i> <span>Carga Academica</span>
-                                <i class="fa fa-angle-left pull-right"></i>
+                                <i class="glyphicon glyphicon-fire"></i> <span>Carga Academica</span>
+                                <!--<i class="glyphicon glyphicon-fire pull-right "></i><!--wrench bookmark-->
                             </a>
                            <ul class="treeview-menu">
-                                <li>{{ HTML::link('/crearCargaCt','Carga Academica CT') }}</li>
-                                <li>{{ HTML::link('/crearCargaCl','Carga Academica CL') }}</li>
-                                <li>{{ HTML::link('/MostrarOpcionesDocente','Horario Por Docente') }}</li>
-                                <li>{{ HTML::link('/MostrarOpcionesPorCurso','Horario Por Curso') }}</li>
+                                <li>{{ HTML::link('/crearCargaCt','- Carga Academica CT') }}</i></li>
+                                <li>{{ HTML::link('/crearCargaCl','- Carga Academica CL') }}</li>
+                                <li>{{ HTML::link('/MostrarOpcionesDocente','- Horario Por Docente') }}</li>
+                                <li>{{ HTML::link('/MostrarOpcionesPorCurso','- Horario Por Curso') }}</li>
+                                <li>{{ HTML::link('/MostrarOpcionesPorAula','- Horario Por Aula') }}</li>
+                                
                             </ul>
                         </li>
-
+                        
                         <li class="treeview">
                             <a href="ingresonotas">
                                 <i class="fa fa-folder"></i> <span>Ingreso De Notas</span>
@@ -444,6 +433,18 @@
                                 <li>{{ HTML::link('ingresonotas/registroCT','Ver Notas Carrera Tecnica') }}</li>
                                 <li>{{ HTML::link('ingresonotas/inicioCL','Ingreso De Notas Curso Libre') }}</li>
                                 <li>{{ HTML::link('ingresonotas/registroCL','Ver Notas Curso Libre') }}</li>
+                            </ul>
+                        </li>
+
+                       <!-- Modulo Carrera Profesional -->
+                       <li class="treeview">
+                            <a href="#">
+                                <i class="glyphicon glyphicon-home"></i> <span>Carrera Profesional</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li>{{ HTML::link('CarreraProfesional/add.html','Agregar Carrera') }}</li>
+                                <li>{{ HTML::link('CarreraProfesional','Listar Carreras') }}</li>
                             </ul>
                         </li>
 

@@ -53,10 +53,11 @@ class CursosCarreraLibreController extends BaseController {
 			$curso = CursoLibre::where('id','=',$cod)->firstOrFail();
 			if(is_object($curso))
 			{
+				
+				$curso->codigo = Input::get('codigo');
 				$curso->nombre = Input::get('nombre');
 				$curso->horas_academicas = Input::get('horas_academicas');
 				$curso->updated_at = time();
-
 				$curso->save();
 				return Redirect::to('CursosLibres/index.html');
 			} 
@@ -111,8 +112,8 @@ class CursosCarreraLibreController extends BaseController {
 	}
 	public function listar()
 	{
-		$datos = CursoLibre::where('estado','=','1')->orderBy('id','DESC')->paginate(10);
-		$curso_cl = CursoLibre::where('estado','=','1')->orderBy('id','DESC')->get();
+		$datos = CursoLibre::where('estado','=','1')->orderBy('id','ASC')->paginate(10);
+		$curso_cl = CursoLibre::where('estado','=','1')->orderBy('id','ASC')->get();
 		return View::make('Cursos_Carrera_Libre.index',compact("datos"),array('id'=>$curso_cl));
 	}
 }

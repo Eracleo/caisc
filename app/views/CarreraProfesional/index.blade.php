@@ -1,9 +1,9 @@
 @extends('layouts.base_admin')
 @section('title')
-Lista <small>CURSOS LIBRES </small>
+Listar Carreras Profesionales
 @stop
 @section('breadcrumb')
-<li>Cursos Libres</li>
+<li>CARRERAS PROFESIONALES</li>
 @stop
 @section('content')
 <div class="box">
@@ -26,30 +26,29 @@ Lista <small>CURSOS LIBRES </small>
                 <div class="col-xs-6">
                     <div id="example1_filter" class="dataTables_filter">
                         <label>Search: <input aria-controls="example1" type="text"></label>
-                        {{ HTML::link('CursosLibres/create.html','Agregar Curso') }}
+                        {{ HTML::link('CarreraProfesional/add.html','Agregar Carrera Profesional') }}
                     </div>
                 </div>
             </div>
             <table aria-describedby="example1_info" id="example1" class="table table-bordered table-striped dataTable">
                 <thead>
                     <tr role="row">
-                        <th aria-label="Rendering engine: activate to sort column descending" aria-sort="ascending" style="width: 80px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" role="columnheader" class="sorting_asc">Nro</th>
-                        <th aria-label="Rendering engine: activate to sort column descending" aria-sort="ascending" style="width: 80px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" role="columnheader" class="sorting_asc">Cod Curso</th>
-                        <th aria-label="Browser: activate to sort column ascending" style="width: 283px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" role="columnheader" class="sorting">Nombre del Curso</th>
-                        <th aria-label="Platform(s): activate to sort column ascending" style="width: 244px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" role="columnheader" class="sorting">Horas Academicas</th>
+                        <th aria-label="Rendering engine: activate to sort column descending" aria-sort="ascending" style="width: 80px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" role="columnheader" class="sorting_asc">Cod Carrera Profesional</th>
+                        <th aria-label="Browser: activate to sort column ascending" style="width: 283px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" role="columnheader" class="sorting">Nombre</th>
+                        <th aria-label="Platform(s): activate to sort column ascending" style="width: 244px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" role="columnheader" class="sorting">Descripcion</th>
                         <th aria-label="CSS grade: activate to sort column ascending" style="width: 114px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" role="columnheader" class="sorting">Actions</th>
                     </tr>
                 </thead>
             <tbody aria-relevant="all" aria-live="polite" role="alert">
                 @foreach( $datos as $dato)
                 <tr class="odd">
-                       <td class=" "><b>{{ $dato->id }}</b></td>
-                        <td class=" ">{{ $dato->codigo }}</td>
+                        <td class="  sorting_1">{{ HTML::link('docente/profile/'.$dato->id,$dato->id) }}</td>
                         <td class=" ">{{ $dato->nombre }}</td>
-                        <td class=" ">{{ $dato->horas_academicas }}</td>
+                        <td class=" ">{{ $dato->descripcion }}</td>
                         <td class=" ">
-                            {{ HTML::link('CursosLibres/updatecID/'.$dato->id,'Actualizar') }}
-                            {{ HTML::link('CursosLibres/post_delete/'.$dato->id,'Eliminar') }}
+                            {{ HTML::link('CarreraProfesional/updatecID/'.$dato->id,'Actualizar') }}
+                            {{ HTML::link('CarreraProfesional/post_eliminar/'.$dato->id,'Eliminar') }}
+                            {{ HTML::link('CarreraProfesional/profile/'.$dato->id,'Detalles') }}
                         </td>
                 </tr>
                 @endforeach

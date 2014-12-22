@@ -59,10 +59,31 @@ class MatriculaCTController extends BaseController
 	public function listacursosSemestreNuevo(){
 		// recuperamos el contenido de codAlumno
 		$cod = Input::get('codAlumno'); // CODIGO ALUMNO
-		$semestre_ant = DB::table('alumno')->where('id', $cod)->pluck('modulo');
-		$semestre = (int)($semestre_ant) + 1;
-		$cursos = CargaAcademicaCT::where('semestre','=',$semestre)->get();
-		return View::make('matriculaCT.listaCursosNuevos', compact('cod'),array('cursos'=>$cursos));
+		//$semestre_ant = DB::table('alumno')->where('id', $cod)->pluck('modulo');
+		$modulo = DB::table('alumno')->where('id', $cod)->pluck('modulo');
+		$alumno = DB::table('alumno')
+						->where('id', $cod)
+						->first();
+		$cursosDisponibles = DB::table('curso_ct')
+								->leftJoin('carga_academica_ct', 'curso_ct.id', '=', 'carga_academica_ct.codCurso_ct')
+								->where('curso_ct.modulo', '=', $modulo)
+								->select('carga_academica_ct.codCargaAcademica_ct', 'carga_academica_ct.codCurso_ct', 'carga_academica_ct.docente_id', 'curso_ct.modulo', 'carga_academica_ct.turno', 'carga_academica_ct.grupo')
+								->get();
+		//$cursos = CargaAcademicaCT::where('semestre','=',$modulo)->get();
+		// Envio los cursos del semestre que le toca
+		return View::make('matriculaCT.listaCursosNuevos', compact('alumno'),array('cursos'=>$cursosDisponibles));
+	}
+
+	public function listacursosSemestreNuevoTest(){
+		// recuperamos el contenido de codAlumno
+		$cod = Input::get('codAlumno'); // CODIGO ALUMNO
+		$semestreAlumno = DB::table('alumno')->where('id', $cod)->pluck('modulo');
+		if ($semestreAlumno == 1) {
+			$cursos = CargaAcademicaCT::where('semestre','=',$semestreAlumno)->get();
+		} else {
+
+		}
+		return View::make('matriculaCT.listaCursosNuevos', compact('alumno'),array('cursos'=>$cursos));
 	}
 
 	public function registroMatricula($cod){
@@ -89,6 +110,11 @@ class MatriculaCTController extends BaseController
 		} else {
 			return Redirect::to('matriculas_ct/listaMatriculas')->with('mensaje',$respuesta['mensaje']);
 		}
+	}
+
+	public function matricular(){
+		var_dump(Input::get('codigs'));
+		var_dump(serialize(Input::get('codigs')));
 	}
 
 

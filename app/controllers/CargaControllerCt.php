@@ -253,5 +253,9 @@ class CargaControllerCt extends \BaseController {
 			'varElementosComboCodCurso_ct'=>$elementosComboCodCurso_ct,
 			))->with('HorarioPorCurso',$HorarioPorCurso);
 	}
-// codeado por erik hammer grupo 2B y fahed en los procedimientos
+//INTEGRANTES : Erik hammer   : controladores
+//				Fahed hermoza : procedimientos
+//				Jhon zea      : vistas y validaciones
+//				Frank johan   : vistas y reportes 
+//              grupo 2B   
 }

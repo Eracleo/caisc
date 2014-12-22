@@ -10,8 +10,10 @@ INSERT INTO users (email,password,tipoUsuario,nroId) VALUES("admin1@gmail.com","
 INSERT INTO `docente` (`id`, `nombre`, `apellidos`, `dni`, `direccion`, `foto`, `telefono`, `email`, `password`, `estado`, `updated_at`, `created_at`) VALUES
 (1, 'Gerardo', 'Mamani', '45544334', 'Av. Grau', NULL, '234435', 'Correo@gmail.com', '132456', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 
-INSERT INTO `carrera` (`id`, `nombre`, `descripcion`) VALUES
-('IN', 'INFORMATICA', 'Informatica 1993');
+INSERT INTO `carrera` (`id`, `nombre`, `descripcion`, `estado`, `updated_at`, `created_at`) VALUES
+('EDU', 'Educacion', 'Fue fundada en 1092', 1, '2014-12-22 06:41:04', '2014-12-22 06:41:04'),
+('IN', 'INFORMATICA', 'Informatica 1993', 1, '2014-12-22 06:59:49', '0000-00-00 00:00:00'),
+('MA', 'Matematica', 'Fue Creada en 1792', 1, '2014-12-22 05:51:46', '2014-12-22 05:51:46');
 
 INSERT INTO `curso_ct` (`id`, `nombre`, `modulo`, `estado`, `codCarrera`, `updated_at`, `created_at`) VALUES
 ('C001', 'Programacion', 1, 1, 'IN', '0000-00-00 00:00:00', '0000-00-00 00:00:00');

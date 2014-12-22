@@ -42,9 +42,15 @@ CREATE TABLE IF NOT EXISTS alumno(
 ) CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS curso_ct(
-	`id` VARCHAR(10) NOT NULL,
+	`id` int AUTO_INCREMENT DEFAULT 1 NOT NULL,
+	`codigo` VARCHAR(10) NOT NULL,	
 	`nombre` VARCHAR(30) NOT NULL,
 	`modulo` INT(2) DEFAULT null,
+<<<<<<< HEAD
+	`horas_academicas` VARCHAR(30) DEFAULT null,	
+=======
+	`horas_academicas` VARCHAR(30) DEFAULT null,
+>>>>>>> 635958df3822fcea641120041bbf7bc2a8189cc8
 	`estado` tinyint(1) DEFAULT '1',
 	`codCarrera` VARCHAR(10) NOT NULL,
 	`updated_at` DATETIME NOT NULL,
@@ -100,7 +106,7 @@ CREATE TABLE IF NOT EXISTS personal(
 
 CREATE TABLE IF NOT EXISTS carga_academica_ct(
 	`codCargaAcademica_ct` INT AUTO_INCREMENT NOT NULL,
-	`codCurso_ct` VARCHAR(10) NOT NULL,
+	`codCurso_ct` INT NOT NULL,
 	`docente_id` INT NOT NULL,
 	`semestre` VARCHAR(10) NOT NULL,
 	`turno` VARCHAR(10) NOT NULL,
@@ -145,13 +151,11 @@ CREATE TABLE IF NOT EXISTS matricula_ct(
 	`id` INT AUTO_INCREMENT NOT NULL,
 	`codAlumno` INT NOT NULL,
 	`codCargaAcademica_ct` INT NOT NULL,
-	`modulo` INT NOT NULL,
 	`updated_at` DATETIME NOT NULL,
     `created_at` DATETIME NOT NULL,
 	PRIMARY KEY (`id`),
 	FOREIGN KEY (`codAlumno`) REFERENCES alumno(`id`),
-	FOREIGN KEY(`codCargaAcademica_ct`) REFERENCES carga_academica_ct(`codCargaAcademica_ct`),
-	FOREIGN KEY(`modulo`) REFERENCES modulo(`id`)
+	FOREIGN KEY(`codCargaAcademica_ct`) REFERENCES carga_academica_ct(`codCargaAcademica_ct`)
 ) CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS nota_ct(
@@ -166,7 +170,8 @@ CREATE TABLE IF NOT EXISTS nota_ct(
 
  -- CURSOS LIBRES
 CREATE TABLE IF NOT EXISTS curso_cl(
-	`id` VARCHAR(10) NOT NULL,
+	`id` int AUTO_INCREMENT NOT NULL,
+	`codigo` VARCHAR(10) NOT NULL,	
 	`nombre` VARCHAR(30) NOT NULL,
 	`horas_academicas` VARCHAR(30) DEFAULT null,
 	`estado` tinyint(1) DEFAULT '1',
@@ -177,7 +182,7 @@ CREATE TABLE IF NOT EXISTS curso_cl(
 
 CREATE TABLE IF NOT EXISTS carga_academica_cl(
 	`codCargaAcademica_cl` INT AUTO_INCREMENT NOT NULL,
-	`codCurso_cl` VARCHAR(10) NOT NULL,
+	`codCurso_cl` INT NOT NULL,
 	`docente_id` INT NOT NULL,
 	`turno` VARCHAR(10) NOT NULL,
 	`grupo` VARCHAR(10) NOT NULL,
@@ -266,7 +271,7 @@ CREATE TABLE IF NOT EXISTS asistencia_ct(
 ) CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS detalle_asistencia_ct(
-	`codAlumno` VARCHAR(10) NOT NULL,
+	`codAlumno` INT NOT NULL,
 	`codAsistencia_ct` VARCHAR(10) NOT NULL,
 	PRIMARY KEY (`codAlumno`,`codAsistencia_ct`),
 	FOREIGN KEY (`codAlumno`) REFERENCES alumno(`id`),
@@ -285,10 +290,10 @@ CREATE TABLE IF NOT EXISTS asistencia_cl(
 ) CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS detalle_asistencia_cl(
-	`codAlumno` VARCHAR(10) NOT NULL,
+	`codAlumno` INT NOT NULL,
 	`codAsistencia_cl` VARCHAR(10) NOT NULL,
 	PRIMARY KEY (`codAlumno`,`codAsistencia_cl`),
-	FOREIGN KEY (`codAlumno`) REFERENCES alumno(`codAlumno`),
+	FOREIGN KEY (`codAlumno`) REFERENCES alumno(`id`),
 	FOREIGN KEY (`codAsistencia_cl`) REFERENCES asistencia_cl(`codAsistencia_cl`)
 ) CHARSET=utf8;
 
@@ -303,7 +308,11 @@ CREATE TABLE IF NOT EXISTS modalidad_pago(
 CREATE TABLE IF NOT EXISTS pagos(
 	`id` int AUTO_INCREMENT NOT NULL,
 	`nro_serie` varchar(3),
+<<<<<<< HEAD
 	`id_alumno` int,
+=======
+	`id_alumno` INT,
+>>>>>>> d8568c50dd2f1f78e35f1cd307a0f18f81d8c5de
 	`fecha` DATE,
 	`total_pago` real,
 	PRIMARY KEY (`id`),

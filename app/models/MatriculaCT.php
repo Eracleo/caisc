@@ -3,14 +3,13 @@
 class MatriculaCT extends Eloquent {
 
 	protected $table = 'matricula_ct';
-	protected $fillable = array('id','codAlumno','codCargaAcademica_ct','modulo','updated_at','created_up');
+	protected $fillable = array('id','codAlumno','codCargaAcademica_ct','updated_at','created_up');
 
 	public static function agregar($input) {
 		$respuesta = array();
 		$reglas = array(
 			'codAlumno'=>array('required','max:10'),
 			'codCargaAcademica_ct'=>array('required','max:10'),
-			'modulo'=>array('required')
 		);
 		$validador = Validator::make($input,$reglas);
 		if($validador->fails())

@@ -14,6 +14,12 @@ Eliminar <small>CURSOS LIBRES </small>
 			{{ Form::text('id',$curso_cl->id,array('class'=>'form-control','placeholder'=>'','readonly'=>'readonly'))}}
 		</div>
 	</div>
+	<div class="form-group">
+		{{ Form::label('codigo','Codigo del curso:',array('class'=>'col-sm-4 control-label')) }}
+		<div class="col-sm-8">
+			{{ Form::text('codigo',$curso_cl->codigo,array('class'=>'form-control','placeholder'=>'','readonly'=>'readonly'))}}
+		</div>
+	</div>
 
 	<div class="form-group">
 		{{ Form::label('nombre','Nombre del curso:',array('class'=>'col-sm-4 control-label')) }}

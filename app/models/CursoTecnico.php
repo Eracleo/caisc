@@ -4,14 +4,15 @@ class CursoTecnico extends Eloquent {
 
 	protected $table = 'curso_ct';
 
-	protected $fillable = array('id','nombre','modulo','estado','codCarrera','updated_at','created_at');
+	protected $fillable = array('id','codigo','nombre','modulo','estado','horas_academicas','codCarrera','updated_at','created_at');
 	public static function agregar($input)
 	{
 		$respuesta = array();
 		$reglas = array(
-			'id'=>array('required','max:10'),
+			'codigo'=>array('required','max:10'),
 			'nombre'=>array('required','max:30'),
 			'modulo'=>array('required','max:2'),
+			'horas_academicas'=>array('required','max:30')
 		);
 		$validador = Validator::make($input,$reglas);
 		if($validador->fails())
@@ -20,23 +21,24 @@ class CursoTecnico extends Eloquent {
 			$respuesta['error'] = true;
 		} 
 		else
-		{
+		{	
 			$curso = new CursoTecnico;
-			$curso->id = Input::get('id');
+			$curso->codigo = Input::get('codigo');
 			$curso->nombre = Input::get('nombre');
 			$curso->modulo = Input::get('modulo');
+			$curso->horas_academicas = Input::get('horas_academicas');
 			$curso->estado = 1;
-			$curso->codCarrera = Input::get('carrera');
+			$curso->codCarrera = Input::get('codCarrera');
 			$curso->created_at= time();
-			$curso->updated_at = time();
-			if(CursoTecnico::find(input::get('id')))
+			$curso->updated_at = time();		
+			if(CursoTecnico::find(input::get('codigo')))
 			{
 				$respuesta['mensaje'] = 'YA EXISTE ESE CODIGO';
 				$respuesta['error'] = true;
 				$respuesta['data'] = $curso;
 			}
 			else
-			{
+			{				
 				if ($curso->save()) 
 				{
 					$respuesta['mensaje'] = 'Curso Creado';
