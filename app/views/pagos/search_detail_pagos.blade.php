@@ -3,9 +3,6 @@
 Consulta Caja y Facturación
 @stop
 @section('content')
-<?php
-    $date = Date("Y-m-d")
-?>
     <nav class="navbar navbar-default" role="navigation">
       <div class="container-fluid">
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -19,13 +16,13 @@ Consulta Caja y Facturación
 
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
       <div class="panel-body" >
-        <form method="get" action="search_pagos">
+        <form method="get" action="search_detail_pagos">
 
-        <label>Fecha:</label>
+        <label>Nro de Boleta:</label>
         <div class="form-inline">         
             <div class="form-group">
 
-              <input name="fecha" type="date" class="form-control" placeholder="yyyy-m-d" value="">
+              <input name="boleta" type="txt" class="form-control" value="">
             </div>
           
           <button type="submit" class="btn btn-default btn-sm">
@@ -40,34 +37,32 @@ Consulta Caja y Facturación
     <table id="detalle_pago" class="table table-striped">
         <thead>
           <tr>
-            <th>Número</th>
-            <th>Serie</th>
-            <th>Id Alumno</th>
-            <th>Fecha</th>
-            <th>Total (S/.)</th>
+            <th>Número Boleta</th>
+            <th>Modalidad</th>
+            <th>Concepto</th>
           </tr>
         </thead>
         <tbody>
 
-        @if (!empty($pagos))
-            @foreach($pagos as $pag)
+        @if (!empty($detalle_pagos))
+            @foreach($detalle_pagos as $detalle)
                 <tr>
-                    <td>{{ $pag->id }}</td>
-                    <td>{{ $pag->nro_serie }}</td>
-                    <td>{{ $pag->id_alumno }}</td>
-                    <td>{{ $pag->fecha }}</td>
-                    <td>{{ $pag->total_pago }}</td>
+                    <td>{{ $detalle->id }}</td>
+                    <td>{{ $detalle->id_modalidad }}</td>
+                    <td>{{ $detalle->descripcion }}</td>
                 </tr>
             @endforeach
         @else
         <p>
-          No existe información para éste pago.
+          No existe información para ésta modalidad.
         </p>
         @endif
 
             
         </tbody>
     </table>
+    
+
   </div>
     @if(Session::has('message'))
       <div class="alert alert-{{ Session::get('class') }}">{{ Session::get('message')}}</div>

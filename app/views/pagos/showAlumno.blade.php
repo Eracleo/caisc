@@ -72,25 +72,24 @@ Caja y Facturación
         </div>
 
         <div class="form-group">
-              {{ Form::label('modalidad_id','Modalidad de Pago :',array('class'=>'col-sm-5 control-label')) }}
-              <div class="col-sm-6 col-md-4">
-              {{ Form::select('modalidad_id',$modalidad,null,array('class'=>'form-control'))}}
-              </div>
-              <script type="text/javascript">
+        <div class="col-sm-10 col-md-9">
+        <label>Seleccione Modalidad de Pago</label>
+        <select id="opciones">
+          @foreach($modalidad as $mod)
+          <option value="{{ $mod->monto }},{{ $mod->id }},{{ $mod->descripcion }}">{{ $mod->id }}</option>
+          @endforeach
+        </select>
+        </div>
+             <script type="text/javascript">
               function agregar_detalle()
               {
-
-                var num="1";
-                var inp = document.getElementById("modalidad_id").value;
-                var concpt= "pago certificado";
-                //var concpt= document.getElementById("modalidad_id");
-                //var con = <?php echo "hola"; ?>
-                nro.innerHTML=num;
-                concepto.innerHTML=concpt;
-                inport.innerHTML=inp;
-                total_pago.value=inp;
-                mostrar.innerHTML="Mostrar";
-                editar.innerHTML="Editar";
+                var str = opciones.value;
+                var data = str.split(",");
+                nro.value="1";
+                concepto.value=data[2];
+                inport.value=data[0];
+                id_modalidad.value=data[1];
+                total_pago.value=data[0];
                 eliminar.innerHTML="Eliminar";
 
               }
@@ -98,34 +97,34 @@ Caja y Facturación
             <script type="text/javascript">
               function eliminar_detalle()
               {
-                nro.innerHTML="";
-                concepto.innerHTML="";
-                inport.innerHTML="";
+                nro.value="";
+                concepto.value="";
+                inport.value="";
                 total_pago.value="";
-                mostrar.innerHTML="";
-                editar.innerHTML="";
+                id_modalidad.value="";
                 eliminar.innerHTML="";
               }
             </script>
             <input name="agrega_detil" type="button" onclick="agregar_detalle()" value="agregar detalle" class="btn btn-info"/>
         </div>
+        </div>
     <table id="detalle_pago" class="table table-striped">
         <thead>
           <tr>
-            <th>Nro</th>
-            <th>Concepto</th>
-            <th>Importe</th>
-            <th>Acciones</th>
+            <th>NRO</th>
+            <th>CONCEPTO</th>
+            <th>IMPORTE</th>
+            <th>MODALIDAD</th>
+            <th>ACCIONES</th>
           </tr>
         </thead>
         <tbody>
             <tr id="rows">
-              <td id="nro"></td>
-              <td id="concepto"></td>
-              <td id="inport"></td>
+              <td><input type="text" name="numero" class="form-control" id="nro" disabled="true"></td>
+              <td><input type="text" name="concepto" class="form-control" id="concepto" ></td>
+              <td><input type="text" name="import" class="form-control" id="inport" ></td>
+              <td><input type="text" name="modalidad" class="form-control" id="id_modalidad"></td>
               <td>
-                <a href=""><span id="mostrar" class="label label-success"></span></a>
-                <a href=""><span id="editar" class="label label-info"></span></a>
                 <a onclick="eliminar_detalle()"><span id="eliminar" class="label label-danger"></span></a>
               </td>
             </tr>

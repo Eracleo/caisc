@@ -399,6 +399,8 @@
                             <ul class="treeview-menu">
                                 <li><i class="glyphicon glyphicon-plus"></i> {{ HTML::link('/pagos/create','Realizar Pago') }}</li>
                                 <li><i class="glyphicon glyphicon-search"></i>{{ HTML::link('/pagos/search_pagos','Buscar') }}</li>
+                                <li><i class="glyphicon glyphicon-search"></i>{{ HTML::link('/pagos/search_detail_pagos','Buscar Detalles') }}</li>
+                                <li><i class="glyphicon glyphicon-search"></i>{{ HTML::link('/pagos/search_pagos_alumno','Buscar Boletas por Alumno') }}</li>
                                 <li><i class="glyphicon glyphicon-list-alt"></i>{{ HTML::link('/pagos','Listar') }}</li>
                             </ul>
                         </li>

@@ -3,9 +3,7 @@
 Consulta Caja y Facturación
 @stop
 @section('content')
-<?php
-    $date = Date("Y-m-d")
-?>
+
     <nav class="navbar navbar-default" role="navigation">
       <div class="container-fluid">
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -19,13 +17,13 @@ Consulta Caja y Facturación
 
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
       <div class="panel-body" >
-        <form method="get" action="search_pagos">
+        <form method="get" action="search_pagos_alumno">
 
-        <label>Fecha:</label>
+        <label>Codigo :</label>
         <div class="form-inline">         
             <div class="form-group">
 
-              <input name="fecha" type="date" class="form-control" placeholder="yyyy-m-d" value="">
+              <input name="codigo" type="txt" class="form-control" placeholder="Codigo" value="">
             </div>
           
           <button type="submit" class="btn btn-default btn-sm">
@@ -61,13 +59,15 @@ Consulta Caja y Facturación
             @endforeach
         @else
         <p>
-          No existe información para éste pago.
+          No existe información para ésta modalidad.
         </p>
         @endif
 
             
         </tbody>
     </table>
+    
+
   </div>
     @if(Session::has('message'))
       <div class="alert alert-{{ Session::get('class') }}">{{ Session::get('message')}}</div>

@@ -44,8 +44,8 @@ class PagosController extends \BaseController {
 		$detalle_pagos = new DetallePagos;
 		$detalle_pagos->id = Input::get('id');
 		$detalle_pagos->pagos_id = $pagos->id;
-		$detalle_pagos->descripcion = Input::get('descripcion');
-		$detalle_pagos->id_modalidad=Input::get('id_modalidad');
+		$detalle_pagos->descripcion = Input::get('concepto');
+		$detalle_pagos->id_modalidad=Input::get('modalidad');
 
 		if ($detalle_pagos->save()) {
 			Session::flash('message','Guardado correctamente!');
@@ -151,7 +151,7 @@ class PagosController extends \BaseController {
 
 	public function search()
 	{
-		$modalidad = Modalidad::lists('id','monto');
+		$modalidad = Modalidad::orderBy('id','DESC')->get();
 		$pago = Pagos::max('id');
 
 		$id = Input::get('id_alumno');
@@ -186,11 +186,56 @@ class PagosController extends \BaseController {
 		if (is_null($id))
 		{
 			return View::make('pagos.search_pagos');
+			Session::flash('message','ingrese una fecha');
+			Session::flash('class','success');
 		} else {
 			$pagos = Pagos::where('fecha','=',$id)->get();
 			if (is_object($pagos))
 			{
 				return View::make('pagos.search_pagos',array('pagos'=>$pagos));
+				//return Redirect::to('pagos/create')->withErrors($respuesta['mensaje'] )->withInput();
+				//return Redirect::to('pagos/create/',array('alumno'=>$alumno,'modalidad'=>$modalidad));
+			} else {
+				return Redirect::to('404.html');
+			}
+		}
+	}
+	public function search_detail_pagos()
+	{
+		$id = Input::get('boleta');
+		
+		if (is_null($id))
+		{
+			return View::make('pagos.search_detail_pagos');
+			Session::flash('message','ingrese un numero de boleta');
+			Session::flash('class','success');
+
+		} else {
+			$detalle = DetallePagos::where('pagos_id','=',$id)->get();
+			if (is_object($detalle))
+			{
+				return View::make('pagos.search_detail_pagos',array('detalle_pagos'=>$detalle));
+				//return Redirect::to('pagos/create')->withErrors($respuesta['mensaje'] )->withInput();
+				//return Redirect::to('pagos/create/',array('alumno'=>$alumno,'modalidad'=>$modalidad));
+			} else {
+				return Redirect::to('404.html');
+			}
+		}	
+	}
+	public function search_pagos_alumno()
+	{
+		$id = Input::get('codigo');
+		
+		if (is_null($id))
+		{
+			return View::make('pagos.search_pagos_alumno');
+			Session::flash('message','ingrese un codigo de alumno');
+			Session::flash('class','success');
+		} else {
+			$pagos = Pagos::where('id_alumno','=',$id)->get();
+			if (is_object($pagos))
+			{
+				return View::make('pagos.search_pagos_alumno',array('pagos'=>$pagos));
 				//return Redirect::to('pagos/create')->withErrors($respuesta['mensaje'] )->withInput();
 				//return Redirect::to('pagos/create/',array('alumno'=>$alumno,'modalidad'=>$modalidad));
 			} else {

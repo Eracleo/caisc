@@ -269,7 +269,7 @@ CREATE TABLE IF NOT EXISTS detalle_asistencia_ct(
 	`codAlumno` VARCHAR(10) NOT NULL,
 	`codAsistencia_ct` VARCHAR(10) NOT NULL,
 	PRIMARY KEY (`codAlumno`,`codAsistencia_ct`),
-	FOREIGN KEY (`codAlumno`) REFERENCES alumno(`codAlumno`),
+	FOREIGN KEY (`codAlumno`) REFERENCES alumno(`id`),
 	FOREIGN KEY (`codAsistencia_ct`) REFERENCES asistencia_ct(`codAsistencia_ct`)
 ) CHARSET=utf8;
 
@@ -303,11 +303,11 @@ CREATE TABLE IF NOT EXISTS modalidad_pago(
 CREATE TABLE IF NOT EXISTS pagos(
 	`id` int AUTO_INCREMENT NOT NULL,
 	`nro_serie` varchar(3),
-	`id_alumno` VARCHAR(10),
+	`id_alumno` int,
 	`fecha` DATE,
 	`total_pago` real,
 	PRIMARY KEY (`id`),
-	FOREIGN KEY (`id_alumno`) REFERENCES alumno(`codAlumno`)
+	FOREIGN KEY (`id_alumno`) REFERENCES alumno(`id`)
 ) CHARSET=utf8 AUTO_INCREMENT=214;
 
 

@@ -50,7 +50,7 @@ Caja y Facturación
 				<div class="form-inline">			  	
 				  	<div class="form-group">
 
-				    	<input name="id_alumno" type="text" class="form-control" placeholder="" value="">
+				    	<input name="id_alumno" type="text" class="form-control" placeholder="Ingrese Codigo" requiered="true" value="" >
 				  	</div>
 				  
 					<button type="submit" class="btn btn-default btn-sm">
@@ -58,7 +58,7 @@ Caja y Facturación
 					</button>
 
 					<button type="button" class="btn btn-default btn-sm">
-					  	<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Agregar
+              <span >{{ HTML::link('alumno/add.html','Agregar') }}</span>
 					</button>
 
 				</div>
