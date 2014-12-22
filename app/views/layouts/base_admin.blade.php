@@ -327,19 +327,6 @@
                             </a>
                             <ul class="treeview-menu">
 
-                                <li class="treeview">
-                            <a href="CursosTecnica/create.html">
-                                <i class="fa fa-folder"></i> <span>Silabo</span>
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li>{{ HTML::link('SilaboCarreraTecnica/index.html','Ver Silabos') }}</li>
-                                <li>{{ HTML::link('SilaboCarreraTecnica/create.html','Agregar Silabo') }}</li>
-                                <li>{{ HTML::link('SilaboCarreraTecnica/delete.html', 'Eliminar Silabo')}}</li>
-                            </ul>
-                        </li>
-
-
                                 <li>{{ HTML::link('CursosTecnica/index.html','Ver Cursos de Carrera') }}</li>
                                 <li>{{ HTML::link('CursosTecnica/create.html','Agregar Curso') }}</li>
                                 <li>{{ HTML::link('CursosTecnica/delete.html', 'Eliminar Curso')}}</li>
