@@ -2,7 +2,7 @@
 
 class MatriculaCTController extends BaseController
 {
-	
+
 	public function index(){
 		return View::make('matriculaCT.index');
 	}
@@ -27,9 +27,9 @@ class MatriculaCTController extends BaseController
 	public function matriculatest()
 	{
 		$matricula= $_POST['checkcodigo'];
-		
+
 	}
-	
+
 	public function update()
 	{
 		//$input=Input::get('codDocente');
@@ -129,12 +129,12 @@ class MatriculaCTController extends BaseController
 		$alumno = DB::table('alumno')
 						->where('id', $cod)
 						->first();
-		$cursosDisponibles = DB::select('call listarCargaAcademicaCT(?)',array($modulo));
+		$cursosDisponibles = DB::select('call listarCargaAcademica_ct(?)',array($modulo));
 		return View::make('matriculaCT.listaCursosNuevos', compact('alumno'),array('cursos'=>$cursosDisponibles));
 	}
 
 
-	
+
 	// lista los cursos del siguiente modulo o semestre
 	public function listacursosnuevos(){
 		// recupero el valor del textbox codAlumno
@@ -158,5 +158,5 @@ class MatriculaCTController extends BaseController
 		$modulos = Modulo::lists('id','nombre');
 		return View::make('matriculaCT.add',array('modulos'=>$modulos));
 	}
-	
+
 }
