@@ -299,7 +299,6 @@
 
                             <ul class="treeview-menu">
                                 <li>{{ HTML::link('personal/add.html','Agregar') }}</li>
-                                <li>{{ HTML::link('personal/change-pass-personal/1122','Cambiar Contraseña') }}</li>
                                 <li>{{ HTML::link('personal','Listar Personal') }}</li>
                             </ul>
                         </li>
@@ -311,7 +310,6 @@
                             </a>
                             <ul class="treeview-menu">
                                 <li>{{ HTML::link('docente/add.html','Agregar') }}</li>
-                                <li>{{ HTML::link('docente/change-pass/2141','Cambiar Contraseña') }}</li>
                                 <li>{{ HTML::link('docentes','Listar Docentes') }}</li>
                                 <li>{{ HTML::link('/ListarCursos/','Mis Cursos Libres') }}</li>
                                 <li>{{ HTML::link('/ListarCursosCarreras/','Mis Cursos de Carrera') }}</li>
@@ -369,6 +367,19 @@
                                 <li>{{ HTML::link('asistencia/SeleccionarCT','Modificar Asistencia carrera técnica') }}</li>
                                 <li>{{ HTML::link('asistencia/inicioCL','Carrera Técnica') }}</li>
                                 <li>{{ HTML::link('asistencia/registroCL','Ver Asistencias Carrera Técnica') }}</li>
+                            </ul>
+                        </li>
+
+                         <!-- modulo Pago Planilla -->
+                        <li class="treeview">
+                            <a href="Lista de planilla docente">
+                                <i class="fa fa-folder"></i> <span>Pago Planilla Docentes</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li>{{ HTML::link('Planilla','Lista de Pagos') }}</li>
+
+
                             </ul>
                         </li>
                         <li class="treeview">
