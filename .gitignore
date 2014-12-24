@@ -1,7 +1,7 @@
 /bootstrap/compiled.php
 /app/config/local
+/public/assets/foto/*.jpg
 !/public/assets/foto/foto.jpg
-/public/assets/foto
 .env.*.php
 .env.php
 /nbproject/private/
