@@ -290,7 +290,7 @@
                                 <li><i class="glyphicon glyphicon-list-alt"></i>{{ HTML::link('matriculas_cl/ingresar','Listar Matriculas') }}</li>
                             </ul>
                         </li>
-                        
+
 						<li class ="treeview">
                             <a href="personal">
                                 <i class="fa fa-folder"></i> <span>Personal</span>
@@ -312,7 +312,7 @@
                             <ul class="treeview-menu">
                                 <li>{{ HTML::link('docente/add.html','Agregar') }}</li>
                                 <li>{{ HTML::link('docente/change-pass/2141','Cambiar Contraseña') }}</li>
-                                <li>{{ HTML::link('docentes','Listar Docentes') }}</li>                        
+                                <li>{{ HTML::link('docentes','Listar Docentes') }}</li>
                                 <li>{{ HTML::link('/ListarCursos/','Mis Cursos Libres') }}</li>
                                 <li>{{ HTML::link('/ListarCursosCarreras/','Mis Cursos de Carrera') }}</li>
                             </ul>
@@ -357,18 +357,20 @@
                             </ul>
                         </li>
 
-                        <!-- modulo Asistencias -->
+                         <!-- modulo Asistencias -->
                         <li class="treeview">
                             <a href="RegistroAsistencias">
                                 <i class="fa fa-folder"></i> <span>Registro Asistencias</span>
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
-                                <li>{{ HTML::link('asistencia/add_ct', 'Registrar Asistencia Carrera Tecnica')}}</li>
-                                <li>{{ HTML::link('asistencia/add_cl', 'Registrar Asistencia Cursos Libre')}}</li>
+                                <li>{{ HTML::link('asistencia/inicioCT','Carrera Técnica') }}</li>
+                                <li>{{ HTML::link('asistencia/ListaCT','Ver Asistencias carrera técnica') }}</li>
+                                <li>{{ HTML::link('asistencia/SeleccionarCT','Modificar Asistencia carrera técnica') }}</li>
+                                <li>{{ HTML::link('asistencia/inicioCL','Carrera Técnica') }}</li>
+                                <li>{{ HTML::link('asistencia/registroCL','Ver Asistencias Carrera Técnica') }}</li>
                             </ul>
                         </li>
-
                         <li class="treeview">
                             <a href="docente">
                                 <i class="glyphicon glyphicon-briefcase"></i> <span>Modalidad de Pago</span>
@@ -419,10 +421,10 @@
                                 <li>{{ HTML::link('/MostrarOpcionesDocente','- Horario Por Docente') }}</li>
                                 <li>{{ HTML::link('/MostrarOpcionesPorCurso','- Horario Por Curso') }}</li>
                                 <li>{{ HTML::link('/MostrarOpcionesPorAula','- Horario Por Aula') }}</li>
-                                
+
                             </ul>
                         </li>
-                        
+
                         <li class="treeview">
                             <a href="ingresonotas">
                                 <i class="fa fa-folder"></i> <span>Ingreso De Notas</span>
