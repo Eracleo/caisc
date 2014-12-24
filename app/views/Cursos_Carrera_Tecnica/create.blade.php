@@ -13,9 +13,9 @@ Agregar <small> NUEVO CURSO DE CARRERA </small>
 {{ Form::open(array('method'=> 'POST','url'=> 'CursosTecnica/insert.html','class'=>'form-horizontal','role'=>'form')) }}
 
 	<div class="form-group">
-		{{ Form::label('codigo','Codigo del curso:',array('class'=>'col-sm-4 control-label')) }}
+		{{ Form::label('id','Codigo del curso:',array('class'=>'col-sm-4 control-label')) }}
 		<div class="col-sm-8">
-			{{ Form::text('codigo','',array('class'=>'form-control','placeholder'=>'isc-01', 'required'))}}
+			{{ Form::text('id','',array('class'=>'form-control','placeholder'=>'isc-01', 'required'))}}
 		</div>
 	</div>
 	<div class="form-group">
@@ -36,7 +36,7 @@ Agregar <small> NUEVO CURSO DE CARRERA </small>
 			{{ Form::number('horas_academicas','',array('class'=>'form-control','placeholder'=>'1','required'))}}
 		</div>
 	</div>
-	
+
 	<div class="form-group">
 		{{ Form::label('codCarrera','Carrera:',array('class'=>'col-sm-4 control-label')) }}
 		<div class="col-sm-8 col-md-4">
