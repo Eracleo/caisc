@@ -24,12 +24,6 @@ class MatriculaCTController extends BaseController
 		}
 	}
 
-	public function matriculatest()
-	{
-		$matricula= $_POST['checkcodigo'];
-
-	}
-
 	public function update()
 	{
 		//$input=Input::get('codDocente');
