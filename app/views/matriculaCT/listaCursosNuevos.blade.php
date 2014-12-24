@@ -11,7 +11,8 @@
     }
 </style>
 <div class="box-header">
-        <label align="center" for="alumnoP">Código Alumno: {{$alumno->id}}</label>
+        <label>Lista de Cargas Academicas a los cuales se puede matricular el alumno</label><br>
+        <h2 align="center" for="alumnoP">Código Alumno: {{$alumno->id}}</h2>
 </div>
 <div class="box">
     <div class="box-body table-responsive">

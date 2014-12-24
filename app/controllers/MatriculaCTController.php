@@ -43,7 +43,6 @@ class MatriculaCTController extends BaseController
 			{
 				$matricula->codAlumno = Input::get('CodAlumno');
 				$matricula->codCargaAcademica_ct = Input::get('CodCargaAcad');
-				$matricula->modulo = Input::get('mod');
 				$matricula->save();
 				return Redirect::to('matriculas_ct/listaMatriculas');
 			} else {

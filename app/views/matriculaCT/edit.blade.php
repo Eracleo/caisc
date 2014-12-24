@@ -28,12 +28,6 @@ Editar Matricula
 		</div>
 	</div>
 	<div class="form-group">
-		{{ Form::label('mod','Módulo:',array('class'=>'col-sm-4 control-label')) }}
-		<div class="col-sm-8">
-			{{ Form::text('mod',$matricula->modulo,array('class'=>'form-control'))}}
-		</div>
-	</div>
-	<div class="form-group">
 		<div class="col-xs-12 col-sm-3 col-md-3">
 			<a href="../../matriculas_ct/listaMatriculas">
 	        	<button type="button" class="btn btn-primary">Cancelar</button>
