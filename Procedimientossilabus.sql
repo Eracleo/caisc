@@ -1,5 +1,8 @@
- 
-===============  Creando Procedimiento almacenado  para silabo de curso Libres =====================================
+
+--  Creando Procedimiento almacenado  para silabo de curso Libres
+
+DELIMITER $$
+
 create procedure ListarCursosPorDocente (in idDocente int )
 begin
       select A.CodCargaAcademica_cl ,C.id,C.nombre
@@ -7,7 +10,9 @@ begin
       on A.codCurso_cl = C.id
       where A.docente_id=idDocente and A.estado=1;
 end$$
-===============  Creando Procedimiento almacenado para silabo de cursos Tecnicos =====================================
+
+-- Creando Procedimiento almacenado para silabo de cursos Tecnicos
+DELIMITER $$
 create procedure ListarCursosPorDocenteCT (in idDocente int )
 begin
       select A.CodCargaAcademica_ct ,C.id,C.nombre
