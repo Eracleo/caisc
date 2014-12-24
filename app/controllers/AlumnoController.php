@@ -43,7 +43,7 @@ class AlumnoController extends BaseController
 	public function insert()
 	{
 		$respuesta = Alumno::agregar(Input::all());
-		
+
 		if($respuesta['error']==true)
 		{
 			return Redirect::to('alumno/add.html')->withErrors($respuesta['mensaje'] )->withInput();
@@ -56,7 +56,7 @@ class AlumnoController extends BaseController
 		$alumno = Alumno::where('id','=',$cod)->firstOrFail();
 		return View::make('alumno.edit',array('alumno'=>$alumno));
 	}
-	
+
 	public function deshabilitar($cod)
 	{
 		DB::table('alumno')
@@ -107,7 +107,7 @@ class AlumnoController extends BaseController
 
 	public function profile($cod)
 	{
-		$alumno = alumno::where('id','=',$cod)->firstOrFail();
+		$alumno = Alumno::where('id','=',$cod)->firstOrFail();
 		if (is_object($alumno))
 		{
 			return View::make('alumno.profile',array('alumno'=>$alumno));
