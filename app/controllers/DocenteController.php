@@ -7,8 +7,7 @@ class DocenteController extends BaseController
 	public function index($registros=5)
 	{
 		$datos = Docente::paginate($registros);
-		$docentes = Docente::all();
-		return View::make('docente.index',compact("datos"),array('docentes'=>$docentes));
+		return View::make('docente.index',compact("datos"));
 	}
 	public function profile($id = null)
 	{
@@ -41,49 +40,34 @@ class DocenteController extends BaseController
 	}
 	public function edit($id=null)
 	{
-		if(is_null($id) or ! is_numeric($id))
+		if(is_numeric($id))
 		{
-			return Redirect::to('404.html');
-		} else {
 			$docente = Docente::where('id','=',$id)->firstOrFail();
 			return View::make('docente.edit',array('docente'=>$docente));
 		}
+		return Redirect::to('404.html');
 	}
-	public function update($id=0)
+	public function update($id=null)
 	{
-		$respuesta = Docente::editar(Input::all());
-		if($respuesta['error']==true)
+		if(is_numeric($id))
 		{
-			return Redirect::to('docente/edit/'.$id)->withErrors($respuesta['mensaje'] )->withInput();
-		}
-		else
-		{
-			if($id<1)
+			$obj = Docente::where('id','=',$id)->firstOrFail();
+			if(is_object($obj))
 			{
-				Redirect::to('404.html');
-			} else {
-				$docente = Docente::where('id','=',$id)->firstOrFail();
-				if(is_object($docente))
+				$respuesta = Docente::editar($obj,Input::all());
+				if($respuesta['error']==true)
 				{
-					$docente->nombre = Input::get('nombre');
-					$docente->apellidos = Input::get('apellidos');
-					$docente->dni = Input::get('dni');
-					$docente->email = Input::get('email');
-					$docente->telefono = Input::get('telefono');
-					$docente->save();
-					return Redirect::to('docente/profile/'.$id);
-				} else {
-					Redirect::to('500.html');
+					return Redirect::to('docente/edit/'.$id)->withErrors($respuesta['mensaje'])->withInput();
 				}
+				return Redirect::to('docente/profile/'.$id)->withErrors($respuesta['mensaje']);
 			}
 		}
+		Redirect::to('400.html');
 	}
 	public function delete($id = null)
 	{
-		if(is_null($id))
+		if(is_numeric($id))
 		{
-			Redirect::to('404.html');
-		} else {
 			$docente = Docente::where('id','=',$id)->firstOrFail();
 			if(is_object($docente))
 			{
@@ -92,35 +76,48 @@ class DocenteController extends BaseController
 				return Redirect::to('docentes');
 			}
 		}
+		Redirect::to('404.html');
 	}
-	public function login()
+	public function active($id = null)
 	{
-		$email = null;
-		if(is_null($email))
+		if(is_numeric($id))
 		{
-			return View::make('docente/login');
-		} else {
-			$docente = Docente::where('email','=',$email)->first();
-			// Activar sessión
-			return Redirect::to('docente/profile/'.$docente->codDocente);
+			$docente = Docente::where('id','=',$id)->firstOrFail();
+			if(is_object($docente))
+			{
+				$docente->estado = '1';
+				$docente->save();
+				return Redirect::to('docentes');
+			}
 		}
+		Redirect::to('404.html');
 	}
-	public function changePass($id = null)
+	public function password($id=null)
 	{
-        if (is_null($id) or ! is_numeric($id))
+		if(is_null($id) or ! is_numeric($id))
 		{
 			return Redirect::to('404.html');
 		} else {
-			$docente = Docente::where('id','=',$id)->firstOrFail();
-			if (is_object($docente))
+			$obj = Docente::where('id','=',$id)->firstOrFail();
+			return View::make('docente.change_pass',array('obj'=>$obj));
+		}
+	}
+	public function passwordUpdate($id=null)
+	{
+        if (is_numeric($id))
+		{
+			$obj = Docente::where('id','=',$id)->firstOrFail();
+			if (is_object($obj))
 			{
-				$docente->pasword = Input::get('password');
-				return View::make('docente.change_pass',array('docente'=>$docente));
-			} else {
-				return Redirect::to('404.html');
+				$respuesta = Docente::updatePassword($obj,Input::all());
+				if($respuesta['error']==true)
+				{
+					return Redirect::to('docente/password/'.$id)->withErrors($respuesta['mensaje'])->withInput();
+				}
+				return Redirect::to('docente/profile/'.$id)->withErrors($respuesta['mensaje']);
 			}
 		}
-
+		return Redirect::to('404.html');
 	}
 	public function imagen($id=null)
 	{

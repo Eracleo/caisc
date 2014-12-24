@@ -1,4 +1,4 @@
-@extends('layouts.base_admin')
+@extends('layouts.base_'.Str::lower(Auth::user()->tipoUsuario))
 @section('title')
 Subir Imagen <small> {{$docente->nombre}} </small>
 @stop

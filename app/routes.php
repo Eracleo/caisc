@@ -30,18 +30,6 @@ Route::get('salir',function()
 
 Route::post('check',array('uses'=>'Login@postUser'));
 
-// Docente
-Route::get('docentes',array('uses'=>'DocenteController@index'));
-Route::get('docente/add.html',array('uses'=>'DocenteController@add'));
-Route::get('docente/login.html',array('uses'=>'DocenteController@login'));
-Route::post('docente/login',array('uses'=>'DocenteController@loginInit'));
-Route::get('docente/logout.html',array('uses'=>'DocenteController@logout'));
-Route::get('docente/edit/{id}',array('uses'=>'DocenteController@edit'))->where('id','[0-9]+');
-Route::post('docente/update/{id}',array('uses'=>'DocenteController@update'))->where('id','[0-9]+');
-Route::post('docente/insert.html',array('uses'=>'DocenteController@insert'));
-Route::get('docente/delete/{id}',array('uses'=>'DocenteController@delete'))->where('id','[0-9]+');
-Route::get('docente/change-pass/{id}',array('uses'=>'DocenteController@changepass'))->where('id','[0-9]+');
-
 // Alumno
 Route::get('alumnos',array('uses'=>'AlumnoController@index'));
 Route::get('alumno/add.html',array('uses'=>'AlumnoController@add'));
@@ -57,22 +45,27 @@ Route::get('alumno/change-pass/{id}',array('uses'=>'AlumnoController@changepass'
 Route::post('alumno/updatePass/{id}',array('uses'=>'AlumnoController@updatePass'));
 Route::get('alumnosXcarrera',array('uses'=>'AlumnoController@indexcarrera'));
 
-
-Route::group(['before' => 'auth'], function()
-{
-    Route::get('docente/profile/{id}',array('uses'=>'DocenteController@profile'))->where('id','[0-9]+');
-});
-
-Route::get('docente/delete/{id}',array('uses'=>'DocenteController@delete'))->where('id','[0-9]+');
-Route::get('docente/change-pass/{id}',array('uses'=>'DocenteController@changepass'))->where('id','[0-9]+');
-Route::get('docente/imagen/{id}',array('uses'=>'DocenteController@imagen'))->where('id','[0-9]+');
-Route::post('docente/imagen/{id}',array('uses'=>'DocenteController@uploadImage'))->where('id','[0-9]+');
-
 // Personal
 
 Route::group(['before' => 'auth'], function()
 {
-	Route::get('personal',array('uses'=>'PersonalController@index'));
+	// Docentes
+    Route::get('docentes',array('uses'=>'DocenteController@index'));
+    Route::get('docente/add.html',array('uses'=>'DocenteController@add'));
+    Route::post('docente/login',array('uses'=>'DocenteController@loginInit'));
+    Route::get('docente/edit/{id}',array('uses'=>'DocenteController@edit'))->where('id','[0-9]+');
+    Route::post('docente/update/{id}',array('uses'=>'DocenteController@update'))->where('id','[0-9]+');
+    Route::post('docente/insert.html',array('uses'=>'DocenteController@insert'));
+    Route::get('docente/delete/{id}',array('uses'=>'DocenteController@delete'))->where('id','[0-9]+');
+    Route::get('docente/profile/{id}',array('uses'=>'DocenteController@profile'))->where('id','[0-9]+');
+    Route::get('docente/delete/{id}',array('uses'=>'DocenteController@delete'))->where('id','[0-9]+');
+    Route::get('docente/active/{id}',array('uses'=>'DocenteController@active'))->where('id','[0-9]+');
+    Route::get('docente/password/{id}',array('uses'=>'DocenteController@password'))->where('id','[0-9]+');
+    Route::post('docente/password/{id}',array('uses'=>'DocenteController@passwordUpdate'))->where('id','[0-9]+');
+    Route::get('docente/imagen/{id}',array('uses'=>'DocenteController@imagen'))->where('id','[0-9]+');
+    Route::post('docente/imagen/{id}',array('uses'=>'DocenteController@uploadImage'))->where('id','[0-9]+');
+    // Personal
+    Route::get('personal',array('uses'=>'PersonalController@index'));
     Route::get('personal/cargos',array('uses'=>'CargoController@index'));
     Route::get('personal/cargo/add.html',array('uses'=>'CargoController@add'));
     Route::post('personal/cargo/insert.html',array('uses'=>'CargoController@insert'));
@@ -81,10 +74,13 @@ Route::group(['before' => 'auth'], function()
     Route::get('personal/profile/{id}',array('uses'=>'PersonalController@profile'))->where('id','[0-9]+');
     Route::get('personal/edit/{id}',array('uses'=>'PersonalController@edit'))->where('id','[0-9]+');
     Route::post('personal/update/{id}',array('uses'=>'PersonalController@update'))->where('id','[0-9]+');
-    Route::get('personal/change-pass-personal/{id}',array('uses'=>'PersonalController@changePassPersonal'))->where('id','[0-9]+');
     Route::get('personal/delete/{id}',array('uses'=>'PersonalController@delete'))->where('id','[0-9]+');
+    Route::get('personal/active/{id}',array('uses'=>'PersonalController@active'))->where('id','[0-9]+');
     Route::get('personal/imagen/{id}',array('uses'=>'PersonalController@imagen'))->where('id','[0-9]+');
     Route::post('personal/imagen/{id}',array('uses'=>'PersonalController@uploadImage'))->where('id','[0-9]+');
+    Route::get('personal/password/{id}',array('uses'=>'PersonalController@password'))->where('id','[0-9]+');
+    Route::post('personal/password/{id}',array('uses'=>'PersonalController@passwordUpdate'))->where('id','[0-9]+');
+
 
 });
 
@@ -265,7 +261,7 @@ Route::get('ingresonotas/registroCL','IngresoNotasController@registroCL');
 //Pago en planilla docentes
 Route::get('Planilla',array('uses'=>'PlanillaController@index'));
 Route::get('Planilla/detalle_Planilla/{id}',array('uses'=>'PlanillaController@detalle_Planilla'))->where('id','[0-9]+');
-//Carrera Profesional 
+//Carrera Profesional
 Route::get('CarreraProfesional',array('uses'=>'CarreraProfesionalController@index'));
 Route::get('CarreraProfesional/add.html',array('uses'=>'CarreraProfesionalController@add'));
 Route::post('CarreraProfesional/post_update.html',array('uses'=>'CarreraProfesionalController@post_actualizar'));
