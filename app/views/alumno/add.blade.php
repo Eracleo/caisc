@@ -6,19 +6,6 @@ Agregar Alumno <small> NUEVO ALUMNO </small>
 <div class="col-xs-12 col-sm-12">
 {{ Form::open(array('method'=> 'POST','url'=> 'alumno/insert.html','class'=>'form-horizontal','role'=>'form')) }}
 	<div class="form-group">
-		{{ Form::label('id','Código Alumno',array('class'=>'col-sm-2 control-label')) }}
-		<div class="col-sm-6 col-md-4">
-			{{ Form::text('id','',array('class'=>'form-control','placeholder'=>'123456'))}}
-		</div>
-		<div class="errores">
-			@if ( $errors->has('id'))
-		       	@foreach ($errors->get('id') as $error)
-			   	<div class="alert alert-danger">* {{ $error }}</div>
-		    	@endforeach
-			@endif
-		</div>
-	</div>
-	<div class="form-group">
 		{{ Form::label('nombre','Nombre(s):',array('class'=>'col-sm-2 control-label')) }}
 		<div class="col-sm-6 col-md-4">
 			{{ Form::text('nombre','',array('class'=>'form-control','placeholder'=>'Juan'))}}
