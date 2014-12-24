@@ -129,7 +129,7 @@ class MatriculaCTController extends BaseController
 		$alumno = DB::table('alumno')
 						->where('id', $cod)
 						->first();
-		$cursosDisponibles = DB::select('call listarCargaAcademica_ct(?)',array($modulo));
+		$cursosDisponibles = DB::select('call listarCargaAcademicaCT(?)',array($modulo));
 		return View::make('matriculaCT.listaCursosNuevos', compact('alumno'),array('cursos'=>$cursosDisponibles));
 	}
 
