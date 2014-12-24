@@ -53,9 +53,9 @@
 				<td class=""><input type="text" value="{{ $alumno->idNota }}" name="codMatricula{{$i}}" readonly="readonly"></td>
                 <td class=" sorting_1" align="center">{{ $alumno->idAlumno }}</td>
                 <td class="">{{ $alumno->NombreCpt }}</td>
-                <td class=""><input type="text" value="{{$alumno->Nota1}}" name="nota1{{$i}}"></td>
-                <td class=""><input type="text" value="{{$alumno->Nota2}}" name="nota2{{$i}}"></td>
-                <td class=""><input type="text" value="{{$alumno->Nota3}}" name="nota3{{$i}}"></td>
+                <td class=""><input type="number" name="nota1{{$i}}" value="{{$alumno->Nota1}}" min="0" max="20" step="1"  required="required"></td>
+                <td class=""><input type="number" name="nota2{{$i}}" value="{{$alumno->Nota2}}" min="0" max="20" step="1"  required="required"></td>
+                <td class=""><input type="number" name="nota3{{$i}}" value="{{$alumno->Nota3}}" min="0" max="20" step="1"  required="required"></td>
                 </td>
             </tr>
             <?php $i++ ?>

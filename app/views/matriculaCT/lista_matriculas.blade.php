@@ -25,7 +25,6 @@ Relacion de Matriculas Carrera Técnica
                         <th colspan="1" rowspan="1">Código Matricula</th>
                         <th colspan="1" rowspan="1">Código Alumno</th>
                         <th colspan="1" rowspan="1">Código Carga Academica</th>
-                        <th colspan="1" rowspan="1">Modulo</th>
                         <th colspan="1" rowspan="1">Action</th>
                     </tr>
                 </thead>
@@ -35,7 +34,6 @@ Relacion de Matriculas Carrera Técnica
                         <td class=" "><b>{{ $matricula->id }}</b></td>
                         <td class=" "><b>{{ $matricula->codAlumno }}</b></td>
                         <td class=" ">{{ $matricula->codCargaAcademica_ct }}</td>
-                        <td class=" ">{{ $matricula->modulo }}</td>
                         <td class=" ">
                             <span class="label label-warning">{{ HTML::link('matriculas_ct/edit/'.$matricula->id,'Modificar') }}</span>
                             <span class="label label-danger">{{ HTML::link('matriculas_ct/delete/'.$matricula->id,'Eliminar') }}</span>

@@ -54,7 +54,9 @@ Cursos Docente
                     @endforeach 
                 </tbody>
             </table>
+
         </div>
+        {{ HTML::link('SilaboCarreraLibre/index.html/','Ver Todos los Silabos') }}
     </div>
 </div>  
 @stop

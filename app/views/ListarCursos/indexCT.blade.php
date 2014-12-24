@@ -59,6 +59,7 @@ Cursos Docente
                 </tbody>
             </table>
         </div>
+         {{ HTML::link('SilaboCarreraTecnica/index.html/','Ver Todos los Silabos') }}
     </div>
 </div>  
 @stop

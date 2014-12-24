@@ -42,8 +42,12 @@ CREATE TABLE IF NOT EXISTS alumno(
 ) CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS curso_ct(
+<<<<<<< HEAD
 	`id` int AUTO_INCREMENT NOT NULL,
 	`codigo` VARCHAR(10) NOT NULL,	
+=======
+	`id`  VARCHAR(10) NOT NULL,
+>>>>>>> 2f3f71a4a71c3eea62e46b84eabac6adc6c1fde0
 	`nombre` VARCHAR(30) NOT NULL,
 	`modulo` INT(2) DEFAULT null,
 	`horas_academicas` VARCHAR(30) DEFAULT null,
@@ -61,9 +65,9 @@ CREATE TABLE IF NOT EXISTS docente(
     `nombre` VARCHAR(50) NOT NULL,
     `apellidos` VARCHAR(50) NOT NULL,
     `dni` VARCHAR(8) NOT NULL,
-    `direccion` VARCHAR(120) NOT NULL,
+    `direccion` VARCHAR(120) DEFAULT NULL,
     `foto` VARCHAR(100) DEFAULT 'foto.jpg',
-    `telefono` VARCHAR(120) NOT NULL,
+    `telefono` VARCHAR(120) DEFAULT NULL,
     `email` VARCHAR(120) NOT NULL,
     `password` VARCHAR(120) NOT NULL,
     `estado` INT(2) DEFAULT '1',
@@ -87,9 +91,9 @@ CREATE TABLE IF NOT EXISTS personal(
     `nombre` VARCHAR(50) NOT NULL,
     `apellidos` VARCHAR(50) NOT NULL,
     `dni` VARCHAR(8) NOT NULL,
-    `direccion` VARCHAR(120) NOT NULL,
+    `direccion` VARCHAR(120) DEFAULT NULL,
     `foto` VARCHAR(100) DEFAULT 'foto.jpg',
-    `telefono` VARCHAR(120) NOT NULL,
+    `telefono` VARCHAR(120) DEFAULT NULL,
     `email` VARCHAR(120) NOT NULL,
     `password` VARCHAR(120) NOT NULL,
     `estado` INT(2) DEFAULT '1',
@@ -102,7 +106,7 @@ CREATE TABLE IF NOT EXISTS personal(
 
 CREATE TABLE IF NOT EXISTS carga_academica_ct(
 	`codCargaAcademica_ct` INT AUTO_INCREMENT NOT NULL,
-	`codCurso_ct` INT NOT NULL,
+	`codCurso_ct` VARCHAR(10) NOT NULL,
 	`docente_id` INT NOT NULL,
 	`semestre` VARCHAR(10) NOT NULL,
 	`turno` VARCHAR(10) NOT NULL,
@@ -111,6 +115,7 @@ CREATE TABLE IF NOT EXISTS carga_academica_ct(
 	FOREIGN KEY (`codCurso_ct`) REFERENCES curso_ct(`id`),
 	FOREIGN KEY (`docente_id`) REFERENCES docente(`id`)
 ) CHARSET=utf8 ;
+
 
 CREATE TABLE IF NOT EXISTS silabus_ct(
 	`id` int AUTO_INCREMENT NOT NULL,
@@ -166,8 +171,7 @@ CREATE TABLE IF NOT EXISTS nota_ct(
 
  -- CURSOS LIBRES
 CREATE TABLE IF NOT EXISTS curso_cl(
-	`id` int AUTO_INCREMENT NOT NULL,
-	`codigo` VARCHAR(10) NOT NULL,	
+	`id`  VARCHAR(10) NOT NULL,
 	`nombre` VARCHAR(30) NOT NULL,
 	`horas_academicas` VARCHAR(30) DEFAULT null,
 	`estado` tinyint(1) DEFAULT '1',
@@ -178,7 +182,7 @@ CREATE TABLE IF NOT EXISTS curso_cl(
 
 CREATE TABLE IF NOT EXISTS carga_academica_cl(
 	`codCargaAcademica_cl` INT AUTO_INCREMENT NOT NULL,
-	`codCurso_cl` INT NOT NULL,
+	`codCurso_cl` VARCHAR(10) NOT NULL,
 	`docente_id` INT NOT NULL,
 	`turno` VARCHAR(10) NOT NULL,
 	`grupo` VARCHAR(10) NOT NULL,

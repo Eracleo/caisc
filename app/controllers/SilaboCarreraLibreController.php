@@ -87,8 +87,8 @@ class SilaboCarreraLibreController extends BaseController {
 
 	public function get_eliminar()
 	{
-		$datos = SilaboCursoLibre::where('estado','=','1')->orderBy('id','DESC')->paginate(10);
-		$curso_cl = SilaboCursoLibre::where('estado','=','1')->orderBy('id','DESC')->get();
+		$datos = SilaboCursoLibre::where('estado','=','1')->orderBy('id','ASC')->paginate(10);
+		$curso_cl = SilaboCursoLibre::where('estado','=','1')->orderBy('id','ASC')->get();
 		return View::make('Cursos_Carrera_Libre.SilaboCL.delete',compact("datos"),array('id'=>$curso_cl));
 
 	}
@@ -135,5 +135,49 @@ class SilaboCarreraLibreController extends BaseController {
 		$datos = SilaboCursoLibre::where('estado','=','1')->orderBy('id','DESC')->paginate(10);
 		$silabocurso_cl = SilaboCursoLibre::where('estado','=','1')->orderBy('id','DESC')->get();
 		return View::make('Cursos_Carrera_Libre.SilaboCL.index',compact("datos"),array('id'=>$silabocurso_cl));
+	}
+
+	public function detalle($id)
+	{
+		if (is_null($id) or ! is_numeric($id))
+		{
+			return Redirect::to('404.html');
+		} 
+		else 
+		{
+			$silabo = SilaboCursoLibre::where('id','=',$id)->firstOrFail();
+			if (is_object($silabo))
+			{
+				return View::make('Cursos_Carrera_Libre.SilaboCL.detalles',array('silabo'=>$silabo));
+			} 
+			else 
+			{
+				return Redirect::to('404.html');
+			}
+		}
+	}
+	public function finalizado()
+	{
+		$cod=Input::get('id');
+		
+		if(is_null($cod))
+		{
+			return Redirect::to('404.html');
+		} 
+		else 
+		{
+			$silabo = SilaboCursoLibre::find($cod);
+			if(is_object($silabo))
+			{
+				$silabo->estado = 2;
+				$silabo->save();
+				return Redirect::to('SilaboCarreraLibre/index.html');
+			} 
+			else 
+			{
+				return Redirect::to('500.html');
+			}
+
+		}
 	}
 }

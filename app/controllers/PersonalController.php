@@ -5,8 +5,7 @@ class PersonalController extends BaseController
 	public function index($registros = 5)
 	{
 		$datos = Personal::paginate($registros);
-		$personal = Personal::all();
-		return View::make('personal.index',compact("datos"),array('personal'=>$personal));
+		return View::make('personal.index',compact("datos"));
 	}
 	public function profile($id = null)
 	{
@@ -40,50 +39,34 @@ class PersonalController extends BaseController
 	}
 	public function edit($id=null)
 	{
-		if(is_null($id))
+		if(is_numeric($id))
 		{
-			return Redirect::to('404.html');
-		} else {
-			$personal = Personal::where('id','=',$id)->firstOrFail();
-			return View::make('personal.edit',array('personal'=>$personal));
+			$obj= Personal::where('id','=',$id)->firstOrFail();
+			return View::make('personal.edit',array('personal'=>$obj));
 		}
+		return Redirect::to('404.html');
 	}
-	public function update($id = null)
+	public function update($id=null)
 	{
-		$respuesta = Docente::editar(Input::all());
-		if($respuesta['error']==true)
+		if(is_numeric($id))
 		{
-			return Redirect::to('personal/edit/'.$id)->withErrors($respuesta['mensaje'] )->withInput();
-		}
-		else
-		{
-			if(is_null($id))
+			$obj = Personal::where('id','=',$id)->firstOrFail();
+			if(is_object($obj))
 			{
-				Redirect::to('404.html');
-			} else {
-				$personal = Personal::where('id','=',$id)->firstOrFail();
-				if(is_object($personal))
+				$respuesta = Personal::editar($obj,Input::all());
+				if($respuesta['error']==true)
 				{
-					$personal->nombre = Input::get('nombre');
-					$personal->apellidos = Input::get('apellidos');
-					$personal->dni = Input::get('dni');
-					$personal->direccion = Input::get('direccion');
-					$personal->telefono = Input::get('telefono');
-					$personal->email = Input::get('email');
-					$personal->save();
-					return Redirect::to('personal/profile/'.$id);
-				} else {
-					Redirect::to('500.html');
+					return Redirect::to('personal/edit/'.$id)->withErrors($respuesta['mensaje'])->withInput();
 				}
+				return Redirect::to('personal/profile/'.$id)->withErrors($respuesta['mensaje']);
 			}
 		}
+		Redirect::to('400.html');
 	}
 	public function delete($id = null)
 	{
-		if(is_null($id))
+		if(is_numeric($id))
 		{
-			Redirect::to('404.html');
-		} else {
 			$personal = Personal::where('id','=',$id)->firstOrFail();
 			if(is_object($personal))
 			{
@@ -92,23 +75,49 @@ class PersonalController extends BaseController
 				return Redirect::to('personal');
 			}
 		}
+		Redirect::to('404.html');
 	}
-	public function changePassPersonal($id = null)
+	public function active($id = null)
 	{
-		if (is_null($id) or ! is_numeric($id))
+		if(is_numeric($id))
+		{
+			$personal = Personal::where('id','=',$id)->firstOrFail();
+			if(is_object($personal))
+			{
+				$personal->estado = '1';
+				$personal->save();
+				return Redirect::to('personal');
+			}
+		}
+		Redirect::to('404.html');
+	}
+	public function password($id=null)
+	{
+		if(is_null($id) or ! is_numeric($id))
 		{
 			return Redirect::to('404.html');
 		} else {
-			$personal = Personal::where('id','=',$id)->firstOrFail();
-			if (is_object($personal))
-			{
-				return View::make('personal.change_pass_personal',array('personal'=>$personal));
-			} else {
-				return Redirect::to('404.html');
-			}
+			$obj = Personal::where('id','=',$id)->firstOrFail();
+			return View::make('personal.change_pass',array('obj'=>$obj));
 		}
 	}
-
+	public function passwordUpdate($id=null)
+	{
+        if (is_numeric($id))
+		{
+			$obj = Personal::where('id','=',$id)->firstOrFail();
+			if (is_object($obj))
+			{
+				$respuesta = Personal::updatePassword($obj,Input::all());
+				if($respuesta['error']==true)
+				{
+					return Redirect::to('personal/password/'.$id)->withErrors($respuesta['mensaje'])->withInput();
+				}
+				return Redirect::to('personal/profile/'.$id)->withErrors($respuesta['mensaje']);
+			}
+		}
+		return Redirect::to('404.html');
+	}
 	public function imagen($id=null)
 	{
 		if(is_null($id) or ! is_numeric($id))

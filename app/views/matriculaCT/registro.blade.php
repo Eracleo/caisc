@@ -8,12 +8,6 @@ Registro de Matricula Carrera Tecnica
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
 {{ Form::open(array('method'=> 'POST','url'=> 'matriculas_ct/insert.html','class'=>'form-horizontal','role'=>'form')) }}
 	<div class="form-group">
-		{{ Form::label('id','Código Matricula:',array('class'=>'col-sm-4 control-label')) }}
-		<div class="col-sm-8">
-			{{ Form::text('id',$curso->codig,array('class'=>'form-control'))}}
-		</div>
-	</div>
-	<div class="form-group">
 		{{ Form::label('codAlumno','Codigo Alumno:',array('class'=>'col-sm-4 control-label')) }}
 		<div class="col-sm-8">
 			{{ Form::text('codAlumno','',array('class'=>'form-control'))}}
@@ -25,13 +19,6 @@ Registro de Matricula Carrera Tecnica
 			{{ Form::text('codCargaAcademica_ct',$curso->codCargaAcademica_ct,array('class'=>'form-control'))}}
 		</div>
 	</div>
-	<div class="form-group">
-		{{ Form::label('modulo','Módulo:',array('class'=>'col-sm-4 control-label')) }}
-		<div class="col-sm-8">
-			{{ Form::text('modulo',$curso->semestre,array('class'=>'form-control'))}}
-		</div>
-	</div>
-	
 	<div class="form-group">
 		<div class="col-xs-12 col-sm-3 col-md-3">
 			<a href="../../matriculas_ct/registro">

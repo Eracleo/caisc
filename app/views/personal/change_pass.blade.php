@@ -1,15 +1,15 @@
-@extends('layouts.base_'.Str::lower(Auth::user()->tipoUsuario))
+@extends('layouts.base_admin')
 @section('title')
 Cambiar Contraseña <small> {{$obj->nombre}} </small>
 @stop
 @section('breadcrumb')
-<li>{{ HTML::link('docentes','Docentes')}} </li>
-<li>{{ HTML::link('docente/profile/'.$obj->id,$obj->nombre)}}</li>
+<li>{{ HTML::link('personal','Personal')}} </li>
+<li>{{ HTML::link('personal/profile/'.$obj->id,$obj->nombre)}}</li>
 <li>Editar</li>
 @stop
 @section('content')
 <div class="col-xs-12 col-sm-12">
-{{ Form::model($obj,array('method'=> 'POST','url'=>array('docente/password',$obj->id),'class'=>'form-horizontal','role'=>'form')) }}
+{{ Form::model($obj,array('method'=> 'POST','url'=>array('personal/password',$obj->id),'class'=>'form-horizontal','role'=>'form')) }}
 	<div class="form-group">
 		{{ Form::label('pasado','Password-Anterior:',array('class'=>'col-sm-2 control-label')) }}
 		<div class="col-sm-6 col-md-4">

@@ -1,12 +1,11 @@
-@extends('layouts.base_admin')
+@extends('layouts.base_'.Str::lower(Auth::user()->tipoUsuario))
 @section('title')
-Editar Docente <small> {{$docente->nombre}}  </small>
-{{$docente-> dni}}
+{{$docente->nombre}} {{$docente->apellidos }}<small> Editar Docente   </small>
 @stop
 @section('breadcrumb')
-<li>{{ HTML::link('docentes','Docentes')}} </li>
-<li>{{ HTML::link('docente/profile/'.$docente->id,$docente->nombre)}}</li>
-<li>Editar</li>
+<li>{{ HTML::link('docente/profile/'.$docente->id,'Perfil') }}</li>
+<li class="active">{{ HTML::link('docente/edit/'.$docente->id,'Editar') }}</li>
+<li>{{ HTML::link('docente/password/'.$docente->id,'Cambiar Contraseña') }}</li>
 @stop
 @section('content')
 <div class="ccol-xs-12 col-sm-12">
@@ -39,19 +38,6 @@ Editar Docente <small> {{$docente->nombre}}  </small>
 		</div>
 	</div>
 	<div class="form-group">
-		{{ Form::label('dni','DNI:',array('class'=>'col-sm-2 control-label')) }}
-		<div class="col-sm-6 col-md-4">
-			{{ Form::text('dni',$docente->dni,array('class'=>'form-control','placeholder'=>'12345678'))}}
-		</div>
-		<div class="errores">
-			@if ( $errors->has('dni'))
-		       	@foreach ($errors->get('dni') as $error)
-			   	<div class="alert alert-danger">* {{ $error }}</div>
-		    	@endforeach
-			@endif
-		</div>
-	</div>
-	<div class="form-group">
 		{{ Form::label('direccion','Dirección:',array('class'=>'col-sm-2 control-label')) }}
 		<div class="col-sm-6 col-md-4">
 			{{ Form::text('direccion',$docente->direccion,array('class'=>'form-control','placeholder'=>'Av. la cultura Nro 8'))}}
@@ -73,19 +59,6 @@ Editar Docente <small> {{$docente->nombre}}  </small>
 		<div class="errores">
 			@if ( $errors->has('telefono'))
 		       	@foreach ($errors->get('telefono') as $error)
-			   	<div class="alert alert-danger">* {{ $error }}</div>
-		    	@endforeach
-			@endif
-		</div>
-	</div>
-	<div class="form-group">
-		{{ Form::label('email','E-mail:',array('class'=>'col-sm-2 control-label')) }}
-		<div class="col-sm-6 col-md-4">
-			{{ Form::email('email',$docente->email,array('class'=>'form-control','placeholder'=>'correo@unsaac.edu.pe'))}}
-		</div>
-				<div class="errores">
-			@if ( $errors->has('email'))
-		       	@foreach ($errors->get('email') as $error)
 			   	<div class="alert alert-danger">* {{ $error }}</div>
 		    	@endforeach
 			@endif

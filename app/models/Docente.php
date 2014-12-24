@@ -9,13 +9,13 @@ class Docente extends Eloquent {
 	{
 		$respuesta = array();
 		$reglas = array(
-			'nombre'=>array('required','min:3'),
-			'apellidos'=>array('required','min:3'),
+			'nombre'=>array('required','min:3','max:15'),
+			'apellidos'=>array('required','min:3','max:25'),
 			'dni'=>array('required','numeric','digits:8','unique:docente'),
-			'direccion'=>array('required','min:10'),
-			'telefono'=>array('required','numeric'),
-			'email'=>array('required','email','unique:docente'),
-			'password'=>array('required','min:6','confirmed')
+			'direccion'=>array('max:50'),
+			'telefono'=>array('max:20'),
+			'email'=>array('required','email','unique:docente','max:40'),
+			'password'=>array('required','min:6','confirmed','max:12')
 		);
 		$validador = Validator::make($input,$reglas);
 		if($validador->fails())
@@ -34,15 +34,14 @@ class Docente extends Eloquent {
 	}
 
 
-	public static function editar($input)
+	public static function editar($obj,$input)
 	{
 		$respuesta = array();
 		$reglas = array(
-			'nombre'=>array('required','min:3'),
-			'apellidos'=>array('required','min:3'),
-			'dni'=>array('required','numeric','digits:8','unique:docente'),
-			'direccion'=>array('required','min:10'),
-			'telefono'=>array('required','numeric')
+			'nombre'=>array('required','min:3','max:15'),
+			'apellidos'=>array('required','min:3','max:25'),
+			'direccion'=>array('max:50'),
+			'telefono'=>array('max:20'),
 		);
 		$validador = Validator::make($input,$reglas);
 		if($validador->fails())
@@ -51,17 +50,23 @@ class Docente extends Eloquent {
 			$respuesta['error'] = true;
 		} else
 		{
-			$respuesta['mensaje'] = 'Docente Actualizado';
+			$obj->nombre = Input::get('nombre');
+			$obj->apellidos = Input::get('apellidos');
+			$obj->direccion = Input::get('direccion');
+			$obj->telefono = Input::get('telefono');
+			$obj->save();
+			$respuesta['mensaje'] = 'Datos Actualizados';
 			$respuesta['error'] = false;
 		}
 		return $respuesta;
 	}
 
-	public static function Cambiar($input)
+	public static function updatePassword($obj,$input)
 	{
+		$input['pasado'] = Hash::make($input['pasado']);
 		$respuesta = array();
 		$reglas = array(
-			'password'=>array('required','min:6','confirmed')
+			'password'=>array('required','min:6','confirmed','max:12')
 		);
 		$validador = Validator::make($input,$reglas);
 		if($validador->fails())
@@ -70,7 +75,13 @@ class Docente extends Eloquent {
 			$respuesta['error'] = true;
 		} else
 		{
+			$user = User::where('nroId','=',$obj->id)->firstOrFail();
+			$obj->password =  Hash::make($input['password']);
+			$user->password = $obj->password;
+			$obj->save();
+			$user->save();
 			$respuesta['error'] = false;
+			$respuesta['mensaje'] = 'Contraseña Actualizado';
 		}
 		return $respuesta;
 	}

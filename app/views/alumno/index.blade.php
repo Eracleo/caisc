@@ -18,24 +18,6 @@ Lista de Alumnos
     <div class="box-header">
         <h3 class="box-title"> </h3>
     </div>
-    <div class="col-xs-12 col-sm-12">
-        {{ Form::open(array('method'=> 'POST','url'=> 'alumnosXcarrera','class'=>'form-horizontal','role'=>'form')) }}
-        <div class="form-group">
-            <label class = 'col-sm-2 control-label'>Carrera : </label>
-            <div class="col-sm-6 col-md-4">
-                <select name='codCarrera' id='codCarrera'>
-                    <option >Seleccionar Carrera</option>;
-                    @foreach( $carreras as $carrera)
-                        <option value='{{ $carrera->id }}'>{{ $carrera->nombre }}</option>;
-                    @endforeach
-                </select>
-            </div>
-            <div class="col-sm-3 col-md-2">
-                <button class="btn btn-primary btn-block" type="submit">Buscar</button>
-            </div>
-        </div>
-        {{Form::close()}}
-    </div>
     <div class="box-body table-responsive">
         <div id="example1_wrapper" class="dataTables_wrapper form-inline" role="grid">
             <table aria-describedby="example1_info" id="example1" class="table table-bordered table-striped dataTable">

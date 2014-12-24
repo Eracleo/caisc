@@ -29,7 +29,7 @@ class CursoLibre extends Eloquent {
 			$curso->estado = 1;
 			$curso->created_at= time();
 			$curso->updated_at = time();
-			if(CursoLibre::find(input::get('codigo')))
+			if(!CursoLibre::find(input::get('codigo')))
 			{
 				$respuesta['mensaje'] = 'YA EXISTE ESE CODIGO';
 				$respuesta['error'] = true;

@@ -22,16 +22,19 @@
     <table id="example1" class="table table-bordered table-striped dataTable" aria-describedby="example1_info">
         <thead>
             <tr role="row">
-                <th class="sorting_asc" role="columnheader" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 20px;">
+                <th class="" role="columnheader" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 20px;">
+                    Nro°
+                </th>
+                <th class="" role="columnheader" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 20px;">
                     CodNota
                 </th>
-                <th class="sorting" role="columnheader" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 20px;">
+                <th class="" role="columnheader" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 20px;">
                     CodAlumno
                 </th>
-                <th class="sorting" role="columnheader" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 100px;">
+                <th class="" role="columnheader" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 100px;">
                     Nombre y Apellidos
                 </th>
-                <th class="sorting" role="columnheader" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 20px;">
+                <th class="" role="columnheader" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 20px;">
                     Nota
                 </th>
             </tr>
@@ -40,10 +43,11 @@
         	<?php $i=1 ?>
 			@foreach($alumnos as $alumno)
 			<tr class="odd">
+                <td class="">{{ $i }}</td>
 				<td class=""><input type="text" value="{{ $alumno->idNota }}" name="codMatricula{{$i}}" readonly="readonly"></td>
                 <td class=" sorting_1" align="center">{{ $alumno->idAlumno }}</td>
                 <td class="">{{ $alumno->NombreCpt }}</td>
-                <td class=""><input type="text" value="{{$alumno->Nota}}" name="nota{{$i}}"></td>
+                <td class=""><input type="number" name="nota{{$i}}" value="{{$alumno->Nota}}" min="0" max="20" step="1"  required="required"></td>
                 </td>
             </tr>
             <?php $i++ ?>

@@ -132,8 +132,52 @@ class SilaboCarreraTecnicaController extends BaseController {
 	}
 	public function listar()
 	{
-		$datos = SilaboCursoTecnico::where('estado','=','1')->orderBy('id','DESC')->paginate(10);
-		$silabocurso_ct = SilaboCursoTecnico::where('estado','=','1')->orderBy('id','DESC')->get();
+		$datos = SilaboCursoTecnico::where('estado','=','1')->orderBy('id','ASC')->paginate(10);
+		$silabocurso_ct = SilaboCursoTecnico::where('estado','=','1')->orderBy('id','ASC')->get();
 		return View::make('Cursos_Carrera_Tecnica.SilaboCT.index',compact("datos"),array('id'=>$silabocurso_ct));
+	}
+
+	public function detalle($id)
+	{
+		if (is_null($id) or ! is_numeric($id))
+		{
+			return Redirect::to('404.html');
+		} 
+		else 
+		{
+			$silabo = SilaboCursoTecnico::where('id','=',$id)->firstOrFail();
+			if (is_object($silabo))
+			{
+				return View::make('Cursos_Carrera_Tecnica.SilaboCT.detalles',array('silabo'=>$silabo));
+			} 
+			else 
+			{
+				return Redirect::to('404.html');
+			}
+		}
+	}
+	public function finalizado()
+	{
+		$cod=Input::get('id');
+		
+		if(is_null($cod))
+		{
+			return Redirect::to('404.html');
+		} 
+		else 
+		{
+			$silabo = SilaboCursoLibre::find($cod);
+			if(is_object($silabo))
+			{
+				$silabo->estado = 2;
+				$silabo->save();
+				return Redirect::to('SilaboCarreraLibre/index.html');
+			} 
+			else 
+			{
+				return Redirect::to('500.html');
+			}
+
+		}
 	}
 }

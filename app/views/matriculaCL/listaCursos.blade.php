@@ -15,11 +15,11 @@ Lista de Cursos Libres
         <h3 class="box-title"> </h3>
     </div>
     <div class="box-body table-responsive">
-    	<div id="example1_wrapper" class="dataTables_wrapper form-inline" role="grid">
+        <div id="example1_wrapper" class="dataTables_wrapper form-inline" role="grid">
             <table aria-describedby="example1_info" id="example1" class="table table-bordered table-striped dataTable">
                 <thead>
                     <tr role="row">
-                    	<th colspan="1" rowspan="1">Cod Curso</th>
+                        <th colspan="1" rowspan="1">Cod Curso</th>
                         <th colspan="1" rowspan="1">Cod Docente</th>
                         <th colspan="1" rowspan="1">Turno</th>
                         <th colspan="1" rowspan="1">Grupo</th>
@@ -30,8 +30,8 @@ Lista de Cursos Libres
                     </tr>
                 </thead>
                 <tbody aria-relevant="all" aria-live="polite" role="alert">
-                	@foreach( $cursos as $curso)
-                	<tr class="odd">
+                    @foreach( $cursos as $curso)
+                    <tr class="odd">
                         <td class=" ">{{ $curso->codCurso_cl }}</td>
                         <td class=" ">{{ $curso->docente_id }}</td>
                         <td class=" ">{{ $curso->turno }}</td>
