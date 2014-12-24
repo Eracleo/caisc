@@ -1,4 +1,4 @@
-
+﻿
 DELIMITER $$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `AlumnosXCursoCT`(IN `codcargaAcademica` VARCHAR(20))
@@ -82,7 +82,7 @@ BEGIN
 	from (alumno A inner join matricula_cl M on A.codAlumno = M.codAlumno) inner join nota_cl N on N.codMatricula_cl = M.id
     where M.codCargaAcademica_cl = codcargaAcademica
     ORDER BY A.apellidos;
-END
+END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `CursosXDocenteCL`(IN `id_docente` INT)
     NO SQL
@@ -91,7 +91,7 @@ BEGIN
 
 	from carga_academica_cl cg inner join curso_cl cu on cg.codCurso_cl = cu.id 
     where cg.docente_id = id_docente;
-END
+END$$
 
 
 INSERT INTO `curso_cl` (`id`, `nombre`, `horas_academicas`, `estado`, `updated_at`, `created_at`) VALUES 

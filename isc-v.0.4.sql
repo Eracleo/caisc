@@ -42,15 +42,11 @@ CREATE TABLE IF NOT EXISTS alumno(
 ) CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS curso_ct(
-	`id` int AUTO_INCREMENT DEFAULT 1 NOT NULL,
+	`id` int AUTO_INCREMENT NOT NULL,
 	`codigo` VARCHAR(10) NOT NULL,	
 	`nombre` VARCHAR(30) NOT NULL,
 	`modulo` INT(2) DEFAULT null,
-<<<<<<< HEAD
-	`horas_academicas` VARCHAR(30) DEFAULT null,	
-=======
 	`horas_academicas` VARCHAR(30) DEFAULT null,
->>>>>>> 635958df3822fcea641120041bbf7bc2a8189cc8
 	`estado` tinyint(1) DEFAULT '1',
 	`codCarrera` VARCHAR(10) NOT NULL,
 	`updated_at` DATETIME NOT NULL,
@@ -308,11 +304,7 @@ CREATE TABLE IF NOT EXISTS modalidad_pago(
 CREATE TABLE IF NOT EXISTS pagos(
 	`id` int AUTO_INCREMENT NOT NULL,
 	`nro_serie` varchar(3),
-<<<<<<< HEAD
-	`id_alumno` int,
-=======
 	`id_alumno` INT,
->>>>>>> d8568c50dd2f1f78e35f1cd307a0f18f81d8c5de
 	`fecha` DATE,
 	`total_pago` real,
 	PRIMARY KEY (`id`),
