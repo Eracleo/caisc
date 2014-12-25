@@ -20,12 +20,11 @@ Lista de Cursos Libres
                 <thead>
                     <tr role="row">
                         <th colspan="1" rowspan="1">Cod Curso</th>
+                        <th colspan="1" rowspan="1">Nombre Curso</th>
                         <th colspan="1" rowspan="1">Cod Docente</th>
+                        <th colspan="1" rowspan="1">Nombre Docente</th>
                         <th colspan="1" rowspan="1">Turno</th>
                         <th colspan="1" rowspan="1">Grupo</th>
-                        <th colspan="1" rowspan="1">Fecha Inicio</th>
-                        <th colspan="1" rowspan="1">Estado</th>
-                        <th colspan="1" rowspan="1">Minimo</th>
                         <th colspan="1" rowspan="1">Acciones</th>
                     </tr>
                 </thead>
@@ -33,12 +32,11 @@ Lista de Cursos Libres
                     @foreach( $cursos as $curso)
                     <tr class="odd">
                         <td class=" ">{{ $curso->codCurso_cl }}</td>
+                        <td class=" ">{{ $curso->nom_curso}}</td>
                         <td class=" ">{{ $curso->docente_id }}</td>
+                        <td class=" ">{{ $curso->nom_docente }}</td>
                         <td class=" ">{{ $curso->turno }}</td>
                         <td class=" ">{{ $curso->grupo }}</td>
-                        <td class=" ">{{ $curso->fecha_inicio }}</td>
-                        <td class=" ">{{ $curso->estado }}</td>
-                        <td class=" ">{{ $curso->minimo }}</td>
                         <td class=" ">
                             <span class="label label-primary">{{ HTML::link('matriculas_cl/registrar/'.$curso->codCargaAcademica_cl,'Matricular') }}</span>
                         </td>

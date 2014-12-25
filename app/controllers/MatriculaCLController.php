@@ -26,12 +26,8 @@ class MatriculaCLController extends BaseController
 		return View::make('matriculaCL.index',compact("datos"),array('matriculas'=>$matriculas));
 	}
 
-	public function listaCursos(){
-		$temp = DB::table('matricula_cl')
-                     ->select(DB::raw('count(*) as total, codCargaAcademica_cl'))
-                     ->groupBy('codCargaAcademica_cl')
-                     ->get();
-		$cursos = CargaAcademicaCL::all();
+	public function listaCursosCLdisponibles(){
+		$cursos = DB::select('call listar_cursosCL_disponibles()');
 		return View::make('matriculaCL.listaCursos',array('cursos'=>$cursos));		
 	}
 
