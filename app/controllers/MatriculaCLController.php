@@ -3,6 +3,8 @@
 class MatriculaCLController extends BaseController
 {
 	public function recibir(){
+		// inner join para recuperar los cursos qeu estan registrados en la carga carga academica
+		// cargas academicas con sus respectivos nombres de curso
 		$cursos = DB::table('carga_academica_cl')
             		->join('curso_cl', 'carga_academica_cl.codCurso_cl', '=', 'curso_cl.id')
             		->select('carga_academica_cl.codCargaAcademica_cl', 'carga_academica_cl.codCurso_cl', 'curso_cl.nombre')
@@ -10,9 +12,9 @@ class MatriculaCLController extends BaseController
         return View::make("matriculaCL/seleccionarCurso", compact('cursos'));
 	}
 
-	public function listarMatriculas(){
-		$cod=Input::get('codigo');
-		$matriculas = MatriculaCL::where('codCargaAcademica_cl','=',$cod)->get();
+	public function listarMatriculasXcargaAcademica(){
+		$cod=Input::get('codigo'); // recupero el codigo de la carga academica del curso libre seleccionado
+		$matriculas = DB::select('call listarMatriculaXCargaAcademic(?)', array($cod));
 		return View::make('matriculaCL.index',compact("datos"),array('matriculas'=>$matriculas));
 	}
 

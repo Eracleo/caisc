@@ -34,9 +34,11 @@ Lista de Matriculas <small>
             <table aria-describedby="example1_info" id="example1" class="table table-bordered table-striped dataTable">
                 <thead>
                     <tr role="row">
-                        <th colspan="1" rowspan="1">Codigo Matricula CL</th>
+                        <th colspan="1" rowspan="1">Codigo Matricula</th>
                         <th colspan="1" rowspan="1">Codigo Alumno</th>
+                        <th colspan="1" rowspan="1">Nombre Alumno</th>
                         <th colspan="1" rowspan="1">Codigo Carga Academica</th>
+                        <th colspan="1" rowspan="1">Nombre del Curso</th>
                         <th colspan="1" rowspan="1">Action</th>
                     </tr>
                 </thead>
@@ -44,8 +46,10 @@ Lista de Matriculas <small>
                     @foreach( $matriculas as $matricula)
                     <tr class="odd">
                         <td class=" "><b>{{ $matricula->id }}</b></td>
-                        <td class=" "><b>{{ $matricula->codAlumno }}</b></td>
+                        <td class=" "><b>{{ $matricula->codigo }}</b></td>
+                        <td class=" "><b>{{ $matricula->alumno }}</b></td>
                         <td class=" ">{{ $matricula->codCargaAcademica_cl }}</td>
+                        <td class=" "><b>{{ $matricula->curso }}</b></td>
                         <td class=" ">
                             <span class="label label-warning">{{ HTML::link('matriculas_cl/edit/'.$matricula->id,'Modificar') }}</span>
                             <span class="label label-danger">{{ HTML::link('matriculas_cl/delete/'.$matricula->id,'Eliminar') }}</span>
