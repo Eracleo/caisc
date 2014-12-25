@@ -1,6 +1,6 @@
 @extends('layouts.base_admin')
 @section('title')
-Lista de Matriculas <small>
+Lista de Matriculas
 @stop
 @section('breadcrumb')
 @stop
@@ -48,7 +48,7 @@ Lista de Matriculas <small>
                         <td class=" "><b>{{ $matricula->id }}</b></td>
                         <td class=" "><b>{{ $matricula->codigo }}</b></td>
                         <td class=" "><b>{{ $matricula->alumno }}</b></td>
-                        <td class=" ">{{ $matricula->codCargaAcademica_cl }}</td>
+                        <td class=" "><b>{{ $matricula->codCargaAcademica_cl }}</b></td>
                         <td class=" "><b>{{ $matricula->curso }}</b></td>
                         <td class=" ">
                             <span class="label label-warning">{{ HTML::link('matriculas_cl/edit/'.$matricula->id,'Modificar') }}</span>

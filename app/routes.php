@@ -163,6 +163,8 @@ Route::get('matriculas_ct/listacursos',array('uses'=>'MatriculaCTController@list
 Route::get('matriculas_ct/lista',array('uses'=>'MatriculaCTController@lista'));
 Route::get('matriculas_ct/add.html',array('uses'=>'MatriculaCTController@add'));
 
+
+
 // MANTENIMIENTO MATRICULA CURSOS LIBRES
 Route::post('matriculas_cl/listarMatriculas.html',array('uses'=>'MatriculaCLController@listarMatriculasXcargaAcademica'));
 Route::get('matriculas_curso_libre',array('uses'=>'MatriculaCLController@index'));

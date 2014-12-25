@@ -43,7 +43,6 @@ class AlumnoController extends BaseController
 	public function insert()
 	{
 		$respuesta = Alumno::agregar(Input::all());
-
 		if($respuesta['error']==true)
 		{
 			return Redirect::to('alumno/add.html')->withErrors($respuesta['mensaje'] )->withInput();
