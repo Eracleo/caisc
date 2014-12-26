@@ -1,10 +1,10 @@
 @extends('layouts.base_admin')
 @section('title')
-Agregar <small> NUEVO SILAB0 </small>
+Agregar <small> NUEVO SILABO </small>
 @stop
 
 @section('breadcrumb')
-<li>Silabo de Cursos tecnicos </li>
+<li>{{ HTML::link('SilaboCarreraTecnica/index.html/','Silabo de Cursos de Carrera') }} </li>
 <li>Agregar Silabo</li>
 @stop
 
@@ -18,52 +18,56 @@ Agregar <small> NUEVO SILAB0 </small>
 	</div></div>
 
 	<div class="form-group">
-		{{ Form::label('capitulo','Capitulo :',array('class'=>'col-sm-4 control-label')) }}
-		<div class="col-sm-8">
-			{{ Form::number('capitulo','',array('class'=>'form-control','placeholder'=>'','required'))}}
+		{{ Form::label('capitulo','Capitulo :',array('class'=>'col-sm-2 control-label')) }}
+		<div class="col-sm-6">
+			{{ Form::text('capitulo','',array('class'=>'form-control','placeholder'=>'','required'))}}
 		</div>
 	</div>
 
 	<div class="form-group">
-		{{ Form::label('titulo','Titulo del Silabo:',array('class'=>'col-sm-4 control-label')) }}
-		<div class="col-sm-8">
+		{{ Form::label('titulo','Titulo :',array('class'=>'col-sm-2 control-label')) }}
+		<div class="col-sm-6">
 			{{ Form::text('titulo','',array('class'=>'form-control','placeholder'=>'','required'))}}
 		</div>
 	</div>
 
 <div class="form-group">
-		{{ Form::label('objetivos','Objetivos:',array('class'=>'col-sm-4 control-label')) }}
-		<div class="col-sm-8">
+		{{ Form::label('objetivos','Objetivos:',array('class'=>'col-sm-2 control-label')) }}
+		<div class="col-sm-6">
 			{{ Form::textarea('objetivos','',array('class'=>'form-control','placeholder'=>'','required'))}}
 		</div>
 	</div>
 
 	<div class="form-group">
-		{{ Form::label('descripcion','Descripcion  del Silabo:',array('class'=>'col-sm-4 control-label')) }}
-		<div class="col-sm-8">
+		{{ Form::label('descripcion','Descripcion :',array('class'=>'col-sm-2 control-label')) }}
+		<div class="col-sm-6">
 			{{ Form::textarea('descripcion','',array('class'=>'form-control','placeholder'=>'','required'))}}
 		</div>
 	</div>
 
 	<div class="form-group">
-		{{ Form::label('numeroclases','Numero de clases requeridas :',array('class'=>'col-sm-4 control-label')) }}
-		<div class="col-sm-8">
-			{{ Form::text('numeroclases','',array('class'=>'form-control','placeholder'=>'','required'))}}
+		{{ Form::label('numeroclases','Clases Requeridas :',array('class'=>'col-sm-2 control-label')) }}
+		<div class="col-sm-6">
+			{{ Form::number('numeroclases','',array('class'=>'form-control','placeholder'=>'','required'))}}
 		</div>
 	</div>
 
 	<div class="form-group">
-		{{ Form::label('orden','Orden del silabus:',array('class'=>'col-sm-4 control-label')) }}
-		<div class="col-sm-8">
-			{{ Form::number('orden','',array('class'=>'form-control','placeholder'=>'','required'))}}
+		{{ Form::label('orden','Orden:',array('class'=>'col-sm-2 control-label')) }}
+		<div class="col-sm-6">
+			@if(SilaboCursoTecnico::get()->last() == null)
+				{{ Form::number('orden',1 ,array('class'=>'form-control','readonly'=>'readonly','required'))}}			
+			@else
+				{{ Form::number('orden',SilaboCursoTecnico::get()->last()->orden +1 ,array('class'=>'form-control','readonly'=>'readonly','required'))}}
+			@endif
 		</div>
 	</div>
 		
 	<div class="form-group">
-		<div class="col-xs-12 col-sm-6 col-md-6">
+		<div class="col-xs-12 col-sm-6 col-md-5">
 			<button class="btn btn-info btn-block" type="reset">Cancelar</button>
 		</div>
-		<div class="col-xs-12 col-sm-6 col-md-6">
+		<div class="col-xs-12 col-sm-6 col-md-5">
 			<button class="btn btn-primary btn-block" type="submit">Guardar</button>
 		</div>
 	</div>
