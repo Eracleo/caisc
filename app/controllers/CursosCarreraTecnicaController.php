@@ -9,14 +9,15 @@ class CursosCarreraTecnicaController extends BaseController{
 	public function nuevo()
 	{
 		$carrera = Carrera::lists('nombre','id');
-		return View::make('Cursos_Carrera_Tecnica.create',array('carrera'=>$carrera));
+		$modulo = Modulo::lists('nombre','id');
+		return View::make('Cursos_Carrera_Tecnica.create',array('carrera'=>$carrera,'modulo'=>$modulo));
 	}
 	public function insertar()
 	{	
 		$respuesta = CursoTecnico::agregar(Input::all());
 		if($respuesta['error']==true)
 		{
-			return Redirect::to('CursosTecnica/create.html')->with('mensaje',$respuesta['mensaje']);
+			return Redirect::to('CursosTecnica/create.html')->with('mensaje',$respuesta['mensaje'])->withInput();
 		} 
 		else 
 		{
@@ -43,34 +44,46 @@ class CursosCarreraTecnicaController extends BaseController{
 		} 
 		else 
 		{
+			$carrera = Carrera::lists('nombre','id');
 			$curso = CursoTecnico::where('id','=',$id)->firstOrFail();
-			return View::make('Cursos_Carrera_Tecnica.editconID',array('curso_ct'=>$curso));
+			$modulo = Modulo::lists('nombre','id');
+			return View::make('Cursos_Carrera_Tecnica.editconID',array('curso_ct'=>$curso,'carrera'=>$carrera,'modulo'=>$modulo));
 		}
 	}
 	public function post_actualizar()
 	{
-		$cod=Input::get('id');
+		$respuesta = CursoTecnico::editar(Input::all());
+		if($respuesta['error']==true)
+		{	$id = input::get('id');
+			$curso = CursoTecnico::where('id','=',$id)->firstOrFail();
+			return Redirect::to('CursosTecnica/updatecID/'.$id)->with('mensaje',$respuesta['mensaje'])->withInput();
+			//return View::make('Cursos_Carrera_Libre.editconID',array('curso_cl'=>$curso))->withErrors($respuesta['mensaje'] );
+		}
+		else
+		{
 
-		if(is_null($cod))
-		{
-			Redirect::to('404.html');
-		} 
-		else 
-		{
-			$curso = CursoTecnico::where('id','=',$cod)->firstOrFail();
-			if(is_object($curso))
+			$cod=Input::get('id');
+
+			if(is_null($cod))
 			{
-				$curso->codigo = Input::get('codigo');
-				$curso->nombre = Input::get('nombre');
-				$curso->modulo = Input::get('modulo');
-				$curso->horas_academicas = Input::get('horas_academicas');
-				$curso->estado = 1;
-				//$curso->codCarrera = Input::get('codCarrera');
-				$curso->updated_at = time();
-				$curso->save();
-				return Redirect::to('CursosTecnica/index.html');
-			} else {
-				Redirect::to('500.html');
+				Redirect::to('404.html');
+			} 
+			else 
+			{
+				$curso = CursoTecnico::where('id','=',$cod)->firstOrFail();
+				if(is_object($curso))
+				{
+					$curso->nombre = Input::get('nombre');
+					$curso->modulo = Input::get('modulo');
+					$curso->codCarrera = Input::get('codCarrera');
+					$curso->horas_academicas = Input::get('horas_academicas');
+					$curso->estado = 1;
+					$curso->updated_at = time();
+					$curso->save();
+					return Redirect::to('CursosTecnica/index.html');
+				} else {
+					Redirect::to('500.html');
+				}
 			}
 		}
 	}
