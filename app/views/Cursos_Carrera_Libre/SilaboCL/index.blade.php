@@ -5,6 +5,15 @@ Lista <small>SILABO CURSOS LIBRES </small>
 @section('breadcrumb')
 <li>Silabo Cursos Libres</li>
 @stop
+<style>
+    span {
+        margin: 5px;
+    }
+    span a{
+        color: white;
+    }
+</style>
+
 @section('content')
 <div class="box">
     <div class="box-header">
@@ -26,7 +35,8 @@ Lista <small>SILABO CURSOS LIBRES </small>
                     <tr role="row">
                         <th aria-label="Rendering engine: activate to sort column descending" aria-sort="ascending" style="width: 80px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" role="columnheader" class="sorting_asc">Nro</th>
                         <th aria-label="Browser: activate to sort column ascending" style="width: 283px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" role="columnheader" class="sorting">Capitulo</th>
-                        <th aria-label="Browser: activate to sort column ascending" style="width: 283px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" role="columnheader" class="sorting">titulo del Silabo</th>
+                        <th aria-label="Browser: activate to sort column ascending" style="width: 283px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" role="columnheader" class="sorting">Titulo del Silabo</th>
+                         <th aria-label="Browser: activate to sort column ascending" style="width: 283px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" role="columnheader" class="sorting">Estado</th>
                         <th aria-label="CSS grade: activate to sort column ascending" style="width: 114px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" role="columnheader" class="sorting">Actions</th>
                     </tr>
                 </thead>
@@ -37,9 +47,24 @@ Lista <small>SILABO CURSOS LIBRES </small>
                         <td class=" ">{{ $dato->capitulo }}</td>
                         <td class=" ">{{ $dato->titulo }}</td>
                         <td class=" ">
-                            {{ HTML::link('SilaboCarreraLibre/detalle/'.$dato->id,'Detalle') }}
-                            {{ HTML::link('SilaboCarreraLibre/updatecID/'.$dato->id,'Actualizar') }}
-                            {{ HTML::link('SilaboCarreraLibre/post_delete/'.$dato->id,'Eliminar') }}
+                                    <?php if($dato->estado == 2 ) { ?> 
+                                        <b> Finalizado</b>
+                                    <?php }
+                                    else{ ?> 
+                                            <?php  if($dato->estado == 1 )
+                                            {   ?> 
+                                                <b>En Proceso</p>
+                                            <?php 
+                                            }   else{ ?> 
+                                                <b>Inactivo</b>
+                                        <?php } ?> <?php } ?> 
+                        </td>
+                        <td class=" ">
+                           <span class = "label label-success">{{ HTML::link('SilaboCarreraLibre/detalle/'.$dato->id,'Detalle') }}</span> 
+                           <br><br>
+                           <span class = "label label-warning">{{ HTML::link('SilaboCarreraLibre/updatecID/'.$dato->id,'Actualizar') }} </span> 
+                           <br><br>
+                           <span class = "label label-danger"> {{ HTML::link('SilaboCarreraLibre/post_delete/'.$dato->id,'Eliminar') }}</span> 
                         </td>
                 </tr>
                 @endforeach

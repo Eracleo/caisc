@@ -14,14 +14,7 @@ Lista <small>SILABO CURSOS LIBRES </small>
         <div id="example1_wrapper" class="dataTables_wrapper form-inline" role="grid">
             <div class="row">
                 <div class="col-xs-6">
-                    <div class="dataTables_length" id="example1_length">
-                        <label><select aria-controls="example1" size="1" name="example1_length">
-                            <option selected="selected" value="10">10</option>
-                            <option value="25">25</option>
-                            <option value="50">50</option>
-                            <option value="100">100</option>
-                        </select> records per page</label>
-                    </div>
+                  
                 </div>
                 <div class="col-xs-6">
                     <div id="example1_filter" class="dataTables_filter">
