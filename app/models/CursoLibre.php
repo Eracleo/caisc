@@ -4,11 +4,12 @@ class CursoLibre extends Eloquent {
 
 	protected $table = 'curso_cl';
 	protected $fillable = array('id','nombre','horas_academicas','estado','updated_at','created_up');
-
+	
 	public static function agregar($input)
 	{
 		$respuesta = array();
-		$reglas = array(
+		$reglas = array(	
+				'id'=>array('required','max:10'),			
 				'nombre'=>array('required','max:30'),
 				'horas_academicas'=>array('required','max:30')
 			);
@@ -16,9 +17,9 @@ class CursoLibre extends Eloquent {
 		$validador = Validator::make($input,$reglas);
 		if($validador->fails())
 		{
-			$respuesta['mensaje'] = 'DATOS INGRESADOS INCORRECTAMENTE';
+			$respuesta['mensaje'] = 'Datos Ingresados Incorrectamente';
 			$respuesta['error'] = true;
-		}
+		} 
 		else
 		{
 			$curso = new CursoLibre;
@@ -28,27 +29,73 @@ class CursoLibre extends Eloquent {
 			$curso->estado = 1;
 			$curso->created_at= time();
 			$curso->updated_at = time();
-			if(CursoLibre::find(input::get('id')))
+			$aux =CursoLibre::find(input::get('id'));
+
+			if(is_object($aux))
 			{
-				$respuesta['mensaje'] = 'YA EXISTE ESE CODIGO';
-				$respuesta['error'] = true;
-				$respuesta['data'] = $curso;
+				if($aux->estado == 1)
+				{				
+					$respuesta['mensaje'] = 'Ya existe ese curso';
+					$respuesta['error'] = true;
+					$respuesta['data'] = $curso;
+				}
+				else
+				{	
+					$aux->nombre = Input::get('nombre');
+					$aux->horas_academicas = Input::get('horas_academicas');
+					$aux->estado = 1;
+						//$curso->codCarrera = Input::get('codCarrera');
+					$aux->updated_at = time();
+					$aux->save();
+
+					$respuesta['mensaje'] = 'Curso Creado';
+					$respuesta['error'] = false;
+					$respuesta['data'] = $aux;
+						
+				}
 			}
 			else
 			{
-				if ($curso->save())
+				if ($curso->save()) 
 				{
 					$respuesta['mensaje'] = 'Curso Creado';
 					$respuesta['error'] = false;
 					$respuesta['data'] = $curso;
+					
 				}
-				else
+				else 
 				{
-					$respuesta['mensaje'] = 'DATOS INCORRECTOS';
+					$respuesta['mensaje'] = 'No se pudo agregar el curso';
 					$respuesta['error'] = true;
 					$respuesta['data'] = $curso;
-				}
+						
+				}	
+
 			}
+				
+		}
+		return $respuesta;
+	}
+
+
+	public static function editar($input)
+	{
+		$respuesta = array();
+		$reglas = array(
+			'id'=>array('required','max:10'),
+			'nombre'=>array('required','max:30'),
+			'horas_academicas'=>array('required','max:30')
+		);
+		$validador = Validator::make($input,$reglas);
+		if($validador->fails())
+		{
+			$respuesta['mensaje'] = 'Datos Ingresados Incorrectamente';
+			$respuesta['error'] = true;
+		} 
+		else
+		{
+			$respuesta['mensaje'] = 'Curso Actualizado';
+			$respuesta['error'] = false;
 		}
 		return $respuesta;
 	}
