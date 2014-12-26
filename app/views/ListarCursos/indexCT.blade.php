@@ -1,10 +1,22 @@
 @extends('layouts.base_admin')
 @section('title')
-Cursos Docente
+Mis Cursos de Carrera
 @stop
 @section('breadcrumb')
-<li>DOCENTE</li>
+<li>{{ HTML::link('docentes','Docentes')}} </li>
+<li>Mis Cursos de Carrera</li>
 @stop
+
+<style>
+    span {
+        margin: 5px;
+    }
+    span a{
+        color: white;
+    }
+</style>
+
+
 @section('content')
 <div class="box">
     <div class="box-header">
@@ -14,20 +26,13 @@ Cursos Docente
         <div id="example1_wrapper" class="dataTables_wrapper form-inline" role="grid">
             <div class="row">
                 <div class="col-xs-6">
-                    <div class="dataTables_length" id="example1_length">
-                        <label><select aria-controls="example1" size="1" name="example1_length">
-                            <option selected="selected" value="10">10</option>
-                            <option value="25">25</option>
-                            <option value="50">50</option>
-                            <option value="100">100</option>
-                        </select> Filas que desea visualizar</label>
-                    </div>
+                    
                 </div>
                 <div class="col-xs-6">
-                    <div id="example1_filter" class="dataTables_filter">
+                <!--    <div id="example1_filter" class="dataTables_filter">
                         <label>Buscar: <input aria-controls="example1" type="text"></label>
                         {{ HTML::link('#','Buscar Curso') }}
-                    </div>
+                    </div> -->
                 </div>
             </div>
 
@@ -35,7 +40,7 @@ Cursos Docente
                 <thead>
                     <tr role="row">
                         <th aria-label="Rendering engine: activate to sort column descending" aria-sort="ascending" style="width: 80px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" role="columnheader" class="sorting_asc">Cod Carga Academica</th>
-                        <th aria-label="Browser: activate to sort column ascending" style="width: 283px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" role="columnheader" class="sorting">Cod Curso</th>
+                        <th aria-label="Platform(s): activate to sort column ascending" style="width: 244px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" role="columnheader" class="sorting">Cod Curso</th>
                         <th aria-label="Platform(s): activate to sort column ascending" style="width: 244px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" role="columnheader" class="sorting">Nombre</th>
                         <th aria-label="Platform(s): activate to sort column ascending" style="width: 244px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" role="columnheader" class="sorting">Semestre</th>
                         <th aria-label="Platform(s): activate to sort column ascending" style="width: 244px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" role="columnheader" class="sorting">Turno</th>
@@ -52,14 +57,16 @@ Cursos Docente
                             <td class=" ">{{$curso->semestre}}</td>
                             <td class=" ">{{$curso->turno}}</td>
                             <td class=" ">
-                                {{ HTML::link('SilaboCarreraTecnica/create/'.$curso->CodCargaAcademica_ct,'Ingresar Silabus') }}
+                              <span class = "label label-danger">  {{ HTML::link('SilaboCarreraTecnica/create/'.$curso->CodCargaAcademica_ct,'Ingresar Silabus') }} </span>
                             </td>
                         <tr>
                     @endforeach 
                 </tbody>
             </table>
         </div>
-         {{ HTML::link('SilaboCarreraTecnica/index.html/','Ver Todos los Silabos') }}
+        <br>
+        <span class="label label-success"> {{ HTML::link('SilaboCarreraTecnica/index.html/','Ver Todos los Silabos') }}</span> 
+        
     </div>
 </div>  
 @stop
