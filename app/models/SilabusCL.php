@@ -15,7 +15,7 @@ class SilabusCL extends Eloquent {
 		$validador = Validator::make($input,$reglas);
 		if($validador->fails())
 		{
-			$respuesta['mensaje'] = 'DATOS INGRESADOS INCORRECTAMENTE';
+			$respuesta['mensaje'] = 'Datos Ingresados Incorrectamente';
 			$respuesta['error'] = true;
 		} 
 		else
@@ -33,7 +33,7 @@ class SilabusCL extends Eloquent {
 			}
 			else 
 			{
-				$respuesta['mensaje'] = 'DATOS INCORRECTOS';
+				$respuesta['mensaje'] = 'No se pudo ingresar el silabo';
 				$respuesta['error'] = true;
 				$respuesta['data'] = $silabo;
 			}
