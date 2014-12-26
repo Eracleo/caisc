@@ -19,3 +19,15 @@ BEGIN
     inner join docente D on C.docente_id = D.id
     order by C.codCargaAcademica_cl;
 END
+
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `listar_matriculas_curso_libre`()
+BEGIN
+	select M.id, M.codAlumno, CONCAT(A.nombre,' ',A.apellidos) as nom_alumno, M.codCargaAcademica_cl, D.codCurso_cl, C.nombre as nom_curso
+	from matricula_cl M
+	inner join alumno A on M.codAlumno = A.id
+	inner join carga_academica_cl D on M.codCargaAcademica_cl = D.codCargaAcademica_cl
+	inner join curso_cl C on D.codCurso_cl = C.id
+	order by id;
+END

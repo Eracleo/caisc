@@ -17,13 +17,12 @@ class MatriculaCLController extends BaseController
 	public function listarMatriculasXcargaAcademica(){
 		$cod=Input::get('codigo'); // recupero el codigo de la carga academica del curso libre seleccionado
 		$matriculas = DB::select('call listarMatriculaXCargaAcademic(?)', array($cod));
-		return View::make('matriculaCL.index',compact("datos"),array('matriculas'=>$matriculas));
+		return View::make('matriculaCL.index2',compact("datos"),array('matriculas'=>$matriculas));
 	}
 
-	public function index($registros=5){
-		$datos = MatriculaCL::paginate($registros);
-		$matriculas = MatriculaCL::all();
-		return View::make('matriculaCL.index',compact("datos"),array('matriculas'=>$matriculas));
+	public function index(){
+		$matriculas = DB::select('call listar_matriculas_curso_libre()');
+		return View::make('matriculaCL.index',array('matriculas'=>$matriculas));
 	}
 
 	public function listaCursosCLdisponibles(){
@@ -37,13 +36,8 @@ class MatriculaCLController extends BaseController
 		{
 			return Redirect::to('404.html');
 		} else {
-			//-- recuperamos el ultimo id de los registros de matricula_cl
-			$codMatri_old = DB::table('matricula_cl')
-							->max('id');
-			//-- aumentamos en 1 al ID del registro
-			$codMatri_new=(int)($codMatri_old)+1;
 			$curso = CargaAcademicaCL::where('codCargaAcademica_cl','=',$cod)->firstOrFail();
-			$curso->codig = $codMatri_new;
+			//$curso->codig = $codMatri_new;
 			return View::make('matriculaCL.registro',array('curso'=>$curso));
 		}
 	}

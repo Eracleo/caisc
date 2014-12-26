@@ -8,12 +8,6 @@ Registro de Matricula
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
 {{ Form::open(array('method'=> 'POST','url'=> 'matriculas_cl/insert.html','class'=>'form-horizontal','role'=>'form')) }}
 	<div class="form-group">
-		{{ Form::label('id','Código Matricula:',array('class'=>'col-sm-4 control-label')) }}
-		<div class="col-sm-8">
-			{{ Form::text('id',$curso->codig,array('class'=>'form-control'))}}
-		</div>
-	</div>
-	<div class="form-group">
 		{{ Form::label('codAlumno','Codigo Alumno:',array('class'=>'col-sm-4 control-label')) }}
 		<div class="col-sm-8">
 			{{ Form::text('codAlumno','',array('class'=>'form-control'))}}
