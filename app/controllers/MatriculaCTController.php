@@ -103,6 +103,25 @@ class MatriculaCTController extends BaseController
 		}
 	}
 
+	public function insert_matriculaCT(){
+		$respuesta = array();
+		$codigo = Input::get('codAlumno');
+		$carga = Input::get('codCargaAcademica_ct');
+		$buscar = DB::select('call buscarMatriculaCT(?,?)', array($codigo,$carga));
+		$lonf = sizeof($buscar);
+		if ($lonf > 0) {
+			$respuesta['mensaje'] = 'Error!!! La matricula ya existe';
+			$respuesta['error'] = true;
+			return Redirect::to('matriculas_ct/listaMatriculas')->with('mensaje',$respuesta['mensaje'])->withInput();
+		}else{
+			$matricula_ct = DB::select('call insertMatriculaCT(?,?)',array($codigo,$carga));
+			$respuesta['mensaje'] = 'Matricula Creada';
+			$respuesta['error'] = false;
+			$respuesta['data'] = $matricula_ct;
+			return Redirect::to('matriculas_ct/listaMatriculas')->with('mensaje',$respuesta['mensaje']);
+		}
+	}
+
 	public function insert(){
 		$respuesta = MatriculaCT::agregar(Input::all());
 		if($respuesta['error']==true)

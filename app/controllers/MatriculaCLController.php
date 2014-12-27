@@ -50,9 +50,8 @@ class MatriculaCLController extends BaseController
 		//echo 'codigo carga academica: ',$carga;
 		$buscar = DB::select('call buscarMatricula(?,?)', array($codigo,$carga));
 		$lonf = sizeof($buscar);
-		echo($lonf);
 		if ($lonf > 0) {
-			$respuesta['mensaje'] = 'Error!!! Matricula no creada';
+			$respuesta['mensaje'] = 'Error!!! La matricula ya existe';
 			$respuesta['error'] = true;
 			return Redirect::to('matriculas_cl/lista_cursos')->with('mensaje',$respuesta['mensaje'])->withInput();
 		}else{
