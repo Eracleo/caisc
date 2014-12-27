@@ -2,10 +2,11 @@
 @section('title')
 Agregar Cargo <small> NUEVO CARGO</small>
 @stop
-@section('breadcrumb')
+@section('options')
 <li>{{ HTML::link('personal','Personal')}} </li>
-<li>{{ HTML::link('personal/cargos','Cargos')}} </li>
-<li>Agregar</li>
+<li>{{ HTML::link('personal/cargos','Listar Cargos')}} </li>
+<li>{{ HTML::link('personal/cargos/add.html','Nuevo Cargos')}} </li>
+<li><a href="#">Agregar</a></li>
 @stop
 @section('content')
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">

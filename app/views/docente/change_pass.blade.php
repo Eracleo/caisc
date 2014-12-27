@@ -2,7 +2,7 @@
 @section('title')
 Cambiar Contraseña <small> {{$obj->nombre}} </small>
 @stop
-@section('breadcrumb')
+@section('options')
 <li>{{ HTML::link('docentes','Docentes')}} </li>
 <li>{{ HTML::link('docente/profile/'.$obj->id,$obj->nombre)}}</li>
 <li>Editar</li>

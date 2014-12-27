@@ -30,7 +30,7 @@
     <body class="bg-black">
 
         <form class="form-box" id="login-box" action="check" method="POST" >
-            
+
             <div class="header">Sign In </div>
 
                 <div class="body bg-gray">
@@ -45,6 +45,16 @@
                     </div>
                     @if (Session::get('mensaje'))
                     <div style="color:red" text-align: rigth; >{{ Session::get('mensaje')}}</div>
+                    @endif
+
+                    @if (Session::get('message-success'))
+                    <div class="alert alert-success">{{ Session::get('message-success')}}</div>
+                    @endif
+                    @if (Session::get('message-warning'))
+                    <div class="alert alert-warning">{{ Session::get('message-warning')}}</div>
+                    @endif
+                    @if (Session::get('message-danger'))
+                    <div class="alert alert-danger">{{ Session::get('message-danger')}}</div>
                     @endif
                 </div>
                 <div class="footer">

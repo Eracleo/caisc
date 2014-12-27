@@ -2,69 +2,43 @@
 @section('title')
 Caja y Facturación
 @stop
+@section('options')
+<li >{{ HTML::link('/alumno','Todos') }}</li>
+<li>{{ HTML::link('/alumno/create','Nuevo') }}</li>
+@stop
 @section('content')
 <?php
     $date = Date("Y-m-d")
 ?>
-	<nav class="navbar navbar-default" role="navigation">
-  		<div class="container-fluid">
-    		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      			<ul class="nav navbar-nav">
-        			<li >{{ HTML::link('/pagos','Todos') }}</li>
-        			<li>{{ HTML::link('/pagos/create','Nuevo') }}</li>
-        		</ul>
-        	</div>
-        </div>
-    </nav>
 
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
-  		<div class="panel-body" >
+  		<div class="panel" >
   			<form method="post" action="search">
-
-  			<div class="well carousel-search hidden-sm">
-			 	<div class="form-inline">
-	  				<p>
-				  	<div class="col-xs-3">
-				    	<input type="text" class="form-control" placeholder="" value="N° 0001" disabled>
-				  	</div>
-
+			 	<div class="row">
+          <div class="col-xs-3">
+            <input type="text" class="form-control" placeholder="" value="N° 0001" disabled>
+          </div>
 					<div class="col-xs-3">
 						<input type="text" class="form-control" placeholder="" value="Serie: 0001" disabled>
 					</div>
-
-				  	<div class="col-xs-3">
-
-				  		<input name="fecha" type="text" class="form-control" placeholder="" value=<?php echo $date?> disabled>		  	
-
-				  	</div>
-					
-
-				  	</p>
-				</div>
-			</div>
-
-			<br>
-
-			<p>
-				<label>Código:</label>
-				<div class="form-inline">			  	
+          <div class="col-xs-3">
+            <input name="fecha" type="text" class="form-control" placeholder="" value=<?php echo $date?> disabled>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+        <div class="form-inline">
+				  <label>Código:</label>
 				  	<div class="form-group">
-
 				    	<input name="id_alumno" type="text" class="form-control" placeholder="Ingrese Codigo" requiered="true" value="" >
 				  	</div>
-				  
-					<button type="submit" class="btn btn-default btn-sm">
+					<button type="submit" class="btn btn-info btn-sm">
 					  	<span class="glyphicon glyphicon-search" aria-hidden="true"></span> Buscar
 					</button>
-
-					<button type="button" class="btn btn-default btn-sm">
-              <span >{{ HTML::link('alumno/add.html','Agregar') }}</span>
-					</button>
+              <span >{{ HTML::link('alumno/add.html','Agregar',array('class'=>'btn btn-warning')) }}</span>
 
 				</div>
-
-			</p>
-
+</div>
 			</form>
 
 		 <p>
@@ -75,7 +49,7 @@ Caja y Facturación
       	<p>
         <label>Apellidos:</label>
         <input type="text" id="apellidos" placeholder="" class="form-control" required value="">
-      	</p>	
+      	</p>
 		<div class="form-group">
               {{ Form::label('modalidad_id','Modalidad de Pago :',array('class'=>'col-sm-5 control-label')) }}
               <div class="col-sm-6 col-md-4">
@@ -138,8 +112,8 @@ Caja y Facturación
     </table>
      <p>
         <label>TOTAL:</label>
-        <input type="text" name="total" class="form-control" id="total_pago">        
-      </p>  
+        <input type="text" name="total" class="form-control" id="total_pago">
+      </p>
       </table>
 
     <div class="form-group">
@@ -149,7 +123,7 @@ Caja y Facturación
         <div class="col-xs-12 col-sm-3">
           <button class="btn btn-primary" type="reset">Imprimir</button>
         </div>
-        
+
     </div>
 
 	</div>

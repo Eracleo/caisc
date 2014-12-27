@@ -1,7 +1,7 @@
 @extends('layouts.base_admin')
 @section('title')
-500
+Bienvenido Admin
 @stop
 @section('content')
-<h2>FUERA DE SERVICIO</h2>
+<a href="#">Tareas a realizar</a>
 @stop

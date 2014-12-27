@@ -3,9 +3,10 @@
 @section('title')
 Eliminar <small>CURSOS TECNICOS </small>
 @stop
-@section('breadcrumb')
-<li>{{ HTML::link('CursosTecnica/index.html','Cursos de Carrera') }}</li>
-<li> Eliminar Curso</li>
+@section('options')
+<li>{{HTML::link('CursosTecnica/index.html','Listar')}}</li>
+<li>{{HTML::link('CursosTecnica/create.html','Nuevo')}}</li>
+<li><a href="#">Eliminar Curso</a></li>
 @stop
 
 <style>
@@ -45,7 +46,7 @@ Eliminar <small>CURSOS TECNICOS </small>
 			{{ Form::text('codCarrera',Carrera::find($curso_ct->codCarrera)->nombre,array('class'=>'form-control','placeholder'=>'','readonly'=>'readonly'))}}
 		</div>
 	</div>
-	
+
 
 	<div class="form-group">
 		<div class="col-xs-12 col-sm-6 col-md-5">

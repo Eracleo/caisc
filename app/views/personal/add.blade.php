@@ -2,9 +2,10 @@
 @section('title')
 Agregar Personal <small> NUEVO PERSONAL </small>
 @stop
-@section('breadcrumb')
+@section('options')
 <li>{{ HTML::link('personal','Personal')}} </li>
-<li>Agregar</li>
+<li>{{ HTML::link('personal/add.html','Nuevo')}} </li>
+<li><a href="#">Agregr</a></li>
 @stop
 @section('content')
 <div class="col-xs-12 col-sm-12">

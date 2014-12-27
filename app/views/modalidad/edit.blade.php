@@ -1,28 +1,13 @@
 @extends('layouts.base_admin')
 @section('title')
-Mantenimiento Modalidad
+Editar Modalidad
+@stop
+@section('options')
+<li >{{ HTML::link('/modalidad','Todos') }}</li>
+<li>{{ HTML::link('/modalidad/create','Nuevo') }}</li>
 @stop
 @section('content')
-  <nav class="navbar navbar-default" role="navigation">
-      <div class="container-fluid">
-        <div class="navbar-header">
-        <a class="navbar-brand" href="#"></a>
-        </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-              <li >{{ HTML::link('/modalidad','Todos') }}</li>
-              <li>{{ HTML::link('/modalidad/create','Nuevo') }}</li>
-            </ul>
-          </div>
-        </div>
-    </nav>
-
-  <div class="panel panel-success">
-      <div class="panel-heading">
-        <h4>Editar Modalidad</h4>
-      </div>
-
-      <div class="panel-body">
+  <div class="panel frm-sm">
         @if (!empty($modalidad))
           <form method="post" action="/caisc/public/modalidad/update/{{ $modalidad->id}}">
           <p>
@@ -37,14 +22,13 @@ Mantenimiento Modalidad
             <label>Monto:</label>
             <input value="{{ $modalidad->monto }}" type="text" name="monto" placeholder="Monto" class="form-control" required>
           </p>
-          <input type="submit" value="Guardar" class="btn btn-success">
+          <input type="submit" value="Guardar" class="btn btn-primary">
           @else
           <p>
             No existe información para éste usuario.
           </p>
         @endif
       </form>
-    </div>
   </div>
 
   @if(Session::has('message'))

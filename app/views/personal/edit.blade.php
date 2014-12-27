@@ -2,10 +2,10 @@
 @section('title')
 Editar Personal <small> {{$personal->nombre}} </small>
 @stop
-@section('breadcrumb')
+@section('options')
 <li>{{ HTML::link('personal','Personal')}} </li>
-<li>{{ HTML::link('personal/profile/'.$personal->id,$personal->nombre)}}</li>
-<li>Editar</li>
+<li>{{ HTML::link('personal/add.html','Nuevo')}} </li>
+<li><a href="#">Editar</a></li>
 @stop
 @section('content')
 

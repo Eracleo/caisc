@@ -2,14 +2,12 @@
 @section('title')
 Lista de Docentes
 @stop
-@section('breadcrumb')
+@section('options')
 <li>{{ HTML::link('docentes','Listar')}}</li>
-<li>{{ HTML::link('docente/add.html','Agregar')}}</li>
+<li>{{ HTML::link('docente/add.html','Nuevo')}}</li>
 @stop
 @section('content')
-<div class="box-body table-responsive">
-    <div id="example1_wrapper" class="dataTables_wrapper form-inline" role="grid">
-        <table aria-describedby="example1_info" id="example1" class="table table-bordered table-striped dataTable">
+        <table class="table table-bordered table-striped dataTable">
             <thead>
                 <tr role="row">
                     <th style="width: 90px;">Cod Docente</th>
@@ -46,13 +44,9 @@ Lista de Docentes
 
             </tbody>
         </table>
-    </div>
-    <br>
     <div class="row">
         <div class="col-sm-2"><p><b>Pagina Actual:</b> {{ $datos->getCurrentPage()}}</p></div>
         <div class="col-sm-6">{{ $datos->links()}}</div>
         <div class="col-sm-4">{{ HTML::link('docente/add.html','Agregar Docente') }}</div>
     </div>
-    <hr>
-</div><!-- /.box-body -->
 @stop

@@ -2,9 +2,10 @@
 @section('title')
 Perfil <small>PERSONAL</small>
 @stop
-@section('breadcrumb')
-<li>{{ HTML::link('personal','Personal') }}</li>
-<li>{{$personal->nombre}}</li>
+@section('options')
+<li>{{HTML::link('personal','Listar')}}</li>
+<li>{{HTML::link('personal/add.html','Nuevo')}}</li>
+<li><a href="#">Perfil</a></li>
 @stop
 @section('content')
 <div class="row">

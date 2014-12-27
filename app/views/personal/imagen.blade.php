@@ -2,10 +2,10 @@
 @section('title')
 Subir Imagen <small> {{$personal->nombre}} </small>
 @stop
-@section('breadcrumb')
-<li>{{ HTML::link('personal','personal')}} </li>
-<li>{{ HTML::link('personal/profile/'.$personal->id,$personal->nombre)}}</li>
-<li>Editar</li>
+@section('options')
+<li>{{ HTML::link('personal','Personal')}} </li>
+<li>{{ HTML::link('personal/add.html','Nuevo')}} </li>
+<li><a href="#">Cambiar Imagen</a></li>
 @stop
 @section('content')
 <div class="ccol-xs-12 col-sm-12">

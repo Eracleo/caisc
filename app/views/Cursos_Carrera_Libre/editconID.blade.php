@@ -2,20 +2,11 @@
 @section('title')
 Actualizar <small> {{$curso_cl->nombre}} </small>
 @stop
-
-@section('breadcrumb')
-<li>{{ HTML::link('CursosLibres/index.html','Cursos Libres') }}</li>
-<li>Actualizar Curso</li>
+@section('options')
+<li>{{ HTML::link('CursosLibres/index.html','Listar') }}</li>
+<li>{{ HTML::link('CursosLibres/create.html','Nuevo') }}</li>
+<li><a href="#">Actualizar Curso</a></li>
 @stop
-<style>
-    span {
-        margin: 5px;
-    }
-    span a{
-        color: white;
-    }
-</style>
-
 @section('content')
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
 {{ Form::open(array('method'=> 'POST','url'=> 'CursosLibres/post_update.html','class'=>'form-horizontal','role'=>'form')) }}
@@ -37,11 +28,11 @@ Actualizar <small> {{$curso_cl->nombre}} </small>
 			{{ Form::number('horas_academicas',$curso_cl->horas_academicas,array('class'=>'form-control','placeholder'=>''))}}
 		</div>
 	</div>
-	
-	
+
+
 	<div class="form-group">
 		<div class="col-xs-12 col-sm-6 col-md-5">
-		
+
 		<button class="btn btn-info btn-block" type="reset">
 				<span class="">{{ HTML::link('CursosLibres/index.html','Cancelar') }}</span>
 		</button>

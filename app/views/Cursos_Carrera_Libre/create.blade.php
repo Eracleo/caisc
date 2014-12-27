@@ -2,10 +2,9 @@
 @section('title')
 Agregar <small> CURSO LIBRE </small>
 @stop
-
-@section('breadcrumb')
-<li>{{ HTML::link('CursosLibres/index.html','Cursos Libres') }} </li>
-<li>Agregar Curso</li>
+@section('options')
+<li>{{ HTML::link('CursosLibres/index.html','Listar') }}</li>
+<li>{{ HTML::link('CursosLibres/create.html','Nuevo') }}</li>
 @stop
 
 @section('content')
@@ -52,13 +51,13 @@ Agregar <small> CURSO LIBRE </small>
 			@endif
 		</div>
 	</div>
-	
-	
+
+
 	<div class="form-group">
 		<div class="col-xs-12 col-sm-6 col-md-5">
 			<button class="btn btn-info btn-block" type="reset">Limpiar</button>
 		</div>
-		
+
 		<div class="col-xs-12 col-sm-6 col-md-5">
 			<button class="btn btn-primary btn-block" type="submit">Guardar</button>
 		</div>

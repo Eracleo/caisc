@@ -24,6 +24,12 @@ class DocenteController extends BaseController
 			}
 		}
 	}
+	public function perfil()
+	{
+		$id = Auth::user()->nroId;
+		$docente = Docente::where('id','=',$id)->firstOrFail();
+		return View::make('docente.profile',array('docente'=>$docente));
+	}
 	public function add()
 	{
 		return View::make('docente.add');

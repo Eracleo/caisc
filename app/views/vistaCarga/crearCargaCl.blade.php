@@ -1,8 +1,8 @@
 @extends('layouts.base_admin')
 @section('title')
-<small> CREAR CARGA CURSO LIBRE </small>
+Crear Carga Academica <small>  CURSO LIBRE </small>
 @stop
-@section('breadcrumb')
+@section('options')
 @stop
 @section('content')
 <html>
@@ -10,18 +10,16 @@
     <title>Crear carga cl</title>
 </head>
 <body>
-    <header id="inicio">
-        <h2 class="lead" align="center" style="font-size: 27px">Tipo Curso libre</h2>
-    </header>
     <section id="formularioCarga" role="form">
         @if(Session::has('mensaje'))
         <div class="alert-box success">
            <p> <strong> {{ Session::get('mensaje') }} </strong> </p>
-        </div>   
+        </div>
         @endif
         {{ Form::open(array('url' => '/recogerDatosCl','class'=>'form-horizontal','role'=>'form')) }}
+        <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
-            
+
             <div class="form-group">{{Form::label('lblCodCurso','Curso',array('class'=>'col-sm-3 control-label lead'))}}
                 <div class="col-sm-6">{{ Form::select('cmbCodCursos', $varElementosComboCursos,null,array('class'=>'form-control','required'))}}</div>
             </div>
@@ -37,7 +35,7 @@
             <div class="form-group">{{Form::label('lblGrupo','Grupo:',array('class'=>'col-sm-3 control-label lead'))}}
                 <div class="col-sm-6">{{ Form::select('cmbGrupos', $varElementosComboGrupos,null,array('class'=>'form-control','required'))}}</div>
             </div>
-       
+
             <div  class="form-group">{{Form::label('lblSemestre','Semestre:',array('class'=>'col-sm-3 control-label lead'))}}
                 <div class="col-sm-6">{{ Form::select('cmbSemestres', $varElementosComboSemestres,null,array('class'=>'form-control','required')) }}</div>
             </div>
@@ -53,17 +51,16 @@
             <div  class="form-group">{{Form::label('lblFechaFin','Fecha Fin:',array('class'=>'col-sm-3 control-label lead'))}}
                 <div class="col-sm-6"><input  class = "form-control " type="date" name="txtFechaFin" name="FechaFin"></div>
             </div>
-          
+
             <div  class="form-group">{{Form::label('lblEstado','Estado:',array('class'=>'col-sm-3 control-label lead'))}}
                 <div class="col-sm-6">{{Form::select('cmbEstado', array('0' => '0', '1' => '1'),null,array('class'=>'form-control','required'))}}</div>
             </div>
 
             <div  class="form-group">{{Form::label('lblMinimo','Minimo:',array('class'=>'col-sm-3 control-label lead'))}}
-                <div  class="col-sm-6">{{Form::text('txtMinimo',null,array('class'=>'form-control','required'))}}</div>     
+                <div  class="col-sm-6">{{Form::text('txtMinimo',null,array('class'=>'form-control','required'))}}</div>
             </div>
          </div>
-
-         <div>
+         </div>
                 <table class="table table-bordered table-hover">
                     <thead>
                         <tr class="warning">
@@ -307,16 +304,13 @@
                         </td>
                     </tr>
                 </table>
-         </div>
 
         <div class="col-xs-12 col-sm-3 col-md-3">{{Form::submit('Registrar',array('class'=>'btn btn-info btn-block'))}}</div>
         {{ Form::close() }}
-        
+
         <div class="col-xs-12 col-sm-3 col-md-3">{{ HTML::link(URL::to('/MostrarOpcionesPorAula'), 'Verificar Horarios',array('class'=>'btn btn-info btn-block')) }}</div>
-        
+
     </section>
-</body>
-</html>
 
 @stop
 

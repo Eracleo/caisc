@@ -2,14 +2,13 @@
 @section('title')
 {{$docente->nombre}} {{$docente->apellidos }}<small> Editar Docente   </small>
 @stop
-@section('breadcrumb')
+@section('options')
 <li>{{ HTML::link('docente/profile/'.$docente->id,'Perfil') }}</li>
-<li class="active">{{ HTML::link('docente/edit/'.$docente->id,'Editar') }}</li>
+<li>{{ HTML::link('docente/edit/'.$docente->id,'Editar') }}</li>
 <li>{{ HTML::link('docente/password/'.$docente->id,'Cambiar Contraseña') }}</li>
 @stop
 @section('content')
 <div class="ccol-xs-12 col-sm-12">
-
 {{ Form::model($docente,array('url'=>array('docente/update',$docente->id),'method'=> 'POST','class'=>'form-horizontal','role'=>'form'))}}
 		<div class="form-group">
 		{{ Form::label('nombre','Nombre(s):',array('class'=>'col-sm-2 control-label')) }}

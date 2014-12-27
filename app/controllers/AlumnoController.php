@@ -16,6 +16,12 @@ class AlumnoController extends BaseController
 		return View::make('alumno.index',compact("datos","carreras"),array('alumnos'=>$alumnos));
 	}
 
+	public function perfil()
+	{
+		$id = Auth::user()->nroId;
+		$alumno = Alumno::where('id','=',$id)->firstOrFail();
+		return View::make('alumno.profile',array('alumno'=>$alumno));
+	}
 	public function indexcarrera()
 	{
 		//$cod="1";
@@ -35,9 +41,8 @@ class AlumnoController extends BaseController
 
 	public function add()
 	{
-		$carreras = Carrera::all();
-		$modulos = Modulo::all();
-		return View::make('alumno.add', compact('carreras','modulos'));
+		$carreras = Carrera::lists('nombre','id');
+		return View::make('alumno.add', array('carreras'=>$carreras));
 	}
 
 	public function insert()

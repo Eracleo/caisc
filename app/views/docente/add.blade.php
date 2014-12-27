@@ -2,9 +2,9 @@
 @section('title')
 Agregar docente <small> NUEVO DOCENTE </small>
 @stop
-@section('breadcrumb')
-<li>{{ HTML::link('docentes','Docentes')}} </li>
-<li>Agregar</li>
+@section('options')
+<li>{{ HTML::link('docentes','Listar')}}</li>
+<li><a href="#">Agregar</a></li>
 @stop
 @section('content')
 <div class="col-xs-12 col-sm-12">

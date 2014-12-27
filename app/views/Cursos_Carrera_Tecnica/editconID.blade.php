@@ -2,10 +2,10 @@
 @section('title')
 Actualizar <small> {{$curso_ct->nombre}} </small>
 @stop
-
-@section('breadcrumb')
-<li>{{ HTML::link('CursosTecnica/index.html','Cursos de Carrera') }}</li>
-<li>Actualizar Curso</li>
+@section('options')
+<li>{{HTML::link('CursosTecnica/index.html','Listar')}}</li>
+<li>{{HTML::link('CursosTecnica/create.html','Nuevo')}}</li>
+<li><a href="#">Actualizar Curso</a></li>
 @stop
 
 @section('content')
@@ -17,7 +17,7 @@ Actualizar <small> {{$curso_ct->nombre}} </small>
 			{{ Form::text('id',$curso_ct->id,array('class'=>'form-control','placeholder'=>'','readonly'=>'readonly'))}}
 		</div>
 	</div>
-	
+
 	<div class="form-group">
 		{{ Form::label('nombre','Nombre del curso:',array('class'=>'col-sm-4 control-label')) }}
 		<div class="col-sm-6">
@@ -36,7 +36,7 @@ Actualizar <small> {{$curso_ct->nombre}} </small>
 			{{ Form::number('horas_academicas',$curso_ct->horas_academicas,array('class'=>'form-control','placeholder'=>'1','required'))}}
 		</div>
 	</div>
-	
+
 	<div class="form-group">
 		{{ Form::label('codCarrera','Carrera:',array('class'=>'col-sm-4 control-label')) }}
 		<div class="col-sm-8 col-md-6">

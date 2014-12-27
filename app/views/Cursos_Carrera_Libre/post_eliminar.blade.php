@@ -3,22 +3,12 @@
 @section('title')
 Eliminar <small>{{$curso_cl->nombre}}  </small>
 @stop
-@section('breadcrumb')
-<li>{{ HTML::link('CursosLibres/index.html','Cursos Libres') }}</li>
-<li>Eliminar Curso</li>
+@section('options')
+<li>{{ HTML::link('CursosLibres/index.html','Listar') }}</li>
+<li>{{ HTML::link('CursosLibres/create.html','Nuevo') }}</li>
 @stop
-<style>
-    span {
-        margin: 5px;
-    }
-    span a{
-        color: white;
-    }
-</style>
-
 @section('content')
 {{ Form::open(array('method'=> 'POST','url'=> 'CursosLibres/eliminar.html','class'=>'form-horizontal','role'=>'form')) }}
-	
 	<div class="form-group">
 	{{ Form::label('LABEL','ESTA SEGURO DE ELIMINAR ESTE CURSO:',array('class'=>'col-sm-6 control-label')) }}
 	</div>
@@ -42,7 +32,7 @@ Eliminar <small>{{$curso_cl->nombre}}  </small>
 	</div>
 	<div class="form-group">
 		<div class="col-xs-12 col-sm-6 col-md-5">
-		
+
 		<button class="btn btn-info btn-block" type="reset">
 				<span class="">{{ HTML::link('CursosLibres/index.html','Cancelar') }}</span>
 		</button>

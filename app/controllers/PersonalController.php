@@ -22,6 +22,12 @@ class PersonalController extends BaseController
 			}
 		}
 	}
+	public function perfil()
+	{
+		$id = Auth::user()->nroId;
+		$personal = Personal::where('id','=',$id)->firstOrFail();
+		return View::make('personal.profile',array('personal'=>$personal));
+	}
 	public function add()
 	{
 		$cargos = Cargo::lists('nombre','id');

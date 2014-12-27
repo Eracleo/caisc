@@ -9,42 +9,27 @@ class Login extends BaseController{
 			'email' => Input::get('email'),
 			'password'=> Input::get('pass')
 		);
-		//$datoAdicional = Input::get("");
 
 		if(Auth::attempt($userdata))
 		{
-			//obtengo cualquier atributo de latabla
-			//$ird = Auth::get()->id;
-			//$email = Auth::user()->email;
-			//$tipo = Auth::user()->tipoUsuario;
 			$ird = Auth::user()->getnroId();
 			$tipoUsuario = Auth::user()->gettipoUsuario();
-			/*if (Auth::check())
-			{			 	
-			 	return Redirect::to('docente/profile/'.$ird);
-			 	
-			}*/
-			
 			if($tipoUsuario == "Docente")
 			{
-				return Redirect::to('docente/profile/'.$ird);				
+				return Redirect::to('docente')->with('message-success',"Bienvenido...");
 			}
 			else
 			{
 				if($tipoUsuario=="Personal")
 				{
-					return Redirect::to('personal/profile/'.$ird);									
+					return Redirect::to('personal')->with('message-success',"Bienvenido...");
 				}
+				return Redirect::to('alumno')->with('message-success',"Bienvenido...");
 			}
-			
 		}
 		else
 		{
-			return Redirect::to('/')->with('mensaje',"Error Datos incorrectos ingrese nuevamente!!!");									
-				//return "Error Datos no Validos.";				
+			return Redirect::to('/')->with('message-danger',"Error Datos incorrectos ingrese nuevamente!!!");
 		}
-
-
 	}
-
 }

@@ -10,7 +10,7 @@ Agregar Modulo
 <div class="form-group">Identificador
 {{Form::text('ID','',array('class'=>'form-control'))}}
 </div>
-<div class="form-group"> Nombre: 
+<div class="form-group"> Nombre:
 {{Form::text('Nombre','',array('class'=>'form-control'))}}
 </div>
 <div class="form-group">

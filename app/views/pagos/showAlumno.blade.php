@@ -2,54 +2,34 @@
 @section('title')
 Caja y Facturación
 @stop
+@section('options')
+<li >{{ HTML::link('/alumno','Todos') }}</li>
+<li>{{ HTML::link('/alumno/create','Nuevo') }}</li>
+@stop
 @section('content')
 
 <?php
     $date = Date("Y-m-d")
 ?>
 
-  <nav class="navbar navbar-default" role="navigation">
-      <div class="container-fluid">
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-              <li >{{ HTML::link('/pagos','Todos') }}</li>
-              <li>{{ HTML::link('/pagos/create','Nuevo') }}</li>
-            </ul>
-          </div>
-        </div>
-    </nav>
-
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
       <div class="panel-body" >
         <form method="post" action="store">
-
-            <div class="well carousel-search hidden-sm">
-                <div class="form-inline">
-                    <p>
-                    <div class="col-xs-3">
-                        <input type="text" class="form-control" placeholder="" value= {{ $pago + 1 }} >
-                    </div>
-
-                    <div class="col-xs-3">
-                        <input  name="nro_serie" type="text" class="form-control" placeholder="" value="0001">
-                    </div>
-
-                    <div class="col-xs-3">
-
-                        <input name="fecha" type="text" class="form-control" placeholder="" value=<?php echo $date?> >          
-
-                    </div>
-                    
-
-                    </p>
+          <div class="row">
+            <div class="form-inline">
+                <div class="col-xs-3">
+                    <input type="text" class="form-control" placeholder="" value= {{ $pago + 1 }} >
                 </div>
-            </div>
+                <div class="col-xs-3">
+                    <input  name="nro_serie" type="text" class="form-control" placeholder="" value="0001">
+                </div>
+                <div class="col-xs-3">
+                    <input name="fecha" type="text" class="form-control" placeholder="" value=<?php echo $date?> >
+                </div>
+              </div>
+          </div>
       <br>
-      <p>
-        <div class="form-inline">         
-        </div>
         <div>
-        </p>
        @if (!empty($alumno))
         <p>
         <label>Codigo:</label>
@@ -73,12 +53,12 @@ Caja y Facturación
 
         <div class="form-group">
         <div class="col-sm-10 col-md-9">
-        <label>Seleccione Modalidad de Pago</label>
-        <select id="opciones">
-          @foreach($modalidad as $mod)
-          <option value="{{ $mod->monto }},{{ $mod->id }},{{ $mod->descripcion }}">{{ $mod->id }}</option>
-          @endforeach
-        </select>
+          <label>Seleccione Modalidad de Pago</label>
+          <select id="opciones">
+            @foreach($modalidad as $mod)
+            <option value="{{ $mod->monto }},{{ $mod->id }},{{ $mod->descripcion }}">{{ $mod->id }}</option>
+            @endforeach
+          </select>
         </div>
              <script type="text/javascript">
               function agregar_detalle()
@@ -133,7 +113,7 @@ Caja y Facturación
      <p>
         <label>TOTAL:</label>
         <input type="text" name="total" class="form-control" id="total_pago">
-        </p>  
+        </p>
       </table>
 
       <div class="form-group">
@@ -143,7 +123,7 @@ Caja y Facturación
         <div class="col-xs-12 col-sm-3">
           <button class="btn btn-primary" type="reset">Imprimir</button>
         </div>
-        
+
     </div>
 
       </form>

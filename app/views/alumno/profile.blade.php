@@ -2,8 +2,10 @@
 @section('title')
 Perfil <small>Alumno</small>
 @stop
-@section('breadcrumb')
-<li>{{$alumno->nombre}}</li>
+@section('options')
+<li>{{HTML::link('alumnos','Listar')}}</li>
+<li>{{HTML::link('alumno/add.html','Nuevo')}}</li>
+@stop
 @section('content')
 <div class="row">
 	<div class="col-lg-3">
@@ -18,18 +20,18 @@ Perfil <small>Alumno</small>
 		<p><b>Dirección:</b> {{ $alumno->direccion }}</p>
 		<p><b>Teléfono:</b> {{ $alumno->telefono}}</p>
 		<p><b>E-mail:</b> {{ $alumno->email }}</p>
-		<?php 
+		<?php
 			if($alumno->estado == 0 ){
-		?> 
+		?>
 				<p><b>Estado:</b> Inactivo</p>
-		<?php 
+		<?php
 			}
 			else{
-		?> 
+		?>
 				<p><b>Estado:</b> Activo</p>
-		<?php 
+		<?php
 			}
-		?> 
+		?>
 	</div>
 </div>
 @stop

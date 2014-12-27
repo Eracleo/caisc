@@ -1,33 +1,19 @@
 @extends('layouts.base_admin')
 @section('title')
-Mantenimiento Modalidad
+Modalidad de pago
+@stop
+@section('options')
+<li >{{ HTML::link('/modalidad','Todos') }}</li>
+<li>{{ HTML::link('/modalidad/create','Nuevo') }}</li>
 @stop
 @section('content')
-
-	<nav class="navbar navbar-default" role="navigation">
-  		<div class="container-fluid">
-    		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      			<ul class="nav navbar-nav">
-        			<li >{{ HTML::link('/modalidad','Todos') }}</li>
-        			<li>{{ HTML::link('/modalidad/create','Nuevo') }}</li>
-        		</ul>
-        	</div>
-        </div>
-    </nav>
-
-	<div class="panel panel-success">
-  		<div class="panel-heading">
-  			<h4>Lista modalidad pago</h4>
-  		</div>
-
-  		<div class="panel-body">
-    		<table class="table" width="1000px">
+    		<table class="table">
 				<thead>
 					<tr>
 						<th>Nombre</th>
 						<th>Descripcion</th>
 						<th>Monto</th>
-						<th width="200">Acciones</th>
+						<th>Acciones</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -45,9 +31,6 @@ Mantenimiento Modalidad
 					@endforeach
 				</tbody>
 			</table>
-  		</div>
-  	</div>
-
   	<nav well carousel-search hidden-sm>
 	  <ul class="pagination">
 	    <li><a href="#"><span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span></a></li>

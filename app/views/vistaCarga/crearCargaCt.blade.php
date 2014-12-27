@@ -1,23 +1,14 @@
 @extends('layouts.base_admin')
 @section('title')
-<small> CREAR CARGA CARRERA TECNICA </small>
+Crear Carga Academica<small> CARRERA TECNICA</small>
 @stop
-@section('breadcrumb')
-<li>Agregar</li>
+@section('options')
+<li>{{HTML::link('crearCargaCt','Listar') }}</li>
+<li>{{HTML::link('crearCargaCt','Nuevo') }}</li>
+<li>{{HTML::link('MostrarOpcionesPorAula','Verificar Horarios') }}</li>
 @stop
 @section('content')
-<html>
-<head>
-    
-</head>
-<body>
-    <header id="inicio">
-        <h1 class="lead" align="center" style="font-size: 27px">Tipo Carrera Tecnica</h1>
-    </header>
     <section id="formularioCarga" role="form">
-        @if(Session::has('mensaje'))
-         <!--  <p> <strong> {{ Session::get('mensaje') }} </strong> </p>-->
-        @endif
         {{ Form::open(array('url' => '/recogerDatos','class'=>'form-horizontal','role'=>'form')) }}
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
             <div class="form-group">{{Form::label('lblSemestre','Semestre',array('class'=>'col-sm-3 control-label lead'))}}
@@ -45,7 +36,7 @@
                 <div  class="col-sm-8">{{ Form::select('cmbGrupos', $varElementosComboGrupo,null,array('class'=>'form-control','required')) }}</div>
             </div>
     </div>
-        
+
             <div class="table-responsive">
                 <table  class="table table-bordered table-hover">
                     <thead>
@@ -291,17 +282,10 @@
                     </tr>
                 </table>
             </div>
-            
+
         <div class="col-xs-12 col-sm-3 col-md-3">{{Form::submit('Registrar',array('class'=>'btn btn-info btn-block'))}}</div>
         {{ Form::close() }}
-        
         <div class="col-xs-12 col-sm-3 col-md-3">{{ HTML::link(URL::to('/MostrarOpcionesPorAula'), 'Verificar Horarios',array('class'=>'btn btn-info btn-block')) }}</div>
-        
-        
     </section>
-   
-</body>
-</html>
-
 @stop
 

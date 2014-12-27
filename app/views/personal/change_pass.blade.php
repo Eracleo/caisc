@@ -2,10 +2,10 @@
 @section('title')
 Cambiar Contraseña <small> {{$obj->nombre}} </small>
 @stop
-@section('breadcrumb')
+@section('options')
 <li>{{ HTML::link('personal','Personal')}} </li>
-<li>{{ HTML::link('personal/profile/'.$obj->id,$obj->nombre)}}</li>
-<li>Editar</li>
+<li>{{ HTML::link('personal/add.html','Nuevo')}} </li>
+<li><a href="#">Cambiar Contraseña</a></li>
 @stop
 @section('content')
 <div class="col-xs-12 col-sm-12">

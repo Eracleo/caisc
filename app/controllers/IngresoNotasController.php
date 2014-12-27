@@ -6,7 +6,7 @@ class IngresoNotasController extends \BaseController {
 ********************************************** CARRERA TECNICA ***********************************************
 **************************************************************************************************************/
 	public function inicioCT()
-	{ 
+	{
 		if(Auth::user()->tipoUsuario == 'Docente')
 		{
 			$idDocente = Auth::user()->nroId;
@@ -15,11 +15,11 @@ class IngresoNotasController extends \BaseController {
       	}
       	else
       	{
-      		return View::make("ingresonotas/noautenticado");
+      		return View::make("error.303");
       	}
 	}
 	public function cursoCT()
-	{ 
+	{
 		if(Auth::user()->tipoUsuario == 'Docente')
 		{
 			$idDocente = Auth::user()->nroId;
@@ -30,14 +30,14 @@ class IngresoNotasController extends \BaseController {
       	}
       	else
       	{
-      		return View::make("ingresonotas/noautenticado");
+      		return View::make("error.303");
       	}
 	}
 	public function ingresoCT()
-	{ 
+	{
 		if(Auth::user()->tipoUsuario == 'Docente')
 		{
-			for ($i=1; $i <= Input::get('i'); $i++) { 
+			for ($i=1; $i <= Input::get('i'); $i++) {
 				$id = Input::get("codMatricula$i");
 				$nota1 = Input::get("nota1$i");
 				$nota2 = Input::get("nota2$i");
@@ -53,15 +53,15 @@ class IngresoNotasController extends \BaseController {
 			$cursos = DB::select('call CursosXDocenteCT(' . $idDocente . ')');
 			$alumnos = DB::select('call AlumnosXCursoCT(' . $id . ')');
 	      	return View::make("ingresonotas/consolidadoCT", compact('cursos', 'id', 'alumnos'));
-			
+
       	}
       	else
       	{
-      		return View::make("ingresonotas/noautenticado");
+      		return View::make("error.303");
       	}
-	} 
+	}
 	public function consolidadoCT()
-	{ 
+	{
 		if(Auth::user()->tipoUsuario == 'Docente')
 		{
 			$idDocente = Auth::user()->nroId;
@@ -72,11 +72,11 @@ class IngresoNotasController extends \BaseController {
 	    }
       	else
       	{
-      		return View::make("ingresonotas/noautenticado");
+      		return View::make("error.303");
       	}
 	}
 	public function registroCT()
-	{ 
+	{
 		if(Auth::user()->tipoUsuario == 'Docente')
 		{
 			$idDocente = Auth::user()->nroId;
@@ -85,7 +85,7 @@ class IngresoNotasController extends \BaseController {
       	}
       	else
       	{
-      		return View::make("ingresonotas/noautenticado");
+      		return View::make("error.303");
       	}
 	}
 
@@ -93,7 +93,7 @@ class IngresoNotasController extends \BaseController {
 ********************************************** CURSO LIBRE ***************************************************
 **************************************************************************************************************/
 	public function inicioCL()
-	{ 
+	{
 		if(Auth::user()->tipoUsuario == 'Docente')
 		{
 			$idDocente = Auth::user()->nroId;
@@ -102,11 +102,11 @@ class IngresoNotasController extends \BaseController {
       	}
       	else
       	{
-      		return View::make("ingresonotas/noautenticado");
+      		return View::make("error.303");
       	}
 	}
 	public function cursoCL()
-	{ 
+	{
 		if(Auth::user()->tipoUsuario == 'Docente')
 		{
 			$idDocente = Auth::user()->nroId;
@@ -117,15 +117,15 @@ class IngresoNotasController extends \BaseController {
 	    }
       	else
       	{
-      		return View::make("ingresonotas/noautenticado");
+      		return View::make("error.303");
       	}
 	}
 
 	public function ingresoCL()
-	{ 
+	{
 		if(Auth::user()->tipoUsuario == 'Docente')
 		{
-			for ($i=1; $i <= Input::get('i'); $i++) { 
+			for ($i=1; $i <= Input::get('i'); $i++) {
 				$id = Input::get("codMatricula$i");
 				$nota1 = Input::get("nota$i");
 				$nota = NotaCL::find($id);
@@ -140,11 +140,11 @@ class IngresoNotasController extends \BaseController {
 	    }
       	else
       	{
-      		return View::make("ingresonotas/noautenticado");
+      		return View::make("ingresonotas/error.303");
       	}
-	} 
+	}
 	public function consolidadoCL()
-	{ 
+	{
 		if(Auth::user()->tipoUsuario == 'Docente')
 		{
 			$idDocente = Auth::user()->nroId;
@@ -155,11 +155,11 @@ class IngresoNotasController extends \BaseController {
 	    }
       	else
       	{
-      		return View::make("ingresonotas/noautenticado");
+      		return View::make("error.303");
       	}
 	}
 	public function registroCL()
-	{ 
+	{
 		if(Auth::user()->tipoUsuario == 'Docente')
 		{
 			$idDocente = Auth::user()->nroId;
@@ -168,7 +168,7 @@ class IngresoNotasController extends \BaseController {
       	}
       	else
       	{
-      		return View::make("ingresonotas/noautenticado");
+      		return View::make("error.303");
       	}
 	}
 }

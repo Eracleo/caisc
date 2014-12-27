@@ -1,14 +1,13 @@
 @extends('layouts.base_admin')
 @section('title')
-Lista de Personal <small>Usuarios con privilegios</small>
+Personal
 @stop
-@section('breadcrumb')
-<li>Personal</li>
+@section('options')
+<li>{{HTML::link('personal','Listar')}}</li>
+<li>{{HTML::link('personal/add.html','Nuevo')}}</li>
 @stop
 @section('content')
-    <div class="box-body table-responsive">
-    	<div id="example1_wrapper" class="dataTables_wrapper form-inline" role="grid">
-            <table aria-describedby="example1_info" id="example1" class="table table-bordered table-striped dataTable">
+            <table class="table table-bordered table-striped dataTable">
                 <thead>
                     <tr role="row">
                     	<th style="width: 100px;" >Cod Docente</th>
@@ -44,13 +43,10 @@ Lista de Personal <small>Usuarios con privilegios</small>
             @endforelse
                 </tbody>
             </table>
-        </div>
     <br>
     <div class="row">
         <div class="col-sm-2"><p><b>Pagina Actual:</b> {{ $datos->getCurrentPage()}}</p></div>
         <div class="col-sm-6">{{ $datos->links()}}</div>
         <div class="col-sm-4">{{ HTML::link('personal/add.html','Agregar Docente') }}</div>
     </div>
-    <hr>
-</div><!-- /.box-body -->
 @stop

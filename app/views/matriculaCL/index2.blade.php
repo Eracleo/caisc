@@ -13,24 +13,6 @@ Lista de Matriculas por Curso Libre
         color: white;
     }
 </style>
-<div class="box">
-    <div class="box-header">
-        <h3 class="box-title"> </h3>
-    </div>
-    <div class="box-body table-responsive">
-        <div id="example1_wrapper" class="dataTables_wrapper form-inline" role="grid">
-            <div class="row">
-                <div class="col-xs-6">
-                    <div class="dataTables_length" id="example1_length">
-                        <label><select aria-controls="example1" size="1" name="example1_length">
-                            <option selected="selected" value="10">10</option>
-                            <option value="25">25</option>
-                            <option value="50">50</option>
-                            <option value="100">100</option>
-                        </select> records per page</label>
-                    </div>
-                </div>
-            </div>
             <table aria-describedby="example1_info" id="example1" class="table table-bordered table-striped dataTable">
                 <thead>
                     <tr role="row">
@@ -58,7 +40,4 @@ Lista de Matriculas por Curso Libre
                     @endforeach
                 </tbody>
             </table>
-            </div>
-        </div>
-    </div><!-- /.box-body -->
 @stop

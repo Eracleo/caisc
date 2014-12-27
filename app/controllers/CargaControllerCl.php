@@ -12,7 +12,7 @@ class CargaControllerCl extends \BaseController {
 		$elementosComboGrupo = Grupo::all()->lists('nombre','id');
 		$elementosComboSemestre = Semestre::all()->lists('nombre','id');
 		$elementosComboCodAula = Aula::all()->lists('codAula','codAula');
-		
+
 		return View::make('vistaCarga.crearCargaCl',array(
 			'varElementosComboCursos'=>$elementosComboCodCurso_cl,
 			'varElementosComboIdDocentes'=>$elementosComboCodDocente,
@@ -33,7 +33,7 @@ class CargaControllerCl extends \BaseController {
 				$estado=$_POST['cmbEstado'];
 				$minimo=$_POST['txtMinimo'];
 
-				// convertir 
+				// convertir
 				$varFechaInicio = Input::get('txtFechaInicio');
 				$varFechaFin = Input::get('txtFechaFin');
 
@@ -68,10 +68,10 @@ class CargaControllerCl extends \BaseController {
 				$restrictFinal=false;
 
 		if ($minimo=="") {
-			return Redirect::to('/crearCargaCl')->with('mensaje','ingresa un minimo');		 		
-		} 
+			return Redirect::to('/crearCargaCl')->with('mensaje','ingresa un minimo');
+		}
 		else { if ($fechaInicio==$fechaFin) {
-			return Redirect::to('/crearCargaCl')->with('mensaje','ingrese fecha correcta');		 			
+			return Redirect::to('/crearCargaCl')->with('mensaje','ingrese fecha correcta');
 		} else {
 					if ((Input::get('rbHorariosLunes')==false)and(Input::get('rbHorariosMartes')==false)and(Input::get('rbHorariosMiercoles')==false)and(Input::get('rbHorariosJueves')==false)and(Input::get('rbHorariosViernes')==false)and(Input::get('rbHorariosSabado')==false)) {$restrictFinal=true;}
 
@@ -79,7 +79,7 @@ class CargaControllerCl extends \BaseController {
 						$horaLunes=$_POST['rbHorariosLunes'];
 						$validador = DB::select('select validarCarga(?,?,?) as temp',array($aula,$horaLunes,'lunes'));
 						$obj = $validador[0];
-					
+
 							if ($obj->temp !== "Disponible") {
 								$StringLunes="El lunes a las".$horaLunes." ";
 								$restrict=true;
@@ -100,7 +100,7 @@ class CargaControllerCl extends \BaseController {
 						$horaMiercoles=$_POST['rbHorariosMiercoles'];
 						$validador = DB::select('select validarCarga(?,?,?) as temp',array($aula,$horaMiercoles,'Miercoles'));
 						$obj = $validador[0];
-					
+
 							if ($obj->temp !== "Disponible") {
 								$StringMiercoles="El Miercoles a las".$horaMiercoles.' ';
 								$restrict=true;
@@ -111,91 +111,91 @@ class CargaControllerCl extends \BaseController {
 						$horaJueves=$_POST['rbHorariosJueves'];
 						$validador = DB::select('select validarCarga(?,?,?) as temp',array($aula,$horaJueves,'Jueves'));
 						$obj = $validador[0];
-						
+
 							if ($obj->temp !== "Disponible") {
 								$StringJueves="El Jueves a las ".$horaJueves.' ';
 								$restrict=true;
 								$restrictFinal=true;
 							}
-					} 
+					}
 					if (Input::get('rbHorariosViernes')) {
 						$horaViernes=$_POST['rbHorariosViernes'];
 						$validador = DB::select('select validarCarga(?,?,?) as temp',array($aula,$horaViernes,'Viernes'));
 						$obj = $validador[0];
 							if ($obj->temp !== "Disponible") {
 								$StringViernes="El Viernes a las ".$horaViernes.' ';
-								$restrict=false;
+								$restrict=true;
 								$restrictFinal=true;
-							}  
-					} 
+							}
+					}
 					if (Input::get('rbHorariosSabado')) {
 						$horaSabado=$_POST['rbHorariosSabado'];
 						$validador = DB::select('select validarCarga(?,?,?) as temp',array($aula,$horaSabado,'Sabado'));
 						$obj = $validador[0];
-						
+
 							if ($obj->temp !== "Disponible") {
 								$StringSabado="El Sabado a las ".$horaSabado.' ';
 								$restrict=true;
 								$restrictFinal=true;
 							}
-					} 
-				
+					}
+
 
 				if ($restrict==true) {
-					return Redirect::to('/crearCargaCl')->with('mensaje',$StringLunes.''.$StringMartes.''.$StringMiercoles.''.$StringJueves.''.$StringViernes.''.$StringSabado. 'NO ESTA DISPONIBLE NO SE PUDO INSERTAR');		 	
-				} 
+					return Redirect::to('/crearCargaCl')->with('mensaje',$StringLunes.''.$StringMartes.''.$StringMiercoles.''.$StringJueves.''.$StringViernes.''.$StringSabado. 'NO ESTA DISPONIBLE NO SE PUDO INSERTAR');
+				}
 
 				if ($restrict==false and $restrictFinal ==false) {
 					if (Input::get('rbHorariosLunes')) {
-						$StringLunes="Lunes de ".$horaLunes.' ';	
+						$StringLunes="Lunes de ".$horaLunes.' ';
 					    $diaLunes="x";
 					}
 
 					if (Input::get('rbHorariosMartes')) {
-		                $StringMartes="Martes de ".$horaMartes.' ';	
+		                $StringMartes="Martes de ".$horaMartes.' ';
 					    $diaMartes="x";
 					}
 
 					if (Input::get('rbHorariosMiercoles')) {
-						$StringMiercoles="Miercoles de ".$horaMiercoles.' ';	
+						$StringMiercoles="Miercoles de ".$horaMiercoles.' ';
 					    $diaMiercoles="x";
 					}
 
 					if (Input::get('rbHorariosJueves')) {
-						$StringJueves="Jueves de ".$horaJueves.' ';	
-					    $diaJueves="x";	
-					} 
+						$StringJueves="Jueves de ".$horaJueves.' ';
+					    $diaJueves="x";
+					}
 
 					if (Input::get('rbHorariosViernes')) {
-						$StringViernes="Viernes de ".$horaViernes.' ';	
+						$StringViernes="Viernes de ".$horaViernes.' ';
 						$diaViernes="x";
-					} 
+					}
 					if (Input::get('rbHorariosSabado')) {
-					    $StringSabado="Sabado de ".$horaSabado.' ';	
-						$diaSabado="x";	
-					} 
+					    $StringSabado="Sabado de ".$horaSabado.' ';
+						$diaSabado="x";
+					}
 					DB::select('call insertarCargaAcademica_cl(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)'
 						    	,array($codCursoCl,$codDocente,$turno,$grupo,$semestre,
 						    		   $fechaInicio,$fechaFin,$estado,$minimo,$aula,
 						    		   $horaLunes,$diaLunes,$horaMartes,$diaMartes,$horaMiercoles,
 						    		   $diaMiercoles,$horaJueves,$diaJueves,$horaViernes,$diaViernes,
-						    		   $horaSabado,$diaSabado));	
-			
+						    		   $horaSabado,$diaSabado));
+
 				} else {
-					return Redirect::to('/crearCargaCl')->with('mensaje',"ERROR INGRESA UN CAMPO CHECK");		 	
+					return Redirect::to('/crearCargaCl')->with('mensaje',"ERROR INGRESA UN CAMPO CHECK");
 				}
 					return Redirect::to('/crearCargaCl')->with('mensaje',"SE INSERTO EXITOSAMENTE");
 			}
-		}	
+		}
 	}
 	public $restful=true;
-	
+
 	public function MostrarDatos(){
 		$elementosCarga = DB::table('tcargaacademica')->get();
 	    return View::make('vistaCarga.datosRegistrados')->with('elementosCarga',$elementosCarga);
 	}
 	public function eliminarElementoCarga($id){
-		// no disponible	
+		// no disponible
 		$elemento = DB::delete('DELETE FROM tcargaacademica WHERE codCargaAcademica_ct = ? ', array($id) );
         if($elemento)
         {
@@ -207,6 +207,5 @@ class CargaControllerCl extends \BaseController {
         }
 	}
 
-}	
+}
 
-	

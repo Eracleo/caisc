@@ -2,10 +2,10 @@
 @section('title')
 Editar Alumno <small> {{$alumno->nombre}} </small>
 @stop
-@section('breadcrumb')
-<li>{{ HTML::link('alumnos','Alumnos')}} </li>
-<li>{{ HTML::link('alumnos/profile/'.$alumno->id,$alumno->nombre)}}</li>
-<li>Editar</li>
+@section('options')
+<li>{{HTML::link('alumnos','Listar')}}</li>
+<li>{{HTML::link('alumno/add.html','Nuevo')}}</li>
+<li><a href="#">Editar</a></li>
 @stop
 @section('content')
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">

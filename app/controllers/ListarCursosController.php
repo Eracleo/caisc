@@ -9,7 +9,7 @@ class ListarCursosController extends \BaseController {
 	 */
 	public function getIndex()
 	{
-		if(Auth::User()->tipoUsuario == 'Personal') //eso es por ah
+		if(Auth::User()->tipoUsuario == 'Docente') //eso es por ah
 		{
 			$idDocente = Auth::User()->nroId;
 			$idDocente = 2141;
@@ -17,7 +17,7 @@ class ListarCursosController extends \BaseController {
 			return View::make("ListarCursos.index",compact('cursos'));
 		}
 		else
-			{return 'acesso restringido solo para docentes';}	
+			{return 'acesso restringido solo para docentes';}
 	}
 
 
