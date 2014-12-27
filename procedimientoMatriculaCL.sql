@@ -31,3 +31,17 @@ BEGIN
 	inner join curso_cl C on D.codCurso_cl = C.id
 	order by id;
 END
+
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `buscarMatricula`($alumno int ,$carga int)
+BEGIN
+	SELECT id FROM matricula_cl WHERE codAlumno=$alumno AND codCargaAcademica_cl=$carga;
+END
+
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insertMatriculaCL`(alumno int, carga int)
+BEGIN
+	INSERT INTO `matricula_cl`(`codAlumno`, `codCargaAcademica_cl`, `updated_at`, `created_at`) VALUES (alumno,carga,now(),now());
+END
