@@ -1,0 +1,21 @@
+.wapper-error {
+margin: 0px auto;
+width: 400px;
+margin-top: 4%;
+}
+.titulo {
+font-size: 75px;
+line-height: 60px;
+text-align: center;
+color: #3C8DBC;
+font-weight: bold;
+text-shadow: -1px 1px 15px rgba(0, 0, 0, 0.5);
+font-family: verdana;
+}
+.titulo small {
+font-weight: 500;
+}
+.content {
+    padding: 10px 0px;
+    text-align: center;
+}

@@ -1,0 +1,41 @@
+.navbar-default {
+background-color: #FFF;
+}
+.site-wrapper {
+width: 100%;
+min-height: 100%;
+max-width: 720px;
+margin: 15px auto;
+}
+.cover-container {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/* Padding for spacing */
+.inner {
+  padding: 30px;
+}
+
+.cover-container {
+background: #FFF;
+padding: 10px;
+border: 1px solid #DDD;
+margin: 15px auto;
+}
+.cover {
+  padding: 0 20px;
+}
+
+.mastfoot {
+  color: #999; /* IE8 proofing */
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  /* Handle the widths */
+  .mastfoot,
+  .cover-container {
+    width: 100%; /* Must be percentage or pixels for horizontal alignment */
+  }
+}

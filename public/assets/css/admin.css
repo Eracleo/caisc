@@ -1,0 +1,139 @@
+body {
+  padding-top: 60px;
+  padding-bottom: 30px;
+}
+.header{background: #3C8DBC;}
+.header .navbar-brand {color: #FFFFFF;}
+.header .navbar-brand:hover {color: #E2EBF0;}
+.header .navbar-nav>.active>a {
+color: #CCCCCC;
+background:#367FA9;
+}
+.header .navbar-nav>li>a {color: #FFFFFF;}
+.header .navbar-nav>li>a:hover {
+color: #DDDDDD;
+background:#3183B3;
+}
+.navbar-toggle {border-color: #1C7EB8;}
+.navbar-toggle .icon-bar {background-color: #FFF;}
+.header .nav .open>a{background-color: #367FA9}
+.footer {
+border-top: 1px solid #E5E5E5;
+margin-top: 30px;
+padding-top: 19px;
+}
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+font-family: inherit;
+font-weight: 500;
+line-height: 1.1;
+color: inherit;
+}
+h1{font-size: 24px;}
+h1 > small {
+font-size: 15px;
+display: inline-block;
+padding-left: 4px;
+font-weight: 300;
+}
+.errores{
+    float: left;
+}
+.errores .alert-danger {
+margin: 0px;
+padding: 5px;
+}
+.control-select {
+border: 0px;
+margin: 5% 0px;
+float: right;
+font-weight: bold;
+text-align: right;
+}
+/* --------------- System Tabs  --------------- */
+.head-content{
+position: relative;
+padding: 5px 0px;
+height: 50px;
+background: #FBFBFB;
+box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+}
+.head-content h1,
+.head-content h2{
+    margin: 0px;
+    font-size: 20px;
+}
+ul.tabs {
+float: right;
+margin-top: 0px;
+margin-bottom: 0;
+position: absolute;
+top: 0px;
+right: 10px;
+padding: 0 3px;
+margin: 0;
+overflow: hidden;
+border: none;
+}
+ul.tabs li {
+  display: block;
+  float: left; /* LTR */
+  vertical-align: bottom;
+  margin: 0 5px 0 0; /* LTR */
+}
+ul.tabs li.active a {
+  border-bottom: 1px solid #cccccc;
+}
+ul.tabs li a {
+  font-weight: bold;
+  text-decoration: none;
+  background-color: #ededed;
+  height:2em;
+  line-height: 1.9;
+  display: block;
+  font-size: 0.929em;
+  float: left; /* not LTR */
+  padding: 0 10px 3px;
+  margin: 0;
+  text-shadow: 0 1px 0 #fff;
+  -khtml-border-radius-topleft: 6px;
+  -moz-border-radius-topleft: 6px;
+  -webkit-border-top-left-radius: 6px;
+  border-top-left-radius: 6px;
+  -khtml-border-radius-topright: 6px;
+  -moz-border-radius-topright: 6px;
+  -webkit-border-top-right-radius: 6px;
+  border-top-right-radius: 6px;
+}
+ul.tabs li.active a {
+  background-color: #f0f0f0;
+}
+ul.tabs li a:hover{
+  background-color: #DDDDDD;
+}
+
+.errores {
+  height: 10px;
+  float: left;
+}
+.errores .alert{
+  padding:5px 15px;
+}
+/** FORMULARIOS**/
+.frm-sm {
+max-width: 450px;
+}
+.body-content{
+  width: 98%;
+  margin: 15px auto;
+}
+.body-content span {
+  margin: 5px;
+}
+.body-content span a{
+  color: white;
+}
+.table-responsive {
+display: inline-block;
+width: 100%;
+margin-top: 10px;
+}
