@@ -7,10 +7,9 @@ class MatriculaCTController extends BaseController
 		return View::make('matriculaCT.index');
 	}
 	//-- lista todas las matriculas de Carrera Tecnica
-	public function listaMatriculas($registros=20){
-		$datos = MatriculaCT::paginate($registros);
-		$matriculas = MatriculaCT::all();
-		return View::make('matriculaCT.lista_matriculas',compact("datos"),array('matriculas'=>$matriculas));
+	public function listaMatriculas(){
+		$matriculas = DB::select('call listarMatriculasCT()');
+		return View::make('matriculaCT.lista_matriculas',array('matriculas'=>$matriculas));
 	}
 
 	public function edit($cod)
@@ -142,7 +141,7 @@ class MatriculaCTController extends BaseController
 		$alumno = DB::table('alumno')
 						->where('id', $cod)
 						->first();
-		$cursosDisponibles = DB::select('call listarCargaAcademicaCT(?)',array($modulo));
+		$cursosDisponibles = DB::select('call listarCursosFaltantesParaMatriculaCT(?,?)',array($cod,$modulo));
 		return View::make('matriculaCT.listaCursosNuevos', compact('alumno'),array('cursos'=>$cursosDisponibles));
 	}
 
