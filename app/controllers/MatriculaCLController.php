@@ -42,6 +42,28 @@ class MatriculaCLController extends BaseController
 		}
 	}
 
+	public function insert_test()
+	{
+		$respuesta = array();
+		$codigo = Input::get('codAlumno');
+		$carga = Input::get('codCargaAcademica_cl');
+		//echo "codigo alumno: ",$codigo,"\n";
+		//echo 'codigo carga academica: ',$carga;
+		$buscar = DB::select('call buscarMatricula(?,?)', array($codigo,$carga));
+		$lonf = sizeof($buscar);
+		if ($lonf > 0) {
+			$respuesta['mensaje'] = 'Error!!! La matricula ya existe';
+			$respuesta['error'] = true;
+			return Redirect::to('matriculas_cl/lista_cursos')->with('mensaje',$respuesta['mensaje'])->withInput();
+		}else{
+			$matricula_cl = DB::select('call insertMatriculaCL(?,?)',array($codigo,$carga));
+			$respuesta['mensaje'] = 'Matricula Creada';
+			$respuesta['error'] = false;
+			$respuesta['data'] = $matricula_cl;
+			return Redirect::to('matriculas_curso_libre')->with('mensaje',$respuesta['mensaje']);
+		}
+	}
+
 	public function insert()
 	{
 		$respuesta = MatriculaCL::agregar(Input::all());

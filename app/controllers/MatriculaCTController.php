@@ -3,14 +3,15 @@
 class MatriculaCTController extends BaseController
 {
 
-	public function index(){
+	public function index()
+	{
 		return View::make('matriculaCT.index');
 	}
 	//-- lista todas las matriculas de Carrera Tecnica
-	public function listaMatriculas($registros=20){
-		$datos = MatriculaCT::paginate($registros);
-		$matriculas = MatriculaCT::all();
-		return View::make('matriculaCT.lista_matriculas',compact("datos"),array('matriculas'=>$matriculas));
+	public function listaMatriculas()
+	{
+		$matriculas = DB::select('call listarMatriculasCT()');
+		return View::make('matriculaCT.lista_matriculas',array('matriculas'=>$matriculas));
 	}
 
 	public function edit($cod)
@@ -103,6 +104,26 @@ class MatriculaCTController extends BaseController
 		}
 	}
 
+	public function insert_matriculaCT()
+	{
+		$respuesta = array();
+		$codigo = Input::get('codAlumno');
+		$carga = Input::get('codCargaAcademica_ct');
+		$buscar = DB::select('call buscarMatriculaCT(?,?)', array($codigo,$carga));
+		$lonf = sizeof($buscar);
+		if ($lonf > 0) {
+			$respuesta['mensaje'] = 'Error!!! La matricula ya existe';
+			$respuesta['error'] = true;
+			return Redirect::to('matriculas_ct/listaMatriculas')->with('mensaje',$respuesta['mensaje'])->withInput();
+		}else{
+			$matricula_ct = DB::select('call insertMatriculaCT(?,?)',array($codigo,$carga));
+			$respuesta['mensaje'] = 'Matricula Creada';
+			$respuesta['error'] = false;
+			$respuesta['data'] = $matricula_ct;
+			return Redirect::to('matriculas_ct/listaMatriculas')->with('mensaje',$respuesta['mensaje']);
+		}
+	}
+
 	public function insert(){
 		$respuesta = MatriculaCT::agregar(Input::all());
 		if($respuesta['error']==true)
@@ -113,7 +134,6 @@ class MatriculaCTController extends BaseController
 		}
 	}
 
-
 	public function listacursosnuevosProcStore(){
 		// recupero el valor del textbox codAlumno
 		$cod = Input::get('codAlumno'); // CODIGO ALUMNO
@@ -123,11 +143,9 @@ class MatriculaCTController extends BaseController
 		$alumno = DB::table('alumno')
 						->where('id', $cod)
 						->first();
-		$cursosDisponibles = DB::select('call listarCargaAcademicaCT(?)',array($modulo));
+		$cursosDisponibles = DB::select('call listarCursosFaltantesParaMatriculaCT(?,?)',array($cod,$modulo));
 		return View::make('matriculaCT.listaCursosNuevos', compact('alumno'),array('cursos'=>$cursosDisponibles));
 	}
-
-
 
 	// lista los cursos del siguiente modulo o semestre
 	public function listacursosnuevos(){
@@ -146,11 +164,9 @@ class MatriculaCTController extends BaseController
 		return View::make('matriculaCT.lista',array('matriculas'=>$matriculas));
 	}
 
-
 	public function add()
 	{
 		$modulos = Modulo::lists('id','nombre');
 		return View::make('matriculaCT.add',array('modulos'=>$modulos));
 	}
-
 }
