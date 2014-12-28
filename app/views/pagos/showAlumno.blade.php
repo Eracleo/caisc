@@ -100,10 +100,10 @@ Caja y Facturación
         </thead>
         <tbody>
             <tr id="rows">
-              <td><input type="text" name="numero" class="form-control" id="nro" disabled="true"></td>
-              <td><input type="text" name="concepto" class="form-control" id="concepto" ></td>
-              <td><input type="text" name="import" class="form-control" id="inport" ></td>
-              <td><input type="text" name="modalidad" class="form-control" id="id_modalidad"></td>
+              <td><input type="text" name="numero" class="form-control" id="nro" readonly="readonly"></td>
+              <td><input type="text" name="concepto" class="form-control" id="concepto" readonly="readonly"></td>
+              <td><input type="text" name="import" class="form-control" id="inport" readonly="readonly"></td>
+              <td><input type="text" name="modalidad" class="form-control" id="id_modalidad" readonly="readonly"></td>
               <td>
                 <a onclick="eliminar_detalle()"><span id="eliminar" class="label label-danger"></span></a>
               </td>
