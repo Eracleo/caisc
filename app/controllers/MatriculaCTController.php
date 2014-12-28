@@ -93,13 +93,7 @@ class MatriculaCTController extends BaseController
 		{
 			return Redirect::to('404.html');
 		} else {
-			//-- recuperamos el ultimo id de los registros de matricula_cl
-			$codMatri_old = DB::table('matricula_ct')
-							->max('id');
-			//-- aumentamos en 1 al ID del registro
-			$codMatri_new=(int)($codMatri_old)+1;
 			$curso = CargaAcademicaCT::where('codCargaAcademica_ct','=',$cod)->firstOrFail();
-			$curso->codig = $codMatri_new;
 			return View::make('matriculaCT.registro',array('curso'=>$curso));
 		}
 	}
@@ -109,19 +103,12 @@ class MatriculaCTController extends BaseController
 		$respuesta = array();
 		$codigo = Input::get('codAlumno');
 		$carga = Input::get('codCargaAcademica_ct');
-		$buscar = DB::select('call buscarMatriculaCT(?,?)', array($codigo,$carga));
-		$lonf = sizeof($buscar);
-		if ($lonf > 0) {
-			$respuesta['mensaje'] = 'Error!!! La matricula ya existe';
-			$respuesta['error'] = true;
-			return Redirect::to('matriculas_ct/listaMatriculas')->with('mensaje',$respuesta['mensaje'])->withInput();
-		}else{
-			$matricula_ct = DB::select('call insertMatriculaCT(?,?)',array($codigo,$carga));
-			$respuesta['mensaje'] = 'Matricula Creada';
-			$respuesta['error'] = false;
-			$respuesta['data'] = $matricula_ct;
-			return Redirect::to('matriculas_ct/listaMatriculas')->with('mensaje',$respuesta['mensaje']);
-		}
+		$semest = Input::get('semestreCarga');
+		$matricula_ct = DB::select('call insertMatriculaCT(?,?,?)',array($codigo,$carga,$semest));
+		$respuesta['mensaje'] = 'Matricula Creada';
+		$respuesta['error'] = false;
+		$respuesta['data'] = $matricula_ct;
+		return Redirect::to('matriculas_ct/listaMatriculas')->with('mensaje',$respuesta['mensaje']);
 	}
 
 	public function insert(){
@@ -134,17 +121,28 @@ class MatriculaCTController extends BaseController
 		}
 	}
 
+	// lista los cursos nuevos que puede matricularse en el actual modulo
 	public function listacursosnuevosProcStore(){
-		// recupero el valor del textbox codAlumno
-		$cod = Input::get('codAlumno'); // CODIGO ALUMNO
-
-		//$semestre_ant = DB::table('alumno')->where('id', $cod)->pluck('modulo');
-		$modulo = DB::table('alumno')->where('id', $cod)->pluck('modulo');
-		$alumno = DB::table('alumno')
-						->where('id', $cod)
-						->first();
-		$cursosDisponibles = DB::select('call listarCursosFaltantesParaMatriculaCT(?,?)',array($cod,$modulo));
+		$cod = Input::get('codAlumno'); // codigo del alumno
+		$modulo = DB::table('alumno')->where('id', $cod)->pluck('modulo'); // modulo del alumno
+		$codCarrera = DB::table('alumno')->where('id',$cod)->pluck('codCarrera');
+		$semest = Input::get('semestre');
+		$alumno = DB::table('alumno')->where('id', $cod)->first();
+		$cursosDisponibles = DB::select('call listarCursosFaltantesParaMatriculaCT(?,?,?,?)',array($cod,$modulo,$codCarrera,$semest));
 		return View::make('matriculaCT.listaCursosNuevos', compact('alumno'),array('cursos'=>$cursosDisponibles));
+	}
+
+	public function test(){
+		$cod = Input::get('codAlumno'); // codigo del alumno
+		$modulo = DB::table('alumno')->where('id', $cod)->pluck('modulo'); // modulo del alumno
+		$nroCursosAprob = DB::select('call actualizarModuloDelAlumno(?,?)',array($cod,$modulo));
+		//$nro = $nroCursosAprob[0]["cursos_aprobados"];
+		foreach ($nroCursosAprob as $nro) {
+			$valor = $nro->cursos_aprobados;
+			if ($valor >= 3) {
+				echo "yuresz";
+			}
+		}
 	}
 
 	// lista los cursos del siguiente modulo o semestre
