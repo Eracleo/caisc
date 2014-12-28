@@ -75,6 +75,7 @@ CREATE TABLE IF NOT EXISTS cargo(
     `nombre` VARCHAR(50) NOT NULL,
     `privilegios` VARCHAR(50) NOT NULL,
     `descripcion` text DEFAULT NULL,
+    `estado` INT(2) DEFAULT '1',
     `updated_at` DATETIME NOT NULL,
     `created_at` DATETIME NOT NULL,
     PRIMARY KEY (`id`)

@@ -5,7 +5,7 @@ Lista de cargos <small></small>
 @section('options')
 <li>{{ HTML::link('personal','Personal')}} </li>
 <li>{{ HTML::link('personal/cargos','Listar Cargos')}} </li>
-<li>{{ HTML::link('personal/cargos/add.html','Nuevo Cargos')}} </li>
+<li>{{ HTML::link('personal/cargo/add.html','Nuevo Cargos')}} </li>
 @stop
 @section('content')
     <table class="table table-bordered table-striped dataTable">
@@ -27,7 +27,7 @@ Lista de cargos <small></small>
                 <td class=" ">{{ $cargo->descripcion }}</td>
                 <td class=" ">
                 	{{ HTML::link('personal/cargo/edit/'.$cargo->id,'Actualizar') }}
-                	{{ HTML::link('docente/delete/'.$cargo->id,'Eliminar') }}
+                	{{ HTML::link('personal/cargo/delete/'.$cargo->id,'Eliminar') }}
                 </td>
         </tr>
         @endforeach

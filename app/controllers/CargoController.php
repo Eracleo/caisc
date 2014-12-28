@@ -47,19 +47,19 @@ class CargoController extends BaseController
 		}
 		Redirect::to('400.html');
 	}
-	public function delete($cod = null)
+	public function delete($id = null)
 	{
-		if(is_null($cod))
+		if(is_numeric($id))
 		{
-			Redirect::to('404.html');
-		} else {
-			$docente = Docente::where('codDocente','=',$cod)->firstOrFail();
-			if(is_object($docente))
+			$cargo = Cargo::where('id','=',$id)->firstOrFail();
+			if(is_object($cargo))
 			{
-				$docente->estado = '0';
-				$docente->save();
-				return Redirect::to('docentes');
+				$cargo->estado = '0';
+				$cargo->save();
+				return Redirect::to('personal/cargos');
 			}
 		}
+		Redirect::to('404.html');
 	}
+
 }
