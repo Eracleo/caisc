@@ -2,24 +2,17 @@
 <html class="bg-black">
     <head>
         <meta charset="UTF-8">
-        <title>AdminLTE | Log in</title>
+        <title>Iniciar Sessón | Instituto Sistemas Cusco</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
         {{ HTML::style('assets/css/bootstrap.min.css') }}
-        <!-- Morris chart -->
-        {{ HTML::style('assets/css/morris/font-awesome.min.css') }}
-        <!-- jvectormap -->
-        {{ HTML::style('assets/css/jvectormap/jquery-jvectormap-1.2.2.css') }}
-        <!-- Date Picker -->
-        {{ HTML::style('assets/css/datepicker/datepicker3.css') }}
-        <!-- Daterange picker -->
-        {{ HTML::style('assets/css/daterangepicker/daterangepicker-bs3.css') }}
-        <!-- bootstrap wysihtml5 - text editor -->
-        {{ HTML::style('assets/css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}
-        <!-- Theme style -->
-        {{ HTML::style('assets/css/AdminLTE.css') }}
-
-
+        <style type="text/css">
+        form#login-box {
+        width: 350px;
+        margin: 0px auto;
+        padding: 20px;
+        }
+        </style>
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -31,7 +24,7 @@
 
         <form class="form-box" id="login-box" action="check" method="POST" >
 
-            <div class="header">Sign In </div>
+            <div class="header"><h2>Iniciar Sessìon</h2> </div>
 
                 <div class="body bg-gray">
                     <div class="form-group">
@@ -58,11 +51,7 @@
                     @endif
                 </div>
                 <div class="footer">
-                    <button type="submit" class="btn bg-olive btn-block">Iniciar Sesion</button>
-
-                    <p><a href="#">¿Olvidaste tu Contraseña?</a></p>
-
-                    <a href="register.html" class="text-center">Registrar un nuevo usuario</a>
+                    <button type="submit" class="btn btn-primary btn-block">Iniciar Sesion</button>
                 </div>
 
 
@@ -70,10 +59,7 @@
 
             </div>
         </form>
-
-        {{ HTML::script('assets/js/plugins/jquery.min.js') }}
-        {{ HTML::script('assets/js/plugins/bootstrap.min.js') }}
-
-
+        {{ HTML::script('assets/js/jquery.min.js') }}
+        {{ HTML::script('assets/js/bootstrap.min.js') }}
     </body>
 </html>
