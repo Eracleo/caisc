@@ -276,4 +276,14 @@ Route::group(['before' => 'auth'], function()
     Route::post('CarreraProfesional/delete',array('uses'=>'CarreraProfesionalController@eliminando'));
     Route::get('CarreraProfesional/profile/{id}',array('uses'=>'CarreraProfesionalController@profile'));
     Route::get('CarreraProfesional/post_eliminar/{id}',array('uses'=>'CarreraProfesionalController@post_eliminar'));
+    //Aula
+    Route::get('Aula',array('uses'=>'AulaController@index'));
+    Route::get('Aula/add.html',array('uses'=>'AulaController@add'));
+    Route::post('Aula/post_update.html',array('uses'=>'AulaController@post_actualizar'));
+    Route::get('Aula/updatecID/{id}',array('uses'=>'AulaController@ActualizarConID'));
+    Route::post('Aula/update/{id}',array('uses'=>'AulaController@update'));
+    Route::post('Aula/insert.html',array('uses'=>'AulaController@insert'));
+    Route::post('Aula/delete',array('uses'=>'AulaController@eliminando'));
+    Route::get('Aula/profile/{id}',array('uses'=>'AulaController@profile'));
+    Route::get('Aula/post_eliminar/{id}',array('uses'=>'AulaController@post_eliminar'));
 });
