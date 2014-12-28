@@ -14,7 +14,7 @@ Actualizar Carrera Profesional: <small> {{$carrera->nombre}} </small>
 	<div class="form-group">
 		{{ Form::label('nombre','Nombre Carrera',array('class'=>'col-sm-4 control-label')) }}
 		<div class="col-sm-8">
-			{{ Form::text('nombre',$carrera->nombre,array('class'=>'form-control','placeholder'=>'','readonly'=>'readonly'))}}
+			{{ Form::text('nombre',$carrera->nombre,array('class'=>'form-control','placeholder'=>''))}}
 		</div>
 	</div>
 	<div class="form-group">
