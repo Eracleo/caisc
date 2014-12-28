@@ -93,15 +93,24 @@
             <li class="dropdown">
               <a href="productos.html" class="dropdown-toggle" data-toggle="dropdown">Personas<b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li class="dropdown-header">Alumnos</li>
-                <li>{{ HTML::link('alumno/add.html','Agregar') }}</li>
+                <li class="dropdown-header">
+                <span class = "glyphicon glyphicon-user">                  
+                </span>
+                Alumnos</li>
+                <li>{{ HTML::link('alumno/add.html','Agregar') }}                </li>
                 <li>{{ HTML::link('alumnos','Listar Alumnos') }}</li>
                 <li class="divider"></li>
-                <li class="dropdown-header">Docentes</li>
+                <li class="dropdown-header">
+                <span class = "glyphicon glyphicon-user">                  
+                </span>
+                Docentes</li>
                 <li>{{ HTML::link('docente/add.html','Agregar') }}</li>
                 <li>{{ HTML::link('docentes','Listar Docentes') }}</li>
                 <li class="divider"></li>
-                <li class="dropdown-header">Personal</li>
+                <li class="dropdown-header">
+                <span class = "glyphicon glyphicon-user">                  
+                </span>
+                Personal</li>
                 <li>{{ HTML::link('personal/add.html','Agregar') }}</li>
                 <li>{{ HTML::link('personal','Listar Personal') }}</li>
               </ul>
