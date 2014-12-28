@@ -13,7 +13,7 @@ Editar Turno {{ $turno -> nombre }}
   <div class="col-sm-4">
                   {{ Form::open(array('url' => 'turno/' . $turno->id, 'method' =>'put')) }}
                   <label>Nombre: </label>
-                   <input value="{{ $turno -> nombre }}" class="form-control" title="Se necesita un nuevo turno" type="text" name="nombre" pattern="^[a-zA-Z]*$" required/> <br/>
+                   <input class="form-control" title="Se necesita un nuevo turno" type="text" name="nombre" pattern="^[a-zA-Z ñ Ñ]*$" required/> <br/>
                   <br/>
                   {{ Form::submit('Modificar')}}
                   &nbsp;&nbsp;&nbsp;&nbsp;

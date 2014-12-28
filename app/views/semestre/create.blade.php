@@ -13,7 +13,7 @@ Nuevo Semestre
     <div class="col-sm-4">
 		{{ Form::open(array('url' => 'semestre')) }}
         <label>Nombre: </label>
-		 <input class="form-control" title="Se necesita un nuevo semestre" type="number" min = "1" max ="12" name="nombre" required/> <br/>
+		 <input class="form-control" title="Se necesita un nuevo semestre" type="text" name="nombre" pattern="^[0-9 -]*$" required/> <br/>
 		<br/>
 		{{ Form::submit('Guardar')}}
         &nbsp;&nbsp;&nbsp;&nbsp;
