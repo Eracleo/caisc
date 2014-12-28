@@ -45,7 +45,7 @@
             </li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <span class = "glyphicon glyphicon-pencil"></span>
+            
               Matriculas<b class="caret"></b></a>
               <ul class="dropdown-menu">
                  <li class="dropdown-header">Cursos Libres</li>
