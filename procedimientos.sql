@@ -444,9 +444,9 @@ END $$
 -- end
 -- begin
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `insertMatriculaCT`(codAlumno int, codCarga int)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insertMatriculaCT`(codAlumno int, codCarga int, semest varchar(10))
 BEGIN
-    INSERT INTO `matricula_ct`(`codAlumno`, `codCargaAcademica_ct`, `updated_at`, `created_at`) VALUES (codAlumno,codCarga,now(),now());
+    INSERT INTO `matricula_ct`(`codAlumno`, `codCargaAcademica_ct`,`semestre`, `updated_at`, `created_at`) VALUES (codAlumno,codCarga,semest,now(),now());
 END$$
 -- end
 -- begin
@@ -454,6 +454,17 @@ DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `buscarMatriculaCT`(alumno int ,carga int)
 BEGIN
     SELECT id FROM matricula_ct WHERE codAlumno=alumno AND codCargaAcademica_ct=carga;
+END $$
+-- end
+-- begin 
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `listar_cargas_CT_por_modulo`(modulo int, codiCarrera int)
+BEGIN
+    select T.codCargaAcademica_ct, T.semestre, T.codCurso_ct, C.nombre as curso, T.docente_id as codDocente, concat(D.nombre,' ',D.apellidos) as docente, T.turno, T.grupo
+    from carga_academica_ct T
+    inner join curso_ct C on T.codCurso_ct = C.id and C.modulo = modulo and C.codCarrera = codiCarrera
+    inner join docente D on T.docente_id = D.id
+    order by codCargaAcademica_ct;
 END $$
 -- end
 -- begin
@@ -470,7 +481,29 @@ END $$
 -- end
 -- begin
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `listarCursosFaltantesParaMatriculaCT`(alumno int, modulo int)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `contarCursosAprobados`(codiALu int, moduAlu int)
+BEGIN
+
+    DROP TABLE IF EXISTS notasAlumno;
+    
+    -- creamos la tabla notasAlumno
+    -- recuperando los cursos matriculados en su semestre actual
+    create temporary table notasAlumno
+    select M.id, M.codAlumno, M.codCargaAcademica_ct, CT.modulo, N.notaa
+    from matricula_ct M
+    inner join alumno A on M.CodAlumno = A.id and A.id = codiALu
+    inner join carga_academica_ct CA on M.codCargaAcademica_ct = CA.codCargaAcademica_ct
+    inner join curso_ct CT on CA.codCurso_ct = CT.id and CT.modulo = moduAlu
+    inner join nota_ct N on M.id = N.codMatricula_ct
+    order by M.id;
+    
+    -- contamos cuantos cursos aprobo en la tabla anterior
+    select count(*) as cursos_aprobados from notasAlumno where notaa >= 10.5;
+END $$
+--end
+-- begin
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `listarCursosFaltantesParaMatriculaCT`(alumno int, modulo int, carre int, semest varchar(10))
 BEGIN
     DROP TABLE IF EXISTS F;
     DROP TABLE IF EXISTS G;
@@ -480,7 +513,7 @@ BEGIN
     create temporary table F
     select codCargaAcademica_ct as codig
     from carga_academica_ct T
-    inner join curso_ct C on T.codCurso_ct = C.id and C.modulo = modulo
+    inner join curso_ct C on T.codCurso_ct = C.id and C.modulo = modulo and C.codCarrera = carre and T.semestre = semest
     inner join docente D on T.docente_id = D.id
     order by codCargaAcademica_ct;
     
@@ -488,13 +521,13 @@ BEGIN
     create temporary table G
     select codCargaAcademica_ct as codigo
     from matricula_ct
-    where codAlumno = alumno;
+    where codAlumno = alumno and matricula_ct.semestre = semest;
     
     -- realizamos la diferencia entre las dos anteriores tablas
     create temporary table H
     select distinct codig from F where not exists(select codigo from G where F.codig = G.codigo);
     
-    select R.codCargaAcademica_ct, R.codCurso_ct, S.nombre as curso, T.id as codDocente, concat(T.nombre,' ',T.apellidos) as docente, R.turno, R.grupo
+    select R.codCargaAcademica_ct, R.semestre, R.codCurso_ct, S.nombre as curso, T.id as codDocente, concat(T.nombre,' ',T.apellidos) as docente, R.turno, R.grupo
     from carga_academica_ct R 
     inner join H on R.codCargaAcademica_ct = H.codig
     inner join curso_ct S on R.codCurso_ct = S.id
