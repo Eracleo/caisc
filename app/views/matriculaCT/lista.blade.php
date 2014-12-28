@@ -2,7 +2,7 @@
 @section('title')
 Lista de Matriculas Anteriores
 @stop
-@section('breadcrumb')
+@section('options')
 @stop
 @section('content')
             <table aria-describedby="example1_info" id="example1" class="table table-bordered table-striped dataTable">

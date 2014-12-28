@@ -2,9 +2,7 @@
 @section('title')
 Registrar Matricula <small> NUEVA MATRICULA </small>
 @stop
-@section('breadcrumb')
-<li>{{ HTML::link('matriculas','Matriculas')}} </li>
-<li>Agregar</li>
+@section('options')
 @stop
 @section('content')
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">

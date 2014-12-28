@@ -9,6 +9,7 @@ Relacion de Matriculas Carrera Técnica
     <thead>
         <tr role="row">
             <th colspan="1" rowspan="1">Código Matricula</th>
+            <th colspan="1" rowspan="1">Semestre</th>
             <th colspan="1" rowspan="1">Código Alumno</th>
             <th colspan="1" rowspan="1">Nombre Alumno</th>
             <th colspan="1" rowspan="1">Código Carga Academica</th>
@@ -20,6 +21,7 @@ Relacion de Matriculas Carrera Técnica
         @foreach( $matriculas as $matricula)
         <tr class="odd">
             <td class=" "><b>{{ $matricula->id }}</b></td>
+            <td class=" "><b>{{ $matricula->semestre }}</b></td>
             <td class=" "><b>{{ $matricula->codAlumno }}</b></td>
             <td class=" "><b>{{ $matricula->alumno }}</b></td>
             <td class=" "><b>{{ $matricula->codCargaAcademica_ct }}</b></td>

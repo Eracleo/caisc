@@ -2,8 +2,7 @@
 @section('title')
 Registrar Matricula
 @stop
-@section('breadcrumb')
-<li>Matriculas</li>
+@section('options')
 @stop
 @section('content')
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
@@ -12,6 +11,12 @@ Registrar Matricula
             {{ Form::label('codAlumno','Ingrese Codigo Alumno:',array('class'=>'col-sm-4 control-label')) }}
             <div class="col-sm-4">
                 {{ Form::text('codAlumno','',array('class'=>'form-control'))}}
+            </div>
+        </div>
+        <div class="form-group">
+            {{ Form::label('semestre','Semestre:',array('class'=>'col-sm-4 control-label')) }}
+            <div class="col-sm-4">
+                {{ Form::text('semestre','',array('class'=>'form-control'))}}
             </div>
         </div>
         <div class="form-group">

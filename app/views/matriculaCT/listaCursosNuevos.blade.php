@@ -2,7 +2,7 @@
 @section('title')
 <h3>Alumno: <b>{{$alumno->nombre, ' ',$alumno->apellidos}}</b></h3>
 @stop
-@section('breadcrumb')
+@section('options')
 @stop
 @section('content')
 <style>
@@ -20,6 +20,7 @@
             <thead>
                 <tr role="row">
                     <th colspan="1" rowspan="1">Código Carga Academica</th>
+                    <th colspan="1" rowspan="1">Semestre</th>
                     <th colspan="1" rowspan="1">Código Curso</th>
                     <th colspan="1" rowspan="1">Curso</th>
                     <th colspan="1" rowspan="1">Código Docente</th>
@@ -33,6 +34,7 @@
                 @foreach( $cursos as $curso)
                 <tr class="odd">
                         <td class=" "><b>{{ $curso->codCargaAcademica_ct }}</b></td>
+                        <td class=" "><b>{{ $curso->semestre}}</b></td>
                         <td class=" "><b>{{ $curso->codCurso_ct }}</b></td>
                         <td class=" "><b>{{ $curso->curso }}</b></td>
                         <td class=" ">{{ $curso->codDocente }}</td>

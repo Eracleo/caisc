@@ -2,7 +2,7 @@
 @section('title')
 Registro de Matricula Carrera Tecnica
 @stop
-@section('breadcrumb')
+@section('options')
 @stop
 @section('content')
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
@@ -17,6 +17,12 @@ Registro de Matricula Carrera Tecnica
 		{{ Form::label('codCargaAcademica_ct','Codigo Carga Academica:',array('class'=>'col-sm-4 control-label')) }}
 		<div class="col-sm-8">
 			{{ Form::text('codCargaAcademica_ct',$curso->codCargaAcademica_ct,array('class'=>'form-control'))}}
+		</div>
+	</div>
+	<div class="form-group">
+		{{ Form::label('semestreCarga','Semestre :',array('class'=>'col-sm-4 control-label')) }}
+		<div class="col-sm-8">
+			{{ Form::text('semestreCarga',$curso->semestre,array('class'=>'form-control'))}}
 		</div>
 	</div>
 	<div class="form-group">
