@@ -13,7 +13,7 @@ Nuevo Turno
     <div class="col-sm-4">
     {{ Form::open(array('url' => 'turno')) }}
     <label>Nombre: </label>
-     <input class="form-control" title="Se necesita un nuevo turno" type="text" name="nombre" pattern="^[a-zA-Z]*$" required/> <br/>
+     <input class="form-control" title="Se necesita un nuevo turno" type="text" name="nombre" pattern="^[abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ]*$" required/> <br/>
     <br/>
     {{ Form::submit('Guardar')}}
     &nbsp;&nbsp;&nbsp;&nbsp;
