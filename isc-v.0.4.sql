@@ -146,6 +146,7 @@ CREATE TABLE IF NOT EXISTS matricula_ct(
 	`id` INT AUTO_INCREMENT NOT NULL,
 	`codAlumno` INT NOT NULL,
 	`codCargaAcademica_ct` INT NOT NULL,
+	`semestre` VARCHAR(10) NOT NULL,
 	`updated_at` DATETIME NOT NULL,
     `created_at` DATETIME NOT NULL,
 	PRIMARY KEY (`id`),

@@ -140,13 +140,10 @@ Route::group(['before' => 'auth'], function()
     Route::get('matriculas_ct/edit/{cod}',array('uses'=>'MatriculaCTController@edit'));
     Route::post('matriculas_ct/update.html',array('uses'=>'MatriculaCTController@update'));
     Route::get('matriculas_ct/delete/{cod}',array('uses'=>'MatriculaCTController@delete'));
-    //ñññññññññññññ
     Route::post('matriculas_ct/listaMatricula.html',array('uses'=>'MatriculaCTController@listacursosnuevosProcStore'));
-
     Route::get('matriculas_ct/matricular/{cod}',array('uses'=>'MatriculaCTController@registroMatricula'));
     Route::post('matriculas_ct/insert.html',array('uses'=>'MatriculaCTController@insert_matriculaCT'));
     Route::post('matriculas/test','MatriculaCTController@matriculatest');
-    //*******
     Route::get('matriculas_ct/listacursos',array('uses'=>'MatriculaCTController@listacursos'));
     Route::get('matriculas_ct/lista',array('uses'=>'MatriculaCTController@lista'));
     Route::get('matriculas_ct/add.html',array('uses'=>'MatriculaCTController@add'));
