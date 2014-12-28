@@ -30,9 +30,7 @@
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <span class = "glyphicon glyphicon-file"></span>
-                  Notas<b class="caret"></b></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Notas<b class="caret"></b></a>
               <ul class="dropdown-menu">
                  <li class="dropdown-header">Cursos Libres</li>
                 <li>{{ HTML::link('ingresonotas/inicioCL','Ingreso De Notas Curso Libre') }}</li>
@@ -44,9 +42,7 @@
               </ul>
             </li>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <span class = "glyphicon glyphicon-pencil"></span>
-                Matriculas<b class="caret"></b></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Matriculas<b class="caret"></b></a>
               <ul class="dropdown-menu">
                  <li class="dropdown-header">Cursos Libres</li>
                 <li>{{ HTML::link('matriculas_cl/lista_cursos','Cursos Disponibles') }}</li>
@@ -58,9 +54,7 @@
               </ul>
             </li>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <span class = "glyphicon glyphicon-pencil"></span>
-                  Carga Academica<b class="caret"></b></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Carga Academica<b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li>{{ HTML::link('/crearCargaCt','Carga Academica CT') }}</i></li>
                 <li>{{ HTML::link('/crearCargaCl','Carga Academica CL') }}</li>
@@ -70,10 +64,7 @@
               </ul>
             </li>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <span class = "glyphicon glyphicon-cog"></span>
-                  Conguraciones<b class="caret"></b>
-              </a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Conguraciones<b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li>{{HTML::linkAction('DiaController@index', 'Dia')}}</li>
                 <li>{{HTML::linkAction('GrupoController@index', 'Grupo')}}</li>
@@ -86,10 +77,7 @@
               </ul>
             </li>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <span class = "glyphicon glyphicon-book"></span>
-                  Cursos<b class="caret"></b>                  
-              </a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cursos<b class="caret"></b></a>
               <ul class="dropdown-menu">
                  <li class="dropdown-header">
                     <span class = "glyphicon glyphicon-book"></span>
@@ -139,9 +127,7 @@
               </ul>
             </li>
             <li class="dropdown">
-              <a href="productos.html" class="dropdown-toggle" data-toggle="dropdown">
-                <span class = "glyphicon glyphicon-user"></span>
-                Personas<b class="caret"></b></a>
+              <a href="productos.html" class="dropdown-toggle" data-toggle="dropdown">Personas<b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li class="dropdown-header">
                 <span class = "glyphicon glyphicon-user">                  
@@ -193,9 +179,7 @@
               </ul>
             </li>
             <li class="dropdown">
-              <a href="productos.html" class="dropdown-toggle" data-toggle="dropdown">
-                <span class = "glyphicon glyphicon-tags"> </span>
-                Facturas<b class="caret"></b></a>
+              <a href="productos.html" class="dropdown-toggle" data-toggle="dropdown">Facturas<b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li>
                     <!--{{ HTML::link('/pagos/create','Realizar Pago') }}-->
