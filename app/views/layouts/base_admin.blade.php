@@ -106,7 +106,7 @@
                 <li>
                   <!--{{ HTML::link('alumnos','Listar Alumnos') }}-->
                   <a href = "{{url('alumnos')}}">
-                  <span class = "glyphicon glyphicon-list"></span>
+                  <span class = "glyphicon glyphicon-list-alt"></span>
                   Listar Alumnos</a>
                 </li>
                 <li class="divider"></li>
@@ -121,7 +121,7 @@
 
                 <li>                    
                     <a href = "{{url('docentes')}}">
-                  <span class = "glyphicon glyphicon-list"></span>
+                  <span class = "glyphicon glyphicon-list-alt"></span>
                   Listar Docentes</a>
                 </li>
                 <li class="divider"></li>
@@ -137,7 +137,7 @@
                 <li>
                   <!--{{ HTML::link('personal','Listar Personal') }}-->
                   <a href = "{{url('personal')}}">
-                  <span class = "glyphicon glyphicon-list"></span>
+                  <span class = "glyphicon glyphicon-list-alt"></span>
                   Listar Personales</a>
                 </li>
               </ul>
@@ -145,11 +145,37 @@
             <li class="dropdown">
               <a href="productos.html" class="dropdown-toggle" data-toggle="dropdown">Facturas<b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li>{{ HTML::link('/pagos/create','Realizar Pago') }}</li>
-                <li>{{ HTML::link('/pagos/search_pagos','Buscar') }}</li>
-                <li>{{ HTML::link('/pagos/search_detail_pagos','Buscar Detalles') }}</li>
-                <li>{{ HTML::link('/pagos/search_pagos_alumno','Buscar Boletas por Alumno') }}</li>
-                <li>{{ HTML::link('/pagos','Listar') }}</li>
+                <li>
+                    <!--{{ HTML::link('/pagos/create','Realizar Pago') }}-->
+                    <a href = "{{url('/pagos/create')}}">
+                    <span class = "glyphicon glyphicon-euro"></span>
+                    Realizar Pago</a> 
+                </li>
+                <li>
+                    <!--{{ HTML::link('/pagos/search_pagos','Buscar') }}-->
+                    <a href = "{{url('/pagos/search_pagos')}}">
+                    <span class = "glyphicon glyphicon-search"></span>
+                    Buscar</a> 
+                    
+                </li>                
+                <li>
+                    <!--{{ HTML::link('/pagos/search_detail_pagos','Buscar Detalles') }}-->
+                    <a href = "{{url('/pagos/search_detail_pagos')}}">
+                    <span class = "glyphicon glyphicon-search"></span>
+                    Buscar Detalles</a> 
+                </li>
+                <li>
+                    <!--{{ HTML::link('/pagos/search_pagos_alumno','Buscar Boletas por Alumno') }}-->
+                    <a href = "{{url('/pagos/search_pagos_alumno')}}">
+                    <span class = "glyphicon glyphicon-search"></span>
+                    Buscar Boletas por Alumno</a> 
+                </li>
+                <li>
+                    <!--{{ HTML::link('/pagos','Listar') }}-->
+                    <a href = "{{url('/pagos')}}">
+                  <span class = "glyphicon glyphicon-list-alt"></span>
+                  Listar</a>                    
+                </li>
               </ul>
             </li>
           </ul>
