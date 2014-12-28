@@ -64,7 +64,7 @@
               </ul>
             </li>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Conguraciones<b class="caret"></b></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Configuraciones<b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li>{{HTML::linkAction('DiaController@index', 'Dia')}}</li>
                 <li>{{HTML::linkAction('GrupoController@index', 'Grupo')}}</li>
@@ -72,6 +72,7 @@
                 <li>{{HTML::linkAction('SemestreController@index', 'Semestre')}}</li>
                 <li>{{HTML::linkAction('TurnoController@index', 'Turno')}}</li>
                 <li>{{HTML::link('CarreraProfesional', 'Carrera Profesional')}}</li>
+                <li>{{HTML::link('Aula', 'Aula')}}</li>
                 <li>{{HTML::link('personal/cargos', 'Cargo')}}</li>
                 <li>{{HTML::link('modalidad', 'Modalidad Pago')}}</li>
               </ul>
