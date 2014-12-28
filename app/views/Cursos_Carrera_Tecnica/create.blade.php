@@ -6,6 +6,14 @@ Agregar <small> CURSO DE CARRERA </small>
 <li>{{HTML::link('CursosTecnica/index.html','Listar')}}</li>
 <li>{{HTML::link('CursosTecnica/create.html','Nuevo')}}</li>
 @stop
+<style>
+    span {
+        margin: 5px;
+    }
+    span a{
+        color: white;
+    }
+</style>
 @section('content')
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
 {{ Form::open(array('method'=> 'POST','url'=> 'CursosTecnica/insert.html','class'=>'form-horizontal','role'=>'form')) }}
@@ -28,6 +36,9 @@ Agregar <small> CURSO DE CARRERA </small>
 			{{ Form::select('modulo',$modulo,null,array('class'=>'form-control','required'))}}
 			{{HTML::link('','Agregar Modulo') }}
 		</div>
+		<br>
+		<span class = "label label-danger"> {{ HTML::link('modulo/nuevo.html',' Agregar Modulo') }}</span>
+		
 	</div>
 	<div class="form-group">
 		{{ Form::label('horas_academicas','Horas Academicas:',array('class'=>'col-sm-4 control-label')) }}
@@ -41,6 +52,9 @@ Agregar <small> CURSO DE CARRERA </small>
 		<div class="col-sm-8 col-md-6">
 			{{ Form::select('codCarrera',$carrera,null,array('class'=>'form-control','required'))}}
 		</div>
+		
+		<br>
+		<span class = "label label-danger"> {{ HTML::link('CarreraProfesional/add.html',' Agregar Carrera') }}</span>
 	</div>
 
 	<div class="form-group">

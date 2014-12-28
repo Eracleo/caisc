@@ -29,6 +29,9 @@ Actualizar <small> {{$curso_ct->nombre}} </small>
 		<div class="col-sm-8 col-md-6">
 			{{ Form::select('modulo',$modulo,null,array('class'=>'form-control','required'))}}
 		</div>
+			<br>
+		<span class = "label label-danger"> {{ HTML::link('modulo/nuevo.html',' Agregar Modulo') }}</span>
+		
 	</div>
 		<div class="form-group">
 		{{ Form::label('horas_academicas','Horas Academicas:',array('class'=>'col-sm-4 control-label')) }}
@@ -42,6 +45,9 @@ Actualizar <small> {{$curso_ct->nombre}} </small>
 		<div class="col-sm-8 col-md-6">
 			{{ Form::select('codCarrera',$carrera,null,array('class'=>'form-control','required'))}}
 		</div>
+
+		<br>
+		<span class = "label label-danger"> {{ HTML::link('CarreraProfesional/add.html',' Agregar Carrera') }}</span>
 	</div>
 	<div class="form-group">
 		<div class="col-xs-12 col-sm-6 col-md-5">
