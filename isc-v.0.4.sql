@@ -9,7 +9,6 @@ CREATE TABLE IF NOT EXISTS users(
     `nroId` INT NOT NULL,
     `estado` INT(2) DEFAULT '1',
     `remember_token` VARCHAR(60) DEFAULT NULL,
-    `updated_at` DATETIME NOT NULL,
     `created_at` DATETIME NOT NULL,
 	PRIMARY KEY (`id`)
 ) CHARSET=utf8;
@@ -237,7 +236,8 @@ CREATE TABLE IF NOT EXISTS nota_cl(
 
 CREATE TABLE IF NOT EXISTS aula(
 	`codAula` VARCHAR(10) NOT NULL,
-	`capacidad` INT NOT NULL,
+	`capacidad` INT NOT NULL,	
+	`estado` tinyint(1) DEFAULT '1',
 	PRIMARY KEY (`codAula`)
 ) CHARSET=utf8;
 
