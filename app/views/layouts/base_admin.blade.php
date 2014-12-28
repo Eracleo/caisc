@@ -97,22 +97,49 @@
                 <span class = "glyphicon glyphicon-user">                  
                 </span>
                 Alumnos</li>
-                <li>{{ HTML::link('alumno/add.html','Agregar') }}                </li>
-                <li>{{ HTML::link('alumnos','Listar Alumnos') }}</li>
+                <li>                
+                <!--{{ HTML::link('alumno/add.html', 'Agregar') }} -->                
+                  <a href = "{{url('alumno/add.html')}}">
+                  <span class = "glyphicon glyphicon-plus"></span>
+                  Agregar</a>
+                </li>
+                <li>
+                  <!--{{ HTML::link('alumnos','Listar Alumnos') }}-->
+                  <a href = "{{url('alumnos')}}">
+                  <span class = "glyphicon glyphicon-list"></span>
+                  Listar Alumnos</a>
+                </li>
                 <li class="divider"></li>
                 <li class="dropdown-header">
-                <span class = "glyphicon glyphicon-user">                  
-                </span>
+                <span class = "glyphicon glyphicon-user"></span>
                 Docentes</li>
-                <li>{{ HTML::link('docente/add.html','Agregar') }}</li>
-                <li>{{ HTML::link('docentes','Listar Docentes') }}</li>
+                <li>                
+                  <a href = "{{url('docente/add.html')}}">
+                  <span class = "glyphicon glyphicon-plus"></span>
+                  Agregar</a>
+                </li>
+
+                <li>                    
+                    <a href = "{{url('docentes')}}">
+                  <span class = "glyphicon glyphicon-list"></span>
+                  Listar Docentes</a>
+                </li>
                 <li class="divider"></li>
                 <li class="dropdown-header">
-                <span class = "glyphicon glyphicon-user">                  
-                </span>
+                <span class = "glyphicon glyphicon-user"> </span>
                 Personal</li>
-                <li>{{ HTML::link('personal/add.html','Agregar') }}</li>
-                <li>{{ HTML::link('personal','Listar Personal') }}</li>
+                <li>
+                  <!--{{ HTML::link('personal/add.html','Agregar') }}-->
+                  <a href = "{{url('personal/add.html')}}">
+                  <span class = "glyphicon glyphicon-plus"></span>
+                  Agregar</a>
+                  </li>
+                <li>
+                  <!--{{ HTML::link('personal','Listar Personal') }}-->
+                  <a href = "{{url('personal')}}">
+                  <span class = "glyphicon glyphicon-list"></span>
+                  Listar Personales</a>
+                </li>
               </ul>
             </li>
             <li class="dropdown">
