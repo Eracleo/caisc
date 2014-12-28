@@ -160,7 +160,7 @@ class PagosController extends \BaseController {
 		{
 			return Redirect::to('404.html');
 		} else {
-			$alumno = Alumno::where('id','=',$id)->firstOrFail();
+			$alumno = Alumno::find($id);
 			if (is_object($alumno))
 			{
 				return View::make('pagos.showAlumno',array('alumno'=>$alumno,'modalidad'=>$modalidad,'pago'=>$pago));
