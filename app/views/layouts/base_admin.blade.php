@@ -59,7 +59,7 @@
             </li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <span class = "glyphicon glyphicon-pencil"></span>
+              
               Carga Academica<b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li>{{ HTML::link('/crearCargaCt','Carga Academica CT') }}</i></li>
