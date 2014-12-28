@@ -148,9 +148,30 @@
                 <li>{{HTML::linkAction('ModuloController@index', 'Modulo')}}</li>
                 <li>{{HTML::linkAction('SemestreController@index', 'Semestre')}}</li>
                 <li>{{HTML::linkAction('TurnoController@index', 'Turno')}}</li>
-                <li>{{HTML::link('CarreraProfesional', 'Carrera Profesional')}}</li>
-                <li>{{HTML::link('personal/cargos', 'Cargo')}}</li>
-                <li>{{HTML::link('modalidad', 'Modalidad Pago')}}</li>
+                <li>
+                  <!-- {{HTML::link('CarreraProfesional', 'Carrera Profesional')}} -->
+                  <a href = "{{url('CarreraProfesional')}}">
+                    <span class = "glyphicon glyphicon-home"></span>
+                   Carreras Profesionales</a>
+                </li>
+                <li>
+                  <!-- {{HTML::link('Aula', 'Aula')}} -->
+                  <a href = "{{url('Aula')}}">
+                    <span class = "glyphicon glyphicon-home"></span>
+                   Aulas</a>
+                </li>
+                <li>
+                  <!--{{HTML::link('personal/cargos', 'Cargo')}} -->
+                  <a href = "{{url('personal/cargos')}}">
+                    <span class = "glyphicon glyphicon-user"></span>
+                   Cargo</a>
+                </li>
+                <li>
+                  <!--{{HTML::link('modalidad', 'Modalidad Pago')}} -->
+                  <a href = "{{url('modalidad')}}">
+                    <span class = "glyphicon glyphicon-euro"></span>
+                   Modalidad de Pago</a>
+                </li>
               </ul>
             </li>
             <li class="dropdown">
