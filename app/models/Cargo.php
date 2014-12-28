@@ -26,5 +26,28 @@ class Cargo extends Eloquent {
 		}
 		return $respuesta;
 	}
+	public static function editar($obj,$input)
+	{
+		$respuesta = array();
+		$reglas = array(
+			'nombre'=>array('required','max:20'),
+			'privilegios'=>array('required','max:20'),
+		);
+		$validador = Validator::make($input,$reglas);
+		if($validador->fails())
+		{
+			$respuesta['mensaje'] = $validador;
+			$respuesta['error'] = true;
+		} else
+		{
+			$obj->nombre = Input::get('nombre');
+			$obj->privilegios = Input::get('privilegios');
+			$obj->descripcion = Input::get('descripcion');
+			$obj->save();
+			$respuesta['mensaje'] = 'Datos Actualizados';
+			$respuesta['error'] = false;
+		}
+		return $respuesta;
+	}
 }
 

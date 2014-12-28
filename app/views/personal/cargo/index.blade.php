@@ -26,7 +26,7 @@ Lista de cargos <small></small>
                 <td class=" ">{{ $cargo->privilegios }}</td>
                 <td class=" ">{{ $cargo->descripcion }}</td>
                 <td class=" ">
-                	{{ HTML::link('docente/edit/'.$cargo->id,'Actualizar') }}
+                	{{ HTML::link('personal/cargo/edit/'.$cargo->id,'Actualizar') }}
                 	{{ HTML::link('docente/delete/'.$cargo->id,'Eliminar') }}
                 </td>
         </tr>

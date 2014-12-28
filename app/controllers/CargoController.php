@@ -21,36 +21,31 @@ class CargoController extends BaseController
 			return Redirect::to('personal/cargos')->with('mensaje',$respuesta['mensaje']);
 		}
 	}
-	public function edit($cod=null)
+	public function edit($id=null)
 	{
-		if(is_null($cod))
+		if(is_numeric($id))
 		{
-			return Redirect::to('404.html');
-		} else {
-			$docente = Docente::where('codDocente','=',$cod)->firstOrFail();
-			return View::make('docente.edit',array('docente'=>$docente));
+			$cargos = Cargo::where('id','=',$id)->firstOrFail();
+			return View::make('personal.cargo.edit',array('cargo'=>$cargos));
 		}
+		return Redirect::to('404.html');
 	}
-	public function update()
+	public function update($id=null)
 	{
-		$cod=Input::get('codDocente');
-		if(is_null($cod))
+		if(is_numeric($id))
 		{
-			Redirect::to('404.html');
-		} else {
-			$docente = Docente::where('codDocente','=',$cod)->firstOrFail();
-			if(is_object($docente))
+			$obj = Cargo::where('id','=',$id)->firstOrFail();
+			if(is_object($obj))
 			{
-				$docente->nombre = Input::get('nombre');
-				$docente->apellidos = Input::get('apellidos');
-				$docente->email = Input::get('email');
-				$docente->telefono = Input::get('telefono');
-				$docente->save();
-				return Redirect::to('docentes');
-			} else {
-				Redirect::to('500.html');
+				$respuesta = Cargo::editar($obj,Input::all());
+				if($respuesta['error']==true)
+				{
+					return Redirect::to('personal/cargo/edit/'.$id)->withErrors($respuesta['mensaje'])->withInput();
+				}
+				return Redirect::to('personal/cargos')->withErrors($respuesta['mensaje']);
 			}
 		}
+		Redirect::to('400.html');
 	}
 	public function delete($cod = null)
 	{
