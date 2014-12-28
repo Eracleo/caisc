@@ -71,12 +71,34 @@
               Matriculas<b class="caret"></b></a>
               <ul class="dropdown-menu">
                  <li class="dropdown-header">Cursos Libres</li>
-                <li>{{ HTML::link('matriculas_cl/lista_cursos','Cursos Disponibles') }}</li>
-                <li>{{ HTML::link('matriculas_cl/ingresar','Matriculas por Curso') }}</li>
+                <li>
+                    <!--{{ HTML::link('matriculas_cl/lista_cursos','Cursos Disponibles') }}-->
+                    <a href = "{{url('matriculas_cl/lista_curso')}}">
+                    <span class = "glyphicon glyphicon-th-list"></span>
+                    Cursos Disponibles</a> 
+                </li>
+
+                <li>
+                    <!--{{ HTML::link('matriculas_cl/ingresar','Matriculas por Curso') }}-->
+                    <a href = "{{url('matriculas_cl/ingresar')}}">
+                    <span class = "glyphicon glyphicon-pencil"></span>
+                    Matriculas por Curso</a> 
+                </li>
                  <li class="divider"></li>
                  <li class="dropdown-header">Carrera Tecnica</li>
-                <li>{{ HTML::link('matriculas_ct/registro','Registrar Matricula') }}</li>
-                <li>{{ HTML::link('matriculas_ct/listaMatriculas','Listar Matriculas') }}</li>
+                <li>
+                    <!--{{ HTML::link('matriculas_ct/registro','Registrar Matricula') }}-->
+                    <a href = "{{url('matriculas_ct/registro')}}">
+                    <span class = "glyphicon glyphicon-pencil"></span>
+                    Registrar Matricula</a> 
+                </li>
+                <li>
+                    <!--{{ HTML::link('matriculas_ct/listaMatriculas','Listar Matriculas') }}-->
+                    <a href = "{{url('matriculas_ct/listaMatriculas')}}">
+                    <span class = "glyphicon glyphicon-th-list"></span>
+                    Listar Matriculas</a> 
+                </li>
+                </li>
               </ul>
             </li>
             <li class="dropdown">
@@ -84,11 +106,36 @@
               
               Carga Academica<b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li>{{ HTML::link('/crearCargaCt','Carga Academica CT') }}</i></li>
-                <li>{{ HTML::link('/crearCargaCl','Carga Academica CL') }}</li>
-                <li>{{ HTML::link('/MostrarOpcionesDocente','Horario Por Docente') }}</li>
-                <li>{{ HTML::link('/MostrarOpcionesPorCurso','Horario Por Curso') }}</li>
-                <li>{{ HTML::link('/MostrarOpcionesPorAula','Horario Por Aula') }}</li>
+                <li>
+                    <!--{{ HTML::link('/crearCargaCt','Carga Academica CT') }}-->
+                    <a href = "{{url('/crearCargaCt')}}">
+                    <span class = "glyphicon glyphicon-pencil"></span>
+                    Carga Academica CT</a> 
+                </li>
+                <li>    
+                    <!--{{ HTML::link('/crearCargaCl','Carga Academica CL') }}-->
+                    <a href = "{{url('/crearCargaCl')}}">
+                    <span class = "glyphicon glyphicon-pencil"></span>
+                    Carga Academica CL</a> 
+                </li>
+                <li>
+                    {{ HTML::link('/MostrarOpcionesDocente','Horario Por Docente') }}
+                    <a href = "{{url('/MostrarOpcionesDocente')}}">
+                    <span class = "glyphicon glyphicon-calendar"></span>
+                    Horario Por Docente</a> 
+                </li>
+                <li>
+                    <!--{{ HTML::link('/MostrarOpcionesPorCurso','Horario Por Curso') }}-->
+                    <a href = "{{url('/MostrarOpcionesPorCurso')}}">
+                    <span class = "glyphicon glyphicon-calendar"></span>
+                    Horario Por Curso</a> 
+                </li>
+                <li>
+                    <!--{{ HTML::link('/MostrarOpcionesPorAula','Horario Por Aula') }}-->
+                    <a href = "{{url('/MostrarOpcionesPorAula')}}">
+                    <span class = "glyphicon glyphicon-calendar"></span>
+                   Horario Por Aula</a> 
+                </li>
               </ul>
             </li>
             <li class="dropdown">
