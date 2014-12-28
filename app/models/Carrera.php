@@ -8,7 +8,7 @@ class Carrera extends Eloquent {
 		$respuesta = array();
 		$reglas = array(
 			'nombre'=>array('required','min:3'),
-			'id'=>array('required','min:2','unique:carrera'),
+			'id'=>array('required','min:2'),
 			'descripcion'=>array('required','min:3')
 		);	
 		$validador = Validator::make($input,$reglas);
@@ -19,8 +19,6 @@ class Carrera extends Eloquent {
 		} else
 		{
 
-			//$carrera = static::create($input);
-
 			$carrera = new Carrera;
 			$carrera->id = Input::get('id');
 			$carrera->nombre = Input::get('nombre');
@@ -28,51 +26,65 @@ class Carrera extends Eloquent {
 			$carrera->estado = 1;
 			$carrera->created_at= time();
 			$carrera->updated_at = time();
-			$carrera->save();
-			$respuesta['mensaje'] = 'Carrera Profesional Creada';
-			$respuesta['error'] = false;
-			$respuesta['data'] = $carrera;
+			$aux = Carrera::find(input::get('id'));
+			if(is_object($aux))
+			{
+				if($aux->estado == 1)
+				{				
+					$respuesta['mensaje'] = 'Ya existe ese curso';
+					$respuesta['error'] = true;
+					$respuesta['data'] = $carrera;
+				}
+				else
+				{	
+					$aux->nombre = Input::get('nombre');
+					$aux->descripcion = Input::get('descripcion');
+					$aux->estado = 1;
+					$aux->updated_at = time();
+					$aux->save();
+					$respuesta['mensaje'] = 'Carrera Creada';
+					$respuesta['error'] = false;
+					$respuesta['data'] = $aux;
+						
+				}
+			}
+			else
+			{
+				if ($carrera->save()) 
+				{
+					$respuesta['mensaje'] = 'Carrera Creada';
+					$respuesta['error'] = false;
+					$respuesta['data'] = $carrera;
+					
+				}
+				else 
+				{
+					$respuesta['mensaje'] = 'No se pudo agregar la Carrera';
+					$respuesta['error'] = true;
+					$respuesta['data'] = $carrera;
+						
+				}	
+
+			}
 		}
 		return $respuesta;
 	}
-
-
 	public static function editar($input)
 	{
 		$respuesta = array();
 		$reglas = array(
 			'nombre'=>array('required','min:3'),
-			'apellidos'=>array('required','min:3'),
-			'dni'=>array('required','numeric','digits:8','unique:carrera'),
-			'direccion'=>array('required','min:10'),
-			'telefono'=>array('required','numeric')
-		);
+			'id'=>array('required','min:2'),
+			'descripcion'=>array('required','min:3')
+		);	
 		$validador = Validator::make($input,$reglas);
 		if($validador->fails())
 		{
-			$respuesta['mensaje'] = $validador;
+			$respuesta['mensaje'] = 'Datos incorrectos, ingresar datos correctamente';
 			$respuesta['error'] = true;
 		} else
 		{
-			$respuesta['mensaje'] = 'Docente Actualizado';
-			$respuesta['error'] = false;
-		}
-		return $respuesta;
-	}
-
-	public static function Cambiar($input)
-	{
-		$respuesta = array();
-		$reglas = array(
-			'password'=>array('required','min:6','confirmed')
-		);
-		$validador = Validator::make($input,$reglas);
-		if($validador->fails())
-		{
-			$respuesta['mensaje'] = $validador;
-			$respuesta['error'] = true;
-		} else
-		{
+			$respuesta['mensaje'] = 'Carrera Actualizada';
 			$respuesta['error'] = false;
 		}
 		return $respuesta;
