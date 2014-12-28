@@ -1,5 +1,4 @@
 @extends('layouts.base_admin')
-@extends('layouts.base_admin')
 @section('title')
 Eliminar <small>{{$curso_cl->nombre}}  </small>
 @stop
