@@ -2,9 +2,7 @@
 @section('title')
 Editar Matricula
 @stop
-@section('breadcrumb')
-<li>{{ HTML::link('matriculascl','Matriculas')}} </li>
-<li>Editar</li>
+@section('options')
 @stop
 @section('content')
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">

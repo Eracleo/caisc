@@ -2,7 +2,7 @@
 @section('title')
 Lista de Matriculas por Curso Libre
 @stop
-@section('breadcrumb')
+@section('options')
 @stop
 @section('content')
 <style>

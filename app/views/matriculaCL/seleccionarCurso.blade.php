@@ -2,7 +2,7 @@
 @section('title')
 Matricula Cursos Libres
 @stop
-@section('breadcrumb')
+@section('options')
 @stop
 @section('content')
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
