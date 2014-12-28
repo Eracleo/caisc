@@ -5,7 +5,8 @@ class MatriculaCTController extends BaseController
 
 	public function index()
 	{
-		return View::make('matriculaCT.index');
+		$semestres = Semestre::lists('nombre','nombre');
+		return View::make('matriculaCT.index', array('semestres'=>$semestres));
 	}
 	//-- lista todas las matriculas de Carrera Tecnica
 	public function listaMatriculas()

@@ -66,23 +66,21 @@
               </ul>
             </li>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            
-              Matriculas<b class="caret"></b></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class = "glyphicon glyphicon-book"></span> Matriculas<b class="caret"></b></a>
               <ul class="dropdown-menu">
                  <li class="dropdown-header">Cursos Libres</li>
                 <li>
                     <!--{{ HTML::link('matriculas_cl/lista_cursos','Cursos Disponibles') }}-->
-                    <a href = "{{url('matriculas_cl/lista_curso')}}">
+                    <a href = "{{url('matriculas_cl/lista_cursos')}}">
                     <span class = "glyphicon glyphicon-th-list"></span>
-                    Cursos Disponibles</a> 
+                    Lista Cursos Disponibles</a> 
                 </li>
 
                 <li>
                     <!--{{ HTML::link('matriculas_cl/ingresar','Matriculas por Curso') }}-->
                     <a href = "{{url('matriculas_cl/ingresar')}}">
-                    <span class = "glyphicon glyphicon-pencil"></span>
-                    Matriculas por Curso</a> 
+                    <span class = "glyphicon glyphicon-th-list"></span>
+                    Lista Matriculas por Curso</a> 
                 </li>
                  <li class="divider"></li>
                  <li class="dropdown-header">Carrera Tecnica</li>

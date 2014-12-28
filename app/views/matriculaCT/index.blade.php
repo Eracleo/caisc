@@ -14,9 +14,9 @@ Registrar Matricula
             </div>
         </div>
         <div class="form-group">
-            {{ Form::label('semestre','Semestre:',array('class'=>'col-sm-4 control-label')) }}
+            {{ Form::label('semestre','Seleccione Semestre:',array('class'=>'col-sm-4 control-label')) }}
             <div class="col-sm-4">
-                {{ Form::text('semestre','',array('class'=>'form-control'))}}
+                {{ Form::select('semestre',$semestres,null,array('class'=>'form-control'))}}
             </div>
         </div>
         <div class="form-group">
