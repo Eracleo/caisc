@@ -11,10 +11,10 @@ Caja y Facturación
 <?php
     $date = Date("Y-m-d")
 ?>
-
+<form method="post" action="store">
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
-    <div class="panel-body" >
-        <form method="post" action="store">
+    <div class="panel" >
+        
             <div class="row">
                 <div class="form-inline">
                     <div class="col-xs-3">
@@ -58,51 +58,54 @@ Caja y Facturación
                     @endforeach
                 </select>
                    
-                <input name="agrega_detil" type="button" onclick="agregar_detalle()" value="agregar detalle" class="btn btn-info" />
+                <input name="agrega_detil" type="button" onclick="agregar_detalle()" value="Agregar Detalle" class="btn btn-info" />
             </div>            
-
-            <table id="detalle_pago" class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>NRO</th>
-                        <th>CONCEPTO</th>
-                        <th>IMPORTE</th>
-                        <th>MODALIDAD</th>
-                        <th>ACCIONES</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr id="rows">
-                        <td><input type="text" name="numero" class="form-control" id="nro" readonly="readonly"></td>
-                        <td><input type="text" name="concepto" class="form-control" id="concepto" readonly="readonly"></td>
-                        <td><input type="text" name="import" class="form-control" id="inport" readonly="readonly"></td>
-                        <td><input type="text" name="modalidad" class="form-control" id="id_modalidad" readonly="readonly"></td>
-                        <td>
-                            <a onclick="eliminar_detalle()"><span id="eliminar" class="label label-danger"></span></a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <p>
-                <label>TOTAL:</label>
-                <input type="text" name="total" class="form-control" id="total_pago">
-            </p>
-    
-            <div class="form-group">
-                <div class="col-xs-12 col-sm-3">
-                    <input type="submit" value="guardar" class="btn btn-success">
-                </div>
-                <div class="col-xs-12 col-sm-3">
-                    <button class="btn btn-primary" type="reset">Imprimir</button>
-                </div>
-            </div>
-
-        </form>
     </div>
-    @if(Session::has('message'))
-        <div class="alert alert-{{ Session::get('class') }}">{{ Session::get('message')}}</div>
-    @endif
 </div>
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-10">
+    <table id="detalle_pago" class="table table-striped">
+        <thead>
+            <tr>
+                <th>NRO</th>
+                <th>CONCEPTO</th>
+                <th>IMPORTE</th>
+                <th>MODALIDAD</th>
+                <th>ACCIONES</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr id="rows">
+                <td><input type="text" name="numero" class="form-control" id="nro" readonly="readonly"></td>
+                <td><input type="text" name="concepto" class="form-control" id="concepto" readonly="readonly"></td>
+                <td><input type="text" name="import" class="form-control" id="inport" readonly="readonly"></td>
+                <td><input type="text" name="modalidad" class="form-control" id="id_modalidad" readonly="readonly"></td>
+                <td>
+                    <a onclick="eliminar_detalle()"><span id="eliminar" class="label label-danger"></span></a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+    <p>
+        <label>TOTAL:</label>
+        <input type="text" name="total" class="form-control" id="total_pago">
+    </p>
+
+    <div class="form-group">
+        <input type="submit" value="Guardar" class="btn btn-success">
+
+        <!--<div class="col-xs-12 col-sm-3">
+            <button class="btn btn-primary" type="reset">Imprimir</button>
+        </div>-->
+    </div>
+</div>
+</form>
+    
+@if(Session::has('message'))
+    <div class="alert alert-{{ Session::get('class') }}">{{ Session::get('message')}}</div>
+@endif
+
 @stop
 
 <script type="text/javascript">

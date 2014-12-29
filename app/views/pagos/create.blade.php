@@ -49,7 +49,7 @@ Caja y Facturación
         <label> Modalidad:</label>
         <div class="form-inline">                       
             {{ Form::select('modalidad_id',$modalidad,null,array('class'=>'form-control'))}}               
-            <input name="agrega_detil" type="button" onclick="agregar_detalle()" value="agregar detalle" class="btn btn-info" />
+            <input name="agrega_detil" type="button" onclick="agregar_detalle()" value="Agregar Detalle" class="btn btn-info" />
         </div>
 
         <table id="detalle_pago" class="table table-striped">
