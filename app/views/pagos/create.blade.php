@@ -15,14 +15,16 @@ Caja y Facturación
 	<div class="panel" >
 		<form method="post" action="search">
 		 	<div class="row">
-                <div class="col-xs-3">
-                    <input type="text" class="form-control" placeholder="" value="N° 0001" disabled>
-                </div>
-				<div class="col-xs-3">
-					<input type="text" class="form-control" placeholder="" value="Serie: 0001" disabled>
-				</div>
-                <div class="col-xs-3">
-                    <input name="fecha" type="text" class="form-control" placeholder="" value=<?php echo $date?> disabled>
+                <div class="form-inline">
+                    <div class="col-xs-3">
+                        <input type="text" class="form-control" placeholder="" value= "0001" readonly>
+                    </div>
+                    <div class="col-xs-3">
+                        <input  name="nro_serie" type="text" class="form-control" placeholder="" value="0001" readonly>
+                    </div>
+                    <div class="col-xs-3">
+                        <input name="fecha" type="text" class="form-control" placeholder="" value=<?php echo $date?> readonly>
+                    </div>
                 </div>
             </div>
             <br>            
@@ -44,10 +46,9 @@ Caja y Facturación
             <input type="text" id="apellidos" placeholder="" class="form-control" required value="" readonly="">
         </p>  
            
-        <label> Elija Modalidad:</label>
+        <label> Modalidad:</label>
         <div class="form-inline">                       
-            {{ Form::select('modalidad_id',$modalidad,null,array('class'=>'form-control'))}}
-               
+            {{ Form::select('modalidad_id',$modalidad,null,array('class'=>'form-control'))}}               
             <input name="agrega_detil" type="button" onclick="agregar_detalle()" value="agregar detalle" class="btn btn-info" />
         </div>
 
