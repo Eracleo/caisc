@@ -29,13 +29,13 @@ Lista de Docentes
                 <td>{{ $dato->email }}</td>
                 <td>{{ $dato->telefono }}</td>
                 <td>
-                    {{ HTML::link('docente/edit/'.$dato->id,'Actualizar') }}
+                    <span class="label label-warning">{{ HTML::link('docente/edit/'.$dato->id,'Actualizar') }}</span>
                     @if($dato->estado)
-                    {{ HTML::link('docente/delete/'.$dato->id,'Eliminar') }}
+                    <span class="label label-danger">{{ HTML::link('docente/delete/'.$dato->id,'Eliminar') }}</span>
                     @else
-                    {{ HTML::link('docente/active/'.$dato->id,'Activar') }}
+                    <span class="label label-primary">{{ HTML::link('docente/active/'.$dato->id,'Activar') }}</span>
                     @endif
-                    {{ HTML::link('docente/profile/'.$dato->id,'Detalles') }}
+                    <span class="label label-primary">{{ HTML::link('docente/profile/'.$dato->id,'Detalles') }}</span>
                 </td>
             </tr>
             @empty
