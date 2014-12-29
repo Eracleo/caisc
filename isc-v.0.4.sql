@@ -10,6 +10,7 @@ CREATE TABLE IF NOT EXISTS users(
     `estado` INT(2) DEFAULT '1',
     `remember_token` VARCHAR(60) DEFAULT NULL,
     `created_at` DATETIME NOT NULL,
+    `updated_at` datetime NOT NULL,
 	PRIMARY KEY (`id`)
 ) CHARSET=utf8;
 
