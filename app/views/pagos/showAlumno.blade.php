@@ -3,8 +3,8 @@
 Caja y Facturación
 @stop
 @section('options')
-<li >{{ HTML::link('/alumno','Todos') }}</li>
-<li>{{ HTML::link('/alumno/create','Nuevo') }}</li>
+<!--<li >{{ HTML::link('/alumno','Todos') }}</li>
+<li>{{ HTML::link('/alumno/create','Nuevo') }}</li>-->
 @stop
 @section('content')
 
@@ -52,7 +52,7 @@ Caja y Facturación
         </div>
 
         <div class="form-group">
-        <div class="col-sm-10 col-md-9">
+        <div class="col-sm-15 col-md-9">
           <label>Seleccione Modalidad de Pago</label>
           <select id="opciones">
             @foreach($modalidad as $mod)
