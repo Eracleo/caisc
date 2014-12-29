@@ -67,18 +67,18 @@ Caja y Facturación
         <thead>
             <tr>
                 <th><label>NRO</label></th>
-                <th><label>CONCEPTO</label></th>
-                <th><label>IMPORTE</label></th>
                 <th><label>MODALIDAD</label></th>
+                <th><label>CONCEPTO</label></th>
+                <th><label>IMPORTE</label></th>                
                 <th><label>ACCIONES</label></th>
             </tr>
         </thead>
         <tbody>
             <tr id="rows">
                 <td><input type="text" name="numero" class="form-control" id="nro" readonly="readonly"></td>
-                <td><input type="text" name="concepto" class="form-control" id="concepto" readonly="readonly"></td>
-                <td><input type="text" name="import" class="form-control" id="inport" readonly="readonly"></td>
                 <td><input type="text" name="modalidad" class="form-control" id="id_modalidad" readonly="readonly"></td>
+                <td><input type="text" name="concepto" class="form-control" id="concepto" readonly="readonly"></td>
+                <td><input type="text" name="import" class="form-control" id="inport" readonly="readonly"></td>                
                 <td>
                     <a onclick="eliminar_detalle()"><span id="eliminar" class="label label-danger"></span></a>
                 </td>

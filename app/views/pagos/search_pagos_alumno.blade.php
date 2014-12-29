@@ -48,7 +48,6 @@ Consulta Caja y Facturación
         </p>
         @endif
 
-
         </tbody>
     </table>
     @if(Session::has('message'))
