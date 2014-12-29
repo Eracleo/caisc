@@ -34,11 +34,9 @@ Agregar <small> CURSO DE CARRERA </small>
 		{{ Form::label('modulo','Modulo:',array('class'=>'col-sm-4 control-label')) }}
 		<div class="col-sm-8 col-md-6">
 			{{ Form::select('modulo',$modulo,null,array('class'=>'form-control','required'))}}
-			{{HTML::link('','Agregar Modulo') }}
 		</div>
 		<br>
-		<span class = "label label-danger"> {{ HTML::link('modulo/nuevo.html',' Agregar Modulo') }}</span>
-		
+		<span class = "label label-danger"> {{HTML::linkAction('ModuloController@create', 'Nuevo Modulo')}}</span>
 	</div>
 	<div class="form-group">
 		{{ Form::label('horas_academicas','Horas Academicas:',array('class'=>'col-sm-4 control-label')) }}
