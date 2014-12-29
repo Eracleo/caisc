@@ -61,5 +61,20 @@ class CargoController extends BaseController
 		}
 		Redirect::to('404.html');
 	}
+	public function active($id = null)
+	{
+		if(is_numeric($id))
+		{
+			$cargo = Cargo::where('id','=',$id)->firstOrFail();
+			if(is_object($cargo))
+			{
+				$cargo->estado = '1';
+				$cargo->save();
+				return Redirect::to('personal/cargos');
+			}
+		}
+		Redirect::to('404.html');
+	}
+
 
 }

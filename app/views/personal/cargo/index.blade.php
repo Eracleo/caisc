@@ -11,26 +11,36 @@ Lista de cargos <small></small>
     <table class="table table-bordered table-striped dataTable">
         <thead>
             <tr role="row">
-            	<th colspan="1" rowspan="1" >Id</th>
-            	<th colspan="1" rowspan="1" >Nombre</th>
-            	<th colspan="1" rowspan="1" >Privilegios</th>
-            	<th colspan="1" rowspan="1" >Descripción</th>
-            	<th colspan="1" rowspan="1" >Actions</th>
+                <th colspan="1" rowspan="1" >Id</th>
+                <th colspan="1" rowspan="1" >Nombre</th>
+                <th colspan="1" rowspan="1" >Privilegios</th>
+                <th colspan="1" rowspan="1" >Descripción</th>
+                <th colspan="1" rowspan="1" >Actions</th>
             </tr>
         </thead>
-    <tbody aria-relevant="all" aria-live="polite" role="alert">
-    	@foreach( $cargos as $cargo)
-    	<tr class="odd">
-                <td class=" ">{{ HTML::link('docente/profile/'.$cargo->id,$cargo->id) }}</td>
+        <tbody aria-relevant="all" aria-live="polite" role="alert">
+        @forelse( $cargos as $cargo)
+        <tr class="odd">
+                @if($cargo->estado)
+                <td>{{ HTML::link('personal/cargo/'.$cargo->id,$cargo->id) }}</td>
+                @else
+                <td class=" ">{{ HTML::link('personal/cargo/'.$cargo->id,$cargo->id) }}</td>
+                @endif
                 <td class=" ">{{ $cargo->nombre }}</td>
                 <td class=" ">{{ $cargo->privilegios }}</td>
                 <td class=" ">{{ $cargo->descripcion }}</td>
                 <td class=" ">
-                	{{ HTML::link('personal/cargo/edit/'.$cargo->id,'Actualizar') }}
-                	{{ HTML::link('personal/cargo/delete/'.$cargo->id,'Eliminar') }}
+                    {{ HTML::link('personal/cargo/edit/'.$cargo->id,'Actualizar') }}
+                    @if($cargo->estado)
+                    {{ HTML::link('personal/cargo/delete/'.$cargo->id,'Eliminar') }}
+                    @else
+                    {{ HTML::link('personal/cargo/active/'.$cargo->id,'Activar') }}
+                    @endif
                 </td>
         </tr>
-        @endforeach
+        @empty
+                <div class="alert alert-danger">No se encontraron CARGOS. Agregar {{HTML::link('personal/cargo/add.html','aquí')}}</div>
+        @endforelse
         </tbody>
     </table>
 @stop

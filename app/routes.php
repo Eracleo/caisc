@@ -67,6 +67,7 @@ Route::group(['before' => 'auth'], function()
     Route::get('personal/cargo/edit/{id}',array('uses'=>'CargoController@edit'))->where('id','[0-9]+');
     Route::post('personal/cargo/update/{id}',array('uses'=>'CargoController@update'))->where('id','[0-9]+');
     Route::get('personal/cargo/delete/{id}',array('uses'=>'CargoController@delete'))->where('id','[0-9]+');
+    Route::get('personal/cargo/active/{id}',array('uses'=>'CargoController@active'))->where('id','[0-9]+');
     Route::get('personal',array('uses'=>'PersonalController@index'));
     Route::get('persona',array('uses'=>'PersonalController@perfil'));
     Route::get('personal/add.html',array('uses'=>'PersonalController@add'));
