@@ -29,13 +29,13 @@ Personal
                         <td>{{ $dato->email }}</td>
                         <td>{{ $dato->telefono }}</td>
                         <td>
-                        	{{ HTML::link('personal/edit/'.$dato->id,'Actualizar') }}
+                        	<span class="label label-warning">{{ HTML::link('personal/edit/'.$dato->id,'Actualizar') }}</span>
                         	@if($dato->estado)
-                            {{ HTML::link('personal/delete/'.$dato->id,'Eliminar') }}
+                            <span class="label label-danger">{{ HTML::link('personal/delete/'.$dato->id,'Eliminar') }}</span>
                             @else
-                            {{ HTML::link('personal/active/'.$dato->id,'Activar') }}
+                            <span class="label label-primary">{{ HTML::link('personal/active/'.$dato->id,'Activar') }}</span>
                             @endif
-                        	{{ HTML::link('personal/profile/'.$dato->id,'Detalles') }}
+                        	<span class="label label-primary">{{ HTML::link('personal/profile/'.$dato->id,'Detalles') }}</span>
                         </td>
                 </tr>
             @empty

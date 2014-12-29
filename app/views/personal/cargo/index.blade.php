@@ -30,11 +30,11 @@ Lista de cargos <small></small>
                 <td class=" ">{{ $cargo->privilegios }}</td>
                 <td class=" ">{{ $cargo->descripcion }}</td>
                 <td class=" ">
-                    {{ HTML::link('personal/cargo/edit/'.$cargo->id,'Actualizar') }}
+                    <span class="label label-warning">{{ HTML::link('personal/cargo/edit/'.$cargo->id,'Actualizar') }}</span>
                     @if($cargo->estado)
-                    {{ HTML::link('personal/cargo/delete/'.$cargo->id,'Eliminar') }}
+                    <span class="label label-danger">{{ HTML::link('personal/cargo/delete/'.$cargo->id,'Eliminar') }}</span>
                     @else
-                    {{ HTML::link('personal/cargo/active/'.$cargo->id,'Activar') }}
+                    <span class="label label-primary">{{ HTML::link('personal/cargo/active/'.$cargo->id,'Activar') }}</span>
                     @endif
                 </td>
         </tr>
