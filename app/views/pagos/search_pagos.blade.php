@@ -3,32 +3,22 @@
 Consulta Caja y Facturación
 @stop
 @section('options')
-<li >{{ HTML::link('/alumno','Todos') }}</li>
-<li>{{ HTML::link('/alumno/create','Nuevo') }}</li>
+<!--<li >{{ HTML::link('/alumno','Todos') }}</li>
+<li>{{ HTML::link('/alumno/create','Nuevo') }}</li>-->
 @stop
 @section('content')
-<?php
-    $date = Date("Y-m-d")
-?>
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
-      <div class="panel-body" >
-        <form method="get" action="search_pagos">
-
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-10">
+    <form method="get" action="search_pagos">
         <label>Fecha:</label>
         <div class="form-inline">
             <div class="form-group">
-
               <input name="fecha" type="date" class="form-control" placeholder="yyyy-m-d" value="">
             </div>
-
-          <button type="submit" class="btn btn-primary btn-sm">
-              <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Buscar
-          </button>
-
+            <button type="submit" class="btn btn-primary btn-sm">
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Buscar
+            </button>
         </div>
-
-
-        </form>
+    </form>
 
     <table id="detalle_pago" class="table table-striped">
         <thead>
@@ -57,13 +47,10 @@ Consulta Caja y Facturación
           No existe información para éste pago.
         </p>
         @endif
-
-
         </tbody>
     </table>
-  </div>
     @if(Session::has('message'))
       <div class="alert alert-{{ Session::get('class') }}">{{ Session::get('message')}}</div>
     @endif
-  </div>
+</div>
 @stop

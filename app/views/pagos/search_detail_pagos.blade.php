@@ -3,62 +3,52 @@
 Consulta Caja y Facturación
 @stop
 @section('options')
-<li >{{ HTML::link('/alumno','Todos') }}</li>
-<li>{{ HTML::link('/alumno/create','Nuevo') }}</li>
+<!--<li >{{ HTML::link('/alumno','Todos') }}</li>
+<li>{{ HTML::link('/alumno/create','Nuevo') }}</li>-->
 @stop
 @section('content')
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
-      <div class="panel-body" >
-        <form method="get" action="search_detail_pagos">
-
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-10">
+    <form method="get" action="search_detail_pagos">
         <label>Nro de Boleta:</label>
         <div class="form-inline">
             <div class="form-group">
-
-              <input name="boleta" type="txt" class="form-control" value="">
+                <input name="boleta" type="txt" class="form-control" value="">
             </div>
 
-          <button type="submit" class="btn btn-primary btn-sm">
-              <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Buscar
-          </button>
-
+            <button type="submit" class="btn btn-primary btn-sm">
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Buscar
+            </button>
         </div>
-
-
-        </form>
+    </form>
 
     <table id="detalle_pago" class="table table-striped">
         <thead>
-          <tr>
-            <th>Número Boleta</th>
-            <th>Modalidad</th>
-            <th>Concepto</th>
-          </tr>
+            <tr>
+                <th>Número Boleta</th>
+                <th>Modalidad</th>
+                <th>Concepto</th>
+            </tr>
         </thead>
         <tbody>
-
-        @if (!empty($detalle_pagos))
-            @foreach($detalle_pagos as $detalle)
-                <tr>
-                    <td>{{ $detalle->id }}</td>
-                    <td>{{ $detalle->id_modalidad }}</td>
-                    <td>{{ $detalle->descripcion }}</td>
-                </tr>
-            @endforeach
-        @else
-        <p>
-          No existe información para ésta modalidad.
-        </p>
-        @endif
-
-
+            @if (!empty($detalle_pagos))
+                @foreach($detalle_pagos as $detalle)
+                    <tr>
+                        <td>{{ $detalle->id }}</td>
+                        <td>{{ $detalle->id_modalidad }}</td>
+                        <td>{{ $detalle->descripcion }}</td>
+                    </tr>
+                @endforeach
+            @else
+            <p>
+              No existe información para ésta modalidad.
+            </p>
+            @endif
         </tbody>
     </table>
 
 
-  </div>
     @if(Session::has('message'))
       <div class="alert alert-{{ Session::get('class') }}">{{ Session::get('message')}}</div>
     @endif
-  </div>
+</div>
 @stop

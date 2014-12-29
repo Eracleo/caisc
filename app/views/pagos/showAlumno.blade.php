@@ -62,15 +62,15 @@ Caja y Facturación
             </div>            
     </div>
 </div>
-<div class="col-xs-12 col-sm-12 col-md-12 col-lg-10">
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <table id="detalle_pago" class="table table-striped">
         <thead>
             <tr>
-                <th>NRO</th>
-                <th>CONCEPTO</th>
-                <th>IMPORTE</th>
-                <th>MODALIDAD</th>
-                <th>ACCIONES</th>
+                <th><label>NRO</label></th>
+                <th><label>CONCEPTO</label></th>
+                <th><label>IMPORTE</label></th>
+                <th><label>MODALIDAD</label></th>
+                <th><label>ACCIONES</label></th>
             </tr>
         </thead>
         <tbody>
@@ -89,7 +89,7 @@ Caja y Facturación
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
     <p>
         <label>TOTAL:</label>
-        <input type="text" name="total" class="form-control" id="total_pago">
+        <input type="text" name="total" class="form-control" id="total_pago" readonly>
     </p>
 
     <div class="form-group">
