@@ -326,7 +326,7 @@ begin
       select A.CodCargaAcademica_ct ,C.id,C.nombre, A.semestre,A.turno
       from carga_academica_ct A inner join curso_ct C
       on A.codCurso_ct = C.id
-      where A.docente_id=idDocente and A.estado=1;
+      where A.docente_id=idDocente;
 
 end$$
 
