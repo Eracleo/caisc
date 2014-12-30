@@ -1,4 +1,4 @@
-@extends('layouts.base_admin')
+@extends('layouts.base_docente')
 @section('title')
 Mis Cursos de Carrera
 @stop
