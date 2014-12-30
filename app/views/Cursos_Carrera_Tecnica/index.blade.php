@@ -28,7 +28,8 @@ Lista <small>CURSOS DE CARRERA  </small>
                 <td class=" ">{{ $dato->horas_academicas }}</td>
                 <td class=" ">{{ Carrera::find($dato->codCarrera)->nombre }}</td>
                 <td class=" ">
-                    <span class="label label-warning">{{ HTML::link('CursosTecnica/updatecID/'.$dato->id,'Actualizar') }}</span>
+                  <!--  {{HTML::linkAction('CursosCarreraTecnicaController@ActualizarConID', 'Actualizar','',array('class'=>'btn btn-success','required'))}}
+                  -->  <span class="label label-success">{{ HTML::link('CursosTecnica/updatecID/'.$dato->id,'Actualizar') }}</span>
                     <span class="label label-danger">{{ HTML::link('CursosTecnica/post_delete/'.$dato->id,'Eliminar') }}</span>
                 </td>
         </tr>

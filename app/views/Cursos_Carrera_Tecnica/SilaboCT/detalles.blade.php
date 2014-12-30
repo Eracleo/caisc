@@ -1,37 +1,21 @@
-@extends('layouts.base_admin')
+@extends('layouts.base_docente')
 @section('title')
-DETALLE <small>SILABO</small>
+DETALLE <small>SILABO sdsds</small>
 @stop
 
-@section('breadcrumb')
-
+@section('options')
 <li>{{ HTML::link('SilaboCarreraTecnica/index.html/','Silabo de Cursos de Carrera') }} </li>
 <li>Detalle Silabo</li>
 <li>{{$silabo->id}}</li>
-
 @stop
 
-<style>
-    span {
-        margin: 5px;
-    }
-    span a{
-        color: white;
-    }
-</style>
 
 @section('content')
 {{ Form::open(array('method'=> 'POST','url'=> 'SilaboCarreraTecnica/end.html','class'=>'form-horizontal','role'=>'form')) }}
 
 <div class="row">
 	<div class="col-lg-7">
-		<span class ="label label-warning"  >{{ HTML::link('SilaboCarreraTecnica/updatecID/'.$silabo->id,'Editar') }} </span>
-		<span class ="label label-danger">{{ HTML::link('SilaboCarreraTecnica/post_delete/'.$silabo->id,'Eliminar') }}</span>
-		@if($silabo->estado == 1)
-			<button class="label label-success" type="submit">Finalizar</span>
-		@else
-			<button class="label label-success" type="submit">En Proceso</span>
-		@endif
+		
 	</div>	
 	<br>
 	{{ Form::hidden('id',$silabo->id,array('class'=>'form-control col-sm-2','required','readonly'=>'readonly'))}}

@@ -1,5 +1,4 @@
-@extends('layouts.base_admin')
-@extends('layouts.base_admin')
+@extends('layouts.base_docente')
 @section('title')
 Eliminar <small>SILABO DE CARRERA TECNICA </small>
 @stop
