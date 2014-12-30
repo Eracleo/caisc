@@ -9,15 +9,15 @@ class CursoTecnico extends Eloquent {
 	{
 		$respuesta = array();
 		$reglas = array(
-			'id'=>array('required','max:10'),
-			'nombre'=>array('required','max:30'),
+			'id'=>array('required','min:2','max:10','alpha_num'),
+			'nombre'=>array('required','min:5','max:30'),
 			'modulo'=>array('required','max:2'),
-			'horas_academicas'=>array('required','max:30')
+			'horas_academicas'=>array('required','max:200','min:1','integer')
 		);
 		$validador = Validator::make($input,$reglas);
 		if($validador->fails())
 		{
-			$respuesta['mensaje'] = 'Datos Ingresados Incorrectamente';
+			$respuesta['mensaje'] = $validador;
 			$respuesta['error'] = true;
 		} 
 		else
@@ -84,10 +84,10 @@ class CursoTecnico extends Eloquent {
 	{
 		$respuesta = array();
 		$reglas = array(
-		'id'=>array('required','max:10'),
-			'nombre'=>array('required','max:30'),
+		'id'=>array('required','min:2','max:10','alpha_num'),
+			'nombre'=>array('required','min:5','max:30'),
 			'modulo'=>array('required','max:2'),
-			'horas_academicas'=>array('required','max:30')
+			'horas_academicas'=>array('required','max:300','min:1','integer')
 		);
 		$validador = Validator::make($input,$reglas);
 		if($validador->fails())

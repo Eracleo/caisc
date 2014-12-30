@@ -7,7 +7,7 @@ class Carrera extends Eloquent {
 	{
 		$respuesta = array();
 		$reglas = array(
-			'nombre'=>array('required','min:3'),
+			'nombre'=>array('required','min:3','max:50'),
 			'id'=>array('required','min:2'),
 			'descripcion'=>array('required','min:3')
 		);	
@@ -73,7 +73,7 @@ class Carrera extends Eloquent {
 	{
 		$respuesta = array();
 		$reglas = array(
-			'nombre'=>array('required','min:3'),
+			'nombre'=>array('required','min:3','max:50'),
 			'id'=>array('required','min:2'),
 			'descripcion'=>array('required','min:3')
 		);	
