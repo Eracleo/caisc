@@ -7,7 +7,7 @@ Lista <small>CURSOS LIBRES </small>
 <li>{{ HTML::link('CursosLibres/create.html','Nuevo') }}</li>
 @stop
 @section('content')
-    <table class="table table-bordered table-striped dataTable">
+    <table aria-describedby="example1_info" id="example1" class="table table-bordered table-striped dataTable">
         <thead>
             <tr role="row">
                 <th>Codigo Curso</th>
@@ -22,8 +22,8 @@ Lista <small>CURSOS LIBRES </small>
                <td class=" "><b>{{ $dato->id }}</b></td>
                 <td class=" ">{{ $dato->nombre }}</td>
                 <td class=" ">{{ $dato->horas_academicas }}</td>
-                <td class="" align="center">
-                    <span class="label label-warning">{{ HTML::link('CursosLibres/updatecID/'.$dato->id,'Actualizar') }}</span>
+                <td class="" >
+                    <span class="label label-success">{{ HTML::link('CursosLibres/updatecID/'.$dato->id,'Actualizar') }}</span>
                     <span class="label label-danger">{{ HTML::link('CursosLibres/post_delete/'.$dato->id,'Eliminar') }}</span>
                    <!-- <a href="post_delete/{{ $dato->id }}"><span class="label label-danger">Eliminar</a>
                 -->

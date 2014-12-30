@@ -1,37 +1,30 @@
-@extends('layouts.base_admin')
+@extends('layouts.base_docente')
 @section('title')
 DETALLE <small>SILABO</small>
 @stop
 
-@section('breadcrumb')
+@section('options')
 
 <li>{{ HTML::link('SilaboCarreraLibre/index.html/','Silabo de Cursos Libres') }} </li>
 <li>Detalle Silabo</li>
 <li>{{$silabo->id}}</li>
-
+<li>{{ HTML::link('SilaboCarreraLibre/updatecID/'.$silabo->id,'Editar') }}</li>
+<li>{{ HTML::link('SilaboCarreraLibre/post_delete/'.$silabo->id,'Eliminar') }}</li>
+<li>
+		@if($silabo->estado == 1)
+			<button class="btn btn-default" type="submit">Finalizar</span>
+		@else
+			<button class="btn btn-default" type="submit">En Proceso</span>
+		@endif
+</li>
 @stop
-
-<style>
-    span {
-        margin: 5px;
-    }
-    span a{
-        color: white;
-    }
-</style>
 
 @section('content')
 {{ Form::open(array('method'=> 'POST','url'=> 'SilaboCarreraLibre/end.html','class'=>'form-horizontal','role'=>'form')) }}
 
 <div class="row">
 	<div class="col-lg-7">
-		<span class ="label label-warning"  >{{ HTML::link('SilaboCarreraLibre/updatecID/'.$silabo->id,'Editar') }} </span>
-		<span class ="label label-danger">{{ HTML::link('SilaboCarreraLibre/post_delete/'.$silabo->id,'Eliminar') }}</span>
-		@if($silabo->estado == 1)
-			<button class="label label-success" type="submit">Finalizar</span>
-		@else
-			<button class="label label-success" type="submit">En Proceso</span>
-		@endif
+		
 	</div>	
 	<br>
 	{{ Form::hidden('id',$silabo->id,array('class'=>'form-control col-sm-2','required','readonly'=>'readonly'))}}
