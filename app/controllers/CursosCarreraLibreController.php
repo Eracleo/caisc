@@ -17,7 +17,7 @@ class CursosCarreraLibreController extends BaseController {
 		$respuesta = CursoLibre::agregar(Input::all());
 		if($respuesta['error']==true)
 		{
-			return Redirect::to('CursosLibres/create.html')->with('mensaje',$respuesta['mensaje'])->withInput();
+			return Redirect::to('CursosLibres/create.html')->withErrors($respuesta['mensaje'] )->withInput();
 		} 
 		else 
 		{
@@ -65,7 +65,7 @@ class CursosCarreraLibreController extends BaseController {
 		if($respuesta['error']==true)
 		{	$id = input::get('id');
 			$curso = CursoLibre::where('id','=',$id)->firstOrFail();
-			return Redirect::to('CursosLibres/updatecID/'.$id)->with('mensaje',$respuesta['mensaje'])->withInput();
+			return Redirect::to('CursosLibres/updatecID/'.$id)->withErrors($respuesta['mensaje'] )->withInput();
 			//return View::make('Cursos_Carrera_Libre.editconID',array('curso_cl'=>$curso))->withErrors($respuesta['mensaje'] );
 		}
 		else
@@ -95,13 +95,6 @@ class CursosCarreraLibreController extends BaseController {
 		}
 	}
 
-	public function get_eliminar()
-	{
-		$datos = CursoLibre::where('estado','=','1')->orderBy('id','ASC')->paginate(10);
-		$curso_cl = CursoLibre::where('estado','=','1')->orderBy('id','ASC')->get();
-		return View::make('Cursos_Carrera_Libre.delete',compact("datos"),array('id'=>$curso_cl));
-
-	}
 	public function post_eliminar($id=null)
 	{
 		if(is_null($id))
@@ -140,7 +133,7 @@ class CursosCarreraLibreController extends BaseController {
 	public function listar()
 	{
 		$datos = CursoLibre::where('estado','=','1')->orderBy('id','ASC')->paginate(10);
-		$curso_cl = CursoLibre::where('estado','=','1')->orderBy('id','ASC')->get();
+		$curso_cl = CursoLibre::where('estado','=','1')->orderBy('id','ASC')->get();	
 		return View::make('Cursos_Carrera_Libre.index',compact("datos"),array('id'=>$curso_cl));
 	}
 }
