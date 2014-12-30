@@ -17,7 +17,7 @@ class CursosCarreraTecnicaController extends BaseController{
 		$respuesta = CursoTecnico::agregar(Input::all());
 		if($respuesta['error']==true)
 		{
-			return Redirect::to('CursosTecnica/create.html')->with('mensaje',$respuesta['mensaje'])->withInput();
+			return Redirect::to('CursosTecnica/create.html')->withErrors($respuesta['mensaje'] )->withInput();
 		} 
 		else 
 		{
@@ -32,10 +32,6 @@ class CursosCarreraTecnicaController extends BaseController{
 		return View::make('Cursos_Carrera_Tecnica.index',compact("datos"),array('curso_ct'=>$curso_ct));
 	}
 
-	public function ActualizarBuscandoNombre()
-	{
-		return View::make('Cursos_Carrera_Tecnica.edit');
-	}
 	public function ActualizarConID($id)
 	{
 		if(is_null($id))
@@ -56,7 +52,7 @@ class CursosCarreraTecnicaController extends BaseController{
 		if($respuesta['error']==true)
 		{	$id = input::get('id');
 			$curso = CursoTecnico::where('id','=',$id)->firstOrFail();
-			return Redirect::to('CursosTecnica/updatecID/'.$id)->with('mensaje',$respuesta['mensaje'])->withInput();
+			return Redirect::to('CursosTecnica/updatecID/'.$id)->withErrors($respuesta['mensaje'] )->withInput();
 			//return View::make('Cursos_Carrera_Libre.editconID',array('curso_cl'=>$curso))->withErrors($respuesta['mensaje'] );
 		}
 		else
