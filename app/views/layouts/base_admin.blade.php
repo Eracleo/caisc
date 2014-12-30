@@ -134,12 +134,48 @@
                     <span class = "glyphicon glyphicon-calendar"></span>
                    Horario Por Aula</a> 
                 </li>
+
+                 <li class="divider"></li>  
+                <li class="dropdown-header">
+                    <span class = "glyphicon glyphicon-book"></span>
+                    Curso C. Tecnica
+                 </li>
+                 <li>
+                      <!--{{ HTML::link('CursosTecnica/index.html','Ver Cursos de Carrera') }}-->
+                       <a href = "{{url('CursosTecnica/index.html')}}">
+                        <span class = "glyphicon glyphicon-search"></span>
+                        Ver Cursos de Carrera</a> 
+                 </li>
+                  <li>
+                      <!--{{ HTML::link('CursosTecnica/create.html','Agregar Curso') }}-->
+                      <a href = "{{url('CursosTecnica/create.html')}}">
+                      <span class = "glyphicon glyphicon-plus"></span>
+                      Agregar Curso</a>
+                  </li>
+                 <li class="divider"></li>
+                 <li class="dropdown-header">
+                    <span class = "glyphicon glyphicon-book"></span>
+                    Curso Libres
+                 </li>
+                 <li>
+                      <!--{{HTML::link('CursosLibres/index.html','Ver Cursos Libres') }}-->
+                      <a href = "{{url('CursosLibres/index.html')}}">
+                        <span class = "glyphicon glyphicon-search"></span>
+                        Ver Cursos Libres</a> 
+                 </li>
+                 <li>
+                      <!--{{ HTML::link('CursosLibres/create.html','Agregar Curso') }}-->
+                      <a href = "{{url('CursosLibres/create.html')}}">
+                      <span class = "glyphicon glyphicon-plus"></span>
+                      Agregar Curso</a>
+                 </li>
+              
               </ul>
             </li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <span class = "glyphicon glyphicon-cog"></span>
-              Conguraciones<b class="caret"></b></a>
+              Configuraciones<b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li>{{HTML::linkAction('DiaController@index', 'Dia')}}</li>
                 <li>{{HTML::linkAction('GrupoController@index', 'Grupo')}}</li>
@@ -170,58 +206,6 @@
                     <span class = "glyphicon glyphicon-euro"></span>
                    Modalidad de Pago</a>
                 </li>
-              </ul>
-            </li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <span class = "glyphicon glyphicon-book"></span>
-              Cursos<b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                 <li class="dropdown-header">
-                    <span class = "glyphicon glyphicon-book"></span>
-                    Curso C. Tecnica
-                 </li>
-                 <li>
-                      <!--{{ HTML::link('CursosTecnica/index.html','Ver Cursos de Carrera') }}-->
-                       <a href = "{{url('CursosTecnica/index.html')}}">
-                        <span class = "glyphicon glyphicon-search"></span>
-                        Ver Cursos de Carrera</a> 
-                 </li>
-                  <li>
-                      <!--{{ HTML::link('CursosTecnica/create.html','Agregar Curso') }}-->
-                      <a href = "{{url('CursosTecnica/create.html')}}">
-                      <span class = "glyphicon glyphicon-plus"></span>
-                      Agregar Curso</a>
-                  </li>
-                  <li>
-                      <!--{{ HTML::link('CursosTecnica/delete.html', 'Eliminar Curso')}}-->
-                      <a href = "{{url('CursosTecnica/delete.html')}}">
-                      <span class = "glyphicon glyphicon-remove"></span>
-                      Eliminar Curso</a>                      
-                  </li>
-                 <li class="divider"></li>
-                 <li class="dropdown-header">
-                    <span class = "glyphicon glyphicon-book"></span>
-                    Curso Libres
-                 </li>
-                 <li>
-                      <!--{{HTML::link('CursosLibres/index.html','Ver Cursos Libres') }}-->
-                      <a href = "{{url('CursosLibres/index.html')}}">
-                        <span class = "glyphicon glyphicon-search"></span>
-                        Ver Cursos Libres</a> 
-                 </li>
-                 <li>
-                      <!--{{ HTML::link('CursosLibres/create.html','Agregar Curso') }}-->
-                      <a href = "{{url('CursosLibres/create.html')}}">
-                      <span class = "glyphicon glyphicon-plus"></span>
-                      Agregar Curso</a>
-                 </li>
-                 <li>
-                      <!--{{ HTML::link('CursosLibres/delete.html', 'Eliminar Curso')}}-->
-                      <a href = "{{url('CursosLibres/delete.html')}}">
-                      <span class = "glyphicon glyphicon-remove"></span>
-                      Eliminar Curso</a>
-                 </li>
               </ul>
             </li>
             <li class="dropdown">
