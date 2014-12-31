@@ -32,5 +32,29 @@
 		}
 		return $respuesta;
 	}
+	public static function updatePassword($obj,$input)
+	{
+		$input['pAnterior'] = Hash::make($input['pAnterior']);
+		$respuesta = array();
+		$reglas = array(
+			'password'=>array('required','min:6','confirmed','max:12')
+		);
+		$validador = Validator::make($input,$reglas);
+		if($validador->fails())
+		{
+			$respuesta['mensaje'] = $validador;
+			$respuesta['error'] = true;
+		} else
+		{
+			$user = User::where('nroId','=',$obj->id)->firstOrFail();
+			$obj->password =  Hash::make($input['password']);
+			$user->password = $obj->password;
+			$obj->save();
+			$user->save();
+			$respuesta['error'] = false;
+			$respuesta['mensaje'] = 'Contraseña Actualizado';
+		}
+		return $respuesta;
+	}
 }
 ?>

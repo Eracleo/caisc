@@ -96,18 +96,32 @@ class AlumnoController extends BaseController
 		}
 	}
 
-	public function updatePass($cod){
-		$alumno = Alumno::where('id', '=',$cod)->firstOrFail();
-		$pass_old = Input::get('pAnterior');
-		$pass = Input::get('password');
-		if(is_object($alumno))
+	public function updatePass($id){
+		// $alumno = Alumno::where('id', '=',$cod)->firstOrFail();
+		// $pass_old = Input::get('pAnterior');
+		// $pass = Input::get('password');
+		// if(is_object($alumno))
+		// {
+		// 	$alumno->password = $pass;
+		// 	$alumno->save();
+		// 	return Redirect::to('alumnos');
+		// } else {
+		// 	Redirect::to('500.html');
+		// }
+		if (is_numeric($id))
 		{
-			$alumno->password = $pass;
-			$alumno->save();
-			return Redirect::to('alumnos');
-		} else {
-			Redirect::to('500.html');
+			$obj = Alumno::where('id','=',$id)->firstOrFail();
+			if (is_object($obj))
+			{
+				$respuesta = Alumno::updatePassword($obj,Input::all());
+				if($respuesta['error']==true)
+				{
+					return Redirect::to('alumno/change-pass/'.$id)->withErrors($respuesta['mensaje'])->withInput();
+				}
+				return Redirect::to('alumno/profile/'.$id)->withErrors($respuesta['mensaje']);
+			}
 		}
+		return Redirect::to('404.html');
 	}
 
 	public function profile($cod)
