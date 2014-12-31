@@ -97,7 +97,7 @@ Route::filter('sessionDoc',function()
 		$tipoUsuario = Auth::user()->gettipoUsuario();
 		if($tipoUsuario == "Personal")
 		{
-			return Redirect::to('personal')->with('message-success',"Bienvenido...");
+			//return Redirect::to('personal')->with('message-success',"Bienvenido...");
 		}
 		else
 		{

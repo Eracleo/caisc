@@ -49,15 +49,15 @@ Route::group(['before' => 'auth'], function()
         // Docentes
     Route::get('docentes',array('uses'=>'DocenteController@index'))->before('sessionDoc');
     Route::get('docente',array('uses'=>'DocenteController@perfil'))->before('sessionDoc');
-    Route::get('docente/add.html',array('uses'=>'DocenteController@add'))->before('sessionDoc');
+    Route::get('docente/add.html',array('uses'=>'DocenteController@add'))->before('sessionPer');
     Route::post('docente/login',array('uses'=>'DocenteController@loginInit'))->before('sessionDoc');
     Route::get('docente/edit/{id}',array('uses'=>'DocenteController@edit'))->where('id','[0-9]+')->before('sessionDoc');
     Route::post('docente/update/{id}',array('uses'=>'DocenteController@update'))->where('id','[0-9]+')->before('sessionDoc');
-    Route::post('docente/insert.html',array('uses'=>'DocenteController@insert'))->before('session');
-    Route::get('docente/delete/{id}',array('uses'=>'DocenteController@delete'))->where('id','[0-9]+')->before('sessionDoc');
+    Route::post('docente/insert.html',array('uses'=>'DocenteController@insert'))->before('sessionPer');
+    Route::get('docente/delete/{id}',array('uses'=>'DocenteController@delete'))->where('id','[0-9]+')->before('sessionPer');
     Route::get('docente/profile/{id}',array('uses'=>'DocenteController@profile'))->where('id','[0-9]+')->before('sessionDoc');
     Route::get('docente/delete/{id}',array('uses'=>'DocenteController@delete'))->where('id','[0-9]+')->before('sessionDoc');
-    Route::get('docente/active/{id}',array('uses'=>'DocenteController@active'))->where('id','[0-9]+')->before('sessionDoc');
+    Route::get('docente/active/{id}',array('uses'=>'DocenteController@active'))->where('id','[0-9]+')->before('sessionPer');
     Route::get('docente/password/{id}',array('uses'=>'DocenteController@password'))->where('id','[0-9]+')->before('sessionDoc');
     Route::post('docente/password/{id}',array('uses'=>'DocenteController@passwordUpdate'))->where('id','[0-9]+')->before('sessionDoc');
     Route::get('docente/imagen/{id}',array('uses'=>'DocenteController@imagen'))->where('id','[0-9]+')->before('sessionDoc');
@@ -65,13 +65,13 @@ Route::group(['before' => 'auth'], function()
     
     
     // Personal
-    Route::get('personal/cargos',array('uses'=>'CargoController@index'));
-    Route::get('personal/cargo/add.html',array('uses'=>'CargoController@add'));
-    Route::post('personal/cargo/insert.html',array('uses'=>'CargoController@insert'));
-    Route::get('personal/cargo/edit/{id}',array('uses'=>'CargoController@edit'))->where('id','[0-9]+');
-    Route::post('personal/cargo/update/{id}',array('uses'=>'CargoController@update'))->where('id','[0-9]+');
-    Route::get('personal/cargo/delete/{id}',array('uses'=>'CargoController@delete'))->where('id','[0-9]+');
-    Route::get('personal/cargo/active/{id}',array('uses'=>'CargoController@active'))->where('id','[0-9]+');
+    Route::get('personal/cargos',array('uses'=>'CargoController@index'))->before('sessionPer');
+    Route::get('personal/cargo/add.html',array('uses'=>'CargoController@add'))->before('sessionPer');
+    Route::post('personal/cargo/insert.html',array('uses'=>'CargoController@insert'))->before('sessionPer');
+    Route::get('personal/cargo/edit/{id}',array('uses'=>'CargoController@edit'))->where('id','[0-9]+')->before('sessionPer');
+    Route::post('personal/cargo/update/{id}',array('uses'=>'CargoController@update'))->where('id','[0-9]+')->before('sessionPer');
+    Route::get('personal/cargo/delete/{id}',array('uses'=>'CargoController@delete'))->where('id','[0-9]+')->before('sessionPer');
+    Route::get('personal/cargo/active/{id}',array('uses'=>'CargoController@active'))->where('id','[0-9]+')->before('sessionPer');
     Route::get('personal',array('uses'=>'PersonalController@index'))->before('sessionPer');
     Route::get('persona',array('uses'=>'PersonalController@perfil'))->before('sessionPer');
     Route::get('personal/add.html',array('uses'=>'PersonalController@add'))->before('sessionPer');
