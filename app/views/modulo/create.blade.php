@@ -13,7 +13,7 @@ Nuevo MODULO
     <div class="col-sm-4">
         {{ Form::open(array('url' => 'modulo')) }}
          <label>Nombre:</label>
-         <input title="Se necesita un nuevo modulo" type="text" name="nombre" pattern="^[a-zA-Z]*$" class="form-control" required/> <br/>
+         <input title="Se necesita un nuevo modulo" type="text" name="nombre" pattern="^[a-zA-Z]*$" class="form-control" placeholder="Primer" required/> <br/>
         <br/>
         {{ Form::submit('Guardar')}}
         &nbsp;&nbsp;&nbsp;&nbsp;

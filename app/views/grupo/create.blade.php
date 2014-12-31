@@ -13,7 +13,7 @@ Nuevo Grupo
     <div class="col-sm-4">
 		{{ Form::open(array('url' => 'grupo')) }}
         <label>Nombre: </label>
-		 <input class="form-control" title="Se necesita un nuevo Grupo" type="text" name="nombre" pattern="^[a-zA-Z]*$" required/> <br/>
+		 <input class="form-control" title="Se necesita un nuevo Grupo" type="text" name="nombre" pattern="^[a-zA-Z ]*$" placeholder ="Grupo A" required/> <br/>
 		<br/>
 		{{ Form::submit('Guardar')}}
         &nbsp;&nbsp;&nbsp;&nbsp;

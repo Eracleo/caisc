@@ -13,7 +13,7 @@ Editar Grupo {{ $grupo -> nombre }}
 	<div class="col-sm-4">
 		{{ Form::open(array('url' => 'grupo/' . $grupo->id, 'method' =>'put')) }}
         <label>Nombre: </label>
-		 <input class="form-control" value="{{ $grupo -> nombre }}" title="Se necesita un nuevo Grupo" type="text" name="nombre" pattern="^[a-zA-Z]*$" required/> <br/>
+		 <input class="form-control" title="Se necesita un nuevo Grupo" type="text" name="nombre" pattern="^[a-zA-Z ]*$" placeholder ="Grupo A" required/> <br/>
 		<br/>
 		{{ Form::submit('Modificar')}}
 		&nbsp;&nbsp;&nbsp;&nbsp;

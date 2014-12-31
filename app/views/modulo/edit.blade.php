@@ -14,7 +14,7 @@ Editar Grupo {{ $modulo -> nombre }}
     <div class="col-sm-4">
         {{ Form::open(array('url' => 'modulo/' . $modulo->id, 'method' =>'put')) }}
         <label>Nombre: </label>
-         <input value="{{ $modulo->nombre }}" title="Se necesita un nuevo modulo" type="text" name="nombre" pattern="^[a-zA-Z]*$" class="form-control" required/> <br/>
+         <input title="Se necesita un nuevo modulo" type="text" name="nombre" pattern="^[a-zA-Z]*$" class="form-control" placeholder="Primer" required/> <br/>
         <br/>
         {{ Form::submit('Modificar')}}
         &nbsp;&nbsp;&nbsp;&nbsp;

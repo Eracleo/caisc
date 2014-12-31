@@ -14,7 +14,7 @@ Editar Semestre {{ $semestre -> nombre }}
     <div class="col-sm-4">
 		{{ Form::open(array('url' => 'semestre/' . $semestre->id, 'method' =>'put')) }}
         <label>Nombre: </label>
-		<input class="form-control" title="Se necesita un nuevo semestre" type="text" name="nombre" pattern="^[0-9 -]*$" required/> <br/>
+		<input class="form-control" title="Se necesita un nuevo semestre" type="text" name="nombre" pattern="^[0-9 -IiVv]*$" placeholder="2014-II" required/> <br/>
 		<br/>
 		{{ Form::submit('Modificar')}}
 		&nbsp;&nbsp;&nbsp;&nbsp;

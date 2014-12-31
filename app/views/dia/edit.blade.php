@@ -13,7 +13,8 @@ Editar Dia {{ $dia -> nombre }}
     <div class="col-sm-4">
 		{{ Form::open(array('url' => 'dia/' . $dia->id, 'method' =>'put')) }}
         <label>Nombre: </label>
-         <input title="Se necesita un nuevo dia" list="listadias" type="nombre" name="nombre" pattern="^[a-zA-Z]*$" class="form-control" placeholder="Dia valido" required/> <br/>
+         <input title="Se necesita un nuevo dia" list="listadias" type="nombre" name="nombre" pattern="^[a-zA-Z]*$" class="form-control" placeholder="Lunes" required/> <br/>
+         
        
 <datalist id="listadias" >
   <option value="Lunes" >
