@@ -89,3 +89,42 @@ Route::filter('csrf', function()
 		throw new Illuminate\Session\TokenMismatchException;
 	}
 });
+
+Route::filter('sessionDoc',function()
+{
+	if (Auth::check())
+	{
+		$tipoUsuario = Auth::user()->gettipoUsuario();
+		if($tipoUsuario == "Personal")
+		{
+			return Redirect::to('personal')->with('message-success',"Bienvenido...");
+		}
+		else
+		{
+			if($tipoUsuario=="Alumno")
+			{
+				return Redirect::to('alumno')->with('message-success',"Bienvenido...");
+			}
+		}
+	}
+
+});
+Route::filter('sessionPer',function()
+{
+	if (Auth::check())
+	{
+		$tipoUsuario = Auth::user()->gettipoUsuario();
+		if($tipoUsuario == "Docente")
+		{
+			return Redirect::to('docente')->with('message-success',"Bienvenido...");
+		}
+		else
+		{
+			if($tipoUsuario=="Alumno")
+			{
+				return Redirect::to('alumno')->with('message-success',"Bienvenido...");
+			}
+		}
+	}
+
+});

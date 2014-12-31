@@ -24,7 +24,8 @@ class Login extends BaseController{
 				{
 					return Redirect::to('personal')->with('message-success',"Bienvenido...");
 				}
-				return Redirect::to('alumno')->with('message-success',"Bienvenido...");
+				else
+					return Redirect::to('alumno')->with('message-success',"Bienvenido...");
 			}
 		}
 		else
