@@ -13,7 +13,7 @@
 			'apellidos'=>array('required','min:4','max:30'),
 			'dni'=>array('required','numeric','digits:8'),
 			'direccion'=>array('required','min:10','max:50'),
-			'telefono'=>array('required','numeric','max:20'),
+			'telefono'=>array('required','numeric','digits:9'),
 			'email'=>array('required','email'),
 			'password'=>array('required','min:6','confirmed')
 		);
@@ -41,7 +41,7 @@
 			'apellidos'=>array('required','min:3','max:30'),
 			'dni'=>array('required','numeric','digits:8'),
 			'direccion'=>array('min:10','max:50'),
-			'telefono'=>array('min:6','max:20'),
+			'telefono'=>array('min:9','max:20'),
 			'email'=>array('required','email'),
 		);
 		$validador = Validator::make($input,$reglas);
