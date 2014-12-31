@@ -28,7 +28,17 @@ Horario por curso <small> CARGA ACADEMICA</small>
 	{{ Form::close()}}
 
 
-	
+	@if ($HorarioPorCurso)
+	<div class="table-responsive">
+		<table class="table table-hover">
+		 <thead>
+            <tr class="warning">
+                <th>Horario</th>
+                <th>Lunes</th>
+                <th>Martes</th>
+                <th>Miercoles</th>
+                <th>Jueves</th>
+                <th>Viernes</th>
                 <th>Sabado</th>
             </tr>
         </thead>
