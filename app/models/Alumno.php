@@ -11,7 +11,7 @@
 		$reglas = array(
 			'nombre'=>array('required','min:4','max:30'),
 			'apellidos'=>array('required','min:4','max:30'),
-			'dni'=>array('required','numeric','unique:alumno','digits:8'),
+			'dni'=>array('required','numeric','digits:8'),
 			'direccion'=>array('required','min:10','max:50'),
 			'telefono'=>array('required','numeric','max:20'),
 			'email'=>array('required','email'),
@@ -39,7 +39,7 @@
 		$reglas = array(
 			'nombre'=>array('required','min:3','max:30'),
 			'apellidos'=>array('required','min:3','max:30'),
-			'dni'=>array('required','numeric','unique:alumno','digits:8'),
+			'dni'=>array('required','numeric','digits:8'),
 			'direccion'=>array('min:10','max:50'),
 			'telefono'=>array('min:6','max:20'),
 			'email'=>array('required','email'),
