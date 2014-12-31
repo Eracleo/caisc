@@ -125,12 +125,28 @@ class MatriculaCTController extends BaseController
 	// lista los cursos nuevos que puede matricularse en el actual modulo
 	public function listacursosnuevosProcStore(){
 		$cod = Input::get('codAlumno'); // codigo del alumno
-		$modulo = DB::table('alumno')->where('id', $cod)->pluck('modulo'); // modulo del alumno
-		$codCarrera = DB::table('alumno')->where('id',$cod)->pluck('codCarrera');
 		$semest = Input::get('semestre');
-		$alumno = DB::table('alumno')->where('id', $cod)->first();
+
+		$modulo = DB::table('alumno')->where('id', $cod)->pluck('modulo'); // modulo del alumno
+		$codCarrera = DB::table('alumno')->where('id',$cod)->pluck('codCarrera'); // codigo de carrera del alumno
+		$alumno = DB::table('alumno')->where('id', $cod)->first(); // recupero datos del alumno
+
 		$cursosDisponibles = DB::select('call listarCursosFaltantesParaMatriculaCT(?,?,?,?)',array($cod,$modulo,$codCarrera,$semest));
-		return View::make('matriculaCT.listaCursosNuevos', compact('alumno'),array('cursos'=>$cursosDisponibles));
+		return View::make('matriculaCT.listaCursosNuevos', compact('alumno','semest'),array('cursos'=>$cursosDisponibles));
+	}
+
+	public function matricular_lista(){
+		$cod = Input::get('codAlumno');
+		$semestre = Input::get('semestreMatri');
+		$arreglo = Input::get('cargas');
+		foreach ($arreglo as $carga) {
+			$carga_acade = $carga;
+			$matricula_ct = DB::select('call insertMatriculaCT(?,?,?)',array($cod,$carga_acade,$semestre));
+			//$respuesta['mensaje'] = 'Matricula Creada';
+			//$respuesta['error'] = false;
+			//$respuesta['data'] = $matricula_ct;
+		}
+		return Redirect::to('matriculas_ct/listaMatriculas');
 	}
 
 	public function test(){
@@ -146,7 +162,7 @@ class MatriculaCTController extends BaseController
 		}
 	}
 
-	// lista los cursos del siguiente modulo o semestre
+	// (X) lista los cursos del siguiente modulo o semestre
 	public function listacursosnuevos(){
 		// recupero el valor del textbox codAlumno
 		$cod = Input::get('codAlumno');
@@ -158,6 +174,7 @@ class MatriculaCTController extends BaseController
 		return View::make('matriculaCT.listaCursosNuevos',array('cursos'=>$cursos,'codigo'=>$cod));
 	}
 
+	// (X) lista matriculas segun codigo
 	public function listaMatri($cod){
 		$matriculas = MatriculaCT::where('codAlumno','=',$cod)->get();
 		return View::make('matriculaCT.lista',array('matriculas'=>$matriculas));
