@@ -2,7 +2,7 @@
 
 class AlumnoController extends BaseController
 {
-	public function index($registros=20)
+	public function index($registros=5)
 	{
 		//$cod="1";
 		//$datos = Alumno::paginate($registros);
@@ -13,6 +13,7 @@ class AlumnoController extends BaseController
         				->leftJoin('carrera', 'alumno.codCarrera', '=', 'carrera.id')
         				->select('alumno.id', 'alumno.apellidos', 'alumno.nombre', 'carrera.nombre as carr', 'alumno.dni', 'alumno.estado')
         				->get();
+        $datos = Alumno::paginate($registros);
 		return View::make('alumno.index',compact("datos","carreras"),array('alumnos'=>$alumnos));
 	}
 

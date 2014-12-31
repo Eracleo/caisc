@@ -45,4 +45,9 @@ Lista de Alumnos
             @endforeach
             </tbody>
         </table>
+    <div class="row">
+        <div class="col-sm-2"><p><b>Pagina Actual:</b> {{ $datos->getCurrentPage()}}</p></div>
+        <div class="col-sm-6">{{ $datos->links()}}</div>
+        <div class="col-sm-4">{{ HTML::link('alumno/add.html','Agregar Alumno') }}</div>
+    </div>
 @stop
