@@ -44,6 +44,6 @@ Listar Carreras Profesionales
         @endforeach
         </tbody>
     </table>
-         Pagina Actual:{{ $datos->getCurrentPage()}}
-        {{ $datos->links()}}
+        <div class="col-sm-2"><p><b>Pagina Actual:</b> {{ $datos->getCurrentPage()}}</p></div>
+        <div class="col-sm-6">{{ $datos->links()}}</div>
 @stop

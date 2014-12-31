@@ -7,14 +7,13 @@ class AlumnoController extends BaseController
 		//$cod="1";
 		//$datos = Alumno::paginate($registros);
 		$carreras = Carrera::all();
-		$alumnos=Alumno::all();
+		//$alumnos=Alumno::all();
 		//$alumnos = Alumno::where('codCarrera','=',$cod)->get();
 		$datos = DB::table('alumno')
         				->leftJoin('carrera', 'alumno.codCarrera', '=', 'carrera.id')
         				->select('alumno.id', 'alumno.apellidos', 'alumno.nombre', 'carrera.nombre as carr', 'alumno.dni', 'alumno.estado')
-        				->get();
-        $datos = Alumno::paginate($registros);
-		return View::make('alumno.index',compact("datos","carreras"),array('alumnos'=>$alumnos));
+          				->paginate($registros);
+		return View::make('alumno.index',compact("datos","carreras"));
 	}
 
 	public function perfil()
@@ -23,23 +22,24 @@ class AlumnoController extends BaseController
 		$alumno = Alumno::where('id','=',$id)->firstOrFail();
 		return View::make('alumno.profile',array('alumno'=>$alumno));
 	}
-	public function indexcarrera()
+/*	public function indexcarrera($registro=1)
 	{
 		//$cod="1";
 		//$datos = Alumno::paginate($registros);
 		$codigo = Input::get('codCarrera');
 		$cod = (int)($codigo);
 		$carreras = Carrera::all();
-		$alumnos=Alumno::all();
+		//$alumnos=Alumno::all();
 		//$alumnos = Alumno::where('codCarrera','=',$cod)->get();
 		$datos = DB::table('alumno')
 						->where('alumno.codCarrera', '=', $cod)
         				->leftJoin('carrera', 'alumno.codCarrera', '=', 'carrera.id')
         				->select('alumno.id', 'alumno.apellidos', 'alumno.nombre', 'carrera.nombre as carr', 'alumno.dni', 'alumno.estado')
         				->get();
-		return View::make('alumno.listacarrera',compact("datos","carreras"),array('alumnos'=>$alumnos));
+        return View::make('alumno.listacarrera',compact("datos","carreras"));
+		
 	}
-
+*/
 	public function add()
 	{
 		$carreras = Carrera::lists('nombre','id');

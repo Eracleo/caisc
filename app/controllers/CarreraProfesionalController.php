@@ -3,9 +3,10 @@
 
 class CarreraProfesionalController extends BaseController
 {
-	public function index($registros=5)
+	public function index($registros=2)
 	{
-		$datos = Carrera::where('estado','=','1')->orderBy('id','DESC')->paginate(10);
+
+		$datos = Carrera::where('estado','=','1')->orderBy('id','DESC')->paginate($registros);
 		$carrera = Carrera::where('estado','=','1')->orderBy('id','DESC')->get();
 		return View::make('CarreraProfesional.index',compact("datos"),array('carrera'=>$carrera));
 	}
