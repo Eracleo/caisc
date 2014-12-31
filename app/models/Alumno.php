@@ -9,11 +9,11 @@
 	{
 		$respuesta = array();
 		$reglas = array(
-			'nombre'=>array('required','min:4'),
-			'apellidos'=>array('required','min:4'),
+			'nombre'=>array('required','min:4','max:30'),
+			'apellidos'=>array('required','min:4','max:30'),
 			'dni'=>array('required','numeric','unique:alumno','digits:8'),
-			'direccion'=>array('required','min:10'),
-			'telefono'=>array('required','numeric'),
+			'direccion'=>array('required','min:10','max:50'),
+			'telefono'=>array('required','numeric','max:20'),
 			'email'=>array('required','email'),
 			'password'=>array('required','min:6','confirmed')
 		);
@@ -32,6 +32,38 @@
 		}
 		return $respuesta;
 	}
+
+	public static function editar($obj,$input)
+	{
+		$respuesta = array();
+		$reglas = array(
+			'nombre'=>array('required','min:3','max:30'),
+			'apellidos'=>array('required','min:3','max:30'),
+			'dni'=>array('required','numeric','unique:alumno','digits:8'),
+			'direccion'=>array('min:10','max:50'),
+			'telefono'=>array('min:6','max:20'),
+			'email'=>array('required','email'),
+		);
+		$validador = Validator::make($input,$reglas);
+		if($validador->fails())
+		{
+			$respuesta['mensaje'] = $validador;
+			$respuesta['error'] = true;
+		} else
+		{
+			$obj->nombre = Input::get('nombre');
+			$obj->apellidos = Input::get('apellidos');
+			$obj->dni = Input::get('dni');
+			$obj->direccion = Input::get('direccion');
+			$obj->telefono = Input::get('telefono');
+			$obj->email = Input::get('email');
+			$obj->save();
+			$respuesta['mensaje'] = 'Datos Actualizados';
+			$respuesta['error'] = false;
+		}
+		return $respuesta;
+	}
+
 	public static function updatePassword($obj,$input)
 	{
 		$input['pAnterior'] = Hash::make($input['pAnterior']);

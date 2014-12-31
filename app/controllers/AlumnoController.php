@@ -78,22 +78,36 @@ class AlumnoController extends BaseController
 		return Redirect::to('alumnos');
 	}
 
-	public function update($cod)
+	public function update($id)
 	{
-		$alumno = Alumno::where('id','=',$cod)->firstOrFail();
-		if(is_object($alumno))
+		// $alumno = Alumno::where('id','=',$cod)->firstOrFail();
+		// if(is_object($alumno))
+		// {
+		// 	$alumno->nombre = Input::get('nombre');
+		// 	$alumno->apellidos = Input::get('apellidos');
+		// 	$alumno->dni = Input::get('dni');
+		// 	$alumno->direccion = Input::get('direccion');
+		// 	$alumno->telefono = Input::get('telefono');
+		// 	$alumno->email = Input::get('email');
+		// 	$alumno->save();
+		// 	return Redirect::to('alumnos');
+		// } else {
+		// 	Redirect::to('500.html');
+		// }
+		if(is_numeric($id))
 		{
-			$alumno->nombre = Input::get('nombre');
-			$alumno->apellidos = Input::get('apellidos');
-			$alumno->dni = Input::get('dni');
-			$alumno->direccion = Input::get('direccion');
-			$alumno->telefono = Input::get('telefono');
-			$alumno->email = Input::get('email');
-			$alumno->save();
-			return Redirect::to('alumnos');
-		} else {
-			Redirect::to('500.html');
+			$obj = Alumno::where('id','=',$id)->firstOrFail();
+			if(is_object($obj))
+			{
+				$respuesta = Alumno::editar($obj,Input::all());
+				if($respuesta['error']==true)
+				{
+					return Redirect::to('alumno/edit/'.$id)->withErrors($respuesta['mensaje'])->withInput();
+				}
+				return Redirect::to('alumno/profile/'.$id)->withErrors($respuesta['mensaje']);
+			}
 		}
+		Redirect::to('400.html');
 	}
 
 	public function updatePass($id){
