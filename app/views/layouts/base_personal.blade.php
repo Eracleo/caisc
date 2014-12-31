@@ -34,8 +34,6 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Carga Academica<b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li>{{ HTML::link('/crearCargaCt','Carga Academica CT') }}</i></li>
-                <li>{{ HTML::link('/crearCargaCl','Carga Academica CL') }}</li>
                 <li>{{ HTML::link('/MostrarOpcionesDocente','Horario Por Docente') }}</li>
                 <li>{{ HTML::link('/MostrarOpcionesPorCurso','Horario Por Curso') }}</li>
                 <li>{{ HTML::link('/MostrarOpcionesPorAula','Horario Por Aula') }}</li>

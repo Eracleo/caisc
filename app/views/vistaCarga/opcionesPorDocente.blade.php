@@ -1,6 +1,6 @@
 @extends('layouts.base_admin')
 @section('title')
-Semestre - Docente
+Horario por docente <small> CARGA ACADEMICA</small>
 @stop
 @section('breadcrumb')
 <li>Agregar</li>

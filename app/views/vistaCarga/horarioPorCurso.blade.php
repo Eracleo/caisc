@@ -1,6 +1,6 @@
 @extends('layouts.base_admin')
 @section('title')
-Agregar Personal <small> NUEVO PERSONAL </small>
+Horario por curso <small> CARGA ACADEMICA</small>
 @stop
 @section('breadcrumb')
 <li>Agregar</li>
@@ -28,17 +28,7 @@ Agregar Personal <small> NUEVO PERSONAL </small>
 	{{ Form::close()}}
 
 
-	@if ($HorarioPorCurso)
-	<div class="table-responsive">
-		<table class="table table-hover">
-		 <thead>
-            <tr class="warning">
-                <th>Horario</th>
-                <th>Lunes</th>
-                <th>Martes</th>
-                <th>Miercoles</th>
-                <th>Jueves</th>
-                <th>Viernes</th>
+	
                 <th>Sabado</th>
             </tr>
         </thead>

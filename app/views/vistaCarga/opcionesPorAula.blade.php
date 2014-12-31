@@ -1,5 +1,6 @@
 @extends('layouts.base_admin')
 @section('title')
+Horario por aula <small>  CARGA ACADEMICA </small>
 @stop
 @section('options')
 @stop

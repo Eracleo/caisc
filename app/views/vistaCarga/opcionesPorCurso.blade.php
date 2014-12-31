@@ -1,6 +1,6 @@
 @extends('layouts.base_admin')
 @section('title')
-Agregar Personal <small> VER HORARIOS POR CURSO</small>
+Horario por curso <small> CARGA ACADEMICA</small>
 @stop
 @section('breadcrumb')
 @stop

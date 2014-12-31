@@ -1,5 +1,6 @@
 @extends('layouts.base_admin')
 @section('title')
+Crear Carga Academica <small>  CURSO LIBRE </small>
 @stop
 @section('content')
 	{{ Form::open(array('url' => '/mostrarHorariosPorAula','class'=>'form-horizontal','role'=>'form')) }}

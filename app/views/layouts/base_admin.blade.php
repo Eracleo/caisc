@@ -100,9 +100,7 @@
               </ul>
             </li>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              
-              Carga Academica<b class="caret"></b></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class = "glyphicon glyphicon-book"></span> Carga Academica<b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li>
                     <!--{{ HTML::link('/crearCargaCt','Carga Academica CT') }}-->
@@ -117,7 +115,7 @@
                     Carga Academica CL</a> 
                 </li>
                 <li>
-                    {{ HTML::link('/MostrarOpcionesDocente','Horario Por Docente') }}
+                    {{ HTML::link('/MostrarOpcionesDocente','Horarios:') }}
                     <a href = "{{url('/MostrarOpcionesDocente')}}">
                     <span class = "glyphicon glyphicon-calendar"></span>
                     Horario Por Docente</a> 
