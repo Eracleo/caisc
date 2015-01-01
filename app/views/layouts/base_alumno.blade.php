@@ -28,9 +28,9 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="active"><a href="#">Perfil</a></li>
-                    <li><a href="#about">Mis Cursos</a></li>
-                    <li><a href="#contact">Mis Notas</a></li>
+                    <li class="active"><a href="perfil">Perfil</a></li>
+                    <li><a href="iniciocursosmatriculados">Mis Cursos</a></li>
+                    <li><a href="inicionotascursos">Mis Notas</a></li>
                     <li class="dropdown">
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown">Otros <b class="caret"></b></a>
                       <ul class="dropdown-menu">

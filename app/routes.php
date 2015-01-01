@@ -20,6 +20,11 @@ Route::get('/', function()
 Route::get('404.html',array('uses'=>'ErrorController@mostrar404'));
 Route::get('500.html',array('uses'=>'ErrorController@mostrar500'));
 Route::get('blank.html',array('uses'=>'ErrorController@blank'));
+//
+
+
+
+
 //login
 Route::get('salir',function()
 {
@@ -292,4 +297,11 @@ Route::group(['before' => 'auth'], function()
     Route::post('Aula/delete',array('uses'=>'AulaController@eliminando'));
     Route::get('Aula/profile/{id}',array('uses'=>'AulaController@profile'));
     Route::get('Aula/post_eliminar/{id}',array('uses'=>'AulaController@post_eliminar'));
+
+
+    Route::get('alumno/iniciocursosmatriculados',array('uses'=>'FuncionalidadAlumnoController@iniciocursosmatriculados'));
+    Route::post('alumno/cursosmatriculados',array('uses'=>'FuncionalidadAlumnoController@cursosmatriculados'));
+    Route::get('alumno/inicionotascursos',array('uses'=>'FuncionalidadAlumnoController@inicionotascursos'));
+    Route::post('alumno/notascursos',array('uses'=>'FuncionalidadAlumnoController@notascursos'));
+    Route::get('alumno/perfil',array('uses'=>'FuncionalidadAlumnoController@perfil'));
 });

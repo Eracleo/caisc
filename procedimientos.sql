@@ -624,6 +624,25 @@ BEGIN
     from (carga_academica_cl C inner join  docente D on C.docente_id=D.id) inner join curso_cl cl on C.codCurso_cl=cl.id
     where cl.estado=1 and (C.semestre=(SELECT id FROM semestre order by id desc limit 1)) and D.id=codDocente;
 
-
+END $$
+-- end
+-- Totalde pago de planilla cursos libres
+-- begin
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `CursosDAlumnoXSemestre`(IN `codAlumno` VARCHAR(8), IN `semestre` VARCHAR(9))
+    NO SQL
+select CU.id as codCurso, CU.nombre as nombre, CU.modulo as modulo, CU.horas_academicas as horas
+from ((matricula_ct M inner join carga_academica_ct C on C.codCargaAcademica_ct = M.codCargaAcademica_ct) inner join curso_ct CU on C.codCurso_ct = CU.id)
+where (codAlumno = M.codAlumno) and (semestre = C.semestre)
+END $$
+-- end
+-- Totalde pago de planilla cursos libres
+-- begin
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `NotasDAlumnoXSemestre`(IN `codAlumno` VARCHAR(9), IN `semestre` VARCHAR(9))
+    NO SQL
+select CU.id as codCurso, CU.nombre as nombre, N.notaa as nota1, N.notab as nota2, N.notac as nota3
+from (((matricula_ct M inner join carga_academica_ct C on C.codCargaAcademica_ct = M.codCargaAcademica_ct) inner join curso_ct CU on C.codCurso_ct = CU.id) inner join nota_ct N on N.codMatricula_ct = M.id)
+where (codAlumno = M.codAlumno) and (semestre = C.semestre)
 END $$
 -- end
