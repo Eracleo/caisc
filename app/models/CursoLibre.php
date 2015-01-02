@@ -9,7 +9,7 @@ class CursoLibre extends Eloquent {
 	{
 		$respuesta = array();
 		$reglas = array(	
-				'id'=>array('required','min:2','max:10','alpha_num'),			
+				'id'=>array('required','unique:curso_cl','min:2','max:10','alpha_num'),			
 				'nombre'=>array('required','min:5','max:30'),
 				'horas_academicas'=>array('required','max:300','min:1','integer')
 			);
@@ -35,7 +35,7 @@ class CursoLibre extends Eloquent {
 			{
 				if($aux->estado == 1)
 				{				
-					$respuesta['mensaje'] = 'Ya existe ese curso';
+					$respuesta['mensaje'] = $validador;
 					$respuesta['error'] = true;
 					$respuesta['data'] = $curso;
 				}
@@ -65,7 +65,7 @@ class CursoLibre extends Eloquent {
 				}
 				else 
 				{
-					$respuesta['mensaje'] = 'No se pudo agregar el curso';
+					$respuesta['mensaje'] = $validador;
 					$respuesta['error'] = true;
 					$respuesta['data'] = $curso;
 						
