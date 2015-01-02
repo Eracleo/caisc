@@ -2,9 +2,9 @@
 @section('title')
 Agregar Nueva Aula <small> NUEVA AULA </small>
 @stop
-@section('breadcrumb')
-<li>{{ HTML::link('Aula','AULA')}} </li>	
-<li>Agregar Aula</li>
+@section('options')
+<li>{{HTML::link('Aula','Listar')}}</li>
+<li>{{HTML::link('Aula/add.html','Nueva Aula')}}</li>
 @stop
 @section('content')
 <div class="col-xs-12 col-sm-12">
@@ -40,7 +40,7 @@ Agregar Nueva Aula <small> NUEVA AULA </small>
 
 	<div class="form-group">
 		<div class="col-xs-12 col-sm-3">
-			<button class="btn btn-info btn-block" type="reset">Cancelar</button>
+			{{HTML::linkAction('AulaController@index', 'Cancelar','',array('class'=>'col-sm-12 btn btn-warning'))}}
 		</div>
 		<div class="col-xs-12 col-sm-3">
 			<button class="btn btn-primary btn-block" type="submit">Guardar</button>
