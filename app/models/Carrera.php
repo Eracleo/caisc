@@ -7,9 +7,9 @@ class Carrera extends Eloquent {
 	{
 		$respuesta = array();
 		$reglas = array(
-			'nombre'=>array('required','min:3','max:50'),
-			'id'=>array('required','min:2'),
-			'descripcion'=>array('required','min:3')
+			'id'=>array('required','min:2','max:10','alpha_num'),
+			'nombre'=>array('required','min:5','max:30'),
+			'descripcion'=>array('required','min:3','max:200')
 		);	
 		$validador = Validator::make($input,$reglas);
 		if($validador->fails())
@@ -73,14 +73,13 @@ class Carrera extends Eloquent {
 	{
 		$respuesta = array();
 		$reglas = array(
-			'nombre'=>array('required','min:3','max:50'),
-			'id'=>array('required','min:2'),
-			'descripcion'=>array('required','min:3')
+			'nombre'=>array('required','min:5','max:30'),
+			'descripcion'=>array('required','min:3','max:200')
 		);	
 		$validador = Validator::make($input,$reglas);
 		if($validador->fails())
 		{
-			$respuesta['mensaje'] = 'Datos incorrectos, ingresar datos correctamente';
+			$respuesta['mensaje'] = $validador;
 			$respuesta['error'] = true;
 		} else
 		{
