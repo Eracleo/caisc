@@ -28,10 +28,10 @@
 
                 <div class="body bg-gray">
                     <div class="form-group">
-                        <input type="text" name="email" class="form-control" placeholder="Correo electrónico"/>
+                        <input type="text" name="email" class="form-control" placeholder="Correo electrónico" required/>
                     </div>
                     <div class="form-group">
-                        <input type="password" name="pass" class="form-control" placeholder="Contraseña"/>
+                        <input type="password" name="pass" class="form-control" placeholder="Contraseña" required/>
                     </div>
                     <div class="form-group">
                         <input type="checkbox" name="remember_me"/> Mantener la sesion iniciada
