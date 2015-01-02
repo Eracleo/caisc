@@ -57,7 +57,7 @@ class MatriculaCLController extends BaseController
 				//echo(gettype($existe));
 				if ($existe == 1) { // Codigo del alumno si existe
 					$carga = Input::get('codCargaAcademica_cl');
-					$buscar = DB::select('call buscarMatricula(?,?)', array($codigo,$carga));
+					$buscar = DB::select('call buscarMatriculaCL(?,?)', array($codigo,$carga));
 					$lonf = sizeof($buscar);
 					if ($lonf > 0) {
 						$respuesta['mensaje'] = 'Error!!! La matricula ya existe';
@@ -113,20 +113,55 @@ class MatriculaCLController extends BaseController
 
 	public function update(){
 		//$input=Input::get('codDocente');
+		$respuesta = array();
 		$cod=Input::get('idt');
-		if(is_null($cod))
-		{
-			Redirect::to('404.html');
-		} else {
-			$matricula = MatriculaCL::where('id','=',$cod)->firstOrFail();
-			if(is_object($matricula))
-			{
-				$matricula->codAlumno = Input::get('CodAlumno');
-				$matricula->codCargaAcademica_cl = Input::get('CodCargaAcad');
-				$matricula->save();
-				return Redirect::to('/matriculas_curso_libre');
-			} else {
-				Redirect::to('500.html');
+		$codAlumno = Input::get('CodAlumno');
+		if (($codAlumno == '') or ! is_numeric($codAlumno)) {
+			$respuesta['mensaje'] = 'ERROR !!! Código Alumno no válido, Verifique que los datos ingresados esten bien.';
+			$respuesta['error'] = true;
+			return Redirect::to('matriculas_cl/edit/'.$cod)->with('mensaje',$respuesta['mensaje'])->withInput();
+		} else{
+			$query_alumno = DB::select('call existe_alumno(?)',array($codAlumno));
+			foreach ($query_alumno as $value) {
+				$exist = $value->dato;
+				if ($exist == 1) {
+					// si es que existe el alumno
+					// consultamos si existe carga academica
+					$carga = Input::get('CodCargaAcad');
+					$query_carga = DB::select('call existe_cargaAcademica_cl(?)',array($carga));
+					foreach ($query_carga as $valueB) {
+						$existB = $valueB->dato;
+						if ($existB == 1) {
+							// si existe el codigo de carga academica
+							$buscar = DB::select('call buscarMatriculaCL(?,?)', array($codAlumno,$carga));
+							$lonf = sizeof($buscar);
+							if ($lonf > 0) {
+								$respuesta['mensaje'] = 'Error!!! La matricula ya existe. Código alumno duplicado o Código Carga Academica duplicado';
+								$respuesta['error'] = true;
+								return Redirect::to('matriculas_cl/edit/'.$cod)->with('mensaje',$respuesta['mensaje'])->withInput();
+							} else{
+								$matricula = MatriculaCL::where('id','=',$cod)->firstOrFail();
+								if(is_object($matricula))
+								{
+									$matricula->codAlumno = $codAlumno;
+									$matricula->codCargaAcademica_cl = $carga;
+									$matricula->save();
+									return Redirect::to('matriculas_curso_libre');
+								} else {
+									Redirect::to('500.html');
+								}
+							}	
+						} else{
+							// no existe codigo de carga academica
+							$respuesta['mensaje'] = 'ERROR !!! Código de Carga Académica no existe.';
+							return Redirect::to('matriculas_cl/edit/'.$cod)->with('mensaje',$respuesta['mensaje'])->withInput();
+						}
+					}
+				} else{
+					// si es que no existe el alumno
+					$respuesta['mensaje'] = 'ERROR !!! Código Alumno no existe.';
+					return Redirect::to('matriculas_cl/edit/'.$cod)->with('mensaje',$respuesta['mensaje'])->withInput();
+				}
 			}
 		}
 	}

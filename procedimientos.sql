@@ -451,9 +451,9 @@ END$$
 -- end
 -- begin
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `buscarMatriculaCT`(alumno int ,carga int)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `buscarMatriculaCT`(alumno int ,carga int, semest varchar(10))
 BEGIN
-    SELECT id FROM matricula_ct WHERE codAlumno=alumno AND codCargaAcademica_ct=carga;
+    SELECT id FROM matricula_ct WHERE codAlumno=alumno AND codCargaAcademica_ct=carga AND semestre = semest;
 END $$
 -- end
 -- begin 
@@ -547,9 +547,29 @@ END $$
 -- end
 -- begin
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `buscarMatricula`($alumno int ,$carga int)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `existe_cargaAcademica_cl`(codigo int)
 BEGIN
-    SELECT id FROM matricula_cl WHERE codAlumno=$alumno AND codCargaAcademica_cl=$carga;
+    SELECT IF( EXISTS(
+             SELECT *
+             FROM carga_academica_cl
+             WHERE `codCargaAcademica_cl` =  codigo), 1, 0) as dato;
+END $$
+-- end
+-- begin
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `existe_cargaAcademica_ct`(codigo int)
+BEGIN
+    SELECT IF( EXISTS(
+             SELECT *
+             FROM carga_academica_ct
+             WHERE `codCargaAcademica_ct` =  codigo), 1, 0) as dato;
+END $$
+-- end
+-- begin
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `buscarMatriculaCL`(alumno int ,carga int)
+BEGIN
+    SELECT id FROM matricula_cl WHERE codAlumno=alumno AND codCargaAcademica_cl=carga;
 END $$
 -- end
 -- begin

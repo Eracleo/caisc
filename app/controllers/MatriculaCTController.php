@@ -26,27 +26,6 @@ class MatriculaCTController extends BaseController
 		}
 	}
 
-	public function update()
-	{
-		//$input=Input::get('codDocente');
-		$cod=Input::get('idt');
-		if(is_null($cod))
-		{
-			Redirect::to('404.html');
-		} else {
-			$matricula = MatriculaCT::where('id','=',$cod)->firstOrFail();
-			if(is_object($matricula))
-			{
-				$matricula->codAlumno = Input::get('CodAlumno');
-				$matricula->codCargaAcademica_ct = Input::get('CodCargaAcad');
-				$matricula->save();
-				return Redirect::to('matriculas_ct/listaMatriculas');
-			} else {
-				Redirect::to('500.html');
-			}
-		}
-	}
-
 	public function delete($cod)
 	{
 		if(is_null($cod))
@@ -123,6 +102,60 @@ class MatriculaCTController extends BaseController
 		}
 	}
 
+	public function update()
+	{
+		$cod = Input::get('idt'); // Código de matricula
+		$codAlumno = Input::get('CodAlumno');
+		if (($codAlumno == '') or ! is_numeric($codAlumno)) {
+			$respuesta['mensaje'] = 'ERROR !!! Código Alumno no válido, Verifique que los datos ingresados esten bien.';
+			$respuesta['error'] = true;
+			return Redirect::to('matriculas_ct/edit/'.$cod)->with('mensaje',$respuesta['mensaje'])->withInput();
+		} else{
+			$query_alumno = DB::select('call existe_alumno(?)',array($codAlumno));
+			foreach ($query_alumno as $value) {
+				$exist = $value->dato;
+				if ($exist == 1) {
+					// si es que existe el alumno
+					// consultamos si existe carga academica
+					$carga = Input::get('CodCargaAcad');
+					$query_carga = DB::select('call existe_cargaAcademica_ct(?)',array($carga));
+					foreach ($query_carga as $valueB) {
+						$existB = $valueB->dato;
+						if ($existB == 1) {
+							// si existe el codigo de carga academica
+							$semes = Input::get('semest');
+							$buscar = DB::select('call buscarMatriculaCT(?,?,?)', array($codAlumno,$carga,$semes));
+							$lonf = sizeof($buscar);
+							if ($lonf > 0) {
+								$respuesta['mensaje'] = 'Error!!! La matricula ya existe. Código alumno duplicado o Código Carga Academica duplicado';
+								$respuesta['error'] = true;
+								return Redirect::to('matriculas_ct/edit/'.$cod)->with('mensaje',$respuesta['mensaje'])->withInput();
+							} else{
+								$matricula = MatriculaCT::where('id','=',$cod)->firstOrFail();
+								if(is_object($matricula)){
+									$matricula->codAlumno = $codAlumno;
+									$matricula->codCargaAcademica_ct = $carga;
+									$matricula->save();
+									return Redirect::to('matriculas_ct/listaMatriculas');
+								} else {
+									Redirect::to('500.html');
+								}
+							}	
+						} else{
+							// no existe codigo de carga academica
+							$respuesta['mensaje'] = 'ERROR !!! Código de Carga Académica no existe.';
+							return Redirect::to('matriculas_ct/edit/'.$cod)->with('mensaje',$respuesta['mensaje'])->withInput();
+						}
+					}
+				} else{
+					// si es que no existe el alumno
+					$respuesta['mensaje'] = 'ERROR !!! Código Alumno no existe.';
+					return Redirect::to('matriculas_ct/edit/'.$cod)->with('mensaje',$respuesta['mensaje'])->withInput();
+				}
+			}
+		}
+	}
+
 	// lista los cursos nuevos que puede matricularse en el actual modulo
 	public function listacursosnuevosProcStore(){
 		$respuesta = array();
@@ -131,7 +164,7 @@ class MatriculaCTController extends BaseController
 			$respuesta['mensaje'] = 'ERROR !!! Código Alumno no válido, Verifique que los datos ingresados esten bien.';
 			$respuesta['error'] = true;
 			return Redirect::to('matriculas_ct/registro')->with('mensaje',$respuesta['mensaje'])->withInput();
-		}else{
+		}else {
 			$query_alumno = DB::select('call existe_alumno(?)',array($cod));
 			foreach ($query_alumno as $valor) {
 				$existe = $valor->dato;
