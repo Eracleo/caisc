@@ -2,20 +2,9 @@
 @section('title')
 Mis Cursos Libres
 @stop
-@section('breadcrumb')
-<li>{{ HTML::link('docentes','Docentes')}} </li>
+@section('options')
 <li>Mis Cursos Libres</li>
 @stop
-
-<style>
-    span {
-        margin: 5px;
-    }
-    span a{
-        color: white;
-    }
-</style>
-
 
 @section('content')
 <div class="box">
@@ -39,31 +28,33 @@ Mis Cursos Libres
             <table aria-describedby="example1_info" id="example1" class="table table-bordered table-striped dataTable">
                 <thead>
                     <tr role="row">
-                        <th aria-label="Rendering engine: activate to sort column descending" aria-sort="ascending" style="width: 80px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" role="columnheader" class="sorting_asc">Cod Carga Academica</th>
-                        <th aria-label="Platform(s): activate to sort column ascending" style="width: 244px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" role="columnheader" class="sorting">Cod Curso</th>
-                        <th aria-label="Platform(s): activate to sort column ascending" style="width: 244px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" role="columnheader" class="sorting">Nombre</th>
-                        <th aria-label="Platform(s): activate to sort column ascending" style="width: 244px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" role="columnheader" class="sorting">Procedimientos</th>
+                        <th class="hidden">Cod Carga Academica</th>
+                        <th>Codigo </th>
+                        <th>Nombre del Curso</th>
+                        <th>Procedimientos</th>
                     </tr>
                 </thead>
 
                 <tbody aria-relevant="all" aria-live="polite" role="alert">
                     @foreach($cursos as $curso)
                         <tr class="odd">
-                            <td class=" ">{{$curso->CodCargaAcademica_cl}}</td>
+                            <td class="hidden">{{$curso->CodCargaAcademica_cl}}</td>
                             <td class=" ">{{$curso->id}}</td>
                             <td class=" ">{{$curso->nombre}}</td>
                             <td class=" ">
-                               <span class = "label label-danger"> {{ HTML::link('SilaboCarreraLibre/create/'.$curso->CodCargaAcademica_cl,'Ingresar Silabus') }}</span> 
-                            </td>
+                                {{ HTML::link('SilaboCarreraLibre/create/'.$curso->CodCargaAcademica_cl,'Ingresar Silabus' ,array('class'=>'btn btn-warning'))}}
+                                <br>
+                                <br>
+                                {{ HTML::link('SilaboCarreraLibre/index/'.$curso->CodCargaAcademica_cl,'Ver Silabus' ,array('class'=>'btn btn-success'))}}
+                              </td>
                         <tr>
                     @endforeach 
                 </tbody>
             </table>
 
         </div>
-        <br>
-        <span class="label label-success">{{ HTML::link('SilaboCarreraLibre/index.html/','Ver Todos los Silabos') }}</span> 
 
+        
     </div>
 </div>  
 @stop
