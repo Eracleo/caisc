@@ -1,6 +1,6 @@
 @extends('layouts.base_admin')
 @section('title')
-<h3>Alumno: <b>{{$alumno->nombre, ' ',$alumno->apellidos}}</b></h3>
+<h3>Datos del Alumno: <b>{{$alumno->nombre, ' ',$alumno->apellidos}}</b></h3>
 @stop
 @section('options')
 @stop
@@ -12,13 +12,14 @@
 </style>
 <div class="box-header">
         <label>Lista de Cargas Academicas a los cuales se puede matricular el alumno</label><br>
-        <h2 align="center" for="alumnoP">Código Alumno: {{$alumno->id}}</h2>
 </div>
 <div class="box">
     {{ Form::open(array('method'=> 'POST','url'=> 'matriculas_ct/matricular_lista','class'=>'form-horizontal','role'=>'form')) }}
+        {{ Form::label('codAlumno','Codigo Alumno: ',array('class'=>'col-sm-4 control-label')) }}
         <div class="col-sm-2">
             <input name="codAlumno" type="text" class="form-control" value="{{$alumno->id}}" readonly>
         </div>
+        {{ Form::label('semestreMatri','Semestre: ',array('class'=>'col-sm-1 control-label')) }}
         <div class="col-sm-2">
             <input name="semestreMatri" type="text" class="form-control" value="{{$semest}}" readonly>
         </div>
