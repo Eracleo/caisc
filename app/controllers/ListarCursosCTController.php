@@ -12,9 +12,9 @@ class ListarCursosCTController extends \BaseController {
 		if(Auth::User()->tipoUsuario == 'Docente') //eso es por ah
 		{
 			$idDocente = Auth::User()->nroId;
-			$idDocente = 2141;
+			$carrera = Carrera::lists('nombre','id');
 			$cursos = DB::select('call ListarCursosPorDocenteCT('.$idDocente.')');
-			return View::make("ListarCursos.indexCT",compact('cursos'));
+			return View::make("ListarCursos.indexCT",compact('cursos'),array('carrera'=>$carrera));
 		}
 		else
 			{return 'acesso restringido solo para docentes';}
