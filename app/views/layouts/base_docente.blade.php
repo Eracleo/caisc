@@ -15,7 +15,9 @@
           <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
         <![endif]-->
     </head>
+
     <body class="panel-usuario">
+      
     <div class="header logeado clearfix">
         <div class="logo-header-wrap">
             <h1><a href="{{url('docente/perfil')}}" title="Adondevivir.com" class="logo-header nombre">Docentes - <b>ISC</b></a></h1>
