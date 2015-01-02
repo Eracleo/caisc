@@ -3,8 +3,6 @@
 Eliminar <small>AULA</small>
 @stop
 @section('options')
-<li>{{HTML::link('Aula','Listar')}}</li>
-<li>{{HTML::link('Aula/add.html','Nueva Aula')}}</li>
 @stop
 
 @section('content')
