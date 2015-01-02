@@ -471,7 +471,7 @@ END $$
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `listarMatriculasCT`()
 BEGIN
-    select C1.id, C1.codAlumno, CONCAT(A.nombre,' ', A.apellidos) as alumno, C1.codCargaAcademica_ct, C3.nombre
+    select C1.id, C1.semestre, C1.codAlumno, CONCAT(A.nombre,' ', A.apellidos) as alumno, C1.codCargaAcademica_ct, C3.nombre
     from matricula_ct C1
     inner join alumno A on C1.codAlumno = A.id
     inner join carga_academica_ct C2 on C1.codCargaAcademica_ct = C2.codCargaAcademica_ct

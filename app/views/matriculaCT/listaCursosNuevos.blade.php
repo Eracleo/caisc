@@ -17,10 +17,10 @@
 <div class="box">
     {{ Form::open(array('method'=> 'POST','url'=> 'matriculas_ct/matricular_lista','class'=>'form-horizontal','role'=>'form')) }}
         <div class="col-sm-2">
-                {{ Form::text('codAlumno',$alumno->id,array('class'=>'form-control'))}}
+            <input name="codAlumno" type="text" class="form-control" value="{{$alumno->id}}" readonly>
         </div>
         <div class="col-sm-2">
-                {{ Form::text('semestreMatri',$semest,array('class'=>'form-control'))}}
+            <input name="semestreMatri" type="text" class="form-control" value="{{$semest}}" readonly>
         </div>
         <div class="box-body table-responsive">
             <table aria-describedby="example1_info" id="example1" class="table table-bordered table-striped dataTable">
