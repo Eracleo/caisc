@@ -17,7 +17,7 @@ class Personal extends Eloquent {
 			'dni'=>array('required','numeric','digits:8','unique:personal'),
 			'direccion'=>array('max:50'),
 			'telefono'=>array('max:20'),
-			'email'=>array('required','email','unique:personal'),
+			'email'=>array('required','email','unique:personal','unique:users'),
 			'password'=>array('required','min:6','confirmed')
 		);
 		$validador = Validator::make($input,$reglas);

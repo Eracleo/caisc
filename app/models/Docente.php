@@ -14,7 +14,7 @@ class Docente extends Eloquent {
 			'dni'=>array('required','numeric','digits:8','unique:docente'),
 			'direccion'=>array('max:50'),
 			'telefono'=>array('max:20'),
-			'email'=>array('required','email','unique:docente','max:40'),
+			'email'=>array('required','email','unique:docente','max:40','unique:users'),
 			'password'=>array('required','min:6','confirmed','max:12')
 		);
 		$validador = Validator::make($input,$reglas);
