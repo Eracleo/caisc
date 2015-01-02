@@ -155,23 +155,23 @@ class MatriculaCTController extends BaseController
 	}
 
 	public function matricular_lista(){
+		$respuesta = array();
 		$cod = Input::get('codAlumno');
 		$semestre = Input::get('semestreMatri');
 		$arreglo = Input::get('cargas');
 		if (empty($arreglo)) {
-			$respuesta['mensaje'] = 'No hay registros para matricular';
+			$respuesta['mensaje'] = 'No hay registros para matricular. Ingrese de nuevo';
 			$respuesta['error'] = true;
 			$respuesta['data'] = '';
-			return Redirect::to('matriculas_ct/listaMatriculas')->with('mensaje',$respuesta['mensaje']);
+			return Redirect::to('matriculas_ct/registro')->with('mensaje',$respuesta['mensaje']);
 		}else{
 			foreach ($arreglo as $carga) {
 				$carga_acade = $carga;
 				$matricula_ct = DB::select('call insertMatriculaCT(?,?,?)',array($cod,$carga_acade,$semestre));
-				//$respuesta['mensaje'] = 'Matricula Creada';
-				//$respuesta['error'] = false;
-				//$respuesta['data'] = $matricula_ct;
 				}
-			return Redirect::to('matriculas_ct/listaMatriculas');
+			$respuesta['mensaje'] = 'Matrículas registradas correctamente';
+			$respuesta['error'] = false;
+			return Redirect::to('matriculas_ct/listaMatriculas')->with('mensaje',$respuesta['mensaje']);
 		}
 	}
 
