@@ -126,14 +126,27 @@ class MatriculaCTController extends BaseController
 	// lista los cursos nuevos que puede matricularse en el actual modulo
 	public function listacursosnuevosProcStore(){
 		$cod = Input::get('codAlumno'); // codigo del alumno
-		$semest = Input::get('semestre');
+		if (($cod == '') or ! is_numeric($cod)) {
+			return Redirect::to('404.html');
+		}else{
+			$query_alumno = DB::select('call existe_alumno(?)',array($cod));
+			foreach ($query_alumno as $valor) {
+				$existe = $valor->dato;
+				//echo(gettype($existe));
+				if ($existe == 1) {
+					$semest = Input::get('semestre');
 
-		$modulo = DB::table('alumno')->where('id', $cod)->pluck('modulo'); // modulo del alumno
-		$codCarrera = DB::table('alumno')->where('id',$cod)->pluck('codCarrera'); // codigo de carrera del alumno
-		$alumno = DB::table('alumno')->where('id', $cod)->first(); // recupero datos del alumno
+					$modulo = DB::table('alumno')->where('id', $cod)->pluck('modulo'); // modulo del alumno
+					$codCarrera = DB::table('alumno')->where('id',$cod)->pluck('codCarrera'); // codigo de carrera del alumno
+					$alumno = DB::table('alumno')->where('id', $cod)->first(); // recupero datos del alumno
 
-		$cursosDisponibles = DB::select('call listarCursosFaltantesParaMatriculaCT(?,?,?,?)',array($cod,$modulo,$codCarrera,$semest));
-		return View::make('matriculaCT.listaCursosNuevos', compact('alumno','semest'),array('cursos'=>$cursosDisponibles));
+					$cursosDisponibles = DB::select('call listarCursosFaltantesParaMatriculaCT(?,?,?,?)',array($cod,$modulo,$codCarrera,$semest));
+					return View::make('matriculaCT.listaCursosNuevos', compact('alumno','semest'),array('cursos'=>$cursosDisponibles));
+				} else{
+					return Redirect::to('404.html');
+				}
+			}
+		}
 	}
 
 	public function matricular_lista(){

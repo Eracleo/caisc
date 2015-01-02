@@ -500,7 +500,17 @@ BEGIN
     -- contamos cuantos cursos aprobo en la tabla anterior
     select count(*) as cursos_aprobados from notasAlumno where notaa >= 10.5;
 END $$
---end
+-- end
+-- begin
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `existe_alumno`(cod int)
+BEGIN
+    SELECT IF( EXISTS(
+             SELECT *
+             FROM alumno
+             WHERE `id` =  cod), 1, 0) as dato;
+END $$
+-- end
 -- begin
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `listarCursosFaltantesParaMatriculaCT`(alumno int, modulo int, carre int, semest varchar(10))
