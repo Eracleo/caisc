@@ -181,7 +181,6 @@ Route::group(['before' => 'auth'], function()
     Route::post('CursosLibres/insert.html','CursosCarreraLibreController@insertar');
     Route::get('CursosLibres/index.html','CursosCarreraLibreController@listar');
 
-    Route::get('CursosLibres/updatesID.html','CursosCarreraLibreController@ActualizarBuscandoNombre');
     Route::get('CursosLibres/updatecID/{id}','CursosCarreraLibreController@ActualizarConID');
     Route::post('CursosLibres/post_update.html',array('uses'=>'CursosCarreraLibreController@post_actualizar'));//->where('codCurso_cl','[0-9]+');
 
@@ -195,14 +194,17 @@ Route::group(['before' => 'auth'], function()
     Route::post('CursosTecnica/insert.html','CursosCarreraTecnicaController@insertar');
     Route::get('CursosTecnica/index.html','CursosCarreraTecnicaController@listar');
 
-    Route::get('CursosTecnica/updatesID.html','CursosCarreraTecnicaController@ActualizarBuscandoNombre');
     Route::get('CursosTecnica/updatecID/{id}',array('uses'=>'CursosCarreraTecnicaController@ActualizarConID'));
     Route::post('CursosTecnica/post_update.html',array('uses'=>'CursosCarreraTecnicaController@post_actualizar'));
 
     Route::get('CursosTecnica/delete.html','CursosCarreraTecnicaController@get_eliminar');
     Route::get('CursosTecnica/post_delete/{id}',array('uses'=>'CursosCarreraTecnicaController@post_eliminar'));
     Route::post('CursosTecnica/eliminar.html','CursosCarreraTecnicaController@eliminando');
+    Route::get('CursosTecnica/listarCarrera.html','CursosCarreraTecnicaController@listarCarrera');
+    Route::get('CursosTecnica/listarModulo.html','CursosCarreraTecnicaController@listarModulo');
+    Route::get('CursosTecnica/listarAmbos.html','CursosCarreraTecnicaController@listarAmbos');
 
+    
     //Modulo silabo de carrera libre
 
     // Listar cursos por docente
@@ -211,9 +213,10 @@ Route::group(['before' => 'auth'], function()
 
     Route::get('SilaboCarreraLibre/create/{id}','SilaboCarreraLibreController@nuevo');
     Route::get('SilaboCarreraLibre/index.html','SilaboCarreraLibreController@listar');
+    Route::get('SilaboCarreraLibre/index/{id}','SilaboCarreraLibreController@listarespecifico');
+    
     Route::post('SilaboCarreraLibre/insert.html','SilaboCarreraLibreController@insertar');
 
-    Route::get('SilaboCarreraLibre/updatesID.html','SilaboCarreraLibreController@ActualizarBuscandoNombre');
     Route::get('SilaboCarreraLibre/updatecID/{id}',array('uses'=>'SilaboCarreraLibreController@ActualizarConID'));
     Route::post('SilaboCarreraLibre/post_update.html',array('uses'=>'SilaboCarreraLibreController@post_actualizar'));
     Route::post('SilaboCarreraLibre/end.html',array('uses'=>'SilaboCarreraLibreController@post_finalizar'));
@@ -232,10 +235,11 @@ Route::group(['before' => 'auth'], function()
 
     Route::get('SilaboCarreraTecnica/create/{id}','SilaboCarreraTecnicaController@nuevo');
     Route::get('SilaboCarreraTecnica/index.html','SilaboCarreraTecnicaController@listar');
+    Route::get('SilaboCarreraTecnica/index/{id}','SilaboCarreraTecnicaController@listar');
+    
     Route::post('SilaboCarreraTecnica/insert.html','SilaboCarreraTecnicaController@insertar');
 
-    Route::get('SilaboCarreraTecnica/updatesID.html','SilaboCarreraTecnicaController@ActualizarBuscandoNombre');
-    Route::get('SilaboCarreraTecnica/updatecID/{id}',array('uses'=>'SilaboCarreraTecnicaController@ActualizarConID'));
+     Route::get('SilaboCarreraTecnica/updatecID/{id}',array('uses'=>'SilaboCarreraTecnicaController@ActualizarConID'));
     Route::post('SilaboCarreraTecnica/post_update.html',array('uses'=>'SilaboCarreraTecnicaController@post_actualizar'));
 
     Route::get('SilaboCarreraTecnica/delete.html','SilaboCarreraTecnicaController@get_eliminar');
