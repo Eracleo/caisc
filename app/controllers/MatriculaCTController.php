@@ -53,6 +53,7 @@ class MatriculaCTController extends BaseController
 		{
 			Redirect::to('404.html');
 		} else {
+			$nota_ct = NotaCT::where('codMatricula_ct','=',$cod)->delete();
 			$matricula = MatriculaCT::where('id','=',$cod)->delete();
 			return Redirect::to('matriculas_ct/listaMatriculas');
 		}

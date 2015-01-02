@@ -48,7 +48,7 @@
                             <td class=" ">{{ $curso->docente }}</td>
                             <td class=" ">{{ $curso->turno }}</td>
                             <td class=" ">{{ $curso->grupo }}</td>
-                            <td class=" "><input type="checkbox" name="cargas[]" value={{ $curso->codCargaAcademica_ct }}>{{ $curso->codCargaAcademica_ct }}</td>
+                            <td class=" "><input type="checkbox" name="cargas[]" value={{ $curso->codCargaAcademica_ct }}></td>
                     </tr>
                     @endforeach
                 </tbody>

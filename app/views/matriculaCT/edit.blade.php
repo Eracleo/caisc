@@ -10,9 +10,17 @@ Editar Matricula
 	<div class="form-group">
 		{{ Form::label('idt','Código Matricula:',array('class'=>'col-sm-4 control-label')) }}
 		<div class="col-sm-8">
-			{{ Form::text('idt',$matricula->id,array('class'=>'form-control'))}}
-		</div>
+            <input name="idt" type="text" class="form-control" value="{{$matricula->id}}" readonly>
+        </div>
 	</div>
+
+	<div class="form-group">
+		{{ Form::label('semest','Semestre:',array('class'=>'col-sm-4 control-label')) }}
+		<div class="col-sm-8">
+            <input name="semest" type="text" class="form-control" value="{{$matricula->semestre}}" readonly>
+        </div>
+	</div>
+
 	<div class="form-group">
 		{{ Form::label('CodAlumno','Código Alumno:',array('class'=>'col-sm-4 control-label')) }}
 		<div class="col-sm-8">
