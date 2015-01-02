@@ -2,9 +2,9 @@
 
 class AulaController extends BaseController
 {
-	public function index($registros=5)
+	public function index($registros=10)
 	{
-		$datos = Aula::where('estado','=','1')->orderBy('codAula','DESC')->paginate(5);
+		$datos = Aula::where('estado','=','1')->orderBy('codAula','DESC')->paginate($registros);
 		$aula = Aula::where('estado','=','1')->orderBy('codAula','DESC')->get();
 		return View::make('Aula.index',compact("datos"),array('codAula'=>$aula));
 	}
