@@ -72,29 +72,29 @@
                 <li>
                     <!--{{ HTML::link('matriculas_cl/lista_cursos','Cursos Disponibles') }}-->
                     <a href = "{{url('matriculas_cl/lista_cursos')}}">
-                    <span class = "glyphicon glyphicon-th-list"></span>
-                    Lista Cursos Disponibles</a> 
+                    <span class = "glyphicon glyphicon-pencil"></span>
+                    Registrar Matrícula Curso Libre</a> 
                 </li>
 
                 <li>
                     <!--{{ HTML::link('matriculas_cl/ingresar','Matriculas por Curso') }}-->
                     <a href = "{{url('matriculas_cl/ingresar')}}">
                     <span class = "glyphicon glyphicon-th-list"></span>
-                    Lista Matriculas por Curso</a> 
+                    Lista Matrículas por Curso</a> 
                 </li>
                  <li class="divider"></li>
-                 <li class="dropdown-header">Carrera Tecnica</li>
+                 <li class="dropdown-header">Carrera Técnica</li>
                 <li>
                     <!--{{ HTML::link('matriculas_ct/registro','Registrar Matricula') }}-->
                     <a href = "{{url('matriculas_ct/registro')}}">
                     <span class = "glyphicon glyphicon-pencil"></span>
-                    Registrar Matricula</a> 
+                    Registrar Matrícula Carrera Técnica</a> 
                 </li>
                 <li>
                     <!--{{ HTML::link('matriculas_ct/listaMatriculas','Listar Matriculas') }}-->
                     <a href = "{{url('matriculas_ct/listaMatriculas')}}">
                     <span class = "glyphicon glyphicon-th-list"></span>
-                    Listar Matriculas</a> 
+                    Listar Matrículas</a> 
                 </li>
                 </li>
               </ul>
