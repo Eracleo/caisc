@@ -7,6 +7,51 @@ Lista <small>CURSOS DE CARRERA  </small>
 <li>{{HTML::link('CursosTecnica/create.html','Nuevo')}}</li>
 @stop
 @section('content')
+
+{{ Form::open(array('method'=> 'GET','url'=> 'CursosTecnica/listarAmbos.html','class'=>'form-horizontal','role'=>'form')) }}
+
+    <div class= "form-group">
+        {{ Form::label('buscar','Buscar por Carrera:',array('class'=>'col-sm-2 control-label')) }}
+        
+        <div class="col-sm-6 col-md-3">
+            @if($carrera == null)
+                {{HTML::linkAction('CarreraProfesionalController@add', 'Necesita agregar carrera','',array('class'=>'btn btn-warning','required'))}}
+            @else
+                {{ Form::select('codCarrera',$carrera,null,array('class'=>'form-control','required'))}}    
+            @endif            
+        </div>        
+        <div class="errores">
+            @if ( $errors->has('codCarrera'))
+                @foreach ($errors->get('codCarrera') as $error)
+                <div class="alert alert-danger">* {{ $error }}</div>
+                @endforeach
+            @endif
+        </div>
+     </div>
+
+     <div class="form-group">
+        {{ Form::label('modulo','Buscar por Modulo:',array('class'=>'col-sm-2 control-label')) }}
+        <div class="col-sm-6 col-md-3">
+            @if($modulo == null)
+                {{HTML::linkAction('ModuloController@create', 'Necesita agregar modulo','',array('class'=>'btn btn-warning'))}}
+            @else
+                {{ Form::select('modulo',$modulo,null,array('class'=>'form-control','required'))}}
+            @endif
+        </div>
+        <div class="errores">
+            @if ( $errors->has('modulo'))
+                @foreach ($errors->get('modulo') as $error)
+                <div class="alert alert-danger">* {{ $error }}</div>
+                @endforeach
+            @endif
+        </div>
+        <div class="col-xs-12 col-sm-2">
+            <button class="btn btn-primary btn-block" type="submit">Buscar</button>
+        </div>
+    </div>
+{{Form::close()}}
+
+
   <table aria-describedby="example1_info" id="example1" class="table table-bordered table-striped dataTable">
         <thead>
             <tr role="row">

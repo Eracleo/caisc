@@ -9,8 +9,11 @@ Agregar <small> CURSO DE CARRERA </small>
 
 @section('content')
 <div class="col-xs-12 col-sm-12">
+
+
 {{ Form::open(array('method'=> 'POST','url'=> 'CursosTecnica/insert.html','class'=>'form-horizontal','role'=>'form')) }}
 
+	
 	<div class="form-group">
 		{{ Form::label('id','Codigo del Curso:',array('class'=>'col-sm-2 control-label')) }}
 		<div class="col-sm-6 col-md-4">

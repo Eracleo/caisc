@@ -2,18 +2,9 @@
 @section('title')
 Eliminar <small>SILABO DE CARRERA TECNICA </small>
 @stop
-@section('breadcrumb')
+@section('options')
 <li>{{ HTML::link('SilaboCarreraTecnica/index.html/','Silabo de Cursos de Carrera') }} </li>
-<li>Eliminar Silabo</li>
 @stop
-<style>
-    span {
-        margin: 5px;
-    }
-    span a{
-        color: white;
-    }
-</style>
 @section('content')
 {{ Form::open(array('method'=> 'POST','url'=> 'SilaboCarreraTecnica/eliminar.html','class'=>'form-horizontal','role'=>'form')) }}
 	
@@ -22,9 +13,9 @@ Eliminar <small>SILABO DE CARRERA TECNICA </small>
 	</div>
 
 	<div class="form-group">
-		{{ Form::label('id','Nro de Silabo:',array('class'=>'col-sm-2 control-label')) }}
+		{{ Form::hidden('id','Nro de Silabo:',array('class'=>'col-sm-2 control-label')) }}
 		<div class="col-sm-3">
-			{{ Form::text('id',$silabocurso_ct->id,array('class'=>'form-control','readonly'=>'readonly'))}}
+			{{ Form::hidden('id',$silabocurso_ct->id,array('class'=>'form-control','readonly'=>'readonly'))}}
 		</div>
 	</div>
 
@@ -65,23 +56,23 @@ Eliminar <small>SILABO DE CARRERA TECNICA </small>
 	</div>
 
 	<div class="form-group">
-		{{ Form::label('orden','Orden :',array('class'=>'col-sm-2 control-label')) }}
+		{{ Form::hidden('orden','Orden :',array('class'=>'col-sm-2 control-label')) }}
 		<div class="col-sm-6">
-			{{ Form::number('orden',$silabocurso_ct->orden,array('class'=>'form-control','required', 'readonly'=>'readonly'))}}
+			{{ Form::hidden('orden',$silabocurso_ct->orden,array('class'=>'form-control','required', 'readonly'=>'readonly'))}}
 		</div>
 	</div>
 	
 	
 	<div class="form-group">
 		
-		<div class="col-xs-12 col-sm-6 col-md-5">
+		<div class="form-group">
 		
-		<button class="btn btn-info btn-block" type="reset">
-				<span class="">{{ HTML::link('SilaboCarreraTecnica/index.html','Cancelar') }}</span>
-		</button>
+		<div class="col-xs-12 col-sm-8 col-md-4">
+			{{HTML::linkAction('SilaboCarreraTecnicaController@listar', 'Cancelar','',array('class'=>'col-sm-12 btn btn-warning'))}}
 		</div>
-		<div class="col-xs-12 col-sm-6 col-md-6">
+		<div class="col-xs-12 col-sm-6 col-md-4">
 			<button class="btn btn-primary btn-block" type="submit">Eliminar</button>
+		</div>
 		</div>
 	</div>
 {{Form::close()}}

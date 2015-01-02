@@ -63,8 +63,7 @@ Actualizar <small> {{$curso_ct->nombre}} </small>
 			@endif
 		</div>
 	</div>
-
-	<div class="form-group">
+<div class="form-group">
 		{{ Form::label('codCarrera','Carrera:',array('class'=>'col-sm-2 control-label')) }}
 		<div class="col-sm-6 col-md-4">
 			@if($carrera == null)
@@ -75,8 +74,16 @@ Actualizar <small> {{$curso_ct->nombre}} </small>
 			{{HTML::linkAction('CarreraProfesionalController@add', 'Nueva Carrera','',array('class'=>'btn btn-success'))}}
 			
 			@endif
+			
 		</div>
-
+		<div class="errores">
+			@if ( $errors->has('codCarrera'))
+		       	@foreach ($errors->get('codCarrera') as $error)
+			   	<div class="alert alert-danger">* {{ $error }}</div>
+		    	@endforeach
+			@endif
+		</div>
+		
 	</div>
 	<div class="form-group">
 		<div class="col-xs-12 col-sm-3">
