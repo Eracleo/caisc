@@ -3,7 +3,7 @@
 
 class CarreraProfesionalController extends BaseController
 {
-	public function index($registros=2)
+	public function index($registros=10)
 	{
 
 		$datos = Carrera::where('estado','=','1')->orderBy('id','DESC')->paginate($registros);
@@ -67,7 +67,7 @@ class CarreraProfesionalController extends BaseController
 		if($respuesta['error']==true)
 		{	$id = input::get('id');
 			$carrera = Carrera::where('id','=',$id)->firstOrFail();
-			return Redirect::to('CarreraProfesional/updatecID/'.$id)->with('mensaje',$respuesta['mensaje'])->withInput();
+			return Redirect::to('CarreraProfesional/updatecID/'.$id)->withErrors($respuesta['mensaje'] )->withInput();
 		}
 		else
 		{
