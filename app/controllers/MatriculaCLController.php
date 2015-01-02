@@ -46,21 +46,37 @@ class MatriculaCLController extends BaseController
 	{
 		$respuesta = array();
 		$codigo = Input::get('codAlumno');
-		$carga = Input::get('codCargaAcademica_cl');
-		//echo "codigo alumno: ",$codigo,"\n";
-		//echo 'codigo carga academica: ',$carga;
-		$buscar = DB::select('call buscarMatricula(?,?)', array($codigo,$carga));
-		$lonf = sizeof($buscar);
-		if ($lonf > 0) {
-			$respuesta['mensaje'] = 'Error!!! La matricula ya existe';
+		if (($codigo == '') or ! is_numeric($codigo)) {
+			$respuesta['mensaje'] = 'ERROR !!! Código Alumno no válido, Verifique que los datos ingresados esten bien.';
 			$respuesta['error'] = true;
 			return Redirect::to('matriculas_cl/lista_cursos')->with('mensaje',$respuesta['mensaje'])->withInput();
-		}else{
-			$matricula_cl = DB::select('call insertMatriculaCL(?,?)',array($codigo,$carga));
-			$respuesta['mensaje'] = 'Matricula Creada';
-			$respuesta['error'] = false;
-			$respuesta['data'] = $matricula_cl;
-			return Redirect::to('matriculas_curso_libre')->with('mensaje',$respuesta['mensaje']);
+		} else{
+			$query_alumno = DB::select('call existe_alumno(?)',array($codigo));
+			foreach ($query_alumno as $valor) {
+				$existe = $valor->dato;
+				//echo(gettype($existe));
+				if ($existe == 1) { // Codigo del alumno si existe
+					$carga = Input::get('codCargaAcademica_cl');
+					$buscar = DB::select('call buscarMatricula(?,?)', array($codigo,$carga));
+					$lonf = sizeof($buscar);
+					if ($lonf > 0) {
+						$respuesta['mensaje'] = 'Error!!! La matricula ya existe';
+						$respuesta['error'] = true;
+						return Redirect::to('matriculas_cl/lista_cursos')->with('mensaje',$respuesta['mensaje'])->withInput();
+					}else{
+						$matricula_cl = DB::select('call insertMatriculaCL(?,?)',array($codigo,$carga));
+						$respuesta['mensaje'] = 'Matricula Creada';
+						$respuesta['error'] = false;
+						$respuesta['data'] = $matricula_cl;
+						return Redirect::to('matriculas_curso_libre')->with('mensaje',$respuesta['mensaje']);
+					}
+				} else // codigo del alumno no existe
+				{
+					$respuesta['mensaje'] = 'ERROR !!! Código Alumno no existe.';
+					$respuesta['error'] = true;
+					return Redirect::to('matriculas_cl/lista_cursos')->with('mensaje',$respuesta['mensaje'])->withInput();
+				}
+			}
 		}
 	}
 
