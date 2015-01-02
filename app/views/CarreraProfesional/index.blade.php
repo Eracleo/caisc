@@ -1,29 +1,17 @@
 @extends('layouts.base_admin')
 @section('title')
-Listar Carreras Profesionales
+Lista <small> Carreras Profesionales </small>
 @stop
 @section('options')
-<li>CARRERAS PROFESIONALES</li>
+<li>{{HTML::link('CarreraProfesional','Listar')}}</li>
+<li>{{HTML::link('CarreraProfesional/add.html','Nueva Carrera')}}</li>
 @stop
-<style>
-    span {
-        margin: 5px;
-    }
-    span a{
-        color: white;
-    }
-</style>
 @section('content')
-        <div class="col-xs-6">
-                    <div id="example1_filter" class="dataTables_filter">
-                        <label>Buscar: <input aria-controls="example1" type="text"></label>
-                        <a href="CarreraProfesional/add.html"><span class="label label-success">AGREGAR CARRERA</a>
-                    </div>
-        </div>
+<div class="box">
     <table class="table table-bordered table-striped dataTable">
         <thead>
             <tr role="row">
-                <th>Cod Carrera Profesional</th>
+                <th>Codigo Carrera Profesional</th>
                 <th>Nombre</th>
                 <th>Descripcion</th>
                 <th>Actions</th>
@@ -32,7 +20,7 @@ Listar Carreras Profesionales
     <tbody aria-relevant="all" aria-live="polite" role="alert">
         @foreach( $datos as $dato)
         <tr class="odd">
-                <td class="  sorting_1">{{ HTML::link('docente/profile/'.$dato->id,$dato->id) }}</td>
+                <td class="  sorting_1">{{ $dato->id }}</td>
                 <td class=" ">{{ $dato->nombre }}</td>
                 <td class=" ">{{ $dato->descripcion }}</td>
                 <td class=" ">
@@ -44,6 +32,7 @@ Listar Carreras Profesionales
         @endforeach
         </tbody>
     </table>
-        <div class="col-sm-2"><p><b>Pagina Actual:</b> {{ $datos->getCurrentPage()}}</p></div>
-        <div class="col-sm-6">{{ $datos->links()}}</div>
+    Pagina Actual:{{ $datos->getCurrentPage()}}
+    {{ $datos->links()}}
+</div>
 @stop
