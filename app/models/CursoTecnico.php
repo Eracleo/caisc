@@ -9,10 +9,11 @@ class CursoTecnico extends Eloquent {
 	{
 		$respuesta = array();
 		$reglas = array(
-			'id'=>array('required','min:2','max:10','alpha_num'),
+			'id'=>array('required','unique:curso_ct','min:2','max:10','alpha_num'),
 			'nombre'=>array('required','min:5','max:30'),
 			'modulo'=>array('required','max:2'),
-			'horas_academicas'=>array('required','max:200','min:1','integer')
+			'horas_academicas'=>array('required','max:200','min:1','integer'),
+			'codCarrera'=>array('required','max:10'),
 		);
 		$validador = Validator::make($input,$reglas);
 		if($validador->fails())
@@ -38,7 +39,7 @@ class CursoTecnico extends Eloquent {
 			{
 				if($aux->estado == 1)
 				{				
-					$respuesta['mensaje'] = 'Ya existe ese curso';
+					$respuesta['mensaje'] = $validador;
 					$respuesta['error'] = true;
 					$respuesta['data'] = $curso;
 				}
@@ -52,7 +53,7 @@ class CursoTecnico extends Eloquent {
 					$aux->updated_at = time();
 					$aux->save();
 
-					$respuesta['mensaje'] = 'Curso Creado';
+					$respuesta['mensaje'] ='Curso Creado';
 					$respuesta['error'] = false;
 					$respuesta['data'] = $aux;
 						
@@ -69,7 +70,7 @@ class CursoTecnico extends Eloquent {
 				}
 				else 
 				{
-					$respuesta['mensaje'] = 'No se pudo agregar el curso';
+					$respuesta['mensaje'] = $validador;
 					$respuesta['error'] = true;
 					$respuesta['data'] = $curso;
 						
@@ -84,10 +85,10 @@ class CursoTecnico extends Eloquent {
 	{
 		$respuesta = array();
 		$reglas = array(
-		'id'=>array('required','min:2','max:10','alpha_num'),
 			'nombre'=>array('required','min:5','max:30'),
 			'modulo'=>array('required','max:2'),
-			'horas_academicas'=>array('required','max:300','min:1','integer')
+			'horas_academicas'=>array('required','max:200','min:1','integer'),
+			'codCarrera'=>array('required','max:10'),
 		);
 		$validador = Validator::make($input,$reglas);
 		if($validador->fails())
