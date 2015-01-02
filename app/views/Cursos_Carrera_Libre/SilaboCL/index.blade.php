@@ -2,18 +2,11 @@
 @section('title')
 Lista <small>SILABO CURSOS LIBRES </small>
 @stop
-@section('breadcrumb')
-<li>Silabo Cursos Libres</li>
-@stop
-<style>
-    span {
-        margin: 5px;
-    }
-    span a{
-        color: white;
-    }
-</style>
+@section('options')
+ <li>{{HTML::linkAction('ListarCursosController@getIndex', 'Volver a mis cursos Libres')}} </li>
+ 
 
+@stop
 @section('content')
 <div class="box">
     <div class="box-header">
@@ -22,29 +15,25 @@ Lista <small>SILABO CURSOS LIBRES </small>
     <div class="box-body table-responsive">
         <div id="example1_wrapper" class="dataTables_wrapper form-inline" role="grid">
             <div class="row">
-            
-                <div class="col-xs-6">
-                    <!--<div id="example1_filter" class="dataTables_filter">
-                        <label>Search: <input aria-controls="example1" type="text"></label>
-                        {{ HTML::link('SilaboCarreraLibre/create.html','Agregar Silabo') }}
-                    </div>-->
-                </div>
             </div>
             <table aria-describedby="example1_info" id="example1" class="table table-bordered table-striped dataTable">
                 <thead>
                     <tr role="row">
-                        <th aria-label="Rendering engine: activate to sort column descending" aria-sort="ascending" style="width: 80px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" role="columnheader" class="sorting_asc">Nro</th>
-                        <th aria-label="Browser: activate to sort column ascending" style="width: 283px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" role="columnheader" class="sorting">Capitulo</th>
-                        <th aria-label="Browser: activate to sort column ascending" style="width: 283px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" role="columnheader" class="sorting">Titulo del Silabo</th>
-                         <th aria-label="Browser: activate to sort column ascending" style="width: 283px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" role="columnheader" class="sorting">Estado</th>
-                        <th aria-label="CSS grade: activate to sort column ascending" style="width: 114px;" colspan="1" rowspan="1" aria-controls="example1" tabindex="0" role="columnheader" class="sorting">Actions</th>
+                        <th >Nro</th>
+                        <th class="hidden">id</th>
+                        <th >Capitulo</th>
+                        <th >Titulo del Silabo</th>
+                        <th>Estado</th>
+                        <th >Actions</th>
                     </tr>
                 </thead>
             <tbody aria-relevant="all" aria-live="polite" role="alert">
                 @foreach( $datos as $dato)
+                
                 <tr class="odd">
-                        <td class=" "><b>{{ $dato->id }}</b></td>
-                        <td class=" ">{{ $dato->capitulo }}</td>
+                        <td class=""><b></b>{{$dato->orden}}</td>
+                        <td class="hidden"><b>{{ $dato->id }}</b></td>
+                        <td class=" "><b>{{ $dato->capitulo }}</b></td>
                         <td class=" ">{{ $dato->titulo }}</td>
                         <td class=" ">
                                     <?php if($dato->estado == 2 ) { ?> 
@@ -60,16 +49,16 @@ Lista <small>SILABO CURSOS LIBRES </small>
                                         <?php } ?> <?php } ?> 
                         </td>
                         <td class=" ">
-                           <span class = "label label-success">{{ HTML::link('SilaboCarreraLibre/detalle/'.$dato->id,'Detalle') }}</span> 
+                           {{ HTML::link('SilaboCarreraLibre/detalle/'.$dato->id,'Detalle',array('class'=>'col-sm-8 btn btn-success')) }}
                            <br><br>
-                           <span class = "label label-warning">{{ HTML::link('SilaboCarreraLibre/updatecID/'.$dato->id,'Actualizar') }} </span> 
-                           <br><br>
-                           <span class = "label label-danger"> {{ HTML::link('SilaboCarreraLibre/post_delete/'.$dato->id,'Eliminar') }}</span> 
+                            {{ HTML::link('SilaboCarreraLibre/updatecID/'.$dato->id,'Actualizar',array('class'=>'col-sm-4 btn btn-warning')) }}
+                            {{ HTML::link('SilaboCarreraLibre/post_delete/'.$dato->id,'Eliminar',array('class'=>'col-sm-4 btn btn-danger')) }}
                         </td>
                 </tr>
                 @endforeach
                 </tbody>
             </table>
+
                  Pagina Actual:{{ $datos->getCurrentPage()}}
             </div>
                 {{ $datos->links()}}

@@ -5,18 +5,10 @@ DETALLE <small>SILABO</small>
 
 @section('options')
 
-<li>{{ HTML::link('SilaboCarreraLibre/index.html/','Silabo de Cursos Libres') }} </li>
-<li>Detalle Silabo</li>
-<li>{{$silabo->id}}</li>
+<li>{{ HTML::link('SilaboCarreraLibre/index.html/','Ver Silabos de Cursos Libres') }} </li>
 <li>{{ HTML::link('SilaboCarreraLibre/updatecID/'.$silabo->id,'Editar') }}</li>
 <li>{{ HTML::link('SilaboCarreraLibre/post_delete/'.$silabo->id,'Eliminar') }}</li>
-<li>
-		@if($silabo->estado == 1)
-			<button class="btn btn-default" type="submit">Finalizar</span>
-		@else
-			<button class="btn btn-default" type="submit">En Proceso</span>
-		@endif
-</li>
+
 @stop
 
 @section('content')
@@ -24,28 +16,17 @@ DETALLE <small>SILABO</small>
 
 <div class="row">
 	<div class="col-lg-7">
-		
+		{{ Form::hidden('id',$silabo->id,array('class'=>'form-control col-sm-2','required','readonly'=>'readonly'))}}	
 	</div>	
-	<br>
-	{{ Form::hidden('id',$silabo->id,array('class'=>'form-control col-sm-2','required','readonly'=>'readonly'))}}
+	<br>	
 	
 	{{Form::close()}}	
 	<div class="col-lg-4">	
 
-		<p ><b>NRO DE SILABO 	:	</b> {{$silabo->id}}
-			</p>
-
+		<p><b>NRO 		:	</b> {{ $silabo->orden }}</p>
 		<p ><b>CAPITULO		:	</b>{{ $silabo->capitulo }}</p>
-		
-		<p ><b>TITULO 	: 	</b>{{ $silabo->titulo }}</p>
-		
-	</div>
-	<div class="col-lg-7">
-		
-		<p ><b>OBJETIVOS 	:	</b></br> {{ $silabo->objetivos }}</p>
-		<p><b>DESCRIPCION 	:	</b></br> {{ $silabo->descripcion }}  </p>
 		<p><b>NUMERO DE CLASES 	:	</b> {{ $silabo->numeroclases}}</p>
-		<p><b>ORDEN 		:	</b> {{ $silabo->orden }}</p>
+		
 		<?php 
 			if($silabo->estado == 2 )
 			{
@@ -71,6 +52,17 @@ DETALLE <small>SILABO</small>
 		<?php 
 			}
 		?> 
+		@if($silabo->estado == 1)
+			<button class="col-sm-8 btn btn-success" type="submit">Finalizar</span>
+		@else
+			<button class="col-sm-8 btn btn-danger" type="submit">En Proceso</span>
+		@endif
+	</div>
+	<div class="col-lg-7">
+		<p ><b>TITULO 	: 	</b>{{ $silabo->titulo }}</p>
+		<p ><b>OBJETIVOS 	:	</b></br> {{ $silabo->objetivos }}</p>
+		<p><b>DESCRIPCION 	:	</b></br> {{ $silabo->descripcion }}  </p>
+		
 		
 	</div>
 </div>

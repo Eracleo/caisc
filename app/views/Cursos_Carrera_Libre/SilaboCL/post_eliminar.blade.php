@@ -2,29 +2,20 @@
 @section('title')
 Eliminar <small>SILABO DE CURSOS LIBRES </small>
 @stop
-@section('breadcrumb')
+@section('options')
 <li>{{ HTML::link('SilaboCarreraLibre/index.html/','Silabo de Cursos Libres') }} </li>
-<li>Eliminar Silabo</li>
 @stop
-<style>
-    span {
-        margin: 5px;
-    }
-    span a{
-        color: white;
-    }
-</style>
 @section('content')
 {{ Form::open(array('method'=> 'POST','url'=> 'SilaboCarreraLibre/eliminar.html','class'=>'form-horizontal','role'=>'form')) }}
 	
 	<div class="form-group">
-	{{ Form::label('LABEL','ESTA SEGURO DE ELIMINAR ESTE SILABO:',array('class'=>'col-sm-8 control-label')) }}
+	{{ Form::label('LABEL','ESTA SEGURO DE ELIMINAR ESTE SILABO:',array('class'=>'col-sm-6 control-label')) }}
 	</div>
 
 	<div class="form-group">
-		{{ Form::label('id','Nro de Silabo:',array('class'=>'col-sm-2 control-label')) }}
+		{{ Form::hidden('id','Nro de Silabo:',array('class'=>'col-sm-2 control-label')) }}
 		<div class="col-sm-3">
-			{{ Form::text('id',$silabocurso_cl->id,array('class'=>'form-control','readonly'=>'readonly'))}}
+			{{ Form::hidden('id',$silabocurso_cl->id,array('class'=>'form-control','readonly'=>'readonly'))}}
 		</div>
 	</div>
 
@@ -65,22 +56,19 @@ Eliminar <small>SILABO DE CURSOS LIBRES </small>
 	</div>
 
 	<div class="form-group">
-		{{ Form::label('orden','Orden :',array('class'=>'col-sm-2 control-label')) }}
+		{{ Form::hidden('orden','Orden :',array('class'=>'col-sm-2 control-label')) }}
 		<div class="col-sm-6">
-			{{ Form::number('orden',$silabocurso_cl->orden,array('class'=>'form-control','required', 'readonly'=>'readonly'))}}
+			{{ Form::hidden('orden',$silabocurso_cl->orden,array('class'=>'form-control','required', 'readonly'=>'readonly'))}}
 		</div>
 	</div>
 	
 	
 	<div class="form-group">
 		
-		<div class="col-xs-12 col-sm-6 col-md-5">
-		
-		<button class="btn btn-info btn-block" type="reset">
-				<span class="">{{ HTML::link('SilaboCarreraLibre/index.html','Cancelar') }}</span>
-		</button>
+		<div class="col-xs-12 col-sm-8 col-md-4">
+			{{HTML::linkAction('SilaboCarreraLibreController@listar', 'Cancelar','',array('class'=>'col-sm-12 btn btn-warning'))}}
 		</div>
-		<div class="col-xs-12 col-sm-6 col-md-6">
+		<div class="col-xs-12 col-sm-6 col-md-4">
 			<button class="btn btn-primary btn-block" type="submit">Eliminar</button>
 		</div>
 	</div>
