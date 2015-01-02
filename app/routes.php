@@ -213,7 +213,7 @@ Route::group(['before' => 'auth'], function()
 
     Route::get('SilaboCarreraLibre/create/{id}','SilaboCarreraLibreController@nuevo');
     Route::get('SilaboCarreraLibre/index.html','SilaboCarreraLibreController@listar');
-    Route::get('SilaboCarreraLibre/index/{id}','SilaboCarreraLibreController@listarespecifico');
+    Route::get('SilaboCarreraLibre/index/{id}','SilaboCarreraLibreController@listar');
     
     Route::post('SilaboCarreraLibre/insert.html','SilaboCarreraLibreController@insertar');
 
