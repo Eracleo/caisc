@@ -2,14 +2,27 @@
 @section('title')
 Agregar Carrera <small> NUEVA CARRERA PROFESIONAL </small>
 @stop
-@section('breadcrumb')
-<li>{{ HTML::link('CarreraProfesional','CARRERA PROFESIONAL')}} </li>	
-<li>Agregar Carrera Profesional</li>
+@section('options')
+<li>{{HTML::link('CarreraProfesional','Listar')}}</li>
+<li>{{HTML::link('CarreraProfesional/add.html','Nueva Carrera')}}</li>
 @stop
 @section('content')
 <div class="col-xs-12 col-sm-12">
 {{ Form::open(array('method'=> 'POST','url'=> 'CarreraProfesional/insert.html','class'=>'form-horizontal','role'=>'form')) }}
 
+	<div class="form-group">
+		{{ Form::label('id','ID Carrera:',array('class'=>'col-sm-2 control-label')) }}
+		<div class="col-sm-6 col-md-4">
+			{{ Form::text('id','',array('class'=>'form-control','placeholder'=>'IN'))}}
+		</div>
+		<div class="errores">
+			@if ( $errors->has('id'))
+		       	@foreach ($errors->get('id') as $error)
+			   	<div class="alert alert-danger">* {{ $error }}</div>
+		    	@endforeach
+			@endif
+		</div>
+	</div>
 	<div class="form-group">
 		{{ Form::label('nombre','Nombre:',array('class'=>'col-sm-2 control-label')) }}
 		<div class="col-sm-6 col-md-4">
@@ -39,22 +52,8 @@ Agregar Carrera <small> NUEVA CARRERA PROFESIONAL </small>
 	</div>
 
 	<div class="form-group">
-		{{ Form::label('id','ID Carrera:',array('class'=>'col-sm-2 control-label')) }}
-		<div class="col-sm-6 col-md-4">
-			{{ Form::text('id','',array('class'=>'form-control','placeholder'=>'IN'))}}
-		</div>
-		<div class="errores">
-			@if ( $errors->has('id'))
-		       	@foreach ($errors->get('id') as $error)
-			   	<div class="alert alert-danger">* {{ $error }}</div>
-		    	@endforeach
-			@endif
-		</div>
-	</div>
-
-	<div class="form-group">
 		<div class="col-xs-12 col-sm-3">
-			<button class="btn btn-info btn-block" type="reset">Cancelar</button>
+			{{HTML::linkAction('CarreraProfesionalController@index', 'Cancelar','',array('class'=>'col-sm-12 btn btn-warning'))}}
 		</div>
 		<div class="col-xs-12 col-sm-3">
 			<button class="btn btn-primary btn-block" type="submit">Guardar</button>
