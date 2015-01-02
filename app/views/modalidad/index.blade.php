@@ -11,8 +11,8 @@ Modalidad de pago
 				<thead>
 					<tr>
 						<th>Nombre</th>
-						<th>Descripcion</th>
-						<th>Monto</th>
+						<th>Concepto</th>
+						<th>Monto (S/.)</th>
 						<th>Acciones</th>
 					</tr>
 				</thead>

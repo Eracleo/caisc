@@ -13,10 +13,10 @@ Mantenimiento Modalidad
           Nombre: <strong>{{ $modalidad->id }}</strong>
         </p>
         <p>
-          Descripcion: <strong>{{ $modalidad->descripcion }}</strong>
+          Concepto: <strong>{{ $modalidad->descripcion }}</strong>
         </p>
         <p>
-          Monto: <strong>{{ $modalidad->monto }}</strong>
+          Monto (S/.): <strong>{{ $modalidad->monto }}</strong>
         </p>
         @else
         <p>

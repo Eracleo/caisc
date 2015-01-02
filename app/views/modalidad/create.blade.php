@@ -14,11 +14,11 @@ Mantenimiento Modalidad
 					<input type="text" name="id" placeholder="Nombre" class="form-control" required>
 				</p>
 				<p>
-					<label>Descripción:</label>
-					<input type="text" name="descripcion" placeholder="Descripcion" class="form-control" required>
+					<label>Concepto:</label>
+					<input type="text" name="descripcion" placeholder="Concepto" class="form-control" required>
 				</p>
 				<p>
-					<label>Monto:</label>
+					<label>Monto (S/.):</label>
 					<input type="text" name="monto" placeholder="Monto" class="form-control" required>
 				</p>
 				<p>

@@ -15,11 +15,11 @@ Editar Modalidad
             <input value="{{ $modalidad->id }}" type="text" name="id" placeholder="Nombre" class="form-control" required>
           </p>
           <p>
-            <label>Descripción:</label>
-            <input value="{{ $modalidad->descripcion }}" type="text" name="descripcion" placeholder="Descripcion" class="form-control" required>
+            <label>Concepto:</label>
+            <input type="text" name="descripcion" placeholder="Concepto" class="form-control" required>
           </p>
            <p>
-            <label>Monto:</label>
+            <label>Monto (S/.)</label>
             <input value="{{ $modalidad->monto }}" type="text" name="monto" placeholder="Monto" class="form-control" required>
           </p>
           <input type="submit" value="Guardar" class="btn btn-primary">

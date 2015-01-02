@@ -88,7 +88,7 @@ Caja y Facturación
 </div>
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
     <p>
-        <label>TOTAL:</label>
+        <label>TOTAL (S/.):</label>
         <input type="text" name="total" class="form-control" id="total_pago" readonly>
     </p>
 
