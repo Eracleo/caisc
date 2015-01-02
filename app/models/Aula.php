@@ -7,8 +7,8 @@ class Aula extends Eloquent {
 	{
 		$respuesta = array();
 		$reglas = array(
-			'codAula'=>array('required','min:3'),
-			'capacidad'=>array('required'),
+			'codAula'=>array('required','min:2','max:10','alpha_num'),
+			'capacidad'=>array('required','min:1','integer','max:200'),
 		);	
 		$validador = Validator::make($input,$reglas);
 		if($validador->fails())
