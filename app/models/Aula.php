@@ -53,7 +53,7 @@ class Aula extends Eloquent {
 	{
 		$respuesta = array();
 		$reglas = array(
-			'capacidad'=>array('required')
+			'capacidad'=>array('required','min:1','integer','max:200'),
 		);
 		$validador = Validator::make($input,$reglas);
 		if($validador->fails())
