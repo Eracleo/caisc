@@ -2,19 +2,27 @@
 @section('title')
 Perfil <small>Aula</small>
 @stop
-@section('breadcrumb')
-<li>{{ HTML::link('Aula','Aula') }}</li>
-<li>{{$aula->codAula}}</li>
+@section('options')
+<li>{{HTML::link('Aula','Listar')}}</li>
+<li>{{HTML::link('Aula/add.html','Nueva Aula')}}</li>
 @stop
 @section('content')
 <div class="row">
-	<div class="col-lg-3">
-		<p align="center"><b>código:</b>{{ $aula->codAula }}</p>
+	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+		<p><b>Codigo Aula: </b>{{ $aula->codAula }}</p>
+		<p><b>Capacidad: </b> {{ $aula->capacidad }}</p>
+		<p>
+			<div class="col-xs-12 col-sm-6 col-md-4">
+    		{{HTML::linkAction('AulaController@index', 'Retornar','',array('class'=>'col-sm-8 btn btn-primary'))}}
+    		</div>
+    		<div class="col-xs-12 col-sm-6 col-md-4">
+        	{{HTML::linkAction('AulaController@ActualizarConID', 'Actualizar',$aula->codAula,array('class'=>'col-sm-8 btn btn-warning'))}}
+        	</div>
+			<div class="col-xs-12 col-sm-6 col-md-4">
+			{{HTML::linkAction('AulaController@post_eliminar', 'Eliminar',$aula->codAula,array('class'=>'col-sm-8 btn btn-danger'))}}
+			</div>
+		</p>
 	</div>
-	<div class="col-lg-7">
-		<p>{{ HTML::link('Aula/updatecID/'.$aula->codAula,'Editar') }} {{ HTML::link('Aula/post_eliminar/'.$aula->codAula,'Eliminar') }} </p>
-		<p><b>ID:</b>{{ $aula->codAula }}</p>
-		<p><b>Nombre:</b> {{ $aula->capacidad }}</p>
-	</div>
+	
 </div>
 @stop
