@@ -12,7 +12,6 @@ class ListarCursosController extends \BaseController {
 		if(Auth::User()->tipoUsuario == 'Docente') //eso es por ah
 		{
 			$idDocente = Auth::User()->nroId;
-			$idDocente = 2141;
 			$cursos = DB::select('call ListarCursosPorDocente('.$idDocente.')');
 			return View::make("ListarCursos.index",compact('cursos'));
 		}
