@@ -7,26 +7,17 @@ class SilaboCarreraTecnicaController extends BaseController {
 		return View::make('Cursos_Carrera_Tecnica.SilaboCT.create',array('id'=>$id));
 	}
 	public function insertar()
-	{	
-		//$respuesta = SilaboCursoTecnico::agregar(Input::all());
-		$silabo = SilabusCT::agregar(Input::all());
-		
-		if($silabo['error']==true)
-		{
-			return Redirect::to('SilaboCarreraTecnica/create/')->with('mensaje',$silabo['mensaje']);
-		}
-		else
-		 {		 		
+	{
+			$carga = Input::get('codCargaAcademica_ct');	
 			$respuesta = SilaboCursoTecnico::agregar(Input::all());
 		 	if($respuesta['error']==true)
 			{
-				return Redirect::to('SilaboCarreraTecnica/create/')->with('mensaje',$respuesta['mensaje'])->withInput();
+				return Redirect::to('SilaboCarreraTecnica/create/'.$carga)->withErrors($respuesta['mensaje'] )->withInput();
 			} 
 			else 
 			{
 			return Redirect::to('SilaboCarreraTecnica/index.html')->with('mensaje','Se Creo el Silabo');
-			}
-		}		
+			}	
 	}
 
 	public function ActualizarConID($id)
@@ -48,7 +39,7 @@ class SilaboCarreraTecnicaController extends BaseController {
 		{	
 			$id = input::get('id');
 			$curso = SilaboCursoTecnico::where('id','=',$id)->firstOrFail();
-			return Redirect::to('SilaboCarreraTecnica/updatecID/'.$id)->with('mensaje',$respuesta['mensaje'])->withInput();
+			return Redirect::to('SilaboCarreraTecnica/updatecID/'.$id)->withErrors($respuesta['mensaje'] )->withInput();
 			//return View::make('Cursos_Carrera_Libre.editconID',array('curso_cl'=>$curso))->withErrors($respuesta['mensaje'] );
 		}
 		else
@@ -79,6 +70,20 @@ class SilaboCarreraTecnicaController extends BaseController {
 				}
 			}
 		}
+	}
+
+	public function CursosDocente()
+	{
+		if(Auth::user()->tipoUsuario == 'Docente')
+		{
+			$idDocente = Auth::user()->nroId;
+			$cursos = DB::select('call CursosXDocenteCT(' . $idDocente . ')');
+	      	return View::make("ListarCursos/indexCT", compact('cursos'));
+      	}
+      	else
+      	{
+      		return View::make("error.303");
+      	}
 	}
 
 	public function get_eliminar()
@@ -128,9 +133,9 @@ class SilaboCarreraTecnicaController extends BaseController {
 	}
 	public function listar()
 	{
+		$carrera = Carrera::lists('nombre','id');
 		$datos = SilaboCursoTecnico::where('estado','<>','0')->orderBy('orden','ASC')->paginate(5);
-		$silabocurso_ct = SilaboCursoTecnico::where('estado','<>','0')->orderBy('orden','ASC')->get();
-		return View::make('Cursos_Carrera_Tecnica.SilaboCT.index',compact("datos"),array('id'=>$silabocurso_ct));
+		return View::make('Cursos_Carrera_Tecnica.SilaboCT.index',compact("datos"),array('carrera'=>$carrera));
 	}
 
 	public function detalle($id)
