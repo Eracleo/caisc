@@ -125,9 +125,12 @@ class MatriculaCTController extends BaseController
 
 	// lista los cursos nuevos que puede matricularse en el actual modulo
 	public function listacursosnuevosProcStore(){
+		$respuesta = array();
 		$cod = Input::get('codAlumno'); // codigo del alumno
 		if (($cod == '') or ! is_numeric($cod)) {
-			return Redirect::to('404.html');
+			$respuesta['mensaje'] = 'ERROR !!! Código Alumno no válido, Verifique que los datos ingresados esten bien.';
+			$respuesta['error'] = true;
+			return Redirect::to('matriculas_ct/registro')->with('mensaje',$respuesta['mensaje'])->withInput();
 		}else{
 			$query_alumno = DB::select('call existe_alumno(?)',array($cod));
 			foreach ($query_alumno as $valor) {
@@ -143,7 +146,9 @@ class MatriculaCTController extends BaseController
 					$cursosDisponibles = DB::select('call listarCursosFaltantesParaMatriculaCT(?,?,?,?)',array($cod,$modulo,$codCarrera,$semest));
 					return View::make('matriculaCT.listaCursosNuevos', compact('alumno','semest'),array('cursos'=>$cursosDisponibles));
 				} else{
-					return Redirect::to('404.html');
+					$respuesta['mensaje'] = 'ERROR !!! Código Alumno no existe.';
+					$respuesta['error'] = true;
+					return Redirect::to('matriculas_ct/registro')->with('mensaje',$respuesta['mensaje'])->withInput();
 				}
 			}
 		}
