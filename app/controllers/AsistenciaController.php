@@ -2,116 +2,198 @@
 
 class AsistenciaController extends BaseController
 {
-	public function add_ct()
-	{
-		return View::make('asistencia.add_ct');
-	}
 
-	public function add_cl()
-	{
-		return View::make('asistencia.add_cl');
-	}
-
-	public function InicioLista()
-	 {
-	 	$Fecha=Input::get("Fecha");
-	 	$idDocente = Auth::user()->nroId;;
-	 	$cursos = DB::select('call CursosXDocenteCT(' . $idDocente . ')');
-       	return View::make("asistencia/ListaAsistencia", compact('cursos','Fecha'));
-	 }
-	public function ListaAsistencia()
-	{
-		$idDocente = Auth::user()->nroId;;
-		$Fecha=Input::get("Fecha");
-		$id = Input::get('id');
-		$cursos = DB::select('call CursosXDocenteCT(' . $idDocente . ')');
-		$alumnos = DB::select('call Listar_Asistencias_fecha(' . $idDocente . ','.$Fecha.',"10001")');
-      	return View::make("asistencia/ListaCT", compact('cursos', 'id', 'alumnos'));
-	}
+/*****************************************************************************************************************
+********************************************** CARRERA TÉCNICA ***************************************************
+*****************************************************************************************************************/
 	public function inicioCT()
 	{
-		$idDocente = Auth::user()->nroId;;
-		$cursos = DB::select('call CursosXDocenteCT(' . $idDocente . ')');
-      	return View::make("asistencia/indexCT", compact('cursos'));
+		if(Auth::user()->tipoUsuario == 'Personal')
+		{
+			$idDocente = Auth::user()->nroId;;
+			$cursos = DB::select('call CursosXDocenteCT(' . $idDocente . ')');
+	      	return View::make("asistencia/indexCT", compact('cursos'));
+      	}
+      	else
+      	{
+      		return View::make("error.303");
+      	}
 	}
 
 	public function cursoCT()
 	{
-		$idDocente = Auth::user()->nroId;;
-		$id = Input::get('id');
-		$cursos = DB::select('call CursosXDocenteCT(' . $idDocente . ')');
-		$alumnos = DB::select('call AlumnosXCursoCT(' . $id . ')');
-      	return View::make("asistencia/ingresoCT", compact('cursos', 'id', 'alumnos'));
+		if(Auth::user()->tipoUsuario == 'Personal')
+		{
+			$idDocente = Auth::user()->nroId;;
+			$id = Input::get('id');
+			$cursos = DB::select('call CursosXDocenteCT(' . $idDocente . ')');
+			$alumnos = DB::select('call AlumnosXCursoCT(' . $id . ')');
+	      	return View::make("asistencia/ingresoCT", compact('cursos', 'id', 'alumnos'));
+      	}
+      	else
+      	{
+      		return View::make("error.303");
+      	}
 	}
 
 	public function ingresoCT()
 	{
 
-		$idDocente = Auth::user()->nroId;;
-		//$nroId = Auth::user()->nroId;
-		$id = Input::get('idCurso');
-		$cursos = DB::select('call CursosXDocenteCT(' . $idDocente . ')');
-		$alumnos = DB::select('call AlumnosXCursoCT(' . $id . ')');
-
-		$tema=Input::get("Tema");
-		$Fecha=Input::get("Fecha");
-		for ($i=1; $i <= Input::get('i'); $i++)
+		if(Auth::user()->tipoUsuario == 'Personal')
 		{
-			$Asist=Input::get("Asistio$i");
-			$Observacion=Input::get("observacion$i");
-			if ($Asist<>"") {
-				$idAlumno = Input::get("cod$i");
-				DB::select('call insertarAsistencia_CT(?,?,?,?,?,?)'
-			    ,array('10001',$tema,$idDocente,$idAlumno,$Fecha,$Observacion));
+			$idDocente = Auth::user()->nroId;;
+			//$nroId = Auth::user()->nroId;
+			$id = Input::get('idCurso');
+			$cursos = DB::select('call CursosXDocenteCT(' . $idDocente . ')');
+			$alumnos = DB::select('call AlumnosXCursoCT(' . $id . ')');
+
+			$tema=Input::get("Tema");
+			$Fecha=Input::get("Fecha");
+			for ($i=1; $i <= Input::get('i'); $i++)
+			{
+				$Asist=Input::get("Asistio$i");
+				$Observacion=Input::get("observacion$i");
+				if ($Asist<>"") {
+					$idAlumno = Input::get("cod$i");
+					DB::select('call insertarAsistencia_CT(?,?,?,?,?,?)'
+				    ,array('10001',$tema,$idDocente,$idAlumno,$Fecha,$Observacion));
+				}
 			}
-		}
-		return View::make("asistencia/indexCT", compact('cursos'));
-		//return View::make("asistencia/ListaCT", compact('cursos', 'id', 'alumnos'));
-	}
-	public function SeleccionarCT()
-	{
-		$idDocente = Auth::user()->nroId;;
-		$cursos = DB::select('call CursosXDocenteCT(' . $idDocente . ')');
-      	return View::make("asistencia/SeleccionarCT", compact('cursos'));
-    }
-
-	public function ModificarCT()
-	{
-		$nroId = Auth::user()->nroId;
-		$Codigo = 'A0001';
-		$id = Input::get('idCurso');
-		$cursos = DB::select('call CursosXDocenteCT(' . $nroId . ')');
-		$alumnos = DB::select('call AlumnoXCursoCT(?,?)', array($id,$Codigo));
-		$Observacion=Input::get("$Observacion");
-
-
-		for ($i=1; $i <= Input::get('i'); $i++) {
-
-				$idAlumno = Input::get("cod$i");
-				DB::select('call insertarAsistencia_CT(?,?,?,?,?,?)'
-			    ,array('10001',$tema,$nroId,$idAlumno,$Fecha,$Observacion));
-
-		}
-		return View::make("asistencia/indexCT", compact('cursos'));
-
-		//return View::make("asistencia/ListaCT", compact('cursos', 'id', 'alumnos'));
+			return View::make("asistencia/indexCT", compact('cursos'));
+			//return View::make("asistencia/ListaCT", compact('cursos', 'id', 'alumnos'));
+		 }
+      	else
+      	{
+      		return View::make("asistencia/error.303");
+      	}
 	}
 
 	public function consolidadoCT()
 	{
-		$idDocente = Auth::user()->nroId;
-		$Fecha=Input::get("Fecha");
-		$id = Input::get('id');
-		$cursos = DB::select('call CursosXDocenteCT(' . $idDocente . ')');
-		$alumnos = DB::select('call Listar_Asistencias_fecha('.$idDocente.','.$Fecha.','.$id.')');
-		$idDocente = 10001;
-		$id = Input::get('id');
-      	return View::make("asistencia/registroCT", compact('cursos', 'id', 'alumnos'));
+		if(Auth::user()->tipoUsuario == 'Personal')
+		{
+			$idDocente = Auth::user()->nroId;
+			$Fecha=Input::get("Fecha");
+			$id = Input::get('id');
+			$cursos = DB::select('call CursosXDocenteCT(' . $idDocente . ')');
+			$alumnos = DB::select('call Listar_Asistencias_fecha('.$idDocente.','.$Fecha.','.$id.')');
+			$idDocente = 10001;
+			$id = Input::get('id');
+	      	return View::make("asistencia/registroCT", compact('cursos', 'id', 'alumnos'));
+      	 }
+      	else
+      	{
+      		return View::make("error.303");
+      	}
 	}
 	public function registroCT()
 	{
-		$idDocente = Auth::user()->nroId;
-		$cursos = DB::select('call CursosXDocenteCT(' . $idDocente . ')');
-      	return View::make("asistencia/registroCT", compact('cursos'));
+		if(Auth::user()->tipoUsuario == 'Personal')
+		{
+			$idDocente = Auth::user()->nroId;
+			$cursos = DB::select('call CursosXDocenteCT(' . $idDocente . ')');
+	      	return View::make("asistencia/registroCT", compact('cursos'));
+	    }
+      	else
+      	{
+      		return View::make("error.303");
+      	}
 	}
+
+/*************************************************************************************************************
+********************************************** CURSO LIBRE ***************************************************
+**************************************************************************************************************/
+
+public function inicioCL()
+	{
+		if(Auth::user()->tipoUsuario == 'Personal')
+		{
+			$idDocente = Auth::user()->nroId;
+			$cursos = DB::select('call CursosXDocenteCL(' . $idDocente . ')');
+	      	return View::make("asistencia/indexCL", compact('cursos'));
+      	}
+      	else
+      	{
+      		return View::make("error.303");
+      	}
+	}
+	public function cursoCL()
+	{
+		if(Auth::user()->tipoUsuario == 'Personal')
+		{
+			$idDocente = Auth::user()->nroId;
+			$id = Input::get('id');
+			$cursos = DB::select('call CursosXDocenteCL(' . $idDocente . ')');
+			$alumnos = DB::select('call AlumnosXCursoCL(' . $id . ')');
+	      	return View::make("asistencia/ingresoCL", compact('cursos', 'id', 'alumnos'));
+	    }
+      	else
+      	{
+      		return View::make("error.303");
+      	}
+	}
+
+	public function ingresoCL()
+	{
+		if(Auth::user()->tipoUsuario == 'Personal')
+		{
+			$idDocente = Auth::user()->nroId;;
+			//$nroId = Auth::user()->nroId;
+			$id = Input::get('idCurso');
+			$cursos = DB::select('call CursosXDocenteCT(' . $idDocente . ')');
+			$alumnos = DB::select('call AlumnosXCursoCT(' . $id . ')');
+
+			$tema=Input::get("Tema");
+			$Fecha=Input::get("Fecha");
+			for ($i=1; $i <= Input::get('i'); $i++)
+			{
+				$Asist=Input::get("Asistio$i");
+				$Observacion=Input::get("observacion$i");
+				if ($Asist<>"") {
+					$idAlumno = Input::get("cod$i");
+					DB::select('call insertarAsistencia_CL(?,?,?,?,?,?)'
+				    ,array('10001',$tema,$idDocente,$idAlumno,$Fecha,$Observacion));
+				}
+			}
+			return View::make("asistencia/indexCL", compact('cursos'));
+			return View::make("asistencia/consolidadoCL", compact('cursos'));
+			//return View::make("asistencia/ListaCT", compact('cursos', 'id', 'alumnos'));
+		 }
+      	else
+      	{
+      		return View::make("asistencia/error.303");
+      	}
+	}
+	public function consolidadoCL()
+	{
+		if(Auth::user()->tipoUsuario == 'Personal')
+		{
+			$idDocente = Auth::user()->nroId;
+			$Fecha=Input::get("Fecha");
+			$id = Input::get('id');
+			$cursos = DB::select('call CursosXDocenteCT(' . $idDocente . ')');
+			$alumnos = DB::select('call Listar_Asistencias_fecha('.$idDocente.','.$Fecha.','.$id.')');
+			$idDocente = 10001;
+			$id = Input::get('id');
+	      	return View::make("asistencia/registroCL", compact('cursos', 'id', 'alumnos'));
+	    }
+      	else
+      	{
+      		return View::make("error.303");
+      	}
+	}
+	public function registroCL()
+	{
+		if(Auth::user()->tipoUsuario == 'Personal')
+		{
+			$idDocente = Auth::user()->nroId;
+			$cursos = DB::select('call CursosXDocenteCT(' . $idDocente . ')');
+	      	return View::make("asistencia/registroCL", compact('cursos'));
+      	}
+      	else
+      	{
+      		return View::make("error.303");
+      	}
+	}
+
 }
