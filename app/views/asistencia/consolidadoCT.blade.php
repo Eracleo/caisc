@@ -1,7 +1,9 @@
 @extends('layouts.base_docente')
+@section('title')
+Control de Asistencia Carrea Técnica
+@stop
 @section('content')
 <form action="consolidadoCT" name="form1" method="post">
-    <h1>Control de Asistencia Carrea Técnica</h1>
     <div class="form-group">
         <label for="">Seleccione Asignatura : </label>
             <select name='id' id='id' onChange='document.form1.submit()'>
