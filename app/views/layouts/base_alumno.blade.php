@@ -32,15 +32,11 @@
                     <li><a href="iniciocursosmatriculados">Mis Cursos</a></li>
                     <li><a href="inicionotascursos">Mis Notas</a></li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Otros <b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Matriculas <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
+                            <li><a href="registroCT">Matricula Carrera Tecnica</a></li>
                             <li class="divider"></li>
-                            <li class="dropdown-header">Nav header</li>
-                            <li><a href="#">Separated link</a></li>
-                            <li><a href="#">One more separated link</a></li>
+                            <li><a href="#">Matricula Curso Libre</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">

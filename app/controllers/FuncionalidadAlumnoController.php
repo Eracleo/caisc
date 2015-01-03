@@ -42,6 +42,25 @@ class FuncionalidadAlumnoController extends \BaseController {
         } else{ Redirect::to('400.html'); }
     }
 
+    public function indexCT(){
+        $semestres = Semestre::lists('nombre','nombre');
+        return View::make('funcionalumno.matricula.index', array('semestres'=>$semestres));
+    }
+
+    public function listacursosnuevosProcStore(){
+        if(Auth::user()->tipoUsuario == 'Alumno'){
+            $cod = Auth::user()->nroId;
+            $semest = Input::get('semestre');
+
+            $modulo = DB::table('alumno')->where('id', $cod)->pluck('modulo'); // modulo del alumno
+            $codCarrera = DB::table('alumno')->where('id',$cod)->pluck('codCarrera'); // codigo de carrera del alumno
+            $alumno = DB::table('alumno')->where('id', $cod)->first(); // recupero datos del alumno
+
+            $cursosDisponibles = DB::select('call listarCursosFaltantesParaMatriculaCT(?,?,?,?)',array($cod,$modulo,$codCarrera,$semest));
+            return View::make('funcionalumno.matricula.listaCursosNuevos', compact('alumno','semest'),array('cursos'=>$cursosDisponibles));
+        }
+    }
+
 	public function iniciocursosmatriculados()
 	{
       	if(Auth::user()->tipoUsuario == 'Alumno')

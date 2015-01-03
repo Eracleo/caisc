@@ -312,4 +312,8 @@ Route::group(['before' => 'auth'], function()
     Route::post('alumnoB/imagen/{id}',array('uses'=>'FuncionalidadAlumnoController@uploadImage'));
     Route::get('alumnoB/modificar',array('uses'=>'FuncionalidadAlumnoController@modificarAlum'));
     Route::post('alumnoB/update',array('uses'=>'FuncionalidadAlumnoController@update'));
+    // -- para las matriculas
+    Route::get('alumnoB/registroCT',array('uses'=>'FuncionalidadAlumnoController@indexCT'));
+    Route::post('alumnoB/listarCargasDispo.html',array('uses'=>'FuncionalidadAlumnoController@listacursosnuevosProcStore'));
+
 });
