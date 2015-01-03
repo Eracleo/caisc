@@ -323,7 +323,7 @@ end$$
 DELIMITER $$
 create procedure ListarCursosPorDocenteCT (in idDocente int )
 begin
-      select A.CodCargaAcademica_ct ,C.id,C.nombre, A.semestre,A.turno
+      select A.CodCargaAcademica_ct ,C.id,C.nombre,C.codCarrera, A.semestre,A.turno
       from carga_academica_ct A inner join curso_ct C
       on A.codCurso_ct = C.id
       where A.docente_id=idDocente;
