@@ -44,6 +44,32 @@ Route::group(['before' => 'auth|sessionDoc'], function()
     Route::get('docente/imagen/{id}',array('uses'=>'DocenteController@imagen'))->where('id','[0-9]+');
     Route::post('docente/imagen/{id}',array('uses'=>'DocenteController@uploadImage'))->where('id','[0-9]+');        
     Route::get('docente/edit/{id}',array('uses'=>'DocenteController@edit'))->where('id','[0-9]+');
+
+    Route::get('ingresonotas/inicioCT','IngresoNotasController@inicioCT');
+    Route::post('ingresonotas/ingresoCT','IngresoNotasController@cursoCT');
+    Route::post('ingresonotas/ingresoNotaCT','IngresoNotasController@ingresoCT');
+    Route::post('ingresonotas/consolidadoCT','IngresoNotasController@consolidadoCT');
+    Route::get('ingresonotas/registroCT','IngresoNotasController@registroCT');
+
+    Route::get('ingresonotas/inicioCL','IngresoNotasController@inicioCL');
+    Route::post('ingresonotas/ingresoCL','IngresoNotasController@cursoCL');
+    Route::post('ingresonotas/ingresoNotaCL','IngresoNotasController@ingresoCL');
+    Route::post('ingresonotas/consolidadoCL','IngresoNotasController@consolidadoCL');
+    Route::get('ingresonotas/registroCL','IngresoNotasController@registroCL');
+
+
+     //Rutas para el carrera técnica
+    Route::get('asistencia/inicioCT','AsistenciaController@inicioCT');
+    Route::post('asistencia/ingresoCT','AsistenciaController@cursoCT');
+    Route::post('asistencia/ingresoAsistenciaCT','AsistenciaController@ingresoCT');
+    Route::post('asistencia/consolidadoCT','AsistenciaController@consolidadoCT');
+    Route::get('asistencia/registroCT','AsistenciaController@registroCT');
+    //Rutas para Cursos Libres
+    Route::get('asistencia/inicioCL','AsistenciaController@inicioCL');
+    Route::post('asistencia/ingresoCL','AsistenciaController@cursoCL');
+    Route::post('asistencia/ingresoAsistenciaCL','AsistenciaController@ingresoCL');
+    Route::post('asistencia/consolidadoCL','AsistenciaController@consolidadoCL');
+    Route::get('asistencia/registroCL','AsistenciaController@registroCL');
 });
 // Rutas para que accedan los alumnos
 Route::group(['before' => 'auth|sessionAlu'], function()
@@ -152,18 +178,7 @@ Route::group(['before' => 'auth|sessionPer'], function()
     /*End Caja y Facturacion*/
     // Modulos Asistencia: Docentes y Alumnos
 
-    //Rutas para el carrera técnica
-    Route::get('asistencia/inicioCT','AsistenciaController@inicioCT');
-    Route::post('asistencia/ingresoCT','AsistenciaController@cursoCT');
-    Route::post('asistencia/ingresoAsistenciaCT','AsistenciaController@ingresoCT');
-    Route::post('asistencia/consolidadoCT','AsistenciaController@consolidadoCT');
-    Route::get('asistencia/registroCT','AsistenciaController@registroCT');
-    //Rutas para Cursos Libres
-    Route::get('asistencia/inicioCL','AsistenciaController@inicioCL');
-    Route::post('asistencia/ingresoCL','AsistenciaController@cursoCL');
-    Route::post('asistencia/ingresoAsistenciaCL','AsistenciaController@ingresoCL');
-    Route::post('asistencia/consolidadoCL','AsistenciaController@consolidadoCL');
-    Route::get('asistencia/registroCL','AsistenciaController@registroCL');
+   
 
 
     //Pago en planilla docentes
@@ -296,17 +311,7 @@ Route::group(['before' => 'auth|sessionPer'], function()
     Route::get('MostrarOpcionesPorCurso', 'CargaControllerCt@MostrarOpcionesPorCurso');
 
 
-    Route::get('ingresonotas/inicioCT','IngresoNotasController@inicioCT');
-    Route::post('ingresonotas/ingresoCT','IngresoNotasController@cursoCT');
-    Route::post('ingresonotas/ingresoNotaCT','IngresoNotasController@ingresoCT');
-    Route::post('ingresonotas/consolidadoCT','IngresoNotasController@consolidadoCT');
-    Route::get('ingresonotas/registroCT','IngresoNotasController@registroCT');
-
-    Route::get('ingresonotas/inicioCL','IngresoNotasController@inicioCL');
-    Route::post('ingresonotas/ingresoCL','IngresoNotasController@cursoCL');
-    Route::post('ingresonotas/ingresoNotaCL','IngresoNotasController@ingresoCL');
-    Route::post('ingresonotas/consolidadoCL','IngresoNotasController@consolidadoCL');
-    Route::get('ingresonotas/registroCL','IngresoNotasController@registroCL');
+    
 
     //Pago en planilla docentes
     Route::get('Planilla',array('uses'=>'PlanillaController@index'));
