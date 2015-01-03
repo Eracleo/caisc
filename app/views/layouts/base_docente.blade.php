@@ -25,7 +25,6 @@
         <div class="pull-left">
         </div>
         <div class="pull-right text-right">
-            <a class="btn btn-primary" href="#"><i class="ticon ticon-plus"></i>&nbsp;&nbsp; Ayuda</a>&nbsp;
             <div class="btn-group">
                 <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
                     {{ Auth::user()->email}}
@@ -44,18 +43,19 @@
     <div class="content mensajes">
         <div class="panel_nav" id="dmenu">
             <ul>
-                <li><a href="{{url('docente')}}"><span class="glyphicon glyphicon-user"></span> Perfil</a></li>
-                <li><a href="" class="active"><span class="glyphicon glyphicon-book"></span> Mis Cursos</a></li>
+                <li><a href="{{url('docente')}}" class="active"><span class="glyphicon glyphicon-user"></span> Perfil</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-book"></span> Mis Cursos</a></li>
                 <li><a href=""><span class="glyphicon glyphicon-bookmark"></span> Ingresar Notas</a></li>
                 <li><a href="#"><span class="glyphicon glyphicon-list"></span> Alertas</a></li>
                 <li><a href="#"><span class="glyphicon glyphicon-cog"></span> Configuración</a></li>
-                <li>{{ HTML::link('/ListarCursos/','Mis Cursos Libres') }}</li>
-                <li>{{ HTML::link('/ListarCursosCarreras/','Mis Cursos de Carrera') }}</li>
+                <li><a href="{{url('ListarCursos')}}"><span class="glyphicon"></span> Mis Cursos Libres</a>
+                
+                <li><a href="{{url('ListarCursosCarreras')}}"><span class="glyphicon"></span> Mis Cursos de Carrera</a>
+                <li><a href="#"><span class="glyphicon"></span> Ingreso De Notas Curso Libre</a>
+                <li><a href="#"><span class="glyphicon"></span> Ver Notas Curso Libre</a>
+                <li><a href="#"><span class="glyphicon"></span> Ingreso De Notas Carrera Tecnica</a>
+                <li><a href="#"><span class="glyphicon"></span> Ver Notas Carrera Tecnica</a>
 
-                <li>{{ HTML::link('ingresonotas/inicioCL','Ingreso De Notas Curso Libre') }}</li>
-                <li>{{ HTML::link('ingresonotas/registroCL','Ver Notas Curso Libre') }}</li>
-                <li>{{ HTML::link('ingresonotas/inicioCT','Ingreso De Notas Carrera Tecnica') }}</li>
-                <li>{{ HTML::link('ingresonotas/registroCT','Ver Notas Carrera Tecnica') }}</li>
             </ul>
         </div>
         <div class="panel_container limit-width">

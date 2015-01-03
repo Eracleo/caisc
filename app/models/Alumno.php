@@ -14,7 +14,7 @@
 			'dni'=>array('required','numeric','digits:8','unique:alumno'),
 			'direccion'=>array('required','min:10','max:50'),
 			'telefono'=>array('required','numeric'),
-			'email'=>array('required','email'),
+			'email'=>array('required','email','unique:alumno'),
 			'password'=>array('required','min:6','confirmed')
 		);
 		$validador = Validator::make($input,$reglas);
