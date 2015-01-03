@@ -9,7 +9,7 @@ class SilabusCT extends Eloquent {
 	{
 		$respuesta = array();
 		$reglas = array(
-				'codCargaAcademica_ct'=>array('required','max:20'),
+				'codCargaAcademica_ct'=>array('required','integer'),
 			);
 
 		$validador = Validator::make($input,$reglas);
