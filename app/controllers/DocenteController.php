@@ -44,6 +44,8 @@ class DocenteController extends BaseController
 			return Redirect::to('docentes')->with('mensaje',$respuesta['mensaje']);
 		}
 	}
+
+	
 	public function edit($id=null)
 	{
 		if(is_numeric($id))

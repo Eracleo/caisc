@@ -5,6 +5,22 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 
 class Pagos extends Eloquent implements UserInterface, RemindableInterface {
 
+	public static function agregar($input)
+	{
+		$respuesta = array();
+		$reglas = array(
+			'total'=>array('required'),
+		);
+		$validador = Validator::make($input,$reglas);
+		if($validador->fails()){
+			$respuesta['mensaje'] = $validador;
+			$respuesta['error'] = true;
+		} else{
+			$respuesta['mensaje'] = 'Docente Creado';
+			$respuesta['error'] = false;
+		}
+		return $respuesta;
+	}
 	/**
 	 * The database table used by the model.
 	 *

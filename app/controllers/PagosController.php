@@ -26,35 +26,43 @@ class PagosController extends \BaseController {
 	}
 	public function store()
 	{
-		$pagos = new Pagos;
+		$respuesta = Pagos::agregar(Input::all());
+		if($respuesta['error']!=true){
+			$pagos = new Pagos;
 
-		//$pagos->id = Input::get('');
-		$pagos->nro_serie = Input::get('nro_serie');
-		$pagos->id_alumno = Input::get('id_alumno');
-		$pagos->fecha = Input::get('fecha');
-		$pagos->total_pago = Input::get('total');
+			//$pagos->id = Input::get('');
+			$pagos->nro_serie = Input::get('nro_serie');
+			$pagos->id_alumno = Input::get('id_alumno');
+			$pagos->fecha = Input::get('fecha');
+			$pagos->total_pago = Input::get('total');
 
-		if ($pagos->save()) {
-			Session::flash('message','Guardado correctamente!');
-			Session::flash('class','success');
+			if ($pagos->save()) {
+				Session::flash('message','Guardado correctamente!');
+				Session::flash('class','success');
+			} else {
+				Session::flash('message','Ha ocurrido un error!');
+				Session::flash('class','danger');
+			}
+			$detalle_pagos = new DetallePagos;
+			
+			$detalle_pagos->id = Input::get('id');
+			$detalle_pagos->pagos_id = $pagos->id;
+			$detalle_pagos->descripcion = Input::get('concepto');
+			$detalle_pagos->id_modalidad=Input::get('modalidad');
+
+			if ($detalle_pagos->save()) {
+				Session::flash('message','Guardado correctamente!');
+				Session::flash('class','success');
+			} else {
+				Session::flash('message','Ha ocurrido un error!');
+				Session::flash('class','danger');
+			}
+			return Redirect::to('pagos/create');
 		} else {
-			Session::flash('message','Ha ocurrido un error!');
+			Session::flash('message','Tiene que escoger alguna modalidad');
 			Session::flash('class','danger');
+			return Redirect::to('pagos/create');			
 		}
-		$detalle_pagos = new DetallePagos;
-		$detalle_pagos->id = Input::get('id');
-		$detalle_pagos->pagos_id = $pagos->id;
-		$detalle_pagos->descripcion = Input::get('concepto');
-		$detalle_pagos->id_modalidad=Input::get('modalidad');
-
-		if ($detalle_pagos->save()) {
-			Session::flash('message','Guardado correctamente!');
-			Session::flash('class','success');
-		} else {
-			Session::flash('message','Ha ocurrido un error!');
-			Session::flash('class','danger');
-		}
-		return Redirect::to('pagos/create');
 	}
 
 	/**
@@ -178,20 +186,23 @@ class PagosController extends \BaseController {
 		return View::make('pagos.create',array('modalidad'=>$modalidad));
 	}
 
-	public function search_pagos()
-	{
+
+	public function search_pagos(){
 
 		$id = Input::get('fecha');
 		
-		if (is_null($id))
-		{
+		if ($id == '')
+		{	
+			Session::flash('message','Ingrese una Fecha');
+			Session::flash('class','danger');
 			return View::make('pagos.search_pagos');
-			Session::flash('message','ingrese una fecha');
-			Session::flash('class','success');
+			
 		} else {
 			$pagos = Pagos::where('fecha','=',$id)->get();
-			if (is_object($pagos))
-			{
+			if (is_object($pagos)){
+				Session::flash('message','Consulta Satisfactoria');
+				Session::flash('class','success');
+
 				return View::make('pagos.search_pagos',array('pagos'=>$pagos));
 				//return Redirect::to('pagos/create')->withErrors($respuesta['mensaje'] )->withInput();
 				//return Redirect::to('pagos/create/',array('alumno'=>$alumno,'modalidad'=>$modalidad));

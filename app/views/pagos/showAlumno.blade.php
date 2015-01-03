@@ -11,6 +11,8 @@ Caja y Facturación
 <?php
     $date = Date("Y-m-d")
 ?>
+
+
 <form method="post" action="store">
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
     <div class="panel" >
@@ -62,15 +64,15 @@ Caja y Facturación
             </div>            
     </div>
 </div>
-<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+<div id = "my_table" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <table id="detalle_pago" class="table table-striped">
         <thead>
             <tr>
-                <th><label>NRO</label></th>
-                <th><label>MODALIDAD</label></th>
-                <th><label>CONCEPTO</label></th>
-                <th><label>IMPORTE</label></th>                
-                <th><label>ACCIONES</label></th>
+                <th><label>Nro</label></th>
+                <th><label>Modalidad</label></th>
+                <th><label>Concepto</label></th>
+                <th><label>Importe</label></th>                
+                <th><label>Acciones</label></th>
             </tr>
         </thead>
         <tbody>
@@ -100,6 +102,10 @@ Caja y Facturación
         </div>-->
     </div>
 </div>
+<!--<div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+    <input  id = "full" type="text" name="full" class="form-control" id="total_pago" readonly >
+</div>-->
+
 </form>
     
 @if(Session::has('message'))
@@ -109,6 +115,10 @@ Caja y Facturación
 @stop
 
 <script type="text/javascript">
+
+    document.getElementById('full').style.display='none';
+    var k = 0;
+    full.value = k;
     function agregar_detalle(){
         var str = opciones.value;
         var data = str.split(",");
@@ -118,8 +128,10 @@ Caja y Facturación
         id_modalidad.value=data[1];
         total_pago.value=data[0];
         eliminar.innerHTML="Eliminar";
-
+        k+=1;
+        full.value = k.toString();
     }
+
 
     function eliminar_detalle(){
         nro.value="";
@@ -128,5 +140,42 @@ Caja y Facturación
         total_pago.value="";
         id_modalidad.value="";
         eliminar.innerHTML="";
+        k-=1;
+        full.value = k.toString();
+    }
+
+    function genera_tabla() {
+        // Obtener la referencia del elemento body
+        var body = document.getElementById("my_table");
+         
+        // Crea un elemento <table> y un elemento <tbody>
+        var tabla   = document.getElementById("detalle_pago");
+        var tblBody = document.createElement("tbody");
+     
+        // Crea las celdas
+        for (var i = 0; i < 2; i++) {
+            // Crea las hileras de la tabla
+            var hilera = document.createElement("tr");
+     
+            for (var j = 0; j < 2; j++) {
+                // Crea un elemento <td> y un nodo de texto, haz que el nodo de
+                // texto sea el contenido de <td>, ubica el elemento <td> al final
+                // de la hilera de la tabla
+                var celda = document.createElement("td");
+                var textoCelda = document.createTextNode("celda en la hilera "+i+", columna "+j);
+                celda.appendChild(textoCelda);
+                hilera.appendChild(celda);
+            }
+     
+            // agrega la hilera al final de la tabla (al final del elemento tblbody)
+            tblBody.appendChild(hilera);
+        }
+     
+        // posiciona el <tbody> debajo del elemento <table>
+        tabla.appendChild(tblBody);
+        // appends <table> into <body>
+        body.appendChild(tabla);
+        // modifica el atributo "border" de la tabla y lo fija a "2";
+        tabla.setAttribute("border", "2");
     }
 </script>              
