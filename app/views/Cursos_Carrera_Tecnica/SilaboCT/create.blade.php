@@ -3,31 +3,37 @@
 Agregar <small> NUEVO SILABO </small>
 @stop
 
-@section('breadcrumb')
-<li>{{ HTML::link('SilaboCarreraTecnica/index.html/','Silabo de Cursos de Carrera') }} </li>
-<li>Agregar Silabo</li>
+@section('options')
+<li>{{ HTML::link('SilaboCarreraTecnica/index.html/','Ver Silabos de Cursos de Carrera') }} </li>
 @stop
 
 @section('content')
-<div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+<div class="col-xs-12 col-sm-12">
 {{ Form::open(array('method'=> 'POST','url'=> 'SilaboCarreraTecnica/insert.html','class'=>'form-horizontal','role'=>'form')) }}
+	
 	<div class="form-group">
-		{{ Form::label('capitulo','Capitulo:',array('class'=>'col-sm-2 control-label')) }}
-		<div class="col-sm-6 col-md-4">
-			{{ Form::text('capitulo','',array('class'=>'form-control','placeholder'=>'Capitulo del Silabo'))}}
+	<div class="col-sm-8">
+		{{ Form::hidden('codCargaAcademica_ct',$id,array('class'=>'form-control','placeholder'=>'','required','readonly'=>'readonly'))}}
+	</div></div>
+
+	<div class="form-group">
+		{{ Form::label('capitulo','Capitulo :',array('class'=>'col-sm-2 control-label')) }}
+		<div class="col-sm-6">
+			{{ Form::text('capitulo','',array('class'=>'form-control','placeholder'=>''))}}
 		</div>
 		<div class="errores">
-			@if ( $errors->has('Capitulo'))
-		       	@foreach ($errors->get('Capitulo') as $error)
+			@if ( $errors->has('capitulo'))
+		       	@foreach ($errors->get('capitulo') as $error)
 			   	<div class="alert alert-danger">* {{ $error }}</div>
 		    	@endforeach
 			@endif
-	</divF	</div>
+		</div>
+	</div>
 
-	<div class="form-group ">
-		{{ Form::label('titulo','Titulo:',array('class'=>'col-sm-2 control-label')) }}
-		<div class="col-sm-6 col-md-4">
-			{{ Form::text('titulo','',array('class'=>'form-control','placeholder'=>'Capitulo del Silabo'))}}
+	<div class="form-group">
+		{{ Form::label('titulo','Titulo :',array('class'=>'col-sm-2 control-label')) }}
+		<div class="col-sm-6">
+			{{ Form::text('titulo','',array('class'=>'form-control','placeholder'=>''))}}
 		</div>
 		<div class="errores">
 			@if ( $errors->has('titulo'))
@@ -39,9 +45,9 @@ Agregar <small> NUEVO SILABO </small>
 	</div>
 
 	<div class="form-group">
-		{{ Form::label('objetivos','Objetivos:',array('class'=>'col-sm-2 control-label')) }}
-		<div class="col-sm-6 col-md-4">
-			{{ Form::text('objetivos','',array('class'=>'form-control','placeholder'=>'Objetivos del Capit'))}}
+			{{ Form::label('objetivos','Objetivos:',array('class'=>'col-sm-2 control-label')) }}
+		<div class="col-sm-6">
+			{{ Form::textarea('objetivos','',array('class'=>'form-control','placeholder'=>''))}}
 		</div>
 		<div class="errores">
 			@if ( $errors->has('objetivos'))
@@ -51,11 +57,10 @@ Agregar <small> NUEVO SILABO </small>
 			@endif
 		</div>
 	</div>
-
-	div class="form-group">
-		{{ Form::label('descripcion','Descripcion:',array('class'=>'col-sm-2 control-label')) }}
-		<div class="col-sm-6 col-md-4">
-			{{ Form::textarea('descripcion','',array('class'=>'form-control','placeholder'=>' Descripcion del Silabo'))}}
+	<div class="form-group">
+			{{ Form::label('descripcion','Descripcion :',array('class'=>'col-sm-2 control-label')) }}
+		<div class="col-sm-6">
+			{{ Form::textarea('descripcion','',array('class'=>'form-control','placeholder'=>''))}}
 		</div>
 		<div class="errores">
 			@if ( $errors->has('descripcion'))
@@ -65,10 +70,11 @@ Agregar <small> NUEVO SILABO </small>
 			@endif
 		</div>
 	</div>
+
 	<div class="form-group">
-		{{ Form::label('numeroclases','Numero de Clases:',array('class'=>'col-sm-2 control-label')) }}
-		<div class="col-sm-6 col-md-4">
-			{{ Form::number('numeroclases','',array('class'=>'form-control','placeholder'=>'1'))}}
+		{{ Form::label('numeroclases','Clases requeridas :',array('class'=>'col-sm-2 control-label')) }}
+		<div class="col-sm-6">
+			{{ Form::number('numeroclases','',array('class'=>'form-control','placeholder'=>''))}}
 		</div>
 		<div class="errores">
 			@if ( $errors->has('numeroclases'))
@@ -80,22 +86,29 @@ Agregar <small> NUEVO SILABO </small>
 	</div>
 
 	<div class="form-group">
-		{{ Form::label('orden','Orden:',array('class'=>'col-sm-2 control-label')) }}
+		{{ Form::hidden('orden','Orden :',array('class'=>'col-sm-2 control-label')) }}
 		<div class="col-sm-6">
 			@if(SilaboCursoTecnico::get()->last() == null)
-				{{ Form::number('orden',1 ,array('class'=>'form-control','readonly'=>'readonly','required'))}}			
+				{{ Form::hidden('orden',1 ,array('class'=>'form-control','readonly'=>'readonly'))}}			
 			@else
-				{{ Form::number('orden',SilaboCursoTecnico::get()->last()->orden +1 ,array('class'=>'form-control','readonly'=>'readonly','required'))}}
+				{{ Form::hidden('orden',SilaboCursoTecnico::get()->last()->orden +1 ,array('class'=>'form-control','readonly'=>'readonly'))}}
+			@endif
+		</div>
+			<div class="errores">
+			@if ( $errors->has('orden'))
+		       	@foreach ($errors->get('orden') as $error)
+			   	<div class="alert alert-danger">* {{ $error }}</div>
+		    	@endforeach
 			@endif
 		</div>
 	</div>
 		
 	<div class="form-group">
-		<div class="col-xs-12 col-sm-6 col-md-5">
-			<button class="btn btn-info btn-block" type="reset">Cancelar</button>
+		<div class="col-xs-12 col-sm-8 col-md-5">
+			{{HTML::linkAction('ListarCursosCTController@getIndex', 'Cancelar','',array('class'=>'col-sm-12 btn btn-warning'))}}
 		</div>
-		<div class="col-xs-12 col-sm-6 col-md-5">
-			<button class="btn btn-primary btn-block" type="submit">Guardar</button>
+		<div class="col-xs-12 col-sm-8 col-md-5">
+			<button class="btn btn-primary btn-block" type="submit"> Guardar</button>
 		</div>
 	</div>
 {{Form::close()}}

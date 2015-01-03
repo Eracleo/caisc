@@ -39,7 +39,7 @@ Actualizar <small> {{$curso_ct->nombre}} </small>
 			@else
 				{{ Form::select('modulo',$modulo,null,array('class'=>'form-control','required'))}}
 				<br>
-				{{HTML::linkAction('ModuloController@create', 'Nuevo Modulo','',array('class'=>'btn btn-success'))}}
+				{{HTML::linkAction('ModuloController@create', 'Nuevo Modulo','',array('class'=>'control-label'))}}
 			@endif
 		</div>
 		<div class="errores">
@@ -71,7 +71,7 @@ Actualizar <small> {{$curso_ct->nombre}} </small>
 			@else
 			{{ Form::select('codCarrera',$carrera,null,array('class'=>'form-control','required'))}}
 			<br>
-			{{HTML::linkAction('CarreraProfesionalController@add', 'Nueva Carrera','',array('class'=>'btn btn-success'))}}
+			{{HTML::linkAction('CarreraProfesionalController@add', 'Nueva Carrera','',array('class'=>'control-label'))}}
 			
 			@endif
 			
