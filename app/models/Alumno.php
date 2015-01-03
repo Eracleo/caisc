@@ -51,7 +51,7 @@
 			$respuesta['error'] = true;
 		} else
 		{
-			$user = User::where('id','=',$obj->id)->firstOrFail();
+			$user = User::where('nroId','=',$obj->id)->firstOrFail();
 			$obj->nombre = Input::get('nombre');
 			$obj->apellidos = Input::get('apellidos');
 			$obj->dni = Input::get('dni');
@@ -82,13 +82,42 @@
 			$respuesta['error'] = true;
 		} else
 		{
-			$user = User::where('id','=',$obj->id)->firstOrFail();
+			$user = User::where('nroId','=',$obj->id)->firstOrFail();
 			$obj->password =  Hash::make($input['password']);
 			$user->password = $obj->password;
 			$obj->save();
 			$user->save();
 			$respuesta['error'] = false;
 			$respuesta['mensaje'] = 'Contraseña Actualizado';
+		}
+		return $respuesta;
+	}
+	public static function editarB($obj,$input)
+	{
+		$respuesta = array();
+		$reglas = array(
+			'nombre'=>array('required','min:4','max:30'),
+			'apellidos'=>array('required','min:4','max:30'),
+			'telefono'=>array('required','numeric'),
+			'email'=>array('required','email'),
+		);
+		$validador = Validator::make($input,$reglas);
+		if($validador->fails())
+		{
+			$respuesta['mensaje'] = $validador;
+			$respuesta['error'] = true;
+		} else
+		{
+			$user = User::where('nroId','=',$obj->id)->firstOrFail();
+			$obj->nombre = Input::get('nombre');
+			$obj->apellidos = Input::get('apellidos');
+			$obj->telefono = Input::get('telefono');
+			$obj->email = Input::get('email');
+			$user->email = $obj->email;
+			$obj->save();
+			$user->save();
+			$respuesta['mensaje'] = 'Datos Actualizados';
+			$respuesta['error'] = false;
 		}
 		return $respuesta;
 	}

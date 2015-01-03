@@ -6,7 +6,7 @@ Perfil del Alumno
 @stop
 @section('content')
 <div class="col-xs-12 col-sm-12">
-{{ Form::model($alumno,array('url'=>array('alumno/update',$alumno->id),'method'=> 'POST','class'=>'form-horizontal','role'=>'form'))}}
+{{ Form::model($alumno,array('url'=>array('alumnoB/update'),'method'=> 'POST','class'=>'form-horizontal','role'=>'form'))}}
     <div class="form-group">
         {{ Form::label('nombre','Nombre(s):',array('class'=>'col-sm-2 control-label')) }}
         <div class="col-sm-6 col-md-4">

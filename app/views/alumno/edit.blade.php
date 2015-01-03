@@ -3,7 +3,6 @@
 Editar Alumno <small> {{$alumno->nombre}} </small>
 @stop
 @section('options')
-<li><a href="#">Editar</a></li>
 @stop
 @section('content')
 <div class="col-xs-12 col-sm-12">

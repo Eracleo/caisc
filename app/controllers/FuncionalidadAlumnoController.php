@@ -15,6 +15,7 @@ class FuncionalidadAlumnoController extends \BaseController {
       		return View::make("error.303");
       	}
 	}
+
     public function modificarAlum(){
         if(Auth::user()->tipoUsuario == 'Alumno')
             {
@@ -23,6 +24,24 @@ class FuncionalidadAlumnoController extends \BaseController {
             return View::make('funcionalumno/edit',array('alumno'=>$alumno));
         }
     }
+
+    public function update()
+    {
+        if(Auth::user()->tipoUsuario == 'Alumno'){
+            $id = Auth::user()->nroId;
+            $obj = Alumno::where('id','=',$id)->firstOrFail();
+            if(is_object($obj))
+            {
+                $respuesta = Alumno::editarB($obj,Input::all());
+                if($respuesta['error']==true)
+                {
+                    return Redirect::to('alumnosB/modificar')->withErrors($respuesta['mensaje'])->withInput();
+                }
+                return Redirect::to('alumnoB/perfil')->withErrors($respuesta['mensaje']);
+            }
+        } else{ Redirect::to('400.html'); }
+    }
+
 	public function iniciocursosmatriculados()
 	{
       	if(Auth::user()->tipoUsuario == 'Alumno')

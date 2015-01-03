@@ -310,5 +310,6 @@ Route::group(['before' => 'auth'], function()
     Route::get('alumnoB/perfil',array('uses'=>'FuncionalidadAlumnoController@perfil'));
     Route::get('alumnoB/imagen/{id}',array('uses'=>'FuncionalidadAlumnoController@imagen'));
     Route::post('alumnoB/imagen/{id}',array('uses'=>'FuncionalidadAlumnoController@uploadImage'));
-    Route::get('alumnosB/modificar',array('uses'=>'FuncionalidadAlumnoController@modificarAlum'));
+    Route::get('alumnoB/modificar',array('uses'=>'FuncionalidadAlumnoController@modificarAlum'));
+    Route::post('alumnoB/update',array('uses'=>'FuncionalidadAlumnoController@update'));
 });

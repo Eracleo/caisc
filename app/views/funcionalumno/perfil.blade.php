@@ -3,7 +3,7 @@
 Perfil del Alumno
 @stop
 @section('options')
-<li>{{HTML::link('alumnosB/modificar','Modificar Datos')}}</li>
+<li>{{HTML::link('alumnoB/modificar','Modificar Datos')}}</li>
 @stop
 @section('content')
 <div class="row">
