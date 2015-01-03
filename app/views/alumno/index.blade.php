@@ -3,11 +3,8 @@
 Lista de Alumnos
 @stop
 @section('breadcrumb')
-<li>Alumnos</li>
 @stop
 @section('options')
-<li>{{HTML::link('alumnos','Listar')}}</li>
-<li>{{HTML::link('alumno/add.html','Nuevo')}}</li>
 @stop
 @section('content')
     <table class="table table-bordered table-striped dataTable">

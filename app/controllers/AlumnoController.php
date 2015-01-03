@@ -2,6 +2,24 @@
 
 class AlumnoController extends BaseController
 {
+	public function add()
+	{
+		$carreras = Carrera::lists('nombre','id');
+		return View::make('alumno.add', array('carreras'=>$carreras));
+	}
+
+
+	public function insert()
+	{
+		$respuesta = Alumno::agregar(Input::all());
+		if($respuesta['error']==true)
+		{
+			return Redirect::to('alumno/add.html')->withErrors($respuesta['mensaje'] )->withInput();
+		} else {
+			return Redirect::to('alumnos')->with('mensaje',$respuesta['mensaje']);
+		}
+	}
+
 	public function index($registros=5)
 	{
 		//$cod="1";
@@ -40,27 +58,12 @@ class AlumnoController extends BaseController
 		
 	}
 */
-	public function add()
-	{
-		$carreras = Carrera::lists('nombre','id');
-		return View::make('alumno.add', array('carreras'=>$carreras));
-	}
 
-	public function insert()
-	{
-		$respuesta = Alumno::agregar(Input::all());
-		$dni = Input::get('dni');
-		if($respuesta['error']==true)
-		{
-			return Redirect::to('alumno/add.html')->withErrors($respuesta['mensaje'] )->withInput();
-		} else {
-			return Redirect::to('alumnos')->with('mensaje',$respuesta['mensaje']);
-		}
-	}
 	public function edit($cod)
 	{
+		$carreras = Carrera::lists('nombre','id');
 		$alumno = Alumno::where('id','=',$cod)->firstOrFail();
-		return View::make('alumno.edit',array('alumno'=>$alumno));
+		return View::make('alumno.edit',array('alumno'=>$alumno, 'carreras'=>$carreras));
 	}
 
 	public function deshabilitar($cod)
@@ -81,20 +84,6 @@ class AlumnoController extends BaseController
 
 	public function update($id)
 	{
-		// $alumno = Alumno::where('id','=',$cod)->firstOrFail();
-		// if(is_object($alumno))
-		// {
-		// 	$alumno->nombre = Input::get('nombre');
-		// 	$alumno->apellidos = Input::get('apellidos');
-		// 	$alumno->dni = Input::get('dni');
-		// 	$alumno->direccion = Input::get('direccion');
-		// 	$alumno->telefono = Input::get('telefono');
-		// 	$alumno->email = Input::get('email');
-		// 	$alumno->save();
-		// 	return Redirect::to('alumnos');
-		// } else {
-		// 	Redirect::to('500.html');
-		// }
 		if(is_numeric($id))
 		{
 			$obj = Alumno::where('id','=',$id)->firstOrFail();
