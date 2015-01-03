@@ -238,6 +238,20 @@
                   <span class = "glyphicon glyphicon-list-alt"></span>
                   Listar Docentes</a>
                 </li>
+
+                <li class="divider"></li>
+                <li class="dropdown-header">
+                <span class = "glyphicon glyphicon-user"></span>
+                Planilla Docentes</li>
+                <li>     
+                  <li>                    
+                    <a href = "{{url('Planilla')}}">
+                  <span class = "glyphicon glyphicon-list-alt"></span>
+                  Lista de Pagos</a>
+                </li>
+
+
+
                 <li class="divider"></li>
                 <li class="dropdown-header">
                 <span class = "glyphicon glyphicon-user"> </span>
