@@ -26,7 +26,7 @@ class Login extends BaseController{
 				}
 				else
 				{
-					return Redirect::to('alumno/perfil')->with('message-success',"Bienvenido...");
+					return Redirect::to('alumnoB/perfil')->with('message-success',"Bienvenido...");
 				}
 			}
 		}

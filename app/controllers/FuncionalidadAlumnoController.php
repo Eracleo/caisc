@@ -69,4 +69,28 @@ class FuncionalidadAlumnoController extends \BaseController {
       		return View::make("error.303");
       	}
 	}
+
+    public function imagen($id)
+    {
+            $alumno = Alumno::where('id','=',$id)->firstOrFail();
+            return View::make('funcionalumno.imagenB',array('alumno'=>$alumno));
+    }
+
+    public function uploadImage($id)
+    {
+        $mensaje = "Ocurrio Error";
+        if(Input::file("foto")->isValid())
+        {
+            $file = Input::file("foto");
+            $fileName = Input::file('foto')->getClientOriginalName();
+            $alumno = Alumno::where('id','=',$id)->firstOrFail();
+            $alumno->foto = md5($id."-".$fileName).'.'.Input::file('foto')->getClientOriginalExtension();
+            if($alumno->save())
+            {
+                Input::file('foto')->move('assets/foto',$alumno->foto);
+                $mensaje = "Imagen actualizado";
+            }
+        }
+        return Redirect::to('alumnoB/perfil')->withErrors($mensaje);
+    }
 }

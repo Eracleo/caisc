@@ -303,9 +303,11 @@ Route::group(['before' => 'auth'], function()
     Route::get('Aula/post_eliminar/{id}',array('uses'=>'AulaController@post_eliminar'));
 
 
-    Route::get('alumno/iniciocursosmatriculados',array('uses'=>'FuncionalidadAlumnoController@iniciocursosmatriculados'));
-    Route::post('alumno/cursosmatriculados',array('uses'=>'FuncionalidadAlumnoController@cursosmatriculados'));
-    Route::get('alumno/inicionotascursos',array('uses'=>'FuncionalidadAlumnoController@inicionotascursos'));
-    Route::post('alumno/notascursos',array('uses'=>'FuncionalidadAlumnoController@notascursos'));
-    Route::get('alumno/perfil',array('uses'=>'FuncionalidadAlumnoController@perfil'));
+    Route::get('alumnoB/iniciocursosmatriculados',array('uses'=>'FuncionalidadAlumnoController@iniciocursosmatriculados'));
+    Route::post('alumnoB/cursosmatriculados',array('uses'=>'FuncionalidadAlumnoController@cursosmatriculados'));
+    Route::get('alumnoB/inicionotascursos',array('uses'=>'FuncionalidadAlumnoController@inicionotascursos'));
+    Route::post('alumnoB/notascursos',array('uses'=>'FuncionalidadAlumnoController@notascursos'));
+    Route::get('alumnoB/perfil',array('uses'=>'FuncionalidadAlumnoController@perfil'));
+    Route::get('alumnoB/imagen/{id}',array('uses'=>'FuncionalidadAlumnoController@imagen'));
+    Route::post('alumnoB/imagen/{id}',array('uses'=>'FuncionalidadAlumnoController@uploadImage'));
 });
