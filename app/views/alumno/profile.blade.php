@@ -7,7 +7,6 @@ Perfil <small>Alumno</small>
 <li>{{HTML::link('alumno/add.html','Nuevo')}}</li>
 @stop
 @section('content')
-<div class="row">
 	<div class="col-lg-3">
 		{{ HTML::image('assets/foto/'.$alumno->foto,'User Image',array('class'=>'')) }}
 		<p align="center"><b>código:</b>{{ $alumno->codAlumno }}</p>
@@ -33,5 +32,4 @@ Perfil <small>Alumno</small>
 			}
 		?>
 	</div>
-</div>
 @stop

@@ -60,6 +60,7 @@
                 <h1>@section('title') PANEL CONTROL <small>Instituto de Sistemas Cusco </small>@show</h1>
                 <ul class="tabs primary">
                     @section('options')
+                    <li><a href="#">Opciones</a></li>
                     @show
                 </ul>
               </div>

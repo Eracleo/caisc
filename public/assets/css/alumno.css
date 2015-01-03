@@ -1,3 +1,7 @@
+body {
+  padding-top: 20px;
+  padding-bottom: 30px;
+}
 .navbar-default {
 background-color: #FFF;
 }
@@ -38,4 +42,96 @@ margin: 15px auto;
   .cover-container {
     width: 100%; /* Must be percentage or pixels for horizontal alignment */
   }
+}
+
+.head-content{
+position: relative;
+padding: 5px 0px;
+height: 50px;
+background: #FBFBFB;
+box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+}
+.head-content h1,
+.head-content h2{
+    margin: 0px;
+    font-size: 30px;
+}
+.head-content {
+    width: 800px;
+}
+ul.tabs {
+float: right;
+margin-top: 0px;
+margin-bottom: 0;
+position: absolute;
+top: 0px;
+right: 10px;
+padding: 0 3px;
+margin: 0;
+overflow: hidden;
+border: none;
+}
+ul.tabs li {
+  display: block;
+  float: left; /* LTR */
+  vertical-align: bottom;
+  margin: 0 5px 0 0; /* LTR */
+}
+ul.tabs li.active a {
+  border-bottom: 1px solid #cccccc;
+}
+ul.tabs li a {
+  font-weight: bold;
+  text-decoration: none;
+  background-color: #ededed;
+  height:2em;
+  line-height: 1.9;
+  display: block;
+  font-size: 0.929em;
+  float: left; /* not LTR */
+  padding: 0 10px 3px;
+  margin: 0;
+  text-shadow: 0 1px 0 #fff;
+  -khtml-border-radius-topleft: 6px;
+  -moz-border-radius-topleft: 6px;
+  -webkit-border-top-left-radius: 6px;
+  border-top-left-radius: 6px;
+  -khtml-border-radius-topright: 6px;
+  -moz-border-radius-topright: 6px;
+  -webkit-border-top-right-radius: 6px;
+  border-top-right-radius: 6px;
+}
+ul.tabs li.active a {
+  background-color: #f0f0f0;
+}
+ul.tabs li a:hover{
+  background-color: #DDDDDD;
+}
+
+.errores {
+  height: 10px;
+  float: left;
+}
+.errores .alert{
+  padding:5px 15px;
+}
+/** FORMULARIOS**/
+  
+.body-content{
+  width: 98%;
+  margin: 15px auto;
+}
+.body-content span {
+  margin: 5px;
+}
+.body-content span a{
+  color: white;
+}
+.table-responsive {
+display: inline-block;
+width: 100%;
+margin-top: 10px;
+}
+.container {
+  width: 900px;
 }

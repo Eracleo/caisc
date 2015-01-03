@@ -15,6 +15,14 @@ class FuncionalidadAlumnoController extends \BaseController {
       		return View::make("error.303");
       	}
 	}
+    public function modificarAlum(){
+        if(Auth::user()->tipoUsuario == 'Alumno')
+            {
+            $id = Auth::user()->nroId;
+            $alumno = Alumno::where('id','=',$id)->firstOrFail();
+            return View::make('funcionalumno/edit',array('alumno'=>$alumno));
+        }
+    }
 	public function iniciocursosmatriculados()
 	{
       	if(Auth::user()->tipoUsuario == 'Alumno')

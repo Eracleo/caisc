@@ -2,6 +2,9 @@
 @section('title')
 Perfil del Alumno
 @stop
+@section('options')
+<li>{{HTML::link('alumnosB/modificar','Modificar Datos')}}</li>
+@stop
 @section('content')
 <div class="row">
 	<div class="col-lg-3">
