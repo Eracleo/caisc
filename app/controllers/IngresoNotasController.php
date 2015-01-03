@@ -163,7 +163,7 @@ class IngresoNotasController extends \BaseController {
 		if(Auth::user()->tipoUsuario == 'Docente')
 		{
 			$idDocente = Auth::user()->nroId;
-			$cursos = DB::select('call CursosXDocenteCT(' . $idDocente . ')');
+			$cursos = DB::select('call CursosXDocenteCL(' . $idDocente . ')');
 	      	return View::make("ingresonotas/registroCL", compact('cursos'));
       	}
       	else
