@@ -29,42 +29,7 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <span class = "glyphicon glyphicon-file"></span>
-              Notas<b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                 <li class="dropdown-header">Cursos Libres</li>
-                <li>                   
-                    <!--{{ HTML::link('ingresonotas/inicioCL','Ingreso De Notas Curso Libre') }}-->
-                    <a href = "{{url('ingresonotas/inicioCL')}}">
-                    <span class = "glyphicon glyphicon-open"></span>
-                    Ingreso De Notas Curso Libre</a>                     
-
-                </li>
-                <li>
-                    <!--{{ HTML::link('ingresonotas/registroCL','Ver Notas Curso Libre') }}-->
-                    <a href = "{{url('ingresonotas/registroCL')}}">
-                    <span class = "glyphicon glyphicon-th-list"></span>
-                    Ver Notas Curso Libre</a>                     
-                    
-                </li>
-                 <li class="divider"></li>
-                 <li class="dropdown-header">Carrera Tecnica</li>
-                <li>
-                    <!--{{ HTML::link('ingresonotas/inicioCT','Ingreso De Notas Carrera Tecnica') }}-->
-                    <a href = "{{url('ingresonotas/inicioCT')}}">
-                    <span class = "glyphicon glyphicon-open"></span>
-                    Ingreso De Notas Carrera Tecnica</a> 
-                </li>
-                <li>
-                    <!--{{ HTML::link('ingresonotas/registroCT','Ver Notas Carrera Tecnica') }}-->
-                    <a href = "{{url('ingresonotas/registroCT')}}">
-                    <span class = "glyphicon glyphicon-th-list"></span>
-                    Ver Notas Carrera Tecnica</a>                     
-                </li>
-              </ul>
-            </li>
+            
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class = "glyphicon glyphicon-book"></span> Matriculas<b class="caret"></b></a>
               <ul class="dropdown-menu">

@@ -45,17 +45,35 @@
             <ul>
                 <li><a href="{{url('docente')}}" class="active"><span class="glyphicon glyphicon-user"></span> Perfil</a></li>
                 <li><a href="#"><span class="glyphicon glyphicon-book"></span> Mis Cursos</a></li>
-                <li><a href=""><span class="glyphicon glyphicon-bookmark"></span> Ingresar Notas</a></li>
                 <li><a href="#"><span class="glyphicon glyphicon-list"></span> Alertas</a></li>
                 <li><a href="#"><span class="glyphicon glyphicon-cog"></span> Configuración</a></li>
-                <li><a href="{{url('ListarCursos')}}"><span class="glyphicon"></span> Mis Cursos Libres</a>
-                
+                <li><a href="{{url('ListarCursos')}}"><span class="glyphicon"></span> Mis Cursos Libres</a>                
                 <li><a href="{{url('ListarCursosCarreras')}}"><span class="glyphicon"></span> Mis Cursos de Carrera</a>
-                <li><a href="#"><span class="glyphicon"></span> Ingreso De Notas Curso Libre</a>
-                <li><a href="#"><span class="glyphicon"></span> Ver Notas Curso Libre</a>
-                <li><a href="#"><span class="glyphicon"></span> Ingreso De Notas Carrera Tecnica</a>
-                <li><a href="#"><span class="glyphicon"></span> Ver Notas Carrera Tecnica</a>
-
+                 <li class="divider"></li>
+                 <li class="dropdown-header">CURSO LIBRE </li>
+                <li>
+                <li>                   
+                    <a href = "{{url('ingresonotas/inicioCL')}}">
+                    <span class = "glyphicon glyphicon-open"></span>
+                    Ingreso De Notas Curso Libre</a>                     
+                </li>
+                <li>
+                    <a href = "{{url('ingresonotas/registroCL')}}">
+                    <span class = "glyphicon glyphicon-th-list"></span>
+                    Ver Notas Curso Libre</a>                     
+                </li>
+                 <li class="divider"></li>
+                 <li class="dropdown-header">CARRERA TECNICA </li>
+                <li>
+                    <a href = "{{url('ingresonotas/inicioCT')}}">
+                    <span class = "glyphicon glyphicon-open"></span>
+                    Ingreso De Notas Carrera Tecnica</a> 
+                </li>
+                <li>
+                    <a href = "{{url('ingresonotas/registroCT')}}">
+                    <span class = "glyphicon glyphicon-th-list"></span>
+                    Ver Notas Carrera Tecnica</a>                     
+                </li>
             </ul>
         </div>
         <div class="panel_container limit-width">

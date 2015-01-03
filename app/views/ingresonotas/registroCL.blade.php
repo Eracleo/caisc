@@ -1,4 +1,4 @@
-@extends('layouts.base_admin')
+@extends('layouts.base_docente')
 @section('content')
 <form action="consolidadoCL" name="form1" method="post">
     <div class="form-group">
