@@ -187,22 +187,26 @@ class PagosController extends \BaseController {
 	}
 
 
-	public function search_pagos(){
+	public function search_pagos($registros=10){
 
 		$id = Input::get('fecha');
 		
 		if ($id == '')
 		{	
+			$datos = Pagos::paginate($registros);
 			Session::flash('message','Ingrese una Fecha');
 			Session::flash('class','danger');
-			return View::make('pagos.search_pagos');
+			return View::make('pagos.search_pagos',compact("datos"));
 			
 		} else {
+
+			$datos = Pagos::where('fecha','=',$id)->orderBy('id','ASC')->paginate($registros);
 			$pagos = Pagos::where('fecha','=',$id)->get();
+
 			if (is_object($pagos)){
 				Session::flash('message','Consulta Satisfactoria');
 				Session::flash('class','success');
-				return View::make('pagos.search_pagos',array('pagos'=>$pagos));
+				return View::make('pagos.search_pagos',compact("datos"),array('pagos'=>$pagos));
 				//return Redirect::to('pagos/create')->withErrors($respuesta['mensaje'] )->withInput();
 				//return Redirect::to('pagos/create/',array('alumno'=>$alumno,'modalidad'=>$modalidad));
 			} else {
@@ -210,28 +214,30 @@ class PagosController extends \BaseController {
 			}
 		}
 	}
-	public function search_detail_pagos()
+	public function search_detail_pagos($registros=10)
 	{
 		$id = Input::get('boleta');
 		
 		if ($id == '')
 		{
+			$datos = Pagos::paginate($registros);
 			Session::flash('message','Ingrese Número de Boleta');
 			Session::flash('class','danger');
-			return View::make('pagos.search_detail_pagos');		
+			return View::make('pagos.search_detail_pagos',compact("datos"));		
 
 		} else {
-			$detalle = DetallePagos::where('pagos_id','=',$id)->get();
-
+			$datos = DetallePagos::where('pagos_id','=',$id)->orderBy('id','ASC')->paginate($registros);	
+			$detalle = DetallePagos::where('pagos_id','=',$id)->firstOrFail();
+			
 			
 			if (is_object($detalle))
 			{
-				$id_modalidad = 'Matricula';
-				$modalidad = Modalidad::where('id','=',$id_modalidad)->get();
+				$id_modalidad = $detalle->id_modalidad;
+				$modalidad = Modalidad::where('id','=',$id_modalidad)->firstOrFail();
 
 				Session::flash('message','Consulta Satisfactoria');
 				Session::flash('class','success');
-				return View::make('pagos.search_detail_pagos',array('detalle_pagos'=>$detalle),array('detalle_modalidad'=>$modalidad));
+				return View::make('pagos.search_detail_pagos',compact("datos"),array('detalle_pagos'=>$detalle,'detalle_modalidad'=>$modalidad));
 				//return Redirect::to('pagos/create')->withErrors($respuesta['mensaje'] )->withInput();
 				//return Redirect::to('pagos/create/',array('alumno'=>$alumno,'modalidad'=>$modalidad));
 			} else {
@@ -239,23 +245,25 @@ class PagosController extends \BaseController {
 			}
 		}	
 	}
-	public function search_pagos_alumno()
+	public function search_pagos_alumno($registros=10)
 	{
 		$id = Input::get('codigo');
 		
 		if (is_null($id))
 		{
+			$datos = Pagos::paginate($registros);
+			return View::make('pagos.search_pagos_alumno',compact("datos"));
 			Session::flash('message','Ingrese Código Alumno');
 			Session::flash('class','danger');
-			return View::make('pagos.search_pagos_alumno');
 			
 		} else {
+			$datos = Pagos::where('id_alumno','=',$id)->orderBy('id','ASC')->paginate($registros);
 			$pagos = Pagos::where('id_alumno','=',$id)->get();
 			if (is_object($pagos))
 			{
 				Session::flash('message','Consulta Satisfactoria');
 				Session::flash('class','success');
-				return View::make('pagos.search_pagos_alumno',array('pagos'=>$pagos));
+				return View::make('pagos.search_pagos_alumno',compact("datos"),array('pagos'=>$pagos));
 				//return Redirect::to('pagos/create')->withErrors($respuesta['mensaje'] )->withInput();
 				//return Redirect::to('pagos/create/',array('alumno'=>$alumno,'modalidad'=>$modalidad));
 			} else {

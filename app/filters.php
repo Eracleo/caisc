@@ -97,13 +97,13 @@ Route::filter('sessionDoc',function()
 		$tipoUsuario = Auth::user()->gettipoUsuario();
 		if($tipoUsuario == "Personal")
 		{
-			//return Redirect::to('personal')->with('message-success',"Bienvenido...");
+			return Redirect::to('persona');
 		}
 		else
 		{
 			if($tipoUsuario=="Alumno")
 			{
-				return Redirect::to('alumno')->with('message-success',"Bienvenido...");
+				return Redirect::to('alumno');
 			}
 		}
 	}
@@ -116,13 +116,33 @@ Route::filter('sessionPer',function()
 		$tipoUsuario = Auth::user()->gettipoUsuario();
 		if($tipoUsuario == "Docente")
 		{
-			return Redirect::to('docente')->with('message-success',"Bienvenido...");
+			return Redirect::to('docente');
 		}
 		else
 		{
 			if($tipoUsuario=="Alumno")
 			{
-				return Redirect::to('alumno')->with('message-success',"Bienvenido...");
+				return Redirect::to('alumno');
+			}
+		}
+	}
+
+});
+
+Route::filter('sessionAlu',function()
+{
+	if (Auth::check())
+	{
+		$tipoUsuario = Auth::user()->gettipoUsuario();
+		if($tipoUsuario == "Persona")
+		{
+			return Redirect::to('personal');
+		}
+		else
+		{
+			if($tipoUsuario=="Docente")
+			{
+				return Redirect::to('docente');
 			}
 		}
 	}

@@ -38,21 +38,46 @@ class ModalidadController extends \BaseController {
 	 */
 	public function store()
 	{
+
+		$respuesta = array();
+		$reglas = array(
+			'id'=>array('required','min:5','max:30'),
+			'descripcion'=>array('required','min:5','max:50'),
+			'monto'=>array('required','numeric','digits:8'));
+		$input = Input::all();
+		$validador = Validator::make($input,$reglas);
+		if($validador->fails())
+		{
+			$respuesta['mensaje'] = $validador;
+			$respuesta['error'] = true;
+		} else
+		{
+
 		$modalidad = new Modalidad;
 
 		$modalidad->id = Input::get('id');
 		$modalidad->descripcion = Input::get('descripcion');
 		$modalidad->monto = Input::get('monto');
 
+
 		if ($modalidad->save()) {
 			Session::flash('message','Guardado correctamente!');
 			Session::flash('class','success');
-		} else {
+		} else {                         
 			Session::flash('message','Ha ocurrido un error!');
 			Session::flash('class','danger');
 		}
+		}
+		if($respuesta['error']==true)
+		{
+			return Redirect::to('modalidad/create')->withErrors($respuesta['mensaje'] )->withInput();
+		} else {
+			return Redirect::to('modalidad')->with('mensaje',$respuesta['mensaje']);
+		}
 
-		return Redirect::to('modalidad/create');
+
+
+		//return Redirect::to('modalidad/create');
 	}
 
 	/**

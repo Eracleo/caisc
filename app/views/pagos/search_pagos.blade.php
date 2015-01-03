@@ -32,8 +32,8 @@ Consulta Caja y Facturación
         </thead>
         <tbody>
 
-        @if (!empty($pagos))
-            @foreach($pagos as $pag)
+        @if (!empty($datos))
+            @foreach($datos as $pag)
                 <tr>                        
                     <td>{{ HTML::link('pagos/search_detail_pagos?boleta='.$pag->id ,$pag->id ) }}</td>
                     <td>{{ $pag->nro_serie }}</td>
@@ -53,4 +53,8 @@ Consulta Caja y Facturación
       <div class="alert alert-{{ Session::get('class') }}">{{ Session::get('message')}}</div>
     @endif
 </div>
+    <div class="row">
+        <div class="col-sm-2"><p><b>Pagina Actual:</b> {{ $datos->getCurrentPage()}}</p></div>
+        <div class="col-sm-6">{{ $datos->links()}}</div>
+    </div>
 @stop
