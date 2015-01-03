@@ -11,10 +11,10 @@ class SilaboCursoLibre extends Eloquent {
 		$reglas = array(
 				'capitulo'=>array('required','max:50','min:1'),
 				'titulo'=>array('required','max:120','min:5'),
-				'numeroclases'=>array('required','max:999','min:1','integer'),
+				'numeroclases'=>array('required','max:100','min:1','integer'),
 				'orden'=>array('required','max:99999999999','min:1','integer'),
-				'objetivos'=>array('required','max:100000'),
-				'descripcion'=>array('required','max:100000')
+				'objetivos'=>array('required','max:100000','min:5'),
+				'descripcion'=>array('required','max:100000','min:5')
 			);
 
 		$validador = Validator::make($input,$reglas);
@@ -74,8 +74,8 @@ class SilaboCursoLibre extends Eloquent {
 				'titulo'=>array('required','max:120','min:5'),
 				'numeroclases'=>array('required','max:999','min:1','integer'),
 				'orden'=>array('required','max:99999999999','min:1','integer'),
-				'objetivos'=>array('required','max:100000'),
-				'descripcion'=>array('required','max:100000')
+				'objetivos'=>array('required','max:100000','min:5'),
+				'descripcion'=>array('required','max:100000','min:5')
 		);
 		$validador = Validator::make($input,$reglas);
 		if($validador->fails())
