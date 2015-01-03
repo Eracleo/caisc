@@ -51,7 +51,7 @@ class SilaboCarreraTecnicaController extends BaseController {
 			} 
 			else 
 			{
-				$silabo = SilaboCursoLibre::where('id','=',$cod)->firstOrFail();
+				$silabo = SilaboCursoTecnico::where('id','=',$cod)->firstOrFail();
 				if(is_object($silabo))
 				{
 					$silabo->capitulo = Input::get('capitulo');
@@ -137,6 +137,22 @@ class SilaboCarreraTecnicaController extends BaseController {
 		$datos = SilaboCursoTecnico::where('estado','<>','0')->orderBy('orden','ASC')->paginate(5);
 		return View::make('Cursos_Carrera_Tecnica.SilaboCT.index',compact("datos"),array('carrera'=>$carrera));
 	}
+	public function listarespecifico($id=null)
+	{
+		if(Auth::User()->tipoUsuario == 'Docente') //eso es por ah
+		{
+			$idDocente = Auth::User()->nroId;
+			$silabus = SilabusCT::where('codCargaAcademica_ct','=',$id);
+			return $silabus;
+			$codigo = $silabus->id;
+			$datos = SilaboCursoTecnico::where('estado','<>','0')->where('codSilabus_ct','=',$silabus->id)->orderBy('id','ASC')->paginate(5);
+			return View::make('Cursos_Carrera_Libre.SilaboCL.index',compact("datos"),array('id'=>$id));
+
+			return View::make("ListarCursos.index",compact('cursos'));
+		}
+		else
+		{return 'acesso restringido solo para docentes';}
+			}
 
 	public function detalle($id)
 	{
