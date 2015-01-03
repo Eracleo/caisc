@@ -547,6 +547,19 @@ END $$
 -- end
 -- begin
 DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `listarMatriculasCTAlumnoPorSemestre`(cod int, semest varchar(10))
+BEGIN
+    select M.id, M.semestre, M.codCargaAcademica_ct, C1.codCurso_ct, C2.nombre as curso, C1.docente_id, concat(D.nombre,' ',D.apellidos) as docente, C1.turno, C1.grupo
+    from matricula_ct M
+    inner join carga_academica_ct C1 on M.codCargaAcademica_ct = C1.codCargaAcademica_ct
+    inner join curso_ct C2 on C1.codCurso_ct = C2.id
+    inner join docente D on C1.docente_id = D.id
+    where M.codAlumno = cod and M.semestre = semest
+    order by M.id;
+END $$
+-- end
+-- begin
+DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `existe_cargaAcademica_cl`(codigo int)
 BEGIN
     SELECT IF( EXISTS(
