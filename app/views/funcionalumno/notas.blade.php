@@ -37,6 +37,12 @@
                 <th class="sorting" role="columnheader" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 20px;">
                     Nota 3
                 </th>
+                <th class="sorting" role="columnheader" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 10px;">
+                    PROMEDIO
+                </th>
+                <th class="sorting" role="columnheader" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 20px;">
+                    Observaciones
+                </th>
             </tr>
         </thead>
         <tbody role="alert" aria-live="polite" aria-relevant="all">
@@ -49,7 +55,13 @@
                 <td class="">{{$curso->nota1}}</td>
                 <td class="">{{$curso->nota2}}</td>
                 <td class="">{{$curso->nota3}}</td>
-                </td>
+                <?php $promedio = ($curso->nota1 + $curso->nota2 + $curso->nota3)/_3; ?>
+                <td class="">{{$promedio}}</td>
+                 @if( $promedio > 10.5)
+                    <td class="">APROBADO</td>;
+                @else
+                    <td class="">DESAPROBADO</td>;
+                @endif
             </tr>
             <?php $i++ ?>
             @endforeach
