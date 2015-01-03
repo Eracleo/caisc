@@ -258,7 +258,7 @@ CREATE TABLE IF NOT EXISTS horario_aula(
 
 -- ASISTENCIA ALUMNOS
 CREATE TABLE IF NOT EXISTS asistencia_ct(
-	`codAsistencia_ct` VARCHAR(10) NOT NULL,
+	`codAsistencia_ct` INT AUTO_INCREMENT,
 	`fecha` DATE NOT NULL,
 	`codCargaAcademica_ct` INT NOT NULL,
 	`tema` VARCHAR(10) NOT NULL,
@@ -280,7 +280,7 @@ CREATE TABLE IF NOT EXISTS detalle_asistencia_ct(
 ) CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS asistencia_cl(
-	`codAsistencia_cl` VARCHAR(10) NOT NULL,
+	`codAsistencia_cl` INT AUTO_INCREMENT,
 	`fecha` DATE NOT NULL,
 	`codCargaAcademica_cl` INT NOT NULL,
 	`tema` VARCHAR(10) NOT NULL,

@@ -601,6 +601,15 @@ Declare codAsistencia int;
     values(codAsistencia,codCargaAcademica,docente_id,Fecha,tema,codAlumno,observacion);
 END $$
 -- end
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insertarAsistencia_CL`(codCargaAcademica varchar(10),tema varchar(10),docente_id int,codAlumno int,Fecha date, observacion varchar(30))
+BEGIN
+Declare codAsistencia int;
+    insert into `asistencia_cl`(`codAsistencia_cl`,`codCargaAcademica_cl`,`docente_id`,`fecha`,`tema`,`codAlumno`, `Observacion`)
+    values(codAsistencia,codCargaAcademica,docente_id,Fecha,tema,codAlumno,observacion);
+END $$
+
 -- begin
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `Listar_Asistencias_fecha`(docente_id INT, Fecha date, Carga varchar(10))
