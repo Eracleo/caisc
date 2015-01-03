@@ -32,24 +32,40 @@
                     <li><a href="iniciocursosmatriculados">Mis Cursos</a></li>
                     <li><a href="inicionotascursos">Mis Notas</a></li>
                     <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Otros <b class="caret"></b></a>
-                      <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li class="divider"></li>
-                        <li class="dropdown-header">Nav header</li>
-                        <li><a href="#">Separated link</a></li>
-                        <li><a href="#">One more separated link</a></li>
-                      </ul>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Otros <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li class="divider"></li>
+                            <li class="dropdown-header">Nav header</li>
+                            <li><a href="#">Separated link</a></li>
+                            <li><a href="#">One more separated link</a></li>
+                        </ul>
                     </li>
-                    <li><a href="{{url('salir')}}"><span class="glyphicon glyphicon-off"> </span> Cerrar sesión</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i> {{Auth::user()->email}}<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-header">Miembro desde {{ date("d F Y",strtotime(Auth::user()->created_at)) }}</li>
+                            <li>{{ HTML::link('persona','Perfil') }}</li>
+                            <li class="divider"></li>
+                            <li><a href="{{url('salir')}}"><span class="glyphicon glyphicon-off"> </span> Cerrar sesión</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </div>
-        <div class="cover-container">
-            <div class="inner cover">
-                <h1 class="cover-heading">@section('title') PANEL CONTROL<small>Instituto de Sistemas Cusco </small>@show</h1>
+        <div class="container" role="main">
+              <div class="head-content">
+                <h1>@section('title') PANEL CONTROL <small>Instituto de Sistemas Cusco </small>@show</h1>
+                <ul class="tabs primary">
+                    @section('options')
+                    @show
+                </ul>
+              </div>
+                @if (Session::get('mensaje'))
+                <div class="alert alert-success">{{ Session::get('mensaje')}}</div>
+                @endif
 
                 @if (Session::get('message-success'))
                 <div class="alert alert-success">{{ Session::get('message-success')}}</div>
@@ -60,8 +76,9 @@
                 @if (Session::get('message-danger'))
                 <div class="alert alert-danger">{{ Session::get('message-danger')}}</div>
                 @endif
+              <div class="body-content">
                 @yield('content')
-            </div>
+              </div>
         </div>
     <div class="mastfoot">
         <div class="inner">

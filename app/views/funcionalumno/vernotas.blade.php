@@ -1,4 +1,7 @@
 @extends('layouts.base_alumno')
+@section('title')
+Notas del Alumno
+@stop
 @section('content')
 <form action="notascursos" name="form1" method="post">
     <div class="form-group">

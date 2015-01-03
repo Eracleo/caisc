@@ -1,4 +1,7 @@
 @extends('layouts.base_alumno')
+@section('title')
+Cursos por Semestre
+@stop
 @section('content')
 <form action="cursosmatriculados" name="form1" method="post">
     <div class="form-group">
