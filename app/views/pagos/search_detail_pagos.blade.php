@@ -33,20 +33,13 @@ Consulta Caja y Facturación
         </thead>
         <tbody>
             @if (!empty($detalle_pagos))
-                @foreach($detalle_pagos as $detalle)
                     <tr>
-                        <td>{{ $detalle->id }}</td>
-                        <td>{{ $detalle->id_modalidad }}</td>
-                        <td>{{ $detalle->descripcion }}</td>
-                        <td> 
-                        @if (!empty($detalle_modalidad))
-                            @foreach($detalle_modalidad as $detalle)       
-                                {{ $detalle->monto }}
-                            @endforeach
-                        @endif
-                        </td>
+                        <td>{{ $detalle_pagos->id }}</td>
+                        <td>{{ $detalle_pagos->id_modalidad }}</td>
+                        <td>{{ $detalle_pagos->descripcion }}</td>
+                        <td>{{ $detalle_modalidad->monto}}</td>
                     </tr>
-                @endforeach
+                           
             @else
             <p>
 
@@ -60,4 +53,8 @@ Consulta Caja y Facturación
       <div class="alert alert-{{ Session::get('class') }}">{{ Session::get('message')}}</div>
     @endif
 </div>
+    <div class="row">
+        <div class="col-sm-2"><p><b>Pagina Actual:</b> {{ $datos->getCurrentPage()}}</p></div>
+        <div class="col-sm-6">{{ $datos->links()}}</div>
+    </div>
 @stop

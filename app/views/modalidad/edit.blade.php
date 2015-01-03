@@ -9,14 +9,14 @@ Editar Modalidad
 @section('content')
   <div class="panel frm-sm">
         @if (!empty($modalidad))
-          <form method="post" action="/caisc/public/modalidad/update/{{ $modalidad->id}}">
+          <form method="post" action="{{ url('modalidad/update',$modalidad->id) }}">
           <p>
             <label>Nombre:</label>
             <input value="{{ $modalidad->id }}" type="text" name="id" placeholder="Nombre" class="form-control" required>
           </p>
           <p>
             <label>Concepto:</label>
-            <input type="text" name="descripcion" placeholder="Concepto" class="form-control" required>
+            <input value="{{ $modalidad->descripcion }}" type="text" name="descripcion" placeholder="Concepto" class="form-control" required>
           </p>
            <p>
             <label>Monto (S/.)</label>
