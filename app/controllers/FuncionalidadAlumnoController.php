@@ -93,6 +93,30 @@ class FuncionalidadAlumnoController extends \BaseController {
         }
     }
 
+    public function listaCursosCLdisponibles(){
+        $cursos = DB::select('call listar_cursosCL_disponibles()');
+        return View::make('funcionalumno.listarCursosLibres',array('cursos'=>$cursos));  
+    }
+
+    public function registrarCL($codCarga){
+        if(Auth::user()->tipoUsuario == 'Alumno'){
+            $cod = Auth::user()->nroId;
+            $buscar = DB::select('call buscarMatriculaCL(?,?)', array($cod,$codCarga));
+            $lonf = sizeof($buscar);
+            if ($lonf > 0) {
+                $respuesta['mensaje'] = 'Error!!! La matricula ya existe';
+                $respuesta['error'] = true;
+                return Redirect::to('alumnoB/lista_cursos')->with('mensaje',$respuesta['mensaje'])->withInput();
+            }else{
+                $matricula_cl = DB::select('call insertMatriculaCL(?,?)',array($cod,$codCarga));
+                $respuesta['mensaje'] = 'Matricula Creada';
+                $respuesta['error'] = false;
+                $respuesta['data'] = $matricula_cl;
+                return Redirect::to('alumnoB/lista_cursos')->with('mensaje',$respuesta['mensaje']);
+            }
+        }
+    }
+
 	public function iniciocursosmatriculados()
 	{
       	if(Auth::user()->tipoUsuario == 'Alumno')

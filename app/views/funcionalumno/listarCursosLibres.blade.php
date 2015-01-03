@@ -1,6 +1,6 @@
-@extends('layouts.base_admin')
+@extends('layouts.base_alumno')
 @section('title')
-Lista de Cursos Libres
+Lista de Cursos Libres Disponibles
 @stop
 @section('options')
 @stop
@@ -29,7 +29,7 @@ Lista de Cursos Libres
                 <td class=" ">{{ $curso->turno }}</td>
                 <td class=" ">{{ $curso->grupo }}</td>
                 <td class=" ">
-                    <span class="label label-primary">{{ HTML::link('matriculas_cl/registrar/'.$curso->codCargaAcademica_cl,'Matricular') }}</span>
+                    <span class="label label-primary">{{ HTML::link('alumnoB/registrar_cl/'.$curso->codCargaAcademica_cl,'Matricular') }}</span>
                 </td>
             </tr>
             @endforeach

@@ -318,5 +318,6 @@ Route::group(['before' => 'auth'], function()
     Route::post('alumnoB/matricular_lista',array('uses'=>'FuncionalidadAlumnoController@matricular_lista'));
     Route::get('alumnoB/listaMatriculas/{semestre}',array('uses'=>'FuncionalidadAlumnoController@listarMatriculasAlumno'));
     Route::get('alumnoB/lista_cursos',array('uses'=>'FuncionalidadAlumnoController@listaCursosCLdisponibles'));
+    Route::get('alumnoB/registrar_cl/{cod}',array('uses'=>'FuncionalidadAlumnoController@registrarCL'));
 
 });
