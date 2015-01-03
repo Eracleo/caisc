@@ -13,7 +13,15 @@
 
 Route::get('/', function()
 {
-    if (Auth::check()) return View::make('welcome');
+    if (Auth::check())
+        if(Auth::user()->tipoUsuario == 'Personal')
+            return Redirect::to('persona');           
+        else
+
+            if(Auth::user()->tipoUsuario == 'Docente')
+                return Redirect::to('docente');
+            else
+                return Redirect::to('alumno');
     return View::make('login');
 });
 // Errors
@@ -23,26 +31,46 @@ Route::get('blank.html',array('uses'=>'ErrorController@blank'));
 //login
 Route::get('salir',function()
 {
-	Auth::logout();
-	return Redirect::to('/');
+    Auth::logout();
+    return Redirect::to('/');
 });
 Route::post('check',array('uses'=>'Login@postUser'));
 // Grupo para que accedan los Docentes
 Route::group(['before' => 'auth|sessionDoc'], function()
 {
     Route::get('docente',array('uses'=>'DocenteController@perfil'));
+    Route::get('docente/password/{id}',array('uses'=>'DocenteController@password'))->where('id','[0-9]+');
+    Route::post('docente/password/{id}',array('uses'=>'DocenteController@passwordUpdate'))->where('id','[0-9]+');
+    Route::get('docente/imagen/{id}',array('uses'=>'DocenteController@imagen'))->where('id','[0-9]+');
+    Route::post('docente/imagen/{id}',array('uses'=>'DocenteController@uploadImage'))->where('id','[0-9]+');        
+    Route::get('docente/edit/{id}',array('uses'=>'DocenteController@edit'))->where('id','[0-9]+');
 });
 // Rutas para que accedan los alumnos
 Route::group(['before' => 'auth|sessionAlu'], function()
 {
     Route::get('alumno',array('uses'=>'AlumnoController@perfil'));
+    Route::get('alumnoB/iniciocursosmatriculados',array('uses'=>'FuncionalidadAlumnoController@iniciocursosmatriculados'));
+    Route::post('alumnoB/cursosmatriculados',array('uses'=>'FuncionalidadAlumnoController@cursosmatriculados'));
+    Route::get('alumnoB/inicionotascursos',array('uses'=>'FuncionalidadAlumnoController@inicionotascursos'));
+    Route::post('alumnoB/notascursos',array('uses'=>'FuncionalidadAlumnoController@notascursos'));
+    Route::get('alumnoB/perfil',array('uses'=>'FuncionalidadAlumnoController@perfil'));
+    Route::get('alumnoB/imagen/{id}',array('uses'=>'FuncionalidadAlumnoController@imagen'));
+    Route::post('alumnoB/imagen/{id}',array('uses'=>'FuncionalidadAlumnoController@uploadImage'));
+    Route::get('alumnoB/modificar',array('uses'=>'FuncionalidadAlumnoController@modificarAlum'));
+    Route::post('alumnoB/update',array('uses'=>'FuncionalidadAlumnoController@update'));
+    // -- para las matriculas
+    Route::get('alumnoB/registroCT',array('uses'=>'FuncionalidadAlumnoController@indexCT'));
+    Route::post('alumnoB/listarCargasDispo.html',array('uses'=>'FuncionalidadAlumnoController@listacursosnuevosProcStore'));
+    Route::post('alumnoB/matricular_lista',array('uses'=>'FuncionalidadAlumnoController@matricular_lista'));
+    Route::get('alumnoB/listaMatriculas/{semestre}',array('uses'=>'FuncionalidadAlumnoController@listarMatriculasAlumno'));
+    Route::get('alumnoB/lista_cursos',array('uses'=>'FuncionalidadAlumnoController@listaCursosCLdisponibles'));
+    Route::get('alumnoB/registrar_cl/{cod}',array('uses'=>'FuncionalidadAlumnoController@registrarCL'));
 });
 // Grupo para que accedan los Administradores
 Route::group(['before' => 'auth|sessionPer'], function()
 {
     // Alumno
     Route::get('alumnos',array('uses'=>'AlumnoController@index'));
-    Route::get('alumno',array('uses'=>'AlumnoController@perfil'));
     Route::get('alumno/add.html',array('uses'=>'AlumnoController@add'));
     Route::get('alumno/edit/{id}',array('uses'=>'AlumnoController@edit'));
     Route::get('alumno/deshabilitar/{id}',array('uses'=>'AlumnoController@deshabilitar'));
@@ -68,10 +96,6 @@ Route::group(['before' => 'auth|sessionPer'], function()
     Route::get('docente/profile/{id}',array('uses'=>'DocenteController@profile'))->where('id','[0-9]+');
     Route::get('docente/delete/{id}',array('uses'=>'DocenteController@delete'))->where('id','[0-9]+');
     Route::get('docente/active/{id}',array('uses'=>'DocenteController@active'))->where('id','[0-9]+');
-    Route::get('docente/password/{id}',array('uses'=>'DocenteController@password'))->where('id','[0-9]+');
-    Route::post('docente/password/{id}',array('uses'=>'DocenteController@passwordUpdate'))->where('id','[0-9]+');
-    Route::get('docente/imagen/{id}',array('uses'=>'DocenteController@imagen'))->where('id','[0-9]+');
-    Route::post('docente/imagen/{id}',array('uses'=>'DocenteController@uploadImage'))->where('id','[0-9]+');        
     
     
     // Personal
@@ -309,21 +333,5 @@ Route::group(['before' => 'auth|sessionPer'], function()
     Route::get('Aula/post_eliminar/{id}',array('uses'=>'AulaController@post_eliminar'));
 
 
-    Route::get('alumnoB/iniciocursosmatriculados',array('uses'=>'FuncionalidadAlumnoController@iniciocursosmatriculados'));
-    Route::post('alumnoB/cursosmatriculados',array('uses'=>'FuncionalidadAlumnoController@cursosmatriculados'));
-    Route::get('alumnoB/inicionotascursos',array('uses'=>'FuncionalidadAlumnoController@inicionotascursos'));
-    Route::post('alumnoB/notascursos',array('uses'=>'FuncionalidadAlumnoController@notascursos'));
-    Route::get('alumnoB/perfil',array('uses'=>'FuncionalidadAlumnoController@perfil'));
-    Route::get('alumnoB/imagen/{id}',array('uses'=>'FuncionalidadAlumnoController@imagen'));
-    Route::post('alumnoB/imagen/{id}',array('uses'=>'FuncionalidadAlumnoController@uploadImage'));
-    Route::get('alumnoB/modificar',array('uses'=>'FuncionalidadAlumnoController@modificarAlum'));
-    Route::post('alumnoB/update',array('uses'=>'FuncionalidadAlumnoController@update'));
-    // -- para las matriculas
-    Route::get('alumnoB/registroCT',array('uses'=>'FuncionalidadAlumnoController@indexCT'));
-    Route::post('alumnoB/listarCargasDispo.html',array('uses'=>'FuncionalidadAlumnoController@listacursosnuevosProcStore'));
-    Route::post('alumnoB/matricular_lista',array('uses'=>'FuncionalidadAlumnoController@matricular_lista'));
-    Route::get('alumnoB/listaMatriculas/{semestre}',array('uses'=>'FuncionalidadAlumnoController@listarMatriculasAlumno'));
-    Route::get('alumnoB/lista_cursos',array('uses'=>'FuncionalidadAlumnoController@listaCursosCLdisponibles'));
-    Route::get('alumnoB/registrar_cl/{cod}',array('uses'=>'FuncionalidadAlumnoController@registrarCL'));
 
 });
