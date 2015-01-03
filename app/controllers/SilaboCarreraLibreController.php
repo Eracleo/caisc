@@ -135,12 +135,12 @@ class SilaboCarreraLibreController extends BaseController {
 			$codigo = $silabus->id;
 			$datos = SilaboCursoLibre::where('estado','<>','0')->where('codSilabus_cl','=',$silabus->id)->orderBy('id','ASC')->paginate(5);
 			return View::make('Cursos_Carrera_Libre.SilaboCL.index',compact("datos"),array('id'=>$id));
-
-			return View::make("ListarCursos.index",compact('cursos'));
 		}
 		else
-		{return 'acesso restringido solo para docentes';}
-			}
+		{
+			return 'acesso restringido solo para docentes';
+		}
+	}
 	public function detalle($id)
 	{
 		if (is_null($id) or ! is_numeric($id))
