@@ -40,13 +40,6 @@
                                 <span class = "glyphicon glyphicon-pencil"></span>
                                 Matricula Carrera Tecnica</a> 
                             </li>
-                            <li class="divider"></li>
-                            <li>
-                                <!--{{ HTML::link('ingresonotas/inicioCT','Ingreso De Notas Carrera Tecnica') }}-->
-                                <a href = "{{url('alumnoB/lista_cursos')}}">
-                                <span class = "glyphicon glyphicon-pencil"></span>
-                                Matricula Curso Libre</a> 
-                            </li>
                         </ul>
                     </li>
                     <li class="dropdown">
