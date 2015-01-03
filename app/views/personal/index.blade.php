@@ -31,9 +31,9 @@ Personal
                         <td>
                         	<span class="label label-warning">{{ HTML::link('personal/edit/'.$dato->id,'Actualizar') }}</span>
                         	@if($dato->estado)
-                            <span class="label label-danger">{{ HTML::link('personal/delete/'.$dato->id,'Eliminar') }}</span>
+                            <span class="label label-danger">{{ HTML::link('personal/delete/'.$dato->id,'Deshabilitar') }}</span>
                             @else
-                            <span class="label label-primary">{{ HTML::link('personal/active/'.$dato->id,'Activar') }}</span>
+                            <span class="label label-primary">{{ HTML::link('personal/active/'.$dato->id,'Habilitar') }}</span>
                             @endif
                         	<span class="label label-primary">{{ HTML::link('personal/profile/'.$dato->id,'Detalles') }}</span>
                         </td>

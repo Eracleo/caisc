@@ -2,8 +2,7 @@
 @section('title')
 Lista de Alumnos
 @stop
-@section('breadcrumb')
-<li>Alumnos</li>
+@section('options')
 @stop
 @section('content')
 <style>

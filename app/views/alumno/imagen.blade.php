@@ -3,8 +3,6 @@
 Subir Imagen <small> {{$alumno->nombre}} </small>
 @stop
 @section('options')
-<li>{{HTML::link('alumnos','Listar')}}</li>
-<li>{{HTML::link('alumno/add.html','Nuevo')}}</li>
 @stop
 @section('content')
 <div class="ccol-xs-12 col-sm-12">

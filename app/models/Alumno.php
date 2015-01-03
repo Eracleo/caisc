@@ -11,9 +11,9 @@
 		$reglas = array(
 			'nombre'=>array('required','min:4','max:30'),
 			'apellidos'=>array('required','min:4','max:30'),
-			'dni'=>array('required','numeric','digits:8'),
+			'dni'=>array('required','numeric','digits:8','unique:alumno'),
 			'direccion'=>array('required','min:10','max:50'),
-			'telefono'=>array('required','numeric','digits:9'),
+			'telefono'=>array('required','numeric'),
 			'email'=>array('required','email'),
 			'password'=>array('required','min:6','confirmed')
 		);
@@ -37,11 +37,11 @@
 	{
 		$respuesta = array();
 		$reglas = array(
-			'nombre'=>array('required','min:3','max:30'),
-			'apellidos'=>array('required','min:3','max:30'),
+			'nombre'=>array('required','min:4','max:30'),
+			'apellidos'=>array('required','min:4','max:30'),
 			'dni'=>array('required','numeric','digits:8'),
-			'direccion'=>array('min:10','max:50'),
-			'telefono'=>array('min:9','max:20'),
+			'direccion'=>array('required','min:10','max:50'),
+			'telefono'=>array('required','numeric'),
 			'email'=>array('required','email'),
 		);
 		$validador = Validator::make($input,$reglas);
@@ -51,13 +51,17 @@
 			$respuesta['error'] = true;
 		} else
 		{
+			$user = User::where('id','=',$obj->id)->firstOrFail();
 			$obj->nombre = Input::get('nombre');
 			$obj->apellidos = Input::get('apellidos');
 			$obj->dni = Input::get('dni');
 			$obj->direccion = Input::get('direccion');
 			$obj->telefono = Input::get('telefono');
 			$obj->email = Input::get('email');
+			$obj->codCarrera = Input::get('codCarrera');
+			$user->email = $obj->email;
 			$obj->save();
+			$user->save();
 			$respuesta['mensaje'] = 'Datos Actualizados';
 			$respuesta['error'] = false;
 		}
@@ -78,7 +82,7 @@
 			$respuesta['error'] = true;
 		} else
 		{
-			$user = User::where('nroId','=',$obj->id)->firstOrFail();
+			$user = User::where('id','=',$obj->id)->firstOrFail();
 			$obj->password =  Hash::make($input['password']);
 			$user->password = $obj->password;
 			$obj->save();

@@ -3,8 +3,6 @@
 Editar Alumno <small> {{$alumno->nombre}} </small>
 @stop
 @section('options')
-<li>{{HTML::link('alumnos','Listar')}}</li>
-<li>{{HTML::link('alumno/add.html','Nuevo')}}</li>
 <li><a href="#">Editar</a></li>
 @stop
 @section('content')
@@ -83,6 +81,19 @@ Editar Alumno <small> {{$alumno->nombre}} </small>
 		<div class="errores">
 			@if ( $errors->has('email'))
 		       	@foreach ($errors->get('email') as $error)
+			   	<div class="alert alert-danger">* {{ $error }}</div>
+		    	@endforeach
+			@endif
+		</div>
+	</div>
+	<div class="form-group">
+		{{ Form::label('codCarrera','Carrera Profesional:',array('class'=>'col-sm-2 control-label')) }}
+		<div class="col-sm-6 col-md-4">
+			{{ Form::select('codCarrera',$carreras,null,array('class'=>'form-control'))}}
+		</div>
+		<div class="errores">
+			@if ( $errors->has('codCarrera'))
+		       	@foreach ($errors->get('codCarrera') as $error)
 			   	<div class="alert alert-danger">* {{ $error }}</div>
 		    	@endforeach
 			@endif
