@@ -62,6 +62,19 @@
                     <span class = "glyphicon glyphicon-th-list"></span>
                     Ver Notas Curso Libre</a>                     
                 </li>
+                <li>                
+                  <a href = "{{url('asistencia/inicioCL')}}">
+                  <span class = "glyphicon glyphicon-plus"></span>
+                  Control Asistencia Cursos Libres</a>
+                </li>
+
+                </li>
+                   <li>                
+                  <a href = "{{url('asistencia/registroCL')}}">
+                  <span class = "glyphicon glyphicon-list-alt"></span>
+                  Lista Asistencias Cursos Libres </a>
+                </li>
+
                  <li class="divider"></li>
                  <li class="dropdown-header">CARRERA TECNICA </li>
                 <li>
@@ -73,6 +86,17 @@
                     <a href = "{{url('ingresonotas/registroCT')}}">
                     <span class = "glyphicon glyphicon-th-list"></span>
                     Ver Notas Carrera Tecnica</a>                     
+                </li>
+                <li>
+                    <a href = "{{url('asistencia/inicioCT')}}">
+                    <span class = "glyphicon glyphicon-th-list"></span>
+                    Control Asistencia Carrera Tecnica </a>                     
+                </li>
+                </li>
+                   <li>                
+                  <a href = "{{url('asistencia/registroCT')}}">
+                  <span class = "glyphicon glyphicon-list-alt"></span>
+                  Lista Asistencias Carrera Técnica </a>
                 </li>
             </ul>
         </div>
