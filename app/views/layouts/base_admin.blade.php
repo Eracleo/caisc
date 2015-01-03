@@ -282,13 +282,13 @@
                     <!--{{ HTML::link('/pagos/search_detail_pagos','Buscar Detalles') }}-->
                     <a href = "{{url('/pagos/search_detail_pagos')}}">
                     <span class = "glyphicon glyphicon-search"></span>
-                    Buscar Detalles</a> 
+                    Buscar Por Detalle</a> 
                 </li>
                 <li>
                     <!--{{ HTML::link('/pagos/search_pagos_alumno','Buscar Boletas por Alumno') }}-->
                     <a href = "{{url('/pagos/search_pagos_alumno')}}">
                     <span class = "glyphicon glyphicon-search"></span>
-                    Buscar Boletas por Alumno</a> 
+                    Buscar Por Alumno</a> 
                 </li>
                 <!--<li>
                     

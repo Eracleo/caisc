@@ -22,13 +22,13 @@ Consulta Caja y Facturación
 
     <table id="detalle_pago" class="table table-striped">
         <thead>
-          <tr>
-            <th>Número</th>
-            <th>Serie</th>
-            <th>Id Alumno</th>
-            <th>Fecha</th>
-            <th>Total (S/.)</th>
-          </tr>
+            <tr>
+                <th>Número</th>
+                <th>Serie</th>
+                <th>Id Alumno</th>
+                <th>Fecha</th>
+                <th>Total (S/.)</th>
+            </tr>
         </thead>
         <tbody>
 

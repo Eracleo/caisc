@@ -59,7 +59,7 @@ class PagosController extends \BaseController {
 			}
 			return Redirect::to('pagos/create');
 		} else {
-			Session::flash('message','Tiene que escoger alguna modalidad');
+			Session::flash('message','Elija Modalidad');
 			Session::flash('class','danger');
 			return Redirect::to('pagos/create');			
 		}
@@ -202,7 +202,6 @@ class PagosController extends \BaseController {
 			if (is_object($pagos)){
 				Session::flash('message','Consulta Satisfactoria');
 				Session::flash('class','success');
-
 				return View::make('pagos.search_pagos',array('pagos'=>$pagos));
 				//return Redirect::to('pagos/create')->withErrors($respuesta['mensaje'] )->withInput();
 				//return Redirect::to('pagos/create/',array('alumno'=>$alumno,'modalidad'=>$modalidad));
@@ -215,17 +214,24 @@ class PagosController extends \BaseController {
 	{
 		$id = Input::get('boleta');
 		
-		if (is_null($id))
+		if ($id == '')
 		{
-			return View::make('pagos.search_detail_pagos');
-			Session::flash('message','ingrese un numero de boleta');
-			Session::flash('class','success');
+			Session::flash('message','Ingrese Número de Boleta');
+			Session::flash('class','danger');
+			return View::make('pagos.search_detail_pagos');		
 
 		} else {
 			$detalle = DetallePagos::where('pagos_id','=',$id)->get();
+
+			
 			if (is_object($detalle))
 			{
-				return View::make('pagos.search_detail_pagos',array('detalle_pagos'=>$detalle));
+				$id_modalidad = 'Matricula';
+				$modalidad = Modalidad::where('id','=',$id_modalidad)->get();
+
+				Session::flash('message','Consulta Satisfactoria');
+				Session::flash('class','success');
+				return View::make('pagos.search_detail_pagos',array('detalle_pagos'=>$detalle),array('detalle_modalidad'=>$modalidad));
 				//return Redirect::to('pagos/create')->withErrors($respuesta['mensaje'] )->withInput();
 				//return Redirect::to('pagos/create/',array('alumno'=>$alumno,'modalidad'=>$modalidad));
 			} else {
@@ -239,13 +245,16 @@ class PagosController extends \BaseController {
 		
 		if (is_null($id))
 		{
+			Session::flash('message','Ingrese Código Alumno');
+			Session::flash('class','danger');
 			return View::make('pagos.search_pagos_alumno');
-			Session::flash('message','ingrese un codigo de alumno');
-			Session::flash('class','success');
+			
 		} else {
 			$pagos = Pagos::where('id_alumno','=',$id)->get();
 			if (is_object($pagos))
 			{
+				Session::flash('message','Consulta Satisfactoria');
+				Session::flash('class','success');
 				return View::make('pagos.search_pagos_alumno',array('pagos'=>$pagos));
 				//return Redirect::to('pagos/create')->withErrors($respuesta['mensaje'] )->withInput();
 				//return Redirect::to('pagos/create/',array('alumno'=>$alumno,'modalidad'=>$modalidad));

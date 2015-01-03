@@ -20,6 +20,7 @@ Consulta Caja y Facturación
             </button>
         </div>
     </form>
+   
 
     <table id="detalle_pago" class="table table-striped">
         <thead>
@@ -27,6 +28,7 @@ Consulta Caja y Facturación
                 <th>Número Boleta</th>
                 <th>Modalidad</th>
                 <th>Concepto</th>
+                <th>Importe</th>
             </tr>
         </thead>
         <tbody>
@@ -36,11 +38,18 @@ Consulta Caja y Facturación
                         <td>{{ $detalle->id }}</td>
                         <td>{{ $detalle->id_modalidad }}</td>
                         <td>{{ $detalle->descripcion }}</td>
+                        <td> 
+                        @if (!empty($detalle_modalidad))
+                            @foreach($detalle_modalidad as $detalle)       
+                                {{ $detalle->monto }}
+                            @endforeach
+                        @endif
+                        </td>
                     </tr>
                 @endforeach
             @else
             <p>
-              No existe información para ésta modalidad.
+
             </p>
             @endif
         </tbody>
