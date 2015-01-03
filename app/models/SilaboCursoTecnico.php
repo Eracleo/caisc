@@ -9,40 +9,23 @@ class SilaboCursoTecnico extends Eloquent {
 	{
 		$respuesta = array();
 		$reglas = array(
-			'capitulo'=>array('required','max:50','min:1'),
-				'titulo'=>array('required','max:120','min:5'),
-				'numeroclases'=>array('required','max:999','min:1','integer'),
-				'orden'=>array('required','max:99999999999','min:1','integer'),
-				'objetivos'=>array('required','max:100000'),
-				'descripcion'=>array('required','max:100000')
+				'capitulo'=>array('required',' min:5', 'max:50'),
+				'titulo'=>array('required','min:5',' max:120'),
+				'objetivos'=>array('required','min:5','max:100' ),
+				'descripcion'=>array('required','min:5','max:120'),
+				'numeroclases'=>array('required','min:1','max:11'),
+				'orden'=>array('required','min:1','max:11')
 			);
 
 		$validador = Validator::make($input,$reglas);
 		if($validador->fails())
 		{
-			$respuesta['mensaje'] = $validador;
+			$respuesta['mensaje'] = 'Datos Ingresados Incorrectamente';
 			$respuesta['error'] = true;
 			$respuesta['data'] = $input;
 		} 
 		else
 		{
-			$silabo = new SilabusCT;
-			$silabo->codCargaAcademica_ct = Input::get('codCargaAcademica_ct');
-			$silabo->created_at= time();
-			$silabo->updated_at = time();
-			//$curso->save();
-			if ($silabo->save()) 
-			{
-				$respuesta['mensaje'] = 'Silabo Creado';
-				$respuesta['error'] = false;
-				$respuesta['data'] = $silabo;
-			}
-			else 
-			{
-				$respuesta['mensaje'] = $validador;
-				$respuesta['error'] = true;
-				$respuesta['data'] = $silabo;
-			}
 			$nombre = SilabusCT::get()->last();	
 			$a = $nombre->id;
 			$silabo = new SilaboCursoTecnico;
@@ -69,17 +52,17 @@ class SilaboCursoTecnico extends Eloquent {
 	{
 		$respuesta = array();
 		$reglas = array(
-				'capitulo'=>array('required','max:50','min:1'),
-				'titulo'=>array('required','max:120','min:5'),
-				'numeroclases'=>array('required','max:999','min:1','integer'),
-				'orden'=>array('required','max:99999999999','min:1','integer'),
-				'objetivos'=>array('required','max:100000'),
-				'descripcion'=>array('required','max:100000')
+				'capitulo'=>array('required','max:50'),
+				'titulo'=>array('required','max:120'),
+				'objetivos'=>array('required','min:3','max:100' ),
+				'descripcion'=>array('required','min:5','max:120'),
+				'numeroclases'=>array('required','max:11'),
+				'orden'=>array('required','max:11')
 		);
 		$validador = Validator::make($input,$reglas);
 		if($validador->fails())
 		{
-			$respuesta['mensaje'] = $validador;
+			$respuesta['mensaje'] = 'Datos Ingresados Incorrectamente';
 			$respuesta['error'] = true;
 		} 
 		else
