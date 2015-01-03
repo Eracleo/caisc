@@ -5,7 +5,7 @@ Notas del Alumno
 @section('content')
 <form action="notascursos" name="form1" method="post">
     <div class="form-group">
-    	<label for="">Asignatura : </label>
+    	<label for="">Semestre : </label>
 	        <select name='id' id='id' onChange='document.form1.submit()'>
 	        	<option value='0'>Seleccionar Semestre</option>;
 	        	@foreach( $elementosComboSemestre as $semestre)

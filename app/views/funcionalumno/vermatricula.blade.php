@@ -5,7 +5,7 @@ Cursos por Semestre
 @section('content')
 <form action="cursosmatriculados" name="form1" method="post">
     <div class="form-group">
-    	<label for="">Asignatura : </label>
+    	<label for="">Semestre : </label>
 	        <select name='id' id='id' onChange='document.form1.submit()'>
 	        	<option value='0'>Seleccionar Semestre</option>;
 	        	@foreach( $elementosComboSemestre as $semestre)
@@ -15,6 +15,6 @@ Cursos por Semestre
     </div>
 </form>
     <div class="form-group">
-        <label for="">Seleccionar Una Asignatura </label>
+        <label for="">Seleccionar Una Semestre </label>
     </div>
 @stop
