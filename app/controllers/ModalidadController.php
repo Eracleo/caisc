@@ -43,7 +43,7 @@ class ModalidadController extends \BaseController {
 		$reglas = array(
 			'id'=>array('required','min:5','max:30'),
 			'descripcion'=>array('required','min:5','max:50'),
-			'monto'=>array('required','numeric','digits:8'));
+			'monto'=>array('required','numeric','digits:2'));
 		$input = Input::all();
 		$validador = Validator::make($input,$reglas);
 		if($validador->fails())
