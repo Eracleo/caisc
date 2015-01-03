@@ -66,7 +66,7 @@ Agregar <small> NUEVO SILABO </small>
 		</div>
 	</div>
 	<div class="form-group">
-		{{ Form::label('descripcion','Dirección:',array('class'=>'col-sm-2 control-label')) }}
+		{{ Form::label('descripcion','Descripcion:',array('class'=>'col-sm-2 control-label')) }}
 		<div class="col-sm-6 col-md-4">
 			{{ Form::textarea('descripcion','',array('class'=>'form-control','placeholder'=>' Descripcion del Silabo'))}}
 		</div>
