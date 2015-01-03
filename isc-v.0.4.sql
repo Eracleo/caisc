@@ -183,7 +183,7 @@ CREATE TABLE IF NOT EXISTS carga_academica_cl(
 	`docente_id` INT NOT NULL,
 	`turno` VARCHAR(10) NOT NULL,
 	`grupo` VARCHAR(10) NOT NULL,
-	`semestre` VARCHAR(10) NOT NULL,
+	`semestre` VARCHAR(10) NULL,
 	`fecha_inicio` DATE NOT NULL,
 	`fecha_fin` DATE NOT NULL,
 	`estado` BIT DEFAULT 1,
