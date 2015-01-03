@@ -31,9 +31,9 @@ Lista de Docentes
                 <td>
                     <span class="label label-warning">{{ HTML::link('docente/edit/'.$dato->id,'Actualizar') }}</span>
                     @if($dato->estado)
-                    <span class="label label-danger">{{ HTML::link('docente/delete/'.$dato->id,'Eliminar') }}</span>
+                    <span class="label label-danger">{{ HTML::link('docente/delete/'.$dato->id,'Deshabilitar') }}</span>
                     @else
-                    <span class="label label-primary">{{ HTML::link('docente/active/'.$dato->id,'Activar') }}</span>
+                    <span class="label label-primary">{{ HTML::link('docente/active/'.$dato->id,'Habilitar') }}</span>
                     @endif
                     <span class="label label-primary">{{ HTML::link('docente/profile/'.$dato->id,'Detalles') }}</span>
                 </td>
