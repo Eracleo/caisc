@@ -28,15 +28,25 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="active"><a href="perfil">Perfil</a></li>
+                    <li class="active"><a href="{{url('alumnoB/perfil')}}">Perfil</a></li>
                     <li><a href="iniciocursosmatriculados">Mis Cursos</a></li>
                     <li><a href="inicionotascursos">Mis Notas</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Matriculas <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="registroCT">Matricula Carrera Tecnica</a></li>
+                            <li>
+                                <!--{{ HTML::link('ingresonotas/inicioCT','Ingreso De Notas Carrera Tecnica') }}-->
+                                <a href = "{{url('alumnoB/registroCT')}}">
+                                <span class = "glyphicon glyphicon-pencil"></span>
+                                Matricula Carrera Tecnica</a> 
+                            </li>
                             <li class="divider"></li>
-                            <li><a href="#">Matricula Curso Libre</a></li>
+                            <li>
+                                <!--{{ HTML::link('ingresonotas/inicioCT','Ingreso De Notas Carrera Tecnica') }}-->
+                                <a href = "{{url('alumnoB/lista_cursos')}}">
+                                <span class = "glyphicon glyphicon-pencil"></span>
+                                Matricula Curso Libre</a> 
+                            </li>
                         </ul>
                     </li>
                     <li class="dropdown">

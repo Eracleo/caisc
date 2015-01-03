@@ -315,5 +315,8 @@ Route::group(['before' => 'auth'], function()
     // -- para las matriculas
     Route::get('alumnoB/registroCT',array('uses'=>'FuncionalidadAlumnoController@indexCT'));
     Route::post('alumnoB/listarCargasDispo.html',array('uses'=>'FuncionalidadAlumnoController@listacursosnuevosProcStore'));
+    Route::post('alumnoB/matricular_lista',array('uses'=>'FuncionalidadAlumnoController@matricular_lista'));
+    Route::get('alumnoB/listaMatriculas/{semestre}',array('uses'=>'FuncionalidadAlumnoController@listarMatriculasAlumno'));
+    Route::get('alumnoB/lista_cursos',array('uses'=>'FuncionalidadAlumnoController@listaCursosCLdisponibles'));
 
 });

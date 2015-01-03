@@ -9,7 +9,7 @@ Cursos Disponibles para matricularse
         <label>Lista de Cargas Academicas a los cuales se puede matricular el alumno</label><br>
 </div>
 <div class="box">
-    {{ Form::open(array('method'=> 'POST','url'=> 'matriculas_ct/matricular_lista','class'=>'form-horizontal','role'=>'form')) }}
+    {{ Form::open(array('method'=> 'POST','url'=> 'alumnoB/matricular_lista','class'=>'form-horizontal','role'=>'form')) }}
         {{ Form::label('codAlumno','Codigo Alumno: ',array('class'=>'col-sm-4 control-label')) }}
         <div class="col-sm-2">
             <input name="codAlumno" type="text" class="form-control" value="{{$alumno->id}}" readonly>

@@ -44,7 +44,7 @@ class FuncionalidadAlumnoController extends \BaseController {
 
     public function indexCT(){
         $semestres = Semestre::lists('nombre','nombre');
-        return View::make('funcionalumno.matricula.index', array('semestres'=>$semestres));
+        return View::make('funcionalumno.index', array('semestres'=>$semestres));
     }
 
     public function listacursosnuevosProcStore(){
@@ -57,7 +57,39 @@ class FuncionalidadAlumnoController extends \BaseController {
             $alumno = DB::table('alumno')->where('id', $cod)->first(); // recupero datos del alumno
 
             $cursosDisponibles = DB::select('call listarCursosFaltantesParaMatriculaCT(?,?,?,?)',array($cod,$modulo,$codCarrera,$semest));
-            return View::make('funcionalumno.matricula.listaCursosNuevos', compact('alumno','semest'),array('cursos'=>$cursosDisponibles));
+            return View::make('funcionalumno.listaCursosNuevos', compact('alumno','semest'),array('cursos'=>$cursosDisponibles));
+        }
+    }
+
+    public function matricular_lista(){
+        $respuesta = array();
+        if(Auth::user()->tipoUsuario == 'Alumno'){
+            $cod = Auth::user()->nroId;
+            $semestre = Input::get('semestreMatri');
+            $arreglo = Input::get('cargas');
+            if (empty($arreglo)) {
+                $respuesta['mensaje'] = 'No hay registros para matricular. Ingrese de nuevo';
+                $respuesta['error'] = true;
+                $respuesta['data'] = '';
+                return Redirect::to('alumnoB/registroCT')->with('mensaje',$respuesta['mensaje']);
+            }else{
+                foreach ($arreglo as $carga) {
+                    $carga_acade = $carga;
+                    $matricula_ct = DB::select('call insertMatriculaCT(?,?,?)',array($cod,$carga_acade,$semestre));
+                    }
+                $respuesta['mensaje'] = 'Matrículas registradas correctamente';
+                $respuesta['error'] = false;
+                return Redirect::to('alumnoB/listaMatriculas/'.$semestre);
+            }
+        }
+    }
+
+    public function listarMatriculasAlumno($semest){
+        if(Auth::user()->tipoUsuario == 'Alumno'){
+            $cod = Auth::user()->nroId;
+            $alumno = DB::table('alumno')->where('id', $cod)->first();
+            $matriculas = DB::select('call listarMatriculasCTAlumnoPorSemestre(?,?)',array($cod,$semest));
+            return View::make('funcionalumno.listaMatriculasAlumno', compact('alumno'),array('cursos'=>$matriculas));
         }
     }
 
