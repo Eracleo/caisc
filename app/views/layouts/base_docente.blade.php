@@ -44,7 +44,7 @@
     <div class="content mensajes">
         <div class="panel_nav" id="dmenu">
             <ul>
-                <li><a href="{{url('docente')}}"><span class="glyphicon glyphicon-user"></span> Pefil</a></li>
+                <li><a href="{{url('docente')}}"><span class="glyphicon glyphicon-user"></span> Perfil</a></li>
                 <li><a href="" class="active"><span class="glyphicon glyphicon-book"></span> Mis Cursos</a></li>
                 <li><a href=""><span class="glyphicon glyphicon-bookmark"></span> Ingresar Notas</a></li>
                 <li><a href="#"><span class="glyphicon glyphicon-list"></span> Alertas</a></li>
