@@ -34,17 +34,17 @@ Consulta Caja y Facturación
 
         @if (!empty($pagos))
             @foreach($pagos as $pag)
-                <tr>
-                    <td>{{ $pag->id }}</td>
+                <tr>                        
+                    <td>{{ HTML::link('pagos/search_detail_pagos?boleta='.$pag->id ,$pag->id ) }}</td>
                     <td>{{ $pag->nro_serie }}</td>
-                    <td>{{ $pag->id_alumno }}</td>
+                    <td>{{ HTML::link('alumno/profile/'.$pag->id_alumno,$pag->id_alumno) }}</td>
                     <td>{{ $pag->fecha }}</td>
                     <td>{{ $pag->total_pago }}</td>
                 </tr>
             @endforeach
         @else
         <p>
-          No existe información para éste pago.
+          
         </p>
         @endif
         </tbody>
