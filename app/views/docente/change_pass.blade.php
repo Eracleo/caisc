@@ -1,11 +1,11 @@
 @extends('layouts.base_'.Str::lower(Auth::user()->tipoUsuario))
 @section('title')
-Cambiar Contraseña <small> {{$obj->nombre}} </small>
+<small> Editar Docente </small>
 @stop
 @section('options')
-<li>{{ HTML::link('docentes','Docentes')}} </li>
-<li>{{ HTML::link('docente/profile/'.$obj->id,$obj->nombre)}}</li>
-<li>Editar</li>
+<li>{{ HTML::link('docente/profile/'.$obj->id,'Perfil') }}</li>
+<li>{{ HTML::link('docente/edit/'.$obj->id,'Editar') }}</li>
+<li>{{ HTML::link('docente/password/'.$obj->id,'Cambiar Contraseña') }}</li>
 @stop
 @section('content')
 <div class="col-xs-12 col-sm-12">

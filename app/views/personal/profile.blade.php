@@ -3,9 +3,9 @@
 Perfil <small>PERSONAL</small>
 @stop
 @section('options')
-<li>{{HTML::link('personal','Listar')}}</li>
-<li>{{HTML::link('personal/add.html','Nuevo')}}</li>
-<li><a href="#">Perfil</a></li>
+<li>{{ HTML::link('personal/profile/'.$personal->id,'Perfil') }}</li>
+<li>{{ HTML::link('personal/edit/'.$personal->id,'Editar') }}</li>
+<li>{{ HTML::link('personal/password/'.$personal->id,'Cambiar Contraseña') }}</li>
 @stop
 @section('content')
 <div class="row">

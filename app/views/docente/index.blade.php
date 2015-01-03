@@ -3,8 +3,7 @@
 Lista de Docentes
 @stop
 @section('options')
-<li>{{ HTML::link('docentes','Listar')}}</li>
-<li>{{ HTML::link('docente/add.html','Nuevo')}}</li>
+
 @stop
 @section('content')
         <table class="table table-bordered table-striped dataTable">

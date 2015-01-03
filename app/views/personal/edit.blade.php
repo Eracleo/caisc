@@ -3,9 +3,9 @@
 Editar Personal <small> {{$personal->nombre}} </small>
 @stop
 @section('options')
-<li>{{ HTML::link('personal','Personal')}} </li>
-<li>{{ HTML::link('personal/add.html','Nuevo')}} </li>
-<li><a href="#">Editar</a></li>
+<li>{{ HTML::link('personal/profile/'.$personal->id,'Perfil') }}</li>
+<li>{{ HTML::link('personal/edit/'.$personal->id,'Editar') }}</li>
+<li>{{ HTML::link('personal/password/'.$personal->id,'Cambiar Contraseña') }}</li>
 @stop
 @section('content')
 

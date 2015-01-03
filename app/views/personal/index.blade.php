@@ -3,8 +3,6 @@
 Personal
 @stop
 @section('options')
-<li>{{HTML::link('personal','Listar')}}</li>
-<li>{{HTML::link('personal/add.html','Nuevo')}}</li>
 @stop
 @section('content')
             <table class="table table-bordered table-striped dataTable">
@@ -47,6 +45,6 @@ Personal
     <div class="row">
         <div class="col-sm-2"><p><b>Pagina Actual:</b> {{ $datos->getCurrentPage()}}</p></div>
         <div class="col-sm-6">{{ $datos->links()}}</div>
-        <div class="col-sm-4">{{ HTML::link('personal/add.html','Agregar Docente') }}</div>
+        <div class="col-sm-4">{{ HTML::link('personal/add.html','Agregar Personal') }}</div>
     </div>
 @stop
