@@ -1,4 +1,4 @@
-@extends('layouts.base_admin')
+@extends('layouts.base_docente')
 @section('content')
 <form action="ingresoCT" name="form1" method="post">
     <div class="form-group">
@@ -16,9 +16,13 @@
     </div>
 </form>
 {{ Form::open(array('url'=>'ingresonotas/ingresoNotaCT', 'method'=>'post')) }}
-    <label for="">ID CURSO : </label>
     <?php $idCurso = $id ?>
-    <input type="text" value="{{ $idCurso }}" name="idCurso" readonly="readonly">
+    <div class="form-group">
+        {{ Form::label('curso','ID CURSO:',array('class'=>'col-sm-1 control-label')) }}
+        <div class="col-sm-2 col-md-2">    
+            <input name="idCurso" type="text" class="form-control" value="{{$idCurso}}" readonly>
+        </div>
+    </div>
     <table id="example1" class="table table-bordered table-striped dataTable" aria-describedby="example1_info">
         <thead>
             <tr role="row">
