@@ -128,3 +128,23 @@ Route::filter('sessionPer',function()
 	}
 
 });
+
+Route::filter('sessionAlu',function()
+{
+	if (Auth::check())
+	{
+		$tipoUsuario = Auth::user()->gettipoUsuario();
+		if($tipoUsuario == "Personal")
+		{
+			//return Redirect::to('personal')->with('message-success',"Bienvenido...");
+		}
+		else
+		{
+			if($tipoUsuario=="Docente")
+			{
+				return Redirect::to('docente')->with('message-success',"Bienvenido...");
+			}
+		}
+	}
+
+});
