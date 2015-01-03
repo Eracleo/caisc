@@ -122,20 +122,21 @@ Route::group(['before' => 'auth'], function()
     Route::controller('pagos','PagosController');
     /*End Caja y Facturacion*/
     // Modulos Asistencia: Docentes y Alumnos
+
+    //Rutas para el carrera técnica
     Route::get('asistencia/inicioCT','AsistenciaController@inicioCT');
     Route::post('asistencia/ingresoCT','AsistenciaController@cursoCT');
     Route::post('asistencia/ingresoAsistenciaCT','AsistenciaController@ingresoCT');
-    Route::get('asistencia/SeleccionarCT','AsistenciaController@SeleccionarCT');
-    Route::post('asistencia/ModificarAsistenciaCT','IngresoNotasController@ModificarCT');
-    Route::post('asistencia/ModificarCT','AsistenciaController@ModificarCT');
     Route::post('asistencia/consolidadoCT','AsistenciaController@consolidadoCT');
-    Route::post('asistencia/ListaCT','AsistenciaController@InicioLista');
-    Route::post('asistencia/ListarAsistenciaCT','AsistenciaController@ListaAsistencia');
-
     Route::get('asistencia/registroCT','AsistenciaController@registroCT');
-    Route::get('asistencia/asistencia/ModificarCT','AsistenciaController@ModificarCT');
-    Route::get('asistencia/add_ct',array('uses'=>'AsistenciaController@add_ct'));
-    Route::get('asistencia/add_cl',array('uses' =>'AsistenciaController@add_cl'));
+    //Rutas para Cursos Libres
+    Route::get('asistencia/inicioCL','AsistenciaController@inicioCL');
+    Route::post('asistencia/ingresoCL','AsistenciaController@cursoCL');
+    Route::post('asistencia/ingresoAsistenciaCL','AsistenciaController@ingresoCL');
+    Route::post('asistencia/consolidadoCL','AsistenciaController@consolidadoCL');
+    Route::get('asistencia/registroCL','AsistenciaController@registroCL');
+
+
     //Pago en planilla docentes
     Route::get('Planilla',array('uses'=>'PlanillaController@index'));
     Route::get('Planilla/detalle_Planilla/{id}',array('uses'=>'PlanillaController@detalle_Planilla'))->where('id','[0-9]+');
