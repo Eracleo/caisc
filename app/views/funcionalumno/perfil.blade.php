@@ -9,10 +9,10 @@ Perfil del Alumno
 <div class="row">
 	<div class="col-lg-3">
 		{{ HTML::image('assets/foto/'.$alumno->foto,'User Image',array('class'=>'')) }}
-		<p align="center"><b>código:</b>{{ $alumno->codAlumno }}</p>
 		<p>{{ HTML::link('alumnoB/imagen/'.$alumno->id,'Cambiar Imagen') }}</p>
 	</div>
 	<div class="col-lg-7">
+		<p><b>Código del Alumno:</b>{{$alumno->id}}</p>
 		<p><b>DNI:</b>{{ $alumno->dni }}</p>
 		<p><b>Nombre:</b> {{ $alumno->nombre }}</p>
 		<p><b>Apellidos:</b> {{ $alumno->apellidos }}</p>
