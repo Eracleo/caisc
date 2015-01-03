@@ -53,19 +53,6 @@ Agregar <small> NUEVO SILABO </small>
 	</div>
 
 	<div class="form-group">
-		{{ Form::label('objetivos','Objetivos:',array('class'=>'col-sm-2 control-label')) }}
-		<div class="col-sm-6 col-md-4">
-			{{ Form::textarea('objetivos','',array('class'=>'form-control','placeholder'=>'12345678'))}}
-		</div>
-		<div class="errores">
-			@if ( $errors->has('objetivos'))
-		       	@foreach ($errors->get('objetivos') as $error)
-			   	<div class="alert alert-danger">* {{ $error }}</div>
-		    	@endforeach
-			@endif
-		</div>
-	</div>
-	<div class="form-group">
 		{{ Form::label('descripcion','Descripcion:',array('class'=>'col-sm-2 control-label')) }}
 		<div class="col-sm-6 col-md-4">
 			{{ Form::textarea('descripcion','',array('class'=>'form-control','placeholder'=>' Descripcion del Silabo'))}}
