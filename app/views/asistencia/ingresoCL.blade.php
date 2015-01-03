@@ -1,4 +1,4 @@
-@extends('layouts.base_admin')
+@extends('layouts.base_docente')
 @section('content')
 <form action="ingresoCT" name="form1" method="post">
     <h1>Control de Asistencia Curos Libres</h1>

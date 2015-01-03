@@ -1,4 +1,4 @@
-@extends('layouts.base_admin')
+@extends('layouts.base_docente')
 @section('content')
 <form action="consolidadoCT" name="form1" method="post">
     <h1>Control de Asistencia Cursos Libres</h1>
