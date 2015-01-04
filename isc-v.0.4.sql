@@ -273,7 +273,7 @@ CREATE TABLE IF NOT EXISTS asistencia_ct(
 
 CREATE TABLE IF NOT EXISTS detalle_asistencia_ct(
 	`codAlumno` INT NOT NULL,
-	`codAsistencia_ct` VARCHAR(10) NOT NULL,
+	`codAsistencia_ct` int NOT NULL,
 	PRIMARY KEY (`codAlumno`,`codAsistencia_ct`),
 	FOREIGN KEY (`codAlumno`) REFERENCES alumno(`id`),
 	FOREIGN KEY (`codAsistencia_ct`) REFERENCES asistencia_ct(`codAsistencia_ct`)
@@ -295,7 +295,7 @@ CREATE TABLE IF NOT EXISTS asistencia_cl(
 
 CREATE TABLE IF NOT EXISTS detalle_asistencia_cl(
 	`codAlumno` INT NOT NULL,
-	`codAsistencia_cl` VARCHAR(10) NOT NULL,
+	`codAsistencia_cl` int NOT NULL,
 	PRIMARY KEY (`codAlumno`,`codAsistencia_cl`),
 	FOREIGN KEY (`codAlumno`) REFERENCES alumno(`id`),
 	FOREIGN KEY (`codAsistencia_cl`) REFERENCES asistencia_cl(`codAsistencia_cl`)
