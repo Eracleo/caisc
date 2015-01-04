@@ -43,7 +43,7 @@ class ModalidadController extends \BaseController {
 		$reglas = array(
 			'id'=>array('required','min:5','max:30'),
 			'descripcion'=>array('required','min:5','max:50'),
-			'monto'=>array('required','numeric','digits:2'));
+			'monto'=>array('required','regex:/^\d*(\.\d{2})?$/'));
 		$input = Input::all();
 		$validador = Validator::make($input,$reglas);
 		if($validador->fails())
@@ -51,6 +51,7 @@ class ModalidadController extends \BaseController {
 			$respuesta['mensaje'] = $validador;
 			$respuesta['error'] = true;
 		} else
+			$respuesta['error'] = false;
 		{
 
 		$modalidad = new Modalidad;
@@ -68,11 +69,12 @@ class ModalidadController extends \BaseController {
 			Session::flash('class','danger');
 		}
 		}
+
 		if($respuesta['error']==true)
 		{
 			return Redirect::to('modalidad/create')->withErrors($respuesta['mensaje'] )->withInput();
 		} else {
-			return Redirect::to('modalidad')->with('mensaje',$respuesta['mensaje']);
+			return Redirect::to('modalidad');
 		}
 
 
