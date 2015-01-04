@@ -43,7 +43,7 @@ class FuncionalidadAlumnoController extends \BaseController {
     }
 
     public function indexCT(){
-        $semestres = Semestre::lists('nombre','nombre');
+        $semestres = Semestre::lists('nombre','id');
         return View::make('funcionalumno.index', array('semestres'=>$semestres));
     }
 

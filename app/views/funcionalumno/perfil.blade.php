@@ -19,6 +19,8 @@ Perfil del Alumno
 		<p><b>Dirección:</b> {{ $alumno->direccion }}</p>
 		<p><b>Teléfono:</b> {{ $alumno->telefono}}</p>
 		<p><b>E-mail:</b> {{ $alumno->email }}</p>
+		<p><b>Modulo Actual:</b> {{ $alumno->modulo }}</p>
+		<p><b>Codigo Carrera Profesional:</b> {{ $alumno->codCarrera }}</p>
 		<?php
 			if($alumno->estado == 0 ){
 		?>

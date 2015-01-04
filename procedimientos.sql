@@ -513,7 +513,7 @@ END $$
 -- end
 -- begin
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `listarCursosFaltantesParaMatriculaCT`(alumno int, modulo int, carre int, semest varchar(10))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `listarCursosFaltantesParaMatriculaCT`(alumno int, modulo int, carre varchar(10), semest varchar(10))
 BEGIN
     DROP TABLE IF EXISTS F;
     DROP TABLE IF EXISTS G;
