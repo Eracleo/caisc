@@ -134,9 +134,9 @@ Route::filter('sessionAlu',function()
 	if (Auth::check())
 	{
 		$tipoUsuario = Auth::user()->gettipoUsuario();
-		if($tipoUsuario == "Persona")
+		if($tipoUsuario == "Personal")
 		{
-			return Redirect::to('personal');
+			return Redirect::to('persona');
 		}
 		else
 		{
@@ -144,6 +144,39 @@ Route::filter('sessionAlu',function()
 			{
 				return Redirect::to('docente');
 			}
+		}
+	}
+
+});
+
+Route::filter('sessionPerCaja',function()
+{
+	if (Auth::check())
+	{
+		$tipoUsuario = Auth::user()->gettipoUsuario();
+		if($tipoUsuario == "Docente")
+		{
+			return Redirect::to('docente');
+		}
+		else
+		{
+			if($tipoUsuario=="Alumno")
+			{
+				return Redirect::to('alumno');
+			}
+		}
+		if($tipoUsuario=="Personal")
+		{			
+			$NroId = Auth::user()->getnroId();
+			$personal = Personal::where('id','=',$NroId)->firstOrFail();
+			$CargoId = $personal->getcargoId();
+			$Cargo = Cargo::where('id','=',$CargoId)->firstOrFail();
+			$tipoCargo = $Cargo->getNombre();
+			if(($tipoCargo!="Cajero") && ($tipoCargo != "Cajera")&&($tipoCargo != "Administrador")&&($tipoCargo != "Director") )
+			{
+				return Redirect::to('persona');				
+			}
+
 		}
 	}
 

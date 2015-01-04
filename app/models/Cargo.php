@@ -49,5 +49,9 @@ class Cargo extends Eloquent {
 		}
 		return $respuesta;
 	}
+	public function getNombre()
+	{
+	  return $this->nombre;
+	}
 }
 

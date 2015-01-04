@@ -85,5 +85,10 @@ class Personal extends Eloquent {
 		}
 		return $respuesta;
 	}
+
+	public function getcargoId()
+	{
+	  return $this->cargo_id;
+	}
 }
 

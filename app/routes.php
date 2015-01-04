@@ -100,6 +100,30 @@ Route::group(['before' => 'auth|sessionAlu'], function()
     Route::get('alumnoB/registrar_cl/{cod}',array('uses'=>'FuncionalidadAlumnoController@registrarCL'));
 });
 // Grupo para que accedan los Administradores
+Route::group(['before' => 'auth|sessionPerCaja'], function()
+{
+//Route::post('pagos/update/{id}','PagosController@update');
+    Route::post('pagos/store','PagosController@store');
+
+    Route::get('pagos/destroy/{id}','PagosController@destroy');
+    Route::post('pagos/index','PagosController@index');
+
+    Route::get('pagos/create',array('uses'=>'PagosController@add'));
+    //Route::post('pagos/showAlumno/{id}','PagosController@getAlumno');
+    Route::get('pagos/showAlumno/{id}',array('uses'=>'PagosController@profile'))->where('id','[0-9]+');
+    Route::post('pagos/create',array('uses' => 'PagosController@store'));
+
+    Route::post('pagos/showAlumno/store','PagosController@store');
+    Route::post('pagos/search',array('uses'=>'PagosController@search'));
+    Route::get('pagos/search_pagos',array('uses'=>'PagosController@search_pagos'));
+    Route::get('pagos/search_detail_pagos',array('uses'=>'PagosController@search_detail_pagos'));
+    Route::get('pagos/search_pagos_alumno',array('uses'=>'PagosController@search_pagos_alumno'));
+
+    Route::controller('pagos','PagosController');
+    /*End Caja y Facturacion*/
+
+});
+
 Route::group(['before' => 'auth|sessionPer'], function()
 {
     // Alumno
@@ -166,23 +190,7 @@ Route::group(['before' => 'auth|sessionPer'], function()
     Route::post('modalidad/index','ModalidadController@index');
     Route::controller('modalidad','ModalidadController');
 
-    //Route::post('pagos/update/{id}','PagosController@update');
-    Route::post('pagos/store','PagosController@store');
-
-    Route::get('pagos/destroy/{id}','PagosController@destroy');
-    Route::post('pagos/index','PagosController@index');
-    Route::get('pagos/create',array('uses'=>'PagosController@add'));
-    //Route::post('pagos/showAlumno/{id}','PagosController@getAlumno');
-    Route::get('pagos/showAlumno/{id}',array('uses'=>'PagosController@profile'))->where('id','[0-9]+');
-    Route::post('pagos/create',array('uses' => 'PagosController@store'));
-    Route::post('pagos/showAlumno/store','PagosController@store');
-    Route::post('pagos/search',array('uses'=>'PagosController@search'));
-    Route::get('pagos/search_pagos',array('uses'=>'PagosController@search_pagos'));
-    Route::get('pagos/search_detail_pagos',array('uses'=>'PagosController@search_detail_pagos'));
-    Route::get('pagos/search_pagos_alumno',array('uses'=>'PagosController@search_pagos_alumno'));
-
-    Route::controller('pagos','PagosController');
-    /*End Caja y Facturacion*/
+    
     // Modulos Asistencia: Docentes y Alumnos
 
    
