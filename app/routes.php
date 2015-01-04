@@ -58,6 +58,13 @@ Route::group(['before' => 'auth|sessionDoc'], function()
     Route::get('ingresonotas/registroCL','IngresoNotasController@registroCL');
 
 
+    Route::post('/ListarCursos/create/{id}','ListarCursosController@create');
+    Route::controller('ListarCursos','ListarCursosController');
+    Route::post('/ListarCursosCarrera/create/{id}','ListarCursosController@create');
+    Route::controller('ListarCursosCarreras','ListarCursosCTController');
+
+
+
      //Rutas para el carrera técnica
     Route::get('asistencia/inicioCT','AsistenciaController@inicioCT');
     Route::post('asistencia/ingresoCT','AsistenciaController@cursoCT');
@@ -253,8 +260,7 @@ Route::group(['before' => 'auth|sessionPer'], function()
     //Modulo silabo de carrera libre
 
     // Listar cursos por docente
-    Route::post('/ListarCursos/create/{id}','ListarCursosController@create');
-    Route::controller('ListarCursos','ListarCursosController');
+    
 
     Route::get('SilaboCarreraLibre/create/{id}','SilaboCarreraLibreController@nuevo');
     Route::get('SilaboCarreraLibre/index.html','SilaboCarreraLibreController@listar');
@@ -275,8 +281,7 @@ Route::group(['before' => 'auth|sessionPer'], function()
     //Modulo silabo de carrera tecnica
 
     // Listar cursos de carrera por docente
-    Route::post('/ListarCursosCarrera/create/{id}','ListarCursosController@create');
-    Route::controller('ListarCursosCarreras','ListarCursosCTController');
+    
 
     Route::get('SilaboCarreraTecnica/create/{id}','SilaboCarreraTecnicaController@nuevo');
     Route::get('SilaboCarreraTecnica/index.html','SilaboCarreraTecnicaController@listar');
