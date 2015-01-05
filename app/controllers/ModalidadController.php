@@ -103,7 +103,7 @@ class ModalidadController extends \BaseController {
 
 		if($respuesta['error']==true)
 		{
-			return Redirect::to('modalidad/edit')->withErrors($respuesta['mensaje'] )->withInput();
+			return Redirect::to('modalidad/edit/'.$id)->withErrors($respuesta['mensaje'] )->withInput();
 		} else {
 			$modalidad = Modalidad::find($id);
 
@@ -117,7 +117,7 @@ class ModalidadController extends \BaseController {
 				Session::flash('message','Ha ocurrido un error!');
 				Session::flash('class','danger');
 			}
-			return Redirect::to('modalidad/edit/'.$id);
+			return Redirect::to('modalidad/');
 			}
 	}
 

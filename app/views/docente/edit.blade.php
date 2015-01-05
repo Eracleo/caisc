@@ -8,6 +8,7 @@
 <li>{{ HTML::link('docente/password/'.$docente->id,'Cambiar Contraseña') }}</li>
 @stop
 @section('content')
+
 <div class="ccol-xs-12 col-sm-12">
 {{ Form::model($docente,array('url'=>array('docente/update',$docente->id),'method'=> 'POST','class'=>'form-horizontal','role'=>'form'))}}
 		<div class="form-group">

@@ -9,7 +9,6 @@ Mantenimiento Modalidad
 @section('content')
 
 <div class="col-xs-12 col-sm-12">
-
   	<form method="post" action="store" class='form-horizontal' role='form'>
   		<div class="form-group">
 			{{ Form::label('id','Nombre(s):',array('class'=>'col-sm-1 control-label')) }}
@@ -25,7 +24,6 @@ Mantenimiento Modalidad
 			</div>
 		</div>
 
-
 	  	<div class="form-group">
 				{{ Form::label('descripcion','Concepto:',array('class'=>'col-sm-1 control-label')) }}
 			<div class="col-sm-6 col-md-4">
@@ -38,8 +36,7 @@ Mantenimiento Modalidad
 		    		@endforeach
 				@endif
 			</div>
-		</div>
-		
+		</div>		
 
 	  	<div class="form-group">
 				{{ Form::label('monto','Monto(S/.):',array('class'=>'col-sm-1 control-label')) }}
@@ -63,7 +60,7 @@ Mantenimiento Modalidad
 	</form>
 </div>
 
-		@if(Session::has('message'))
-			<div class="alert alert-{{ Session::get('class') }}">{{ Session::get('message')}}</div>
-		@endif
+	@if(Session::has('message'))
+		<div class="alert alert-{{ Session::get('class') }}">{{ Session::get('message')}}</div>
+	@endif
 @stop
