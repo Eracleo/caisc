@@ -1,6 +1,6 @@
 @extends('layouts.base_alumno')
 @section('title')
-Perfil del Alumno
+Buscar Matriculas para el semestre Seleccionado
 @stop
 @section('options')
 @stop
@@ -14,8 +14,8 @@ Perfil del Alumno
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-xs-12 col-sm-6 col-md-6">
-                    <button class="btn btn-primary btn-block" type="submit">Buscar</button>
+                <div class="col-xs-12 col-sm-8 col-md-8">
+                    <button class="btn btn-primary btn-block" type="submit">Buscar Matriculas Disponibles</button>
                 </div>
             </div>
         {{Form::close()}}    
