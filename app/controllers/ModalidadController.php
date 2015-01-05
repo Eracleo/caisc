@@ -141,17 +141,24 @@ class ModalidadController extends \BaseController {
 	public function destroy($nombre)
 	{
 		$modalidad = Modalidad::find($nombre);
-
-		if ($modalidad->delete()) {
-			Session::flash('message','Eliminado correctamente!');
-			Session::flash('class','success');
-		} else {
-			Session::flash('message','Ha ocurrido un error!');
+		$detalle = DetallePagos::where('id_modalidad','=',$nombre)->firstOrFail();
+		if (is_object($detalle)){
+			Session::flash('message','Modalidad en Uso!');
 			Session::flash('class','danger');
+		} else {
+			if ($modalidad->delete()) {
+				Session::flash('message','Eliminado correctamente!');
+				Session::flash('class','success');
+				
+			} else {
+				Session::flash('message','Ha ocurrido un error!');
+				Session::flash('class','danger');
+			}				
 		}
-
 		return Redirect::to('modalidad');
-	}
+	}	
+
+
 	public function getModalidad()
 	{
 		$modalidad = Modalidad::orderBy('id','DESC')->get();
