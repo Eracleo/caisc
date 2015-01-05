@@ -36,50 +36,32 @@ class ModalidadController extends \BaseController {
 	 *
 	 * @return Response
 	 */
+	
+
 	public function store()
 	{
-
-		$respuesta = array();
-		$reglas = array(
-			'id'=>array('required','min:5','max:30'),
-			'descripcion'=>array('required','min:5','max:50'),
-			'monto'=>array('required','regex:/^\d*(\.\d{2})?$/'));
-		$input = Input::all();
-		$validador = Validator::make($input,$reglas);
-		if($validador->fails())
-		{
-			$respuesta['mensaje'] = $validador;
-			$respuesta['error'] = true;
-		} else
-			$respuesta['error'] = false;
-		{
-
-		$modalidad = new Modalidad;
-
-		$modalidad->id = Input::get('id');
-		$modalidad->descripcion = Input::get('descripcion');
-		$modalidad->monto = Input::get('monto');
-
-
-		if ($modalidad->save()) {
-			Session::flash('message','Guardado correctamente!');
-			Session::flash('class','success');
-		} else {                         
-			Session::flash('message','Ha ocurrido un error!');
-			Session::flash('class','danger');
-		}
-		}
+		$respuesta = Modalidad::validate(Input::all());
 
 		if($respuesta['error']==true)
 		{
 			return Redirect::to('modalidad/create')->withErrors($respuesta['mensaje'] )->withInput();
 		} else {
+			$modalidad = new Modalidad;
+
+			$modalidad->id = Input::get('id');
+			$modalidad->descripcion = Input::get('descripcion');
+			$modalidad->monto = Input::get('monto');
+
+
+			if ($modalidad->save()) {
+				Session::flash('message','Guardado correctamente!');
+				Session::flash('class','success');
+			} else {                         
+				Session::flash('message','Ha ocurrido un error!');
+				Session::flash('class','danger');
+			}
 			return Redirect::to('modalidad');
 		}
-
-
-
-		//return Redirect::to('modalidad/create');
 	}
 
 	/**
@@ -117,19 +99,26 @@ class ModalidadController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		$modalidad = Modalidad::find($id);
+		$respuesta = Modalidad::validate(Input::all());
 
-		$modalidad->id = Input::get('id');
-		$modalidad->descripcion = Input::get('descripcion');
-		$modalidad->monto = Input::get('monto');
-		if ($modalidad->save()) {
-			Session::flash('message','Actualizado correctamente!');
-			Session::flash('class','success');
+		if($respuesta['error']==true)
+		{
+			return Redirect::to('modalidad/edit')->withErrors($respuesta['mensaje'] )->withInput();
 		} else {
-			Session::flash('message','Ha ocurrido un error!');
-			Session::flash('class','danger');
-		}
-		return Redirect::to('modalidad/edit/'.$id);
+			$modalidad = Modalidad::find($id);
+
+			$modalidad->id = Input::get('id');
+			$modalidad->descripcion = Input::get('descripcion');
+			$modalidad->monto = Input::get('monto');
+			if ($modalidad->save()) {
+				Session::flash('message','Actualizado correctamente!');
+				Session::flash('class','success');
+			} else {
+				Session::flash('message','Ha ocurrido un error!');
+				Session::flash('class','danger');
+			}
+			return Redirect::to('modalidad/edit/'.$id);
+			}
 	}
 
 	/**

@@ -10,6 +10,7 @@ Editar Modalidad
   <div class="panel frm-sm">
         @if (!empty($modalidad))
           <form method="post" action="{{ url('modalidad/update',$modalidad->id) }}">
+
           <p>
             <label>Nombre:</label>
             <input value="{{ $modalidad->id }}" type="text" name="id" placeholder="Nombre" class="form-control" required>
@@ -28,6 +29,8 @@ Editar Modalidad
             No existe información para éste usuario.
           </p>
         @endif
+
+        
       </form>
   </div>
 

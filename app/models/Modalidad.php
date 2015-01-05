@@ -4,6 +4,26 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
 class Modalidad extends Eloquent implements UserInterface, RemindableInterface {
+	public  static function validate($input){
+		$respuesta = array();
+		$reglas = array(
+			'id'=>array('required','min:5','max:30'),
+			'descripcion'=>array('required','min:5','max:50'),
+			'monto'=>array('required','regex:/^\d*(\.\d{2})?$/')
+			);
+
+		$validador = Validator::make($input,$reglas);
+		if($validador->fails())
+		{
+			$respuesta['mensaje'] = $validador;
+			$respuesta['error'] = true;
+		} else
+		{
+			$respuesta['mensaje'] = $validador;
+			$respuesta['error'] = false;
+		}
+		return $respuesta;
+	}
 
 	/**
 	 * The database table used by the model.
