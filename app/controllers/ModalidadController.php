@@ -129,12 +129,15 @@ class ModalidadController extends \BaseController {
 	 */
 	public function destroy($nombre)
 	{
-		$modalidad = Modalidad::find($nombre);
-		$detalle = DetallePagos::where('id_modalidad','=',$nombre)->firstOrFail();
-		if (is_object($detalle)){
+		
+		$detalle = DetallePagos::where('id_modalidad', '=', $nombre)->count();
+		//$pago = Pagos::max('id');
+
+		if ($detalle  > 0){
 			Session::flash('message','Modalidad en Uso!');
 			Session::flash('class','danger');
 		} else {
+			$modalidad = Modalidad::find($nombre);
 			if ($modalidad->delete()) {
 				Session::flash('message','Eliminado correctamente!');
 				Session::flash('class','success');
