@@ -362,19 +362,17 @@ BEGIN
 END$$
 
 DELIMITER $$
-
 CREATE DEFINER=`root`@`localhost` PROCEDURE `CursosXDocenteCT`(IN `id_docente` INT)
     NO SQL
 BEGIN
-    select cg.codCargaAcademica_ct as id, cu.nombre as nombre
+    select cg.codCargaAcademica_ct as id, cu.nombre as nombre, T.nombre as turno, G.nombre as grupo
 
-    from carga_academica_ct cg inner join curso_ct cu on cg.codCurso_ct = cu.id
+    from (((carga_academica_ct cg inner join curso_ct cu on cg.codCurso_ct = cu.id)inner join grupo G on G.id = cg.grupo) inner join turno T on T.id = cg.turno)
     where cg.docente_id = id_docente;
 END$$
 
 -- AlumnosXCurso
 DELIMITER $$
-
 CREATE DEFINER=`root`@`localhost` PROCEDURE `AlumnosXCursoCL`(IN `codcargaAcademica` VARCHAR(20))
     NO SQL
 BEGIN
@@ -388,10 +386,10 @@ DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `CursosXDocenteCL`(IN `id_docente` INT)
     NO SQL
 BEGIN
-    select cg.codCargaAcademica_cl as id, cu.nombre as nombre
+    select cg.codCargaAcademica_cl as id, cu.nombre as nombre, T.nombre as turno, G.nombre as grupo
 
-    from carga_academica_cl cg inner join curso_cl cu on cg.codCurso_cl = cu.id
-    where cg.docente_id = id_docente;
+    from (((carga_academica_cl cg inner join curso_cl cu on cg.codCurso_cl = cu.id)inner join grupo G on G.id = cg.grupo) inner join turno T on T.id = cg.turno)
+    where cg.docente_id = id_docente and cg.estado = 1;
 END$$
 -- end
 -- listarCargaAcademicaCT

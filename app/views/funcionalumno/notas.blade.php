@@ -1,15 +1,24 @@
 @extends('layouts.base_alumno')
+@section('misNotas')
+<li class="active"><a href="inicionotascursos">Mis Notas</a></li>
+@stop
+@section('title')
+Notas del Alumno
+@stop
+@section('title')
+Notas del Alumno
+@stop
 @section('content')
 <form action="notascursos" name="form1" method="post">
     <div class="form-group">
     	<label for="">Asignatura : </label>
 	        <select name='id' id='id' onChange='document.form1.submit()'>
-	        	<option value='0'>Seleccionar Semestre</option>;
+	        	<option value='0'>Seleccionar Semestre</option>
 	        	@foreach( $elementosComboSemestre as $semestre)
                     @if( $idCurso == $semestre -> id)
-                        <option selected value='{{ $semestre -> id }}'>{{ $semestre -> nombre }}</option>;
+                        <option selected value='{{ $semestre -> id }}'>{{ $semestre -> nombre }}</option>
                      @else
-                        <option value='{{ $semestre -> id }}'>{{ $semestre -> nombre }}</option>;
+                        <option value='{{ $semestre -> id }}'>{{ $semestre -> nombre }}</option>
                     @endif
                 @endforeach
 	        </select>
@@ -55,12 +64,12 @@
                 <td class="">{{$curso->nota1}}</td>
                 <td class="">{{$curso->nota2}}</td>
                 <td class="">{{$curso->nota3}}</td>
-                <?php $promedio = ($curso->nota1 + $curso->nota2 + $curso->nota3)/_3; ?>
-                <td class="">{{$promedio}}</td>
+                <?php $promedio = ($curso->nota1 + $curso->nota2 + $curso->nota3)/3; ?>
+                <td class="">{{round($promedio)}}</td>
                  @if( $promedio > 10.5)
-                    <td class="">APROBADO</td>;
+                    <td class="">APROBADO</td>
                 @else
-                    <td class="">DESAPROBADO</td>;
+                    <td class="">DESAPROBADO</td>
                 @endif
             </tr>
             <?php $i++ ?>

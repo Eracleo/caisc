@@ -1,4 +1,7 @@
 @extends('layouts.base_docente')
+@section('title')
+<small>Ingreso De Notas Curso De Carrera Tecnica</small>
+@stop
 @section('content')
 <form action="ingresoCT" name="form1" method="post">
     <div class="form-group">
@@ -6,7 +9,7 @@
 	        <select name='id' id='id' onChange='document.form1.submit()'>
 	        	<option value='0'>Seleccionar Asignatura</option>;
 	        	@foreach( $cursos as $curso)
-					<option value='{{ $curso -> id }}'>{{ $curso -> nombre }}</option>;
+					<option value='{{ $curso -> id }}'>{{ $curso -> nombre.' Turno: '.$curso -> turno.' '.$curso -> grupo }}</option>;
 			    @endforeach
 	        </select>
     </div>

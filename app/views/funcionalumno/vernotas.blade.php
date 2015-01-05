@@ -1,4 +1,7 @@
 @extends('layouts.base_alumno')
+@section('misNotas')
+<li class="active"><a href="inicionotascursos">Mis Notas</a></li>
+@stop
 @section('title')
 Notas del Alumno
 @stop
@@ -7,9 +10,9 @@ Notas del Alumno
     <div class="form-group">
     	<label for="">Semestre : </label>
 	        <select name='id' id='id' onChange='document.form1.submit()'>
-	        	<option value='0'>Seleccionar Semestre</option>;
+	        	<option value='0'>Seleccionar Semestre</option>
 	        	@foreach( $elementosComboSemestre as $semestre)
-					<option value='{{ $semestre -> id }}'>{{ $semestre -> nombre }}</option>;
+					<option value='{{ $semestre -> id }}'>{{ $semestre -> nombre }}</option>
 			    @endforeach
 	        </select>
     </div>

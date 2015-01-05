@@ -28,9 +28,15 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="active"><a href="{{url('alumnoB/perfil')}}">Perfil</a></li>
+                    @section('menuPerfil')
+                    <li><a href="{{url('alumnoB/perfil')}}">Perfil</a></li>
+                    @show
+                    @section('misCursos')
                     <li><a href="iniciocursosmatriculados">Mis Cursos</a></li>
+                    @show
+                    @section('misNotas')
                     <li><a href="inicionotascursos">Mis Notas</a></li>
+                    @show
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Matriculas <b class="caret"></b></a>
                         <ul class="dropdown-menu">

@@ -7,9 +7,9 @@
 	        	<option value='0'>Seleccionar Asignatura</option>;
 	        	@foreach( $cursos as $curso)
 	        		@if( $id == $curso -> id)
-						<option selected value='{{ $curso -> id }}'>{{ $curso -> nombre }}</option>;
+						<option selected value='{{ $curso -> id }}'>{{ $curso -> nombre.' Turno: '.$curso -> turno.' '.$curso -> grupo }}</option>;
 					@else
-						<option value='{{ $curso -> id }}'>{{ $curso -> nombre }}</option>;
+						<option value='{{ $curso -> id }}'>{{ $curso -> nombre.' Turno: '.$curso -> turno.' '.$curso -> grupo }}</option>;
 					@endif
 			    @endforeach
 	        </select>

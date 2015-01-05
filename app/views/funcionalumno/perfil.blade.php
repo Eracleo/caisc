@@ -1,6 +1,9 @@
 @extends('layouts.base_alumno')
+@section('menuPerfil')
+<li class="active"><a href="{{url('alumnoB/perfil')}}">Perfil</a></li>
+@stop
 @section('title')
-Perfil del Alumno
+Datos Del Alumno
 @stop
 @section('options')
 <li>{{HTML::link('alumnoB/modificar','Modificar Datos')}}</li>

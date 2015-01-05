@@ -1,4 +1,7 @@
 @extends('layouts.base_docente')
+@section('title')
+<small>Consolidado De Notas Curso Libre</small>
+@stop
 @section('content')
 <form action="consolidadoCL" name="form1" method="post">
     <div class="form-group">
@@ -7,9 +10,9 @@
                 <option value='0'>Seleccionar Asignatura</option>;
                 @foreach( $cursos as $curso)
                     @if( $id == $curso -> id)
-                        <option selected value='{{ $curso -> id }}'>{{ $curso -> nombre }}</option>;
+                        <option selected value='{{ $curso -> id }}'>{{ $curso -> nombre.' Turno: '.$curso -> turno.' '.$curso -> grupo }}</option>;
                     @else
-                        <option value='{{ $curso -> id }}'>{{ $curso -> nombre }}</option>;
+                        <option value='{{ $curso -> id }}'>{{ $curso -> nombre.' Turno: '.$curso -> turno.' '.$curso -> grupo }}</option>;
                     @endif
                 @endforeach
             </select>
