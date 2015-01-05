@@ -479,6 +479,25 @@ END $$
 -- end
 -- begin
 DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `listarMatriculasAlumnoSemestre`(alumno int, semest varchar(10))
+BEGIN   
+    DROP TABLE IF EXISTS G;
+    
+    create temporary table G
+    select M.id, M.codAlumno, M.codCargaAcademica_ct as codigo_carga
+    from matricula_ct M
+    where M.codAlumno = alumno and M.semestre = semest;
+
+    select G.id, R.codCargaAcademica_ct, R.semestre, R.codCurso_ct, S.nombre as curso, T.id as codDocente, concat(T.nombre,' ',T.apellidos) as docente, R.turno, R.grupo
+    from carga_academica_ct R 
+    inner join G on R.codCargaAcademica_ct = G.codigo_carga
+    inner join curso_ct S on R.codCurso_ct = S.id
+    inner join docente T on R.docente_id = T.id
+    order by R.codCargaAcademica_ct;
+END $$
+-- end
+-- begin
+DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `contarCursosAprobados`(codiALu int, moduAlu int)
 BEGIN
 
