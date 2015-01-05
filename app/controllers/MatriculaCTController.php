@@ -12,7 +12,7 @@ class MatriculaCTController extends BaseController
 	public function listaMatriculas()
 	{
 		$matriculas = DB::select('call listarMatriculasCT()');
-		return View::make('matriculaCT.lista_matriculas',array('matriculas'=>$matriculas));
+		return View::make('matriculaCT.lista_matriculas',array("matriculas"=>$matriculas));
 	}
 
 	public function edit($cod)
@@ -199,12 +199,28 @@ class MatriculaCTController extends BaseController
 			return Redirect::to('matriculas_ct/registro')->with('mensaje',$respuesta['mensaje']);
 		}else{
 			foreach ($arreglo as $carga) {
-				$carga_acade = $carga;
-				$matricula_ct = DB::select('call insertMatriculaCT(?,?,?)',array($cod,$carga_acade,$semestre));
+					$carga_acade = $carga;
+					$buscarMCT = DB::select('call buscarMatriculaCT(?,?,?)', array($cod,$carga_acade,$semestre));
+					$lonf = sizeof($buscarMCT);
+					if ($lonf > 0) {
+						$respuesta['mensaje'] = 'Error!!! La matricula ya existe';
+						$respuesta['error'] = true;
+						return Redirect::to('.')->with('mensaje',$respuesta['mensaje'])->withInput();
+					} else{
+						$matricula_ct = DB::select('call insertMatriculaCT(?,?,?)',array($cod,$carga_acade,$semestre));
+						// $respuesta['mensaje'] = 'Matricula Creada';
+						// $respuesta['error'] = false;
+						// $respuesta['data'] = $matricula_ct;
+						// return Redirect::to('matriculas_curso_libre')->with('mensaje',$respuesta['mensaje']);
+					}
 				}
 			$respuesta['mensaje'] = 'Matrículas registradas correctamente';
 			$respuesta['error'] = false;
-			return Redirect::to('matriculas_ct/listaMatriculas')->with('mensaje',$respuesta['mensaje']);
+			//return Redirect::to('matriculas_ct/listaMatriculas')->with('mensaje',$respuesta['mensaje']);
+
+			$alumno = DB::table('alumno')->where('id', $cod)->first();
+			$cursosMatriculados = DB::select('call listarMatriculasAlumnoSemestre(?,?)',array($cod,$semestre));
+			return View::make('matriculaCT.lista_matriculas_alumno', compact('alumno','semestre'),array('cursos'=>$cursosMatriculados));
 		}
 	}
 

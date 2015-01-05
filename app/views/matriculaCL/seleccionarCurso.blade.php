@@ -1,12 +1,13 @@
 @extends('layouts.base_admin')
 @section('title')
-Matricula Cursos Libres
+Lista de Matrículas Cursos Libres
 @stop
 @section('options')
 @stop
 @section('content')
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
 {{ Form::open(array('method'=> 'POST','url'=> 'matriculas_cl/listarMatriculas.html','class'=>'form-horizontal','role'=>'form')) }}
+    <p>Seleccionar Curso Libre para listar las matriculas</p>
     <div class="form-group">
         <label class = 'col-sm-3 control-label'>Curso Libre : </label>
         <div class="col-sm-6 col-md-4">
@@ -20,7 +21,7 @@ Matricula Cursos Libres
     </div>
     <div class="form-group">
         <div class="col-xs-12 col-sm-6 col-md-6">
-            <button class="btn btn-primary btn-block" type="submit">Buscar</button>
+            <button class="btn btn-primary btn-block" type="submit">Listar Matrículas</button>
         </div>
     </div>
 {{Form::close()}}

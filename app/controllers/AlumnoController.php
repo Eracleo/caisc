@@ -20,7 +20,7 @@ class AlumnoController extends BaseController
 		}
 	}
 
-	public function index($registros=5)
+	public function index($registros=15)
 	{
 		//$cod="1";
 		//$datos = Alumno::paginate($registros);

@@ -221,6 +221,8 @@ Route::group(['before' => 'auth|sessionPer'], function()
     Route::get('matriculas_ct/lista',array('uses'=>'MatriculaCTController@lista'));
     Route::get('matriculas_ct/add.html',array('uses'=>'MatriculaCTController@add'));
     Route::post('matriculas_ct/matricular_lista',array('uses'=>'MatriculaCTController@matricular_lista'));
+    //---
+    Route::post('matriculas_ct/listaMatriculasDeAlumno',array('uses'=>'MatriculaCTController@matricular_lista'));
 
     // MANTENIMIENTO MATRICULA CURSOS LIBRES
     Route::post('matriculas_cl/listarMatriculas.html',array('uses'=>'MatriculaCLController@listarMatriculasXcargaAcademica'));
