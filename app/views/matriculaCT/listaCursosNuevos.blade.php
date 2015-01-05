@@ -9,10 +9,12 @@
     span a{
         color: white;
     }
+    #messag{
+        float: right;
+    }
 </style>
-<div class="box-header">
-        <label>Lista de Cargas Academicas a los cuales se puede matricular el alumno</label><br>
-</div>
+<br>
+<h4>Lista de Cargas Academicas a los cuales se puede matricular el alumno</h4>
 <div class="box">
     {{ Form::open(array('method'=> 'POST','url'=> 'matriculas_ct/matricular_lista','class'=>'form-horizontal','role'=>'form')) }}
         {{ Form::label('codAlumno','Codigo Alumno: ',array('class'=>'col-sm-4 control-label')) }}
@@ -55,9 +57,10 @@
                 </tbody>
             </table>
         </div>
+        <span id="messag">Seleccione Cargas Académicas para Matricular</span>
         <div class="form-group">
             <div class="col-xs-12 col-sm-6 col-md-6">
-                <button class="btn btn-primary btn-block" type="submit">Matricular</button>
+                <button class="btn btn-primary btn-block" type="submit">Matricular Registros Seleccionado</button>
             </div>
         </div>
     {{Form::close()}}  
