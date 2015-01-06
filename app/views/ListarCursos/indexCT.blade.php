@@ -1,6 +1,6 @@
 @extends('layouts.base_docente')
 @section('title')
-Mis Cursos de Carrera
+Mis Cursos de Carrera Técnica
 @stop
 @section('options')
 <li>Mis Cursos de Carrera</li>
@@ -13,22 +13,7 @@ Mis Cursos de Carrera
     </div>
     <div class="box-body table-responsive">
         <div id="example1_wrapper" class="dataTables_wrapper form-inline" role="grid">
-            <div class="row">
-                <br>
-                    <div class= "form-group">
-                        {{ Form::label('buscar','Buscar por Carrera:',array('class'=>'col-sm-6 control-label')) }}
-                        
-                        <div class="col-md-2">
-                            @if($carrera == null)
-                                {{HTML::linkAction('CarreraProfesionalController@add', 'Necesita agregar carrera','',array('class'=>'btn btn-warning','required'))}}
-                            @else
-                                {{ Form::select('codCarrera',$carrera,null,array('class'=>'form-control','required'))}}    
-                            @endif            
-                        </div>        
-                          
-                        </div>  
-                </div>
-                  <br>
+           
 
             <table aria-describedby="example1_info" id="example1" class="table table-bordered table-striped dataTable">
                 <thead>
@@ -51,8 +36,8 @@ Mis Cursos de Carrera
                             <td class=" ">{{$curso->id}}</td>
                             <td class=" ">{{$curso->nombre}}</td>
                             <td class=" ">{{ Carrera::find($curso->codCarrera)->nombre}}</td>
-                            <td class=" ">{{$curso->semestre}}</td>
-                            <td class=" ">{{$curso->turno}}</td>
+                            <td class=" ">{{Semestre::find($curso->semestre)->nombre}}</td>
+                            <td class=" ">{{Turno::find($curso->turno)->nombre}}</td>
                             <td class=" ">
                                {{ HTML::link('SilaboCarreraTecnica/create/'.$curso->CodCargaAcademica_ct,'Ingresar Silabus' ,array('class'=>'btn btn-warning'))}}
                                <br>

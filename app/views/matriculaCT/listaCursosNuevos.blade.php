@@ -44,13 +44,13 @@
                     @foreach( $cursos as $curso)
                     <tr class="odd">
                             <td class=" "><b>{{ $curso->codCargaAcademica_ct }}</b></td>
-                            <td class=" "><b>{{ $curso->semestre}}</b></td>
+                            <td class=" "><b>{{ Semestre::find($curso->semestre)->nombre}}</b></td>
                             <td class=" "><b>{{ $curso->codCurso_ct }}</b></td>
                             <td class=" "><b>{{ $curso->curso }}</b></td>
                             <td class=" ">{{ $curso->codDocente }}</td>
                             <td class=" ">{{ $curso->docente }}</td>
-                            <td class=" ">{{ $curso->turno }}</td>
-                            <td class=" ">{{ $curso->grupo }}</td>
+                            <td class=" ">{{ Turno::find($curso->turno)->nombre }}</td>
+                            <td class=" ">{{ Grupo::find($curso->grupo)->nombre }}</td>
                             <td class=" "><input type="checkbox" name="cargas[]" value={{ $curso->codCargaAcademica_ct }}></td>
                     </tr>
                     @endforeach

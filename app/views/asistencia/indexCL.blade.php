@@ -1,6 +1,6 @@
 @extends('layouts.base_docente')
 @section('title')
-Control de Asistencia Carrea Técnica
+Control de Asistencia Cursos Libres
 @stop
 @section('content')
 <form action="ingresoCL" name="form1" method="post">

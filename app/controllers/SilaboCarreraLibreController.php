@@ -2,23 +2,23 @@
 
 class SilaboCarreraLibreController extends BaseController {
 
-	public function nuevo($id)	
-	{		
+	public function nuevo($id)
+	{
 		return View::make('Cursos_Carrera_Libre.SilaboCL.create',array('id'=>$id));
 	}
 	public function insertar()
-	{	
+	{
 		$carga = Input::get('codCargaAcademica_cl');
 		$respuesta = SilaboCursoLibre::agregar(Input::all());
-					
+
 		if($respuesta['error']==true)
 		{
 			return Redirect::to('SilaboCarreraLibre/create/'.$carga)->withErrors($respuesta['mensaje'] )->withInput();
-		} 
-		else 
-		{				
+		}
+		else
+		{
 			return Redirect::to('SilaboCarreraLibre/index.html')->with('mensaje',$respuesta['mensaje']);
-		}	
+		}
 	}
 
 	public function ActualizarConID($id)
@@ -26,8 +26,8 @@ class SilaboCarreraLibreController extends BaseController {
 		if(is_null($id))
 		{
 			return Redirect::to('404.html');
-		} 
-		else 
+		}
+		else
 		{
 			$silabo = SilaboCursoLibre::where('id','=',$id)->firstOrFail();
 			return View::make('Cursos_Carrera_Libre.SilaboCL.edit',array('silabocurso_cl'=>$silabo));
@@ -37,7 +37,7 @@ class SilaboCarreraLibreController extends BaseController {
 	{
 		$respuesta = SilaboCursoLibre::editar(Input::all());
 		if($respuesta['error']==true)
-		{	
+		{
 			$id = input::get('id');
 			$curso = SilaboCursoLibre::where('id','=',$id)->firstOrFail();
 			return Redirect::to('SilaboCarreraLibre/updatecID/'.$id)->withErrors($respuesta['mensaje'] )->withInput();
@@ -49,23 +49,23 @@ class SilaboCarreraLibreController extends BaseController {
 			if(is_null($cod))
 			{
 				Redirect::to('404.html');
-			} 
-			else 
+			}
+			else
 			{
 				$silabo = SilaboCursoLibre::where('id','=',$cod)->firstOrFail();
 				if(is_object($silabo))
 				{
 					$silabo->capitulo = Input::get('capitulo');
 					$silabo->titulo = Input::get('titulo');
-					$silabo->objetivos = Input::get('objetivos');	
+					$silabo->objetivos = Input::get('objetivos');
 					$silabo->numeroclases = Input::get('numeroclases');
 					$silabo->descripcion = Input::get('descripcion');
 					$silabo->orden = Input::get('orden');
 					$silabo->updated_at = time();
 					$silabo->save();
 					return Redirect::to('SilaboCarreraLibre/index.html')->with('mensaje',$respuesta['mensaje']);
-				} 
-				else 
+				}
+				else
 				{
 					Redirect::to('500.html');
 				}
@@ -85,23 +85,23 @@ class SilaboCarreraLibreController extends BaseController {
 		if(is_null($id))
 		{
 			Redirect::to('404.html');
-		} 
-		else 
+		}
+		else
 		{
 			$silabo = SilaboCursoLibre::where('id','=',$id)->firstOrFail();
 			return View::make('Cursos_Carrera_Libre.SilaboCL.post_eliminar',array('silabocurso_cl'=>$silabo));
-			
+
 		}
 	}
 	public function eliminando()
 	{
 		$cod=Input::get('id');
-		
+
 		if(is_null($cod))
 		{
 			return Redirect::to('404.html');
-		} 
-		else 
+		}
+		else
 		{
 			$silabo = SilaboCursoLibre::find($cod);
 			if(is_object($silabo))
@@ -109,11 +109,11 @@ class SilaboCarreraLibreController extends BaseController {
 				$silabo->estado = 0;
 				$silabo->save();
 				return Redirect::to('SilaboCarreraLibre/index.html');
-			} 
-			else 
+			}
+			else
 			{
 				return Redirect::to('500.html');
-				
+
 			}
 
 		}
@@ -125,15 +125,12 @@ class SilaboCarreraLibreController extends BaseController {
 		return View::make('Cursos_Carrera_Libre.SilaboCL.index',compact("datos"),array('id'=>$silabocurso_cl));
 	}
 
-	public function listarespecifico($id)
+	public function listarespecifico($id=null)
 	{
 		if(Auth::User()->tipoUsuario == 'Docente') //eso es por ah
 		{
-			$idDocente = Auth::User()->nroId;			
-			$silabus = SilabusCL::where('codCargaAcademica_cl', '=', $id);
-			return $silabus;
-			$codigo = $silabus->id;
-			$datos = SilaboCursoLibre::where('estado','<>','0')->where('codSilabus_cl','=',$silabus->id)->orderBy('id','ASC')->paginate(5);
+			$idDocente = Auth::User()->nroId;
+			$datos = DB::table('silabus_cl')->join('detalle_silabus_cl','detalle_silabus_cl.codSilabus_cl','=','silabus_cl.id')->where('silabus_cl.codCargaAcademica_cl','=',$id)->where('estado','<>','0')->orderBy('orden','ASC')->paginate(5);
 			return View::make('Cursos_Carrera_Libre.SilaboCL.index',compact("datos"),array('id'=>$id));
 		}
 		else
@@ -146,15 +143,15 @@ class SilaboCarreraLibreController extends BaseController {
 		if (is_null($id) or ! is_numeric($id))
 		{
 			return Redirect::to('404.html');
-		} 
-		else 
+		}
+		else
 		{
 			$silabo = SilaboCursoLibre::where('id','=',$id)->firstOrFail();
 			if (is_object($silabo))
 			{
 				return View::make('Cursos_Carrera_Libre.SilaboCL.detalles',array('silabo'=>$silabo));
-			} 
-			else 
+			}
+			else
 			{
 				return Redirect::to('404.html');
 			}
@@ -163,12 +160,12 @@ class SilaboCarreraLibreController extends BaseController {
 	public function post_finalizar()
 	{
 		$cod=Input::get('id');
-		
+
 		if(is_null($cod))
 		{
 			return Redirect::to('404.html');
-		} 
-		else 
+		}
+		else
 		{
 			$silabo = SilaboCursoLibre::find($cod);
 			if(is_object($silabo))
@@ -182,11 +179,11 @@ class SilaboCarreraLibreController extends BaseController {
 					else
 						$silabo->estado = 0;
 
-				}	
+				}
 				$silabo->save();
 				return Redirect::to('SilaboCarreraLibre/index.html');
-			} 
-			else 
+			}
+			else
 			{
 				return Redirect::to('500.html');
 			}

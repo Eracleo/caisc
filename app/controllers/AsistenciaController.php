@@ -2,10 +2,6 @@
 
 class AsistenciaController extends BaseController
 {
-
-/*****************************************************************************************************************
-********************************************** CARRERA TÉCNICA ***************************************************
-*****************************************************************************************************************/
 	public function inicioCT()
 	{
 		$idDocente = Auth::user()->nroId;
@@ -39,22 +35,27 @@ class AsistenciaController extends BaseController
 			if ($Asist<>"") {
 				$idAlumno = Input::get("cod$i");
 				DB::select('call insertarAsistencia_CT(?,?,?,?,?,?)'
-			    ,array('10001',$tema,$idDocente,$idAlumno,$Fecha,$Observacion));
+			    ,array($id,$tema,$idDocente,$idAlumno,$Fecha,$Observacion));
 			}
 		}
 		return View::make("asistencia/indexCT", compact('cursos'));
 	}
 
 	public function consolidadoCT()
-	{
+	{/*
 		$idDocente = Auth::user()->nroId;
-		$Fecha=Input::get("Fecha");
+		//$Fecha=Input::get("Fecha");
 		$id = Input::get('id');
 		$cursos = DB::select('call CursosXDocenteCT(' . $idDocente . ')');
 		$alumnos = DB::select('call Listar_Asistencias_fecha('.$idDocente.','.$Fecha.','.$id.')');
-		$idDocente = 10001;
-		$id = Input::get('id');
       	return View::make("asistencia/registroCT", compact('cursos', 'id', 'alumnos'));
+      	*/
+      	$idDocente = Auth::user()->nroId;
+			$id = Input::get('id');
+			$cursos = DB::select('call CursosXDocenteCT(' . $idDocente . ')');
+			$alumnos = DB::select('call AlumnosXCursoCT(' . $id . ')');
+	      	return View::make("asistencia/consolidadoCT", compact('cursos', 'id', 'alumnos'));
+
 	}
 	public function registroCT()
 	{
@@ -62,11 +63,7 @@ class AsistenciaController extends BaseController
 		$cursos = DB::select('call CursosXDocenteCT(' . $idDocente . ')');
       	return View::make("asistencia/registroCT", compact('cursos'));
 	}
-
-/*************************************************************************************************************
-********************************************** CURSO LIBRE ***************************************************
-**************************************************************************************************************/
-
+// CURSO LIBRE
 	public function inicioCL()
 	{
 			$idDocente = Auth::user()->nroId;
@@ -99,7 +96,7 @@ class AsistenciaController extends BaseController
 			if ($Asist<>"") {
 				$idAlumno = Input::get("cod$i");
 				DB::select('call insertarAsistencia_CL(?,?,?,?,?,?)'
-			    ,array('10001',$tema,$idDocente,$idAlumno,$Fecha,$Observacion));
+			    ,array($id,$tema,$idDocente,$idAlumno,$Fecha,$Observacion));
 			}
 		}
 		return View::make("asistencia/indexCL", compact('cursos'));
@@ -107,19 +104,27 @@ class AsistenciaController extends BaseController
 	}
 	public function consolidadoCL()
 	{
+		/*
 		$idDocente = Auth::user()->nroId;
-		$Fecha=Input::get("Fecha");
+		//$Fecha=Input::get("Fecha");
 		$id = Input::get('id');
 		$cursos = DB::select('call CursosXDocenteCT(' . $idDocente . ')');
 		$alumnos = DB::select('call Listar_Asistencias_fecha('.$idDocente.','.$Fecha.','.$id.')');
 		$idDocente = 10001;
 		$id = Input::get('id');
       	return View::make("asistencia/registroCL", compact('cursos', 'id', 'alumnos'));
+      	*/
+      	$idDocente = Auth::user()->nroId;
+			$id = Input::get('id');
+			$cursos = DB::select('call CursosXDocenteCT(' . $idDocente . ')');
+			$alumnos = DB::select('call AlumnosXCursoCT(' . $id . ')');
+	      	return View::make("asistencia/consolidadoCT", compact('cursos', 'id', 'alumnos'));
+
 	}
 	public function registroCL()
 	{
 		$idDocente = Auth::user()->nroId;
-		$cursos = DB::select('call CursosXDocenteCT(' . $idDocente . ')');
+		$cursos = DB::select('call CursosXDocenteCL(' . $idDocente . ')');
       	return View::make("asistencia/registroCL", compact('cursos'));
 	}
 

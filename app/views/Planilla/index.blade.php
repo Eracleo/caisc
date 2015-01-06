@@ -1,8 +1,8 @@
-@extends('layouts.base_admin')
+@extends('layouts.base_docente')
 @section('title')
 Lista de pago de Planilla
 @stop
-@section('breadcrumb') 
+@section('breadcrumb')
 
 <li>Planilla</li>
 @stop
@@ -16,15 +16,15 @@ Lista de pago de Planilla
             <div class="row">
                 <div class="col-xs-6">
                     <div class="dataTables_length" id="example1_length">
-                        <label><select aria-controls="example1" size="1" name="example1_length">
-                            <option selected="selected" value="10">10</option>
-                            <option value="25">25</option>
-                            <option value="50">50</option>
-                            <option value="100">100</option>
-                        </select> records per page</label>
-                    </div>
+                                           </div>
                 </div>
-                
+
+            </div>
+            <div class="form-group">
+                {{ Form::label('semestre','Seleccione Semestre  :',array('class'=>'col-sm-4 control-label')) }}
+                <div class="col-sm-4">
+                    {{ Form::select('semestre',$semestres,null,array('class'=>'form-control'))}}
+                </div>
             </div>
             <table aria-describedby="example1_info" id="example1" class="table table-bordered table-striped dataTable">
                 <thead>
@@ -45,7 +45,7 @@ Lista de pago de Planilla
                         <td class=" ">{{ $dato->telefono }}</td>
                         <td class=" ">
                             {{ HTML::link('Planilla/detalle_Planilla/'.$dato->id,'Ver Detalles') }}
-                            
+
                         </td>
                 </tr>
                 @endforeach

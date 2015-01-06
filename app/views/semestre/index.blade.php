@@ -16,7 +16,6 @@ Lista de Semestres
                 <tr role="row">
                     <th>Semestre</th>
                     <th>Accion(Editar)</th>
-                    <th>Accion(Eliminar)</th>
                 </tr>
             </thead>
             <tbody role="alert" aria-live="polite" aria-relevant="all">
@@ -24,11 +23,6 @@ Lista de Semestres
                 <tr class="odd">
                     <td class=" sorting_1" align="center"><a href="semestre/{{ $semestre->id }}">{{ $semestre->nombre }}</a>  </td>
                     <td class="" align="center"><a href="semestre/{{ $semestre->id }}/edit"><span class="label label-success">Editar</a></td>
-                    <td class=" " align="center">
-                        {{ Form::open(array('url'=>'semestre/'.$semestre->id, 'method'=>'delete')) }}
-                        {{ Form::submit('Eliminar') }}
-                        {{ Form::close() }}
-                    </td>
                 </tr>
                 @endforeach
             </tbody>

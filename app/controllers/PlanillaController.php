@@ -6,7 +6,11 @@ class PlanillaController extends BaseController
 	{
 		$datos = Docente::paginate($registros);
 		$docentes = Docente::all();
-		return View::make('Planilla.index',compact("datos"),array('docentes'=>$docentes));
+
+		$semestres = Semestre::lists('nombre','id');
+		//return View::make('matriculaCT.index', array('semestres'=>$semestres));
+
+		return View::make('Planilla.index',compact('datos','semestres'),array('docentes'=>$docentes));
 	}
 
 	public function detalle_Planilla($id = null)
@@ -19,11 +23,13 @@ class PlanillaController extends BaseController
 			if (is_object($docente))
 			{
 
-				$planilla=DB::select('call Planilla_ct(?)',array($id));
-				$total=DB::select('call Planilla_ct_total(?)',array($id));
+				$Semestre=Input::get("semestre");
 
-				$planilla_cl=DB::select('call Planilla_cl(?)',array($id));
-				$total_cl=DB::select('call Planilla_cl_total(?)',array($id));
+				$planilla=DB::select('call Planilla_ct(?,?)',array($id,$Semestre));
+				$total=DB::select('call Planilla_ct_total(?,?)',array($id,$Semestre));
+
+				$planilla_cl=DB::select('call Planilla_cl(?,?)',array($id,$Semestre));
+				$total_cl=DB::select('call Planilla_cl_total(?,?)',array($id,$Semestre));
 
 				return View::make('Planilla.detalle_Planilla',compact('docente', 'planilla','total','planilla_cl','total_cl'));
 			} else {

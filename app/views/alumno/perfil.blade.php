@@ -1,4 +1,4 @@
-@extends('layouts.base_admin')
+@extends('layouts.base_alumno')
 @section('title')
 Perfil <small>Alumno</small>
 @stop

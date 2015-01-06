@@ -25,13 +25,13 @@ Constancia de Matriculas del Alumno
         <tr class="odd">
             <td class=" "><b>{{ $matricula->id }}</b></td>
             <td class=" "><b>{{ $matricula->codCargaAcademica_ct }}</b></td>
-            <td class=" "><b>{{ $matricula->semestre }}</b></td>
+            <td class=" "><b>{{ Semestre::find($matricula->semestre)->nombre }}</b></td>
             <td class=" "><b>{{ $matricula->codCurso_ct }}</b></td>
             <td class=" "><b>{{ $matricula->curso }}</b></td>
             <td class=" "><b>{{ $matricula->codDocente }}</b></td>
             <td class=" "><b>{{ $matricula->docente }}</b></td>
-            <td class=" "><b>{{ $matricula->turno }}</b></td>
-            <td class=" "><b>{{ $matricula->grupo }}</b></td>
+            <td class=" "><b>{{ Turno::find($matricula->turno)->nombre }}</b></td>
+            <td class=" "><b>{{ Grupo::find($matricula->grupo)->nombre }}</b></td>
             <td class=" ">
                 <span class="label label-danger">{{ HTML::link('matriculas_ct/delete/'.$matricula->id,'Eliminar') }}</span>
             </td>

@@ -1,4 +1,7 @@
 @extends('layouts.base_docente')
+@section('title')
+Listar Asistencias de Carrera Tecnica
+@stop
 @section('content')
 <form action="consolidadoCT" name="form1" method="post">
     <div class="form-group">

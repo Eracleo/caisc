@@ -8,16 +8,16 @@ class SilaboCarreraTecnicaController extends BaseController {
 	}
 	public function insertar()
 	{
-			$carga = Input::get('codCargaAcademica_ct');	
+			$carga = Input::get('codCargaAcademica_ct');
 			$respuesta = SilaboCursoTecnico::agregar(Input::all());
 		 	if($respuesta['error']==true)
 			{
 				return Redirect::to('SilaboCarreraTecnica/create/'.$carga)->withErrors($respuesta['mensaje'] )->withInput();
-			} 
-			else 
+			}
+			else
 			{
 			return Redirect::to('SilaboCarreraTecnica/index.html')->with('mensaje','Se Creo el Silabo');
-			}	
+			}
 	}
 
 	public function ActualizarConID($id)
@@ -25,8 +25,8 @@ class SilaboCarreraTecnicaController extends BaseController {
 		if(is_null($id))
 		{
 			return Redirect::to('404.html');
-		} 
-		else 
+		}
+		else
 		{
 			$silabo = SilaboCursoTecnico::where('id','=',$id)->firstOrFail();
 			return View::make('Cursos_Carrera_Tecnica.SilaboCT.edit',array('silabocurso_ct'=>$silabo));
@@ -36,7 +36,7 @@ class SilaboCarreraTecnicaController extends BaseController {
 	{
 		$respuesta = SilaboCursoTecnico::editar(Input::all());
 		if($respuesta['error']==true)
-		{	
+		{
 			$id = input::get('id');
 			$curso = SilaboCursoTecnico::where('id','=',$id)->firstOrFail();
 			return Redirect::to('SilaboCarreraTecnica/updatecID/'.$id)->withErrors($respuesta['mensaje'] )->withInput();
@@ -48,23 +48,23 @@ class SilaboCarreraTecnicaController extends BaseController {
 			if(is_null($cod))
 			{
 				Redirect::to('404.html');
-			} 
-			else 
+			}
+			else
 			{
 				$silabo = SilaboCursoTecnico::where('id','=',$cod)->firstOrFail();
 				if(is_object($silabo))
 				{
 					$silabo->capitulo = Input::get('capitulo');
 					$silabo->titulo = Input::get('titulo');
-					$silabo->objetivos = Input::get('objetivos');	
+					$silabo->objetivos = Input::get('objetivos');
 					$silabo->numeroclases = Input::get('numeroclases');
 					$silabo->descripcion = Input::get('descripcion');
 					$silabo->orden = Input::get('orden');
 					$silabo->updated_at = time();
 					$silabo->save();
 					return Redirect::to('SilaboCarreraTecnica/index.html');
-				} 
-				else 
+				}
+				else
 				{
 					Redirect::to('500.html');
 				}
@@ -98,23 +98,23 @@ class SilaboCarreraTecnicaController extends BaseController {
 		if(is_null($id))
 		{
 			Redirect::to('404.html');
-		} 
-		else 
+		}
+		else
 		{
 			$silabo = SilaboCursoTecnico::where('id','=',$id)->firstOrFail();
 			return View::make('Cursos_Carrera_Tecnica.SilaboCT.post_eliminar',array('silabocurso_ct'=>$silabo));
-			
+
 		}
 	}
 	public function eliminando()
 	{
 		$cod=Input::get('id');
-		
+
 		if(is_null($cod))
 		{
 			return Redirect::to('404.html');
-		} 
-		else 
+		}
+		else
 		{
 			$silabo = SilaboCursoTecnico::find($cod);
 			if(is_object($silabo))
@@ -122,11 +122,11 @@ class SilaboCarreraTecnicaController extends BaseController {
 				$silabo->estado = 0;
 				$silabo->save();
 				return Redirect::to('SilaboCarreraTecnica/index.html');
-			} 
-			else 
+			}
+			else
 			{
 				return Redirect::to('500.html');
-				
+
 			}
 
 		}
@@ -137,37 +137,35 @@ class SilaboCarreraTecnicaController extends BaseController {
 		$datos = SilaboCursoTecnico::where('estado','<>','0')->orderBy('orden','ASC')->paginate(5);
 		return View::make('Cursos_Carrera_Tecnica.SilaboCT.index',compact("datos"),array('carrera'=>$carrera));
 	}
+
 	public function listarespecifico($id=null)
 	{
 		if(Auth::User()->tipoUsuario == 'Docente') //eso es por ah
 		{
 			$idDocente = Auth::User()->nroId;
-			$silabus = SilabusCT::where('codCargaAcademica_ct','=',$id);
-			return $silabus;
-			$codigo = $silabus->id;
-			$datos = SilaboCursoTecnico::where('estado','<>','0')->where('codSilabus_ct','=',$silabus->id)->orderBy('id','ASC')->paginate(5);
-			return View::make('Cursos_Carrera_Libre.SilaboCL.index',compact("datos"),array('id'=>$id));
-
-			return View::make("ListarCursos.index",compact('cursos'));
+			$datos = DB::table('silabus_ct')->join('detalle_silabus_ct','detalle_silabus_ct.codSilabus_ct','=','silabus_ct.id')->where('silabus_ct.codCargaAcademica_ct','=',$id)->where('estado','<>','0')->orderBy('orden','ASC')->paginate(5);
+			return View::make('Cursos_Carrera_Tecnica.SilaboCT.index',compact("datos"),array('id'=>$id));
 		}
 		else
-		{return 'acesso restringido solo para docentes';}
-			}
+		{
+			return 'acesso restringido solo para docentes';
+		}
+	}
 
 	public function detalle($id)
 	{
 		if (is_null($id) or ! is_numeric($id))
 		{
 			return Redirect::to('404.html');
-		} 
-		else 
+		}
+		else
 		{
 			$silabo = SilaboCursoTecnico::where('id','=',$id)->firstOrFail();
 			if (is_object($silabo))
 			{
 				return View::make('Cursos_Carrera_Tecnica.SilaboCT.detalles',array('silabo'=>$silabo));
-			} 
-			else 
+			}
+			else
 			{
 				return Redirect::to('404.html');
 			}
@@ -177,12 +175,12 @@ class SilaboCarreraTecnicaController extends BaseController {
 	public function post_finalizar()
 	{
 		$cod=Input::get('id');
-		
+
 		if(is_null($cod))
 		{
 			return Redirect::to('404.html');
-		} 
-		else 
+		}
+		else
 		{
 			$silabo = SilaboCursoTecnico::find($cod);
 			if(is_object($silabo))
@@ -196,11 +194,11 @@ class SilaboCarreraTecnicaController extends BaseController {
 					else
 						$silabo->estado = 0;
 
-				}	
+				}
 				$silabo->save();
 				return Redirect::to('SilaboCarreraTecnica/index.html');
-			} 
-			else 
+			}
+			else
 			{
 				return Redirect::to('500.html');
 			}

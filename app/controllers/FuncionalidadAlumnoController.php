@@ -47,6 +47,11 @@ class FuncionalidadAlumnoController extends \BaseController {
         return View::make('funcionalumno.index', array('semestres'=>$semestres));
     }
 
+    public function solicita_semestre(){
+        $semestres = Semestre::lists('nombre','id');
+        return View::make('funcionalumno.soli_semestre', array('semestres'=>$semestres));
+    }
+
     public function listacursosnuevosProcStore(){
         if(Auth::user()->tipoUsuario == 'Alumno'){
             $cod = Auth::user()->nroId;
@@ -58,6 +63,20 @@ class FuncionalidadAlumnoController extends \BaseController {
 
             $cursosDisponibles = DB::select('call listarCursosFaltantesParaMatriculaCT(?,?,?,?)',array($cod,$modulo,$codCarrera,$semest));
             return View::make('funcionalumno.listaCursosNuevos', compact('alumno','semest'),array('cursos'=>$cursosDisponibles));
+        }
+    }
+
+    public function imprimir_contancia_matricula(){
+        if(Auth::user()->tipoUsuario == 'Alumno'){
+            $cod = Auth::user()->nroId;
+            $semest = Input::get('semestre');
+
+            $modulo = DB::table('alumno')->where('id', $cod)->pluck('modulo'); // modulo del alumno
+            $codCarrera = DB::table('alumno')->where('id',$cod)->pluck('codCarrera'); // codigo de carrera del alumno
+            $alumno = DB::table('alumno')->where('id', $cod)->first(); // recupero datos del alumno
+
+            $cursosMatriculados = DB::select('call listarMatriculasAlumnoSemestre(?,?)',array($cod,$semest));
+            return View::make('funcionalumno.constancia_matricula', compact('alumno','semestre'),array('cursos'=>$cursosMatriculados));
         }
     }
 
@@ -90,6 +109,19 @@ class FuncionalidadAlumnoController extends \BaseController {
             $alumno = DB::table('alumno')->where('id', $cod)->first();
             $matriculas = DB::select('call listarMatriculasCTAlumnoPorSemestre(?,?)',array($cod,$semest));
             return View::make('funcionalumno.listaMatriculasAlumno', compact('alumno'),array('cursos'=>$matriculas));
+        }
+    }
+
+    public function delete($cod)
+    {
+        if(is_null($cod))
+        {
+            Redirect::to('404.html');
+        } else {
+            $nota_ct = NotaCT::where('codMatricula_ct','=',$cod)->delete();
+            $semestre = MatriculaCT::where('id','=',$cod)->pluck('semestre');
+            $matricula = MatriculaCT::where('id','=',$cod)->delete();
+            return Redirect::to('alumnoB/listaMatriculas/'.$semestre);
         }
     }
 

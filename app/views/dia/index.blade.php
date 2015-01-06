@@ -16,7 +16,6 @@ Lista de Dias
                             <tr role="row">
                                 <th>Dia</th>
                                 <th>Accion(Editar)</th>
-                                <th>Accion(Eliminar)</th>
                             </tr>
                         </thead>
                         <tbody role="alert" aria-live="polite" aria-relevant="all">
@@ -24,11 +23,6 @@ Lista de Dias
 							<tr class="odd">
                                 <td class=" sorting_1" align="center"><a href="dia/{{ $dia->id }}">{{ $dia->nombre }}</a>  </td>
                                 <td class="" align="center"><a href="dia/{{ $dia->id }}/edit"><span class="label label-success">Editar</a></td>
-                                <td class=" " align="center">
-                                    {{ Form::open(array('url'=>'dia/'.$dia->id, 'method'=>'delete')) }}
-                                    {{ Form::submit('Eliminar') }}
-                                    {{ Form::close() }}
-                                </td>
                             </tr>
                             @endforeach
                         </tbody>

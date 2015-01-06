@@ -26,8 +26,8 @@ Lista de Cursos Libres
                 <td class=" ">{{ $curso->nom_curso}}</td>
                 <td class=" ">{{ $curso->docente_id }}</td>
                 <td class=" ">{{ $curso->nom_docente }}</td>
-                <td class=" ">{{ $curso->turno }}</td>
-                <td class=" ">{{ $curso->grupo }}</td>
+                <td class=" ">{{ Turno::find($curso->turno)->nombre }}</td>
+                <td class=" ">{{ Grupo::find($curso->grupo)->nombre }}</td>
                 <td class=" ">
                     <span class="label label-primary">{{ HTML::link('matriculas_cl/registrar/'.$curso->codCargaAcademica_cl,'Matricular') }}</span>
                 </td>

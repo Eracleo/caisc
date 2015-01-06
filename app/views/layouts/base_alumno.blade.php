@@ -44,12 +44,18 @@
                                 <!--{{ HTML::link('ingresonotas/inicioCT','Ingreso De Notas Carrera Tecnica') }}-->
                                 <a href = "{{url('alumnoB/registroCT')}}">
                                 <span class = "glyphicon glyphicon-pencil"></span>
-                                Matricula Carrera Tecnica</a> 
+                                Registrar Matrícula</a>
+                            </li>
+                            <li>
+                                <!--{{ HTML::link('ingresonotas/inicioCT','Ingreso De Notas Carrera Tecnica') }}-->
+                                <a href = "{{url('alumnoB/solicita_semestre')}}">
+                                <span class = "glyphicon glyphicon-pencil"></span>
+                                Constancia de Matrícula</a>
                             </li>
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i> {{Auth::user()->email}}<b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i> {{Auth::user()->nroId}}<b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li class="dropdown-header">Miembro desde {{ date("d F Y",strtotime(Auth::user()->created_at)) }}</li>
                             <li>{{ HTML::link('persona','Perfil') }}</li>

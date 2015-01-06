@@ -33,12 +33,9 @@ Control de Asistencia Carrea Técnica
     </script>
     </head>
     <body>
-    <label for="fecha">Fecha:
-     <input name="Fecha" type="date" id="fecha"  />
-    </label>
     </body>
         
-
+    <label for="">Fecha : </label> 
     <input name="Fecha" type="date" id="fecha"  />
     <label for="">Tema : </label> 
     <input type="text"  name="Tema"  >
@@ -57,9 +54,6 @@ Control de Asistencia Carrea Técnica
                  <th class="sorting" role="columnheader" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 100px;">
                     Asistencia
                 </th>
-                <th class="sorting" role="columnheader" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 100px;">
-                    Observación
-                </th>
                 
             </tr>
         </thead>
@@ -73,9 +67,10 @@ Control de Asistencia Carrea Técnica
                 <td class="">
                     <input type="checkbox" value="{{$i}}" name="Asistio{{$i}}">  
                     <input type="hidden" value="{{$alumno->idAlumno}}" name="cod{{$i}}">
+                    <input type="hidden" value="" name="observacion{{$i}}">
                 </td>
-                <td>
-                    <input type="text" value="" name="observacion{{$i}}">
+                
+                    
                 </td>
                 </td>
             </tr>

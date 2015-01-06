@@ -20,7 +20,7 @@ Lista de Matriculas Anteriores
                             <td class=" "><b>{{ $matricula->id }}</b></td>
                             <td class=" "><b>{{ $matricula->codAlumno }}</b></td>
                             <td class=" ">{{ $matricula->codCargaAcademica_ct }}</td>
-                            <td class=" ">{{ $matricula->modulo }}</td>
+                            <td class=" ">{{ Modulo::find($matricula->modulo)->nombre }}</td>
                     </tr>
                     @endforeach
                 </tbody>

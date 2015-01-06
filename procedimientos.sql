@@ -328,7 +328,7 @@ begin
       on A.codCurso_ct = C.id
       where A.docente_id=idDocente;
 
-end$$
+end $$
 
 
 -- Procedimiento texchanged para listar
@@ -454,7 +454,7 @@ BEGIN
     SELECT id FROM matricula_ct WHERE codAlumno=alumno AND codCargaAcademica_ct=carga AND semestre = semest;
 END $$
 -- end
--- begin 
+-- begin
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `listar_cargas_CT_por_modulo`(modulo int, codiCarrera int)
 BEGIN
@@ -480,16 +480,16 @@ END $$
 -- begin
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `listarMatriculasAlumnoSemestre`(alumno int, semest varchar(10))
-BEGIN   
+BEGIN
     DROP TABLE IF EXISTS G;
-    
+
     create temporary table G
     select M.id, M.codAlumno, M.codCargaAcademica_ct as codigo_carga
     from matricula_ct M
     where M.codAlumno = alumno and M.semestre = semest;
 
     select G.id, R.codCargaAcademica_ct, R.semestre, R.codCurso_ct, S.nombre as curso, T.id as codDocente, concat(T.nombre,' ',T.apellidos) as docente, R.turno, R.grupo
-    from carga_academica_ct R 
+    from carga_academica_ct R
     inner join G on R.codCargaAcademica_ct = G.codigo_carga
     inner join curso_ct S on R.codCurso_ct = S.id
     inner join docente T on R.docente_id = T.id
@@ -502,7 +502,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `contarCursosAprobados`(codiALu int,
 BEGIN
 
     DROP TABLE IF EXISTS notasAlumno;
-    
+
     -- creamos la tabla notasAlumno
     -- recuperando los cursos matriculados en su semestre actual
     create temporary table notasAlumno
@@ -513,7 +513,7 @@ BEGIN
     inner join curso_ct CT on CA.codCurso_ct = CT.id and CT.modulo = moduAlu
     inner join nota_ct N on M.id = N.codMatricula_ct
     order by M.id;
-    
+
     -- contamos cuantos cursos aprobo en la tabla anterior
     select count(*) as cursos_aprobados from notasAlumno where notaa >= 10.5;
 END $$
@@ -535,7 +535,7 @@ BEGIN
     DROP TABLE IF EXISTS F;
     DROP TABLE IF EXISTS G;
     DROP TABLE IF EXISTS H;
-    
+
     -- lista de cargas academicas de un modulo
     create temporary table F
     select codCargaAcademica_ct as codig
@@ -543,19 +543,19 @@ BEGIN
     inner join curso_ct C on T.codCurso_ct = C.id and C.modulo = modulo and C.codCarrera = carre and T.semestre = semest
     inner join docente D on T.docente_id = D.id
     order by codCargaAcademica_ct;
-    
+
     -- lista de cargas academicas matriculados por un alumno
     create temporary table G
     select codCargaAcademica_ct as codigo
     from matricula_ct
     where codAlumno = alumno and matricula_ct.semestre = semest;
-    
+
     -- realizamos la diferencia entre las dos anteriores tablas
     create temporary table H
     select distinct codig from F where not exists(select codigo from G where F.codig = G.codigo);
-    
+
     select R.codCargaAcademica_ct, R.semestre, R.codCurso_ct, S.nombre as curso, T.id as codDocente, concat(T.nombre,' ',T.apellidos) as docente, R.turno, R.grupo
-    from carga_academica_ct R 
+    from carga_academica_ct R
     inner join H on R.codCargaAcademica_ct = H.codig
     inner join curso_ct S on R.codCurso_ct = S.id
     inner join docente T on R.docente_id = T.id
@@ -649,13 +649,13 @@ END $$
 -- end
 
 -- Pago de planilla docente de carrera técnica
--- begin
+
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `Planilla_ct`(codDocente int)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Planilla_ct`(codDocente int, semestre int )
 BEGIN
     select ct.id as Codigo, ct.horas_academicas as horas, (SUM(ct.horas_academicas)*15)as Pago
     from (carga_academica_ct C inner join  docente D on C.docente_id=D.id) inner join curso_ct ct on C.codCurso_ct=ct.id
-    where ct.estado=1 and D.id=codDocente and (C.semestre=(SELECT id FROM semestre order by id desc limit 1))
+    where ct.estado=1 and D.id=codDocente and C.semestre= semestre
     group by ct.id, ct.horas_academicas;
 
 END $$
@@ -665,21 +665,21 @@ END $$
 -- begin
 DELIMITER $$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `Planilla_ct_total`(codDocente int)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Planilla_ct_total`(codDocente int, semestre int)
 BEGIN
     select  (SUM(ct.horas_academicas)*15)as Pago
     from (carga_academica_ct C inner join  docente D on C.docente_id=D.id) inner join curso_ct ct on C.codCurso_ct=ct.id
-    where ct.estado=1 and D.id=codDocente and (C.semestre=(SELECT id FROM semestre order by id desc limit 1));
+    where ct.estado=1 and D.id=codDocente and C.semestre= semestre;
 END $$
 -- end
 -- Pago de planilla docente de cursos Libres
 -- begin
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `Planilla_cl`(codDocente int)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Planilla_cl`(codDocente int, semestre int)
 BEGIN
     select cl.id as Codigo, cl.horas_academicas, (SUM(cl.horas_academicas)*15)as Pago
     from (carga_academica_cl C inner join  docente D on C.docente_id=D.id) inner join curso_cl cl on C.codCurso_cl=cl.id
-    where cl.estado=1 and (C.semestre=(SELECT id FROM semestre order by id desc limit 1)) and D.id=codDocente
+    where cl.estado=1 and C.semestre= semestre and D.id=codDocente
     group by cl.id, cl.horas_academicas;
 
 END $$
@@ -687,14 +687,15 @@ END $$
 -- Totalde pago de planilla cursos libres
 -- begin
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `Planilla_cl_total`(codDocente int)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Planilla_cl_total`(codDocente int, semestre int)
 BEGIN
     select (SUM(cl.horas_academicas)*15)as Pago
     from (carga_academica_cl C inner join  docente D on C.docente_id=D.id) inner join curso_cl cl on C.codCurso_cl=cl.id
-    where cl.estado=1 and (C.semestre=(SELECT id FROM semestre order by id desc limit 1)) and D.id=codDocente;
+    where cl.estado=1 and C.semestre= semestre and D.id=codDocente;
 
 END $$
--- end
+
+
 -- Totalde pago de planilla cursos libres
 -- begin
 DELIMITER $$

@@ -30,10 +30,7 @@
                     Nro°
                 </th>
                 <th class="" role="columnheader" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 20px;">
-                    CodNota
-                </th>
-                <th class="" role="columnheader" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 20px;">
-                    CodAlumno
+                    Cóodigo Alumno
                 </th>
                 <th class="" role="columnheader" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 100px;">
                     Nombre y Apellidos
@@ -47,8 +44,7 @@
         	<?php $i=1 ?>
 			@foreach($alumnos as $alumno)
 			<tr class="odd">
-                <td class="">{{ $i }}</td>
-				<td class=""><input type="text" value="{{ $alumno->idNota }}" name="codMatricula{{$i}}" readonly="readonly"></td>
+                <td class="">{{ $i }} <input type="hidden" value="{{ $alumno->idNota }}" name="codMatricula{{$i}}" readonly="readonly"></td>
                 <td class=" sorting_1" align="center">{{ $alumno->idAlumno }}</td>
                 <td class="">{{ $alumno->NombreCpt }}</td>
                 <td class=""><input type="number" name="nota{{$i}}" value="{{$alumno->Nota}}" min="0" max="20" step="1"  required="required"></td>
@@ -61,8 +57,8 @@
     <?php 
         if($i>1){
     ?>
-    <label for="">Nro Total De Alumnos : </label>
-    <input type="number" value="{{$i-1}}" name="i" readonly="readonly"><br><hr>
+    <label for="">Nro Total De Alumnos : </label> {{$i-1}} 
+    <input type="hidden" value="{{$i-1}}" name="i" readonly="readonly"><br><hr>
     {{Form::submit('Guardar Notas')}}
     <?php 
         }

@@ -28,11 +28,11 @@ Control de Asistencia Carrea Técnica
     </script>
     </head>
     <body>
-    <label for="fecha">Fecha:
-     <input name="Fecha" type="text" id="fecha" value="" />
-    </label>
-    </body>
 
+    
+    </body>
+  <label for="">Fecha : </label> 
+    <input name="Fecha" type="date" id="fecha"  />
 <table id="example1" class="table table-bordered table-striped dataTable" aria-describedby="example1_info">
     <thead>
         <tr role="row">

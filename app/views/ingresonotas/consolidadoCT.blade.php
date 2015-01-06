@@ -25,7 +25,7 @@
                 NRO°
             </th>
             <th class="sorting" role="columnheader" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 20px;">
-                CodAlumno
+                Código Alumno
             </th>
             <th class="sorting" role="columnheader" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 100px;">
                 Nombre y Apellidos

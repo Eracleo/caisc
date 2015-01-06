@@ -15,7 +15,6 @@ MODULO
             <tr role="row">
                 <th>Modulo</th>
                 <th>Accion(Editar)</th>
-                <th>Accion(Eliminar)</th>
             </tr>
         </thead>
 		@foreach($modulos as $modulo)
@@ -25,11 +24,6 @@ MODULO
 				</td>
 				<td  align = "center">
 					<a href="modulo/{{ $modulo->id }}/edit"><span class="label label-success">Editar</a>
-				</td>
-				<td align = "center">
-					{{ Form::open(array('url'=>'modulo/'.$modulo->id, 'method'=>'delete')) }}
-					{{ Form::submit('Eliminar') }}
-					{{ Form::close() }}
 				</td>
 			</tr>
 		@endforeach

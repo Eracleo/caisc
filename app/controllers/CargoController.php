@@ -16,7 +16,7 @@ class CargoController extends BaseController
 		$respuesta = Cargo::agregar(Input::all());
 		if($respuesta['error']==true)
 		{
-			return Redirect::to('personal/cargo/add')->with('mensaje',$respuesta['mensaje'])->withInput();
+			return Redirect::to('personal/cargo/add.html')->withErrors($respuesta['mensaje'])->withInput();
 		} else {
 			return Redirect::to('personal/cargos')->with('mensaje',$respuesta['mensaje']);
 		}

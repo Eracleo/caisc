@@ -48,9 +48,13 @@ Log::useFiles(storage_path().'/logs/laravel.log');
 
 App::error(function(Exception $exception, $code)
 {
-	Log::error($exception);
+    return View::make('error.404');
 });
-
+/*
+App::error(function(InvalidUserException $exception)
+{
+    Log::error($exception);
+});
 /*
 |--------------------------------------------------------------------------
 | Maintenance Mode Handler
@@ -77,5 +81,4 @@ App::down(function()
 | definitions instead of putting them all in the main routes file.
 |
 */
-
 require app_path().'/filters.php';

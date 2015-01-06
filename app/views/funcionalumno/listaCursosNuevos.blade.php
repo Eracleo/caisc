@@ -12,11 +12,11 @@ Cursos Disponibles para matricularse
     {{ Form::open(array('method'=> 'POST','url'=> 'alumnoB/matricular_lista','class'=>'form-horizontal','role'=>'form')) }}
         {{ Form::label('codAlumno','Codigo Alumno: ',array('class'=>'col-sm-4 control-label')) }}
         <div class="col-sm-2">
-            <input name="codAlumno" type="text" class="form-control" value="{{$alumno->id}}" readonly>
+            <input name="codAlumno" type="hidden" class="form-control" value="{{$alumno->id}}" ><div class="form-control">{{$alumno->id}}</div>
         </div>
         {{ Form::label('semestreMatri','Semestre: ',array('class'=>'col-sm-1 control-label')) }}
         <div class="col-sm-2">
-            <input name="semestreMatri" type="text" class="form-control" value="{{$semest}}" readonly>
+            <input name="semestreMatri" type="hidden" class="form-control" value="{{$semest}}" readonly><div class="form-control">{{$semest}}</div>
         </div>
         <div class="box-body table-responsive">
             <table aria-describedby="example1_info" id="example1" class="table table-bordered table-striped dataTable">
@@ -26,7 +26,6 @@ Cursos Disponibles para matricularse
                         <th colspan="1" rowspan="1">Semestre</th>
                         <th colspan="1" rowspan="1">Código Curso</th>
                         <th colspan="1" rowspan="1">Curso</th>
-                        <th colspan="1" rowspan="1">Código Docente</th>
                         <th colspan="1" rowspan="1">Docente</th>
                         <th colspan="1" rowspan="1">turno</th>
                         <th colspan="1" rowspan="1">grupo</th>
@@ -37,13 +36,12 @@ Cursos Disponibles para matricularse
                     @foreach( $cursos as $curso)
                     <tr class="odd">
                             <td class=" "><b>{{ $curso->codCargaAcademica_ct }}</b></td>
-                            <td class=" "><b>{{ $curso->semestre}}</b></td>
+                            <td class=" "><b>{{ Semestre::find($curso->semestre)->nombre }}</b></td>
                             <td class=" "><b>{{ $curso->codCurso_ct }}</b></td>
                             <td class=" "><b>{{ $curso->curso }}</b></td>
-                            <td class=" ">{{ $curso->codDocente }}</td>
                             <td class=" ">{{ $curso->docente }}</td>
-                            <td class=" ">{{ $curso->turno }}</td>
-                            <td class=" ">{{ $curso->grupo }}</td>
+                            <td class=" ">{{ Turno::find($curso->turno)->nombre }}</td>
+                            <td class=" ">{{ Grupo::find($curso->grupo)->nombre }}</td>
                             <td class=" "><input type="checkbox" name="cargas[]" value={{ $curso->codCargaAcademica_ct }}></td>
                     </tr>
                     @endforeach
@@ -55,6 +53,6 @@ Cursos Disponibles para matricularse
                 <button class="btn btn-primary btn-block" type="submit">Matricular</button>
             </div>
         </div>
-    {{Form::close()}}  
+    {{Form::close()}}
 </div>
 @stop

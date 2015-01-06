@@ -4,7 +4,7 @@
 
 class DocenteController extends BaseController
 {
-	public function index($registros=2)
+	public function index($registros=10)
 	{
 		$datos = Docente::paginate($registros);
 		return View::make('docente.index',compact("datos"));

@@ -17,7 +17,7 @@
     </head>
 
     <body class="panel-usuario">
-      
+
     <div class="header logeado clearfix">
         <div class="logo-header-wrap">
             <h1><a href="{{url('docente/perfil')}}" title="Adondevivir.com" class="logo-header nombre">Docentes - <b>ISC</b></a></h1>
@@ -44,59 +44,53 @@
         <div class="panel_nav" id="dmenu">
             <ul>
                 <li><a href="{{url('docente')}}" class="active"><span class="glyphicon glyphicon-user"></span> Perfil</a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-book"></span> Mis Cursos</a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-list"></span> Alertas</a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-cog"></span> Configuración</a></li>
-                <li><a href="{{url('ListarCursos')}}"><span class="glyphicon"></span> Mis Cursos Libres</a>                
+                <li><a href="{{url('ListarCursos')}}"><span class="glyphicon"></span> Mis Cursos Libres</a>
                 <li><a href="{{url('ListarCursosCarreras')}}"><span class="glyphicon"></span> Mis Cursos de Carrera</a>
                  <li class="divider"></li>
                  <li class="dropdown-header">CURSO LIBRE </li>
                 <li>
-                <li>                   
+                <li>
                     <a href = "{{url('ingresonotas/inicioCL')}}">
                     <span class = "glyphicon glyphicon-open"></span>
-                    Ingreso De Notas Curso Libre</a>                     
+                    Ingreso De Notas Curso Libre</a>
                 </li>
                 <li>
                     <a href = "{{url('ingresonotas/registroCL')}}">
                     <span class = "glyphicon glyphicon-th-list"></span>
-                    Ver Notas Curso Libre</a>                     
+                    Ver Notas Curso Libre</a>
                 </li>
-                <li>                
-                  <a href = "{{url('asistencia/inicioCL')}}">
-                  <span class = "glyphicon glyphicon-plus"></span>
-                  Control Asistencia Cursos Libres</a>
-                </li>
-
-                </li>
-                   <li>                
-                  <a href = "{{url('asistencia/registroCL')}}">
-                  <span class = "glyphicon glyphicon-list-alt"></span>
-                  Lista Asistencias Cursos Libres </a>
-                </li>
-
-                 <li class="divider"></li>
                  <li class="dropdown-header">CARRERA TECNICA </li>
                 <li>
                     <a href = "{{url('ingresonotas/inicioCT')}}">
                     <span class = "glyphicon glyphicon-open"></span>
-                    Ingreso De Notas Carrera Tecnica</a> 
+                    Ingreso De Notas Carrera Tecnica</a>
                 </li>
                 <li>
                     <a href = "{{url('ingresonotas/registroCT')}}">
                     <span class = "glyphicon glyphicon-th-list"></span>
-                    Ver Notas Carrera Tecnica</a>                     
+                    Ver Notas Carrera Tecnica</a>
                 </li>
+                </li>
+                <li class="dropdown-header">ASISTENCIA</li>
                 <li>
                     <a href = "{{url('asistencia/inicioCT')}}">
                     <span class = "glyphicon glyphicon-th-list"></span>
-                    Control Asistencia Carrera Tecnica </a>                     
+                    Control Asistencia Carrera Tecnica </a>
                 </li>
-                </li>
-                   <li>                
+                <li>
                   <a href = "{{url('asistencia/registroCT')}}">
                   <span class = "glyphicon glyphicon-list-alt"></span>
                   Lista Asistencias Carrera Técnica </a>
+                </li>
+                <li>
+                  <a href = "{{url('asistencia/inicioCL')}}"><span class = "glyphicon glyphicon-plus"></span>
+                  Control Asistencia Cursos Libres</a>
+                </li>
+                </li>
+                   <li>
+                  <a href = "{{url('asistencia/registroCL')}}">
+                  <span class = "glyphicon glyphicon-list-alt"></span>
+                  Lista Asistencias Cursos Libres </a>
                 </li>
             </ul>
         </div>

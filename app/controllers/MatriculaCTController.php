@@ -9,10 +9,15 @@ class MatriculaCTController extends BaseController
 		return View::make('matriculaCT.index', array('semestres'=>$semestres));
 	}
 	//-- lista todas las matriculas de Carrera Tecnica
-	public function listaMatriculas()
+	public function listaMatriculas($registros=15)
 	{
-		$matriculas = DB::select('call listarMatriculasCT()');
-		return View::make('matriculaCT.lista_matriculas',array("matriculas"=>$matriculas));
+		$datos = DB::table('matricula_ct')
+						->join('alumno','matricula_ct.codAlumno','=', 'alumno.id')
+						->join('carga_academica_ct','matricula_ct.codCargaAcademica_ct','=','carga_academica_ct.codCargaAcademica_ct')
+						->join('curso_ct','carga_academica_ct.codCurso_ct','=','curso_ct.id')
+						->select('matricula_ct.id','matricula_ct.semestre','matricula_ct.codAlumno','alumno.nombre as alumno','matricula_ct.codCargaAcademica_ct','curso_ct.nombre')
+						->paginate($registros);
+		return View::make('matriculaCT.lista_matriculas',compact("datos"));
 	}
 
 	public function edit($cod)
@@ -140,7 +145,7 @@ class MatriculaCTController extends BaseController
 								} else {
 									Redirect::to('500.html');
 								}
-							}	
+							}
 						} else{
 							// no existe codigo de carga academica
 							$respuesta['mensaje'] = 'ERROR !!! Código de Carga Académica no existe.';

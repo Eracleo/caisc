@@ -27,7 +27,7 @@ class MatriculaCLController extends BaseController
 
 	public function listaCursosCLdisponibles(){
 		$cursos = DB::select('call listar_cursosCL_disponibles()');
-		return View::make('matriculaCL.listaCursos',array('cursos'=>$cursos));		
+		return View::make('matriculaCL.listaCursos',array('cursos'=>$cursos));
 	}
 
 	public function registrar($cod)
@@ -96,8 +96,10 @@ class MatriculaCLController extends BaseController
 		{
 			Redirect::to('404.html');
 		} else {
+			$nota_cl = NotaCL::where('codMatricula_cl','=',$cod)->delete();
 			$matricula = MatriculaCL::where('id','=',$cod)->delete();
-			return Redirect::to('matriculas_curso_libre');
+			return Redirect::to('/');
+			//return Redirect::to('matriculas_curso_libre');
 		}
 	}
 
@@ -150,7 +152,7 @@ class MatriculaCLController extends BaseController
 								} else {
 									Redirect::to('500.html');
 								}
-							}	
+							}
 						} else{
 							// no existe codigo de carga academica
 							$respuesta['mensaje'] = 'ERROR !!! Código de Carga Académica no existe.';

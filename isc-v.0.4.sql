@@ -39,7 +39,8 @@ CREATE TABLE IF NOT EXISTS alumno(
 	`codCarrera` VARCHAR(10) DEFAULT null,
 	PRIMARY KEY (`id`),
 	FOREIGN KEY (`codCarrera`) REFERENCES carrera(`id`)
-) CHARSET=utf8  AUTO_INCREMENT=100001;
+) CHARSET=utf8;
+ALTER TABLE `alumno` auto_increment = 100001;
 
 CREATE TABLE IF NOT EXISTS curso_ct(
 	`id`  VARCHAR(10) NOT NULL,
@@ -239,7 +240,7 @@ CREATE TABLE IF NOT EXISTS nota_cl(
 
 CREATE TABLE IF NOT EXISTS aula(
 	`codAula` VARCHAR(10) NOT NULL,
-	`capacidad` INT NOT NULL,	
+	`capacidad` INT NOT NULL,
 	`estado` tinyint(1) DEFAULT '1',
 	PRIMARY KEY (`codAula`)
 ) CHARSET=utf8;

@@ -16,11 +16,8 @@ Lista de Turnos
                 <tr role="row">
                     <th>Turno
                     </th>
-                    <th
+                    <th>
                     Accion(Editar)
-                    </th>
-                    <th class="sorting" role="columnheader" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 100px;" aria-label="Platform(s): activate to sort column ascending">
-                        Accion(Eliminar)
                     </th>
                 </tr>
             </thead>
@@ -31,11 +28,6 @@ Lista de Turnos
 					</td>
 					<td  align = "center">
 						<a href="turno/{{ $turno->id }}/edit"><span class="label label-success">Editar</a>
-					</td>
-					<td align = "center">
-						{{ Form::open(array('url'=>'turno/'.$turno->id, 'method'=>'delete')) }}
-						{{ Form::submit('Eliminar') }}
-						{{ Form::close() }}
 					</td>
 				</tr>
 			@endforeach

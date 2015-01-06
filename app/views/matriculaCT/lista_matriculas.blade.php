@@ -18,20 +18,23 @@ Relacion de Matriculas Carrera Técnica
         </tr>
     </thead>
     <tbody aria-relevant="all" aria-live="polite" role="alert">
-        @foreach( $matriculas as $matricula)
+        @foreach( $datos as $matricula)
         <tr class="odd">
             <td class=" "><b>{{ $matricula->id }}</b></td>
-            <td class=" "><b>{{ $matricula->semestre }}</b></td>
+            <td class=" "><b>{{ Semestre::find($matricula->semestre)->nombre }}</b></td>
             <td class=" "><b>{{ $matricula->codAlumno }}</b></td>
             <td class=" "><b>{{ $matricula->alumno }}</b></td>
             <td class=" "><b>{{ $matricula->codCargaAcademica_ct }}</b></td>
             <td class=" "><b>{{ $matricula->nombre }}</b></td>
             <td class=" ">
-                <span class="label label-warning">{{ HTML::link('matriculas_ct/edit/'.$matricula->id,'Modificar') }}</span>
                 <span class="label label-danger">{{ HTML::link('matriculas_ct/delete/'.$matricula->id,'Eliminar') }}</span>
             </td>
         </tr>
         @endforeach
     </tbody>
 </table>
+<div class="row">
+    <div class="col-sm-2"><p><b>Pagina Actual:</b> {{ $datos->getCurrentPage()}}</p></div>
+    <div class="col-sm-6">{{ $datos->links()}}</div>
+</div>
 @stop

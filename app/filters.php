@@ -97,7 +97,7 @@ Route::filter('sessionDoc',function()
 		$tipoUsuario = Auth::user()->gettipoUsuario();
 		if($tipoUsuario == "Personal")
 		{
-			return Redirect::to('persona');
+			//return Redirect::to('persona');
 		}
 		else
 		{
@@ -136,7 +136,7 @@ Route::filter('sessionAlu',function()
 		$tipoUsuario = Auth::user()->gettipoUsuario();
 		if($tipoUsuario == "Personal")
 		{
-			return Redirect::to('persona');
+			//return Redirect::to('persona');
 		}
 		else
 		{
